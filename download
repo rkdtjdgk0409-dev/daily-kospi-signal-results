@@ -1,6 +1,0 @@
-__pycache__/
-*.pyc
-results/*.csv
-results/*.json
-results/*.md
-!results/.gitkeep
