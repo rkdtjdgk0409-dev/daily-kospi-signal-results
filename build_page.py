@@ -22,7 +22,7 @@ def table_rows(df, mode="buy"):
         if mode == "buy":
             out.append(
                 f"<tr><td>{i}</td><td class='name'>{esc(r['name'])}</td>"
-                f"<td>{str(r['ticker']).zfill(6)}</td><td>{fmt_price(r['close'])}</td>"
+                f"<td>{esc(r.get('market','-'))}</td><td>{str(r['ticker']).zfill(6)}</td><td>{fmt_price(r['close'])}</td>"
                 f"<td>{fmt(r['daily_return_pct'],2)}%</td><td>{fmt(r['cci'])}</td>"
                 f"<td>{fmt(r['plus_di'])}</td><td>{fmt(r['minus_di'])}</td>"
                 f"<td>{fmt(r['adx'])}</td><td>{cvd}</td>"
@@ -31,7 +31,7 @@ def table_rows(df, mode="buy"):
         else:
             out.append(
                 f"<tr><td>{i}</td><td class='name'>{esc(r['name'])}</td>"
-                f"<td>{str(r['ticker']).zfill(6)}</td><td>{fmt_price(r['close'])}</td>"
+                f"<td>{esc(r.get('market','-'))}</td><td>{str(r['ticker']).zfill(6)}</td><td>{fmt_price(r['close'])}</td>"
                 f"<td>{fmt(r['cci'])}</td><td>{fmt(r['adx'])}</td>"
                 f"<td>{cvd}</td><td class='score'>{fmt(r['signal_score'])}</td></tr>"
             )
@@ -49,7 +49,7 @@ def main():
     else:
         buy_html=(
             "<div class='table-wrap'><table><thead><tr>"
-            "<th>#</th><th>종목</th><th>코드</th><th>종가</th><th>등락률</th>"
+            "<th>#</th><th>종목</th><th>시장</th><th>코드</th><th>종가</th><th>등락률</th>"
             "<th>CCI</th><th>+DI</th><th>-DI</th><th>ADX</th><th>CVD</th><th>점수</th>"
             "</tr></thead><tbody>"+table_rows(buy,"buy")+"</tbody></table></div>"
         )
@@ -59,7 +59,7 @@ def main():
     else:
         active_html=(
             "<div class='table-wrap'><table><thead><tr>"
-            "<th>#</th><th>종목</th><th>코드</th><th>종가</th>"
+            "<th>#</th><th>종목</th><th>시장</th><th>코드</th><th>종가</th>"
             "<th>CCI</th><th>ADX</th><th>CVD</th><th>점수</th>"
             "</tr></thead><tbody>"+table_rows(active,"active")+"</tbody></table></div>"
         )
@@ -91,15 +91,15 @@ td{{font-size:13px}} th:nth-child(2),td.name{{text-align:left}} tr:last-child td
 <div class="wrap">
 <section class="hero">
 <h1>KOSPI CCI + DMI Signal Screener</h1>
-<div class="sub">기준일 {esc(summary.get("latest_signal_date","-"))} · 생성 {esc(summary.get("generated_at","-"))}<br>KOSPI 시가총액 상위 {p.get("top_n",200)} 종목 대상</div>
+<div class="sub">기준일 {esc(summary.get("latest_signal_date","-"))} · 생성 {esc(summary.get("generated_at","-"))}<br>KOSPI 시총 상위 {p.get("kospi_n",200)} + KOSDAQ 시총 상위 {p.get("kosdaq_n",150)} 종목 대상</div>
 <div class="chips">
 <div class="chip">CCI({p.get("cci_period",9)}) 0선 상향돌파</div>
 <div class="chip">+DI &gt; -DI</div>
 <div class="chip">ADX({p.get("dmi_period",14)}) ≥ {p.get("adx_threshold",20)}</div>
-<div class="chip">CVD = 참고 점수</div>
+<div class="chip">CVD = 참고 점수</div><div class="chip">KOSDAQ 20일 평균 거래대금 ≥ {p.get("kosdaq_min_avg20_value",3000000000)/100000000:.0f}억원</div>
 </div>
 <div class="stats">
-<div class="stat"><div class="v">{summary.get("fresh_buy_count",0)}</div><div class="k">신규 매수 신호</div></div>
+<div class="stat"><div class="v">{summary.get("fresh_buy_count",0)}</div><div class="k">신규 매수 신호 · KOSPI {summary.get("fresh_buy_count_kospi",0)} / KOSDAQ {summary.get("fresh_buy_count_kosdaq",0)}</div></div>
 <div class="stat"><div class="v">{summary.get("active_trend_count",0)}</div><div class="k">상승추세 유지</div></div>
 <div class="stat"><div class="v">{summary.get("symbols_scored",0)}</div><div class="k">분석 완료 종목</div></div>
 </div>

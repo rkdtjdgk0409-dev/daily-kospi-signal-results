@@ -1,30 +1,38 @@
-# KOSPI Signal Screener → GitHub Pages → Notion Embed
+# KOSPI 200 + KOSDAQ 150 Signal Screener
 
-Notion 토큰은 필요 없습니다.
+기본 유니버스:
+- 현재 KOSPI 시가총액 상위 200
+- 현재 KOSDAQ 시가총액 상위 150
+- 총 최대 350종목
 
-구조:
-GitHub Actions → 조건검색 → HTML 생성 → GitHub Pages 배포 → Notion /embed
+기존 신호 구조는 그대로 유지합니다.
 
-## 설정
-1. ZIP 내용을 저장소 루트에 업로드
-2. GitHub 저장소 → Settings → Pages
-3. Build and deployment → Source → **GitHub Actions**
-4. Actions → `Daily KOSPI Screener + GitHub Pages` → Run workflow
-5. deploy job 완료 후 표시되는 GitHub Pages URL 확인
-6. Notion에서 `/embed` → 해당 URL 붙여넣기
+## 신규 매수 신호
+CCI(9) 0선 상향돌파
+AND +DI > -DI
+AND ADX(14) >= 20
 
-보통 URL:
-`https://<github아이디>.github.io/<저장소이름>/`
+CVD Proxy는 필수 진입조건이 아니라 랭킹/확인용입니다.
 
-## 자동 실행
-평일 한국시간 16:40에 실행되도록 설정되어 있습니다.
+## KOSDAQ 유동성 필터
+기본값:
+20일 평균 거래대금 >= 30억원
 
-## 화면
-Notion 임베드 페이지에는:
-- 신규 매수 신호
-- 상승추세 유지 종목 상위 30개
-- 종가 / 등락률 / CCI / +DI / -DI / ADX / CVD / 점수
+계산:
+20일 평균(Close × Volume)
 
-만 표시됩니다.
+## GitHub Pages / Notion
+1. ZIP 전체를 저장소 루트에 업로드
+2. Settings → Pages → Source → GitHub Actions
+3. Actions → Daily KOSPI Screener + GitHub Pages → Run workflow
+4. 배포 URL을 Notion에서 /embed
 
-GitHub Secrets 및 NOTION_TOKEN은 전혀 사용하지 않습니다.
+Notion Token은 필요 없습니다.
+
+## 수동 실행 옵션
+- KOSPI 종목 수
+- KOSDAQ 종목 수
+- KOSDAQ 20일 평균 거래대금 기준
+- CCI 기간
+- DMI/ADX 기간
+- ADX 최소값

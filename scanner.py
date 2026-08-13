@@ -22,7 +22,7 @@ except Exception:
     stock = None
 
 
-def latest_krx_business_day(max_lookback: int = 14) -> str:
+def latest_krx_business_day(market: str, max_lookback: int = 14) -> str:
     if stock is None:
         raise RuntimeError("pykrx unavailable")
     today = datetime.now()
@@ -30,20 +30,22 @@ def latest_krx_business_day(max_lookback: int = 14) -> str:
     for i in range(max_lookback):
         d = (today - timedelta(days=i)).strftime("%Y%m%d")
         try:
-            cap = stock.get_market_cap_by_ticker(d, market="KOSPI")
+            cap = stock.get_market_cap_by_ticker(d, market=market)
             if cap is not None and not cap.empty:
                 return d
         except Exception as e:
             last_error = e
-    raise RuntimeError(f"KRX unavailable: {last_error}")
+    raise RuntimeError(f"KRX unavailable for {market}: {last_error}")
 
 
-def universe_from_pykrx(n: int) -> pd.DataFrame:
-    asof = latest_krx_business_day()
-    cap = stock.get_market_cap_by_ticker(asof, market="KOSPI").copy()
+def universe_from_pykrx(market: str, n: int) -> pd.DataFrame:
+    asof = latest_krx_business_day(market)
+    cap = stock.get_market_cap_by_ticker(asof, market=market).copy()
     if cap.empty or "시가총액" not in cap.columns:
-        raise RuntimeError("Unexpected pykrx response")
+        raise RuntimeError(f"Unexpected pykrx response for {market}")
+
     cap = cap.sort_values("시가총액", ascending=False).head(n)
+    suffix = ".KS" if market == "KOSPI" else ".KQ"
 
     rows = []
     for ticker, row in cap.iterrows():
@@ -51,18 +53,21 @@ def universe_from_pykrx(n: int) -> pd.DataFrame:
             name = stock.get_market_ticker_name(ticker)
         except Exception:
             name = str(ticker)
+
         ticker = str(ticker).zfill(6)
         rows.append({
             "ticker": ticker,
             "name": name,
+            "market": market,
             "market_cap": float(row["시가총액"]),
             "universe_source": "pykrx",
-            "yf_ticker": ticker + ".KS",
+            "yf_ticker": ticker + suffix,
         })
+
     return pd.DataFrame(rows)
 
 
-def universe_from_naver(n: int) -> pd.DataFrame:
+def universe_from_naver(market: str, n: int) -> pd.DataFrame:
     session = requests.Session()
     session.headers.update({
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/123 Safari/537.36",
@@ -70,11 +75,14 @@ def universe_from_naver(n: int) -> pd.DataFrame:
         "Referer": "https://finance.naver.com/",
     })
 
+    sosok = 0 if market == "KOSPI" else 1
+    suffix = ".KS" if market == "KOSPI" else ".KQ"
+
     rows, seen = [], set()
     pages = max(4, math.ceil(n / 50) + 1)
 
     for page in range(1, pages + 1):
-        url = f"https://finance.naver.com/sise/sise_market_sum.naver?sosok=0&page={page}"
+        url = f"https://finance.naver.com/sise/sise_market_sum.naver?sosok={sosok}&page={page}"
         r = session.get(url, timeout=30)
         r.raise_for_status()
         r.encoding = r.apparent_encoding or "euc-kr"
@@ -88,44 +96,61 @@ def universe_from_naver(n: int) -> pd.DataFrame:
             a = tr.select_one('a.tltle[href*="code="]')
             if a is None:
                 continue
+
             m = re.search(r"code=(\d{6})", a.get("href", ""))
             if not m:
                 continue
+
             ticker = m.group(1)
             if ticker in seen:
                 continue
             seen.add(ticker)
+
             rows.append({
                 "ticker": ticker,
                 "name": a.get_text(strip=True),
+                "market": market,
                 "market_cap": np.nan,
                 "universe_source": "naver_finance_market_cap",
-                "yf_ticker": ticker + ".KS",
+                "yf_ticker": ticker + suffix,
             })
+
             if len(rows) >= n:
                 return pd.DataFrame(rows)
 
         time.sleep(0.25)
 
     if len(rows) < n:
-        raise RuntimeError(f"Naver returned only {len(rows)} symbols")
+        raise RuntimeError(f"Naver returned only {len(rows)} symbols for {market}")
+
     return pd.DataFrame(rows[:n])
 
 
-def get_universe(n: int) -> pd.DataFrame:
+def get_one_market_universe(market: str, n: int) -> pd.DataFrame:
     try:
-        print("[universe] trying KRX/pykrx")
-        u = universe_from_pykrx(n)
+        print(f"[universe] trying KRX/pykrx: {market}")
+        u = universe_from_pykrx(market, n)
         if len(u) >= n:
-            print(f"[universe] pykrx OK: {len(u)}")
+            print(f"[universe] pykrx OK {market}: {len(u)}")
             return u.head(n).reset_index(drop=True)
     except Exception as e:
-        print(f"[warn] pykrx failed: {e}")
+        print(f"[warn] pykrx failed {market}: {e}")
 
-    print("[universe] fallback to Naver Finance")
-    u = universe_from_naver(n)
-    print(f"[universe] Naver OK: {len(u)}")
+    print(f"[universe] fallback to Naver Finance: {market}")
+    u = universe_from_naver(market, n)
+    print(f"[universe] Naver OK {market}: {len(u)}")
     return u.head(n).reset_index(drop=True)
+
+
+def get_universe(kospi_n: int, kosdaq_n: int) -> pd.DataFrame:
+    parts = []
+    if kospi_n > 0:
+        parts.append(get_one_market_universe("KOSPI", kospi_n))
+    if kosdaq_n > 0:
+        parts.append(get_one_market_universe("KOSDAQ", kosdaq_n))
+    if not parts:
+        raise RuntimeError("Universe is empty.")
+    return pd.concat(parts, ignore_index=True)
 
 
 def normalize_ohlcv(df: pd.DataFrame) -> pd.DataFrame:
@@ -270,9 +295,12 @@ def score_one(df: pd.DataFrame, cci_period: int, dmi_period: int, adx_threshold:
         + 0.15 * (1.0 if cvd_bull else 0.0)
     )
 
+    avg20_trading_value = float((x["Close"] * x["Volume"]).rolling(20).mean().iloc[-1])
+
     return {
         "signal_date": x.index[-1].strftime("%Y-%m-%d"),
         "close": float(r["Close"]),
+        "avg20_trading_value": avg20_trading_value,
         "daily_return_pct": float((r["Close"] / prev["Close"] - 1) * 100),
         "cci": float(r["cci"]),
         "cci_prev": float(prev["cci"]),
@@ -288,7 +316,9 @@ def score_one(df: pd.DataFrame, cci_period: int, dmi_period: int, adx_threshold:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--top-n", type=int, default=200)
+    ap.add_argument("--kospi-n", type=int, default=200)
+    ap.add_argument("--kosdaq-n", type=int, default=150)
+    ap.add_argument("--kosdaq-min-avg20-value", type=float, default=3000000000)
     ap.add_argument("--cci-period", type=int, default=9)
     ap.add_argument("--dmi-period", type=int, default=14)
     ap.add_argument("--adx-threshold", type=float, default=20)
@@ -300,11 +330,11 @@ def main():
     outdir = Path(args.output_dir)
     outdir.mkdir(parents=True, exist_ok=True)
 
-    universe = get_universe(args.top_n)
+    universe = get_universe(args.kospi_n, args.kosdaq_n)
     universe.to_csv(outdir / "universe.csv", index=False, encoding="utf-8-sig")
 
     prices = download_prices(universe["yf_ticker"].tolist())
-    meta = universe.set_index("yf_ticker")[["ticker", "name", "universe_source"]].to_dict("index")
+    meta = universe.set_index("yf_ticker")[["ticker", "name", "market", "universe_source"]].to_dict("index")
 
     rows = []
     for yf_ticker, df in prices.items():
@@ -315,9 +345,13 @@ def main():
         if sig is None:
             continue
         m = meta[yf_ticker]
+        if m["market"] == "KOSDAQ" and sig.get("avg20_trading_value", 0) < args.kosdaq_min_avg20_value:
+            continue
+
         rows.append({
             "ticker": m["ticker"],
             "name": m["name"],
+            "market": m["market"],
             "yf_ticker": yf_ticker,
             "universe_source": m["universe_source"],
             **sig,
@@ -345,11 +379,15 @@ def main():
         "active_trend_count": int(len(active)),
         "latest_signal_date": str(all_df["signal_date"].max()),
         "parameters": {
-            "top_n": args.top_n,
+            "kospi_n": args.kospi_n,
+            "kosdaq_n": args.kosdaq_n,
+            "kosdaq_min_avg20_value": args.kosdaq_min_avg20_value,
             "cci_period": args.cci_period,
             "dmi_period": args.dmi_period,
             "adx_threshold": args.adx_threshold,
         },
+        "fresh_buy_count_kospi": int((buy["market"] == "KOSPI").sum()) if not buy.empty else 0,
+        "fresh_buy_count_kosdaq": int((buy["market"] == "KOSDAQ").sum()) if not buy.empty else 0,
     }
     (outdir / "summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2),
