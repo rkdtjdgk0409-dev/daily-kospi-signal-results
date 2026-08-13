@@ -277,15 +277,42 @@ def score_one(df: pd.DataFrame, cci_period: int, dmi_period: int, adx_threshold:
     if len(x.dropna(subset=["cci", "plus_di", "minus_di", "adx"])) < 2:
         return None
 
-    r = x.iloc[-1]
-    prev = x.iloc[-2]
+  r = x.iloc[-1]
+prev = x.iloc[-2]
 
-    cci_cross_up = bool((r["cci"] > 0) and (prev["cci"] <= 0))
-    dmi_bull = bool((r["plus_di"] > r["minus_di"]) and (r["adx"] >= adx_threshold))
-    cvd_bull = bool((r["cvd_slope"] > 0) and (r["cvd_proxy"] > r["cvd_ema"]))
+# CCI가 0선을 상향 돌파한 날
+x["cci_cross_up"] = (x["cci"] > 0) & (x["cci"].shift(1) <= 0)
 
-    fresh_buy = cci_cross_up and dmi_bull
-    active_trend = (r["cci"] > 0) and dmi_bull
+# 최근 2거래일 중 한 번이라도 0선 상향돌파가 있었는지
+recent_cci_cross_up = bool(
+    x["cci_cross_up"].iloc[-2:].any()
+)
+
+dmi_bull = bool(
+    (r["plus_di"] > r["minus_di"])
+    and
+    (r["adx"] >= adx_threshold)
+)
+
+cvd_bull = bool(
+    (r["cvd_slope"] > 0)
+    and
+    (r["cvd_proxy"] > r["cvd_ema"])
+)
+
+fresh_buy = (
+    recent_cci_cross_up
+    and
+    (r["cci"] > 0)
+    and
+    dmi_bull
+)
+
+active_trend = bool(
+    (r["cci"] > 0)
+    and
+    dmi_bull
+)
 
     adx_score = np.clip(r["adx"] / 40.0, 0, 1.5)
     cci_score = np.clip(r["cci"] / 150.0, -1, 1.5)
