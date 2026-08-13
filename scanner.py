@@ -277,42 +277,33 @@ def score_one(df: pd.DataFrame, cci_period: int, dmi_period: int, adx_threshold:
     if len(x.dropna(subset=["cci", "plus_di", "minus_di", "adx"])) < 2:
         return None
 
-  r = x.iloc[-1]
-prev = x.iloc[-2]
+    r = x.iloc[-1]
+    prev = x.iloc[-2]
 
-# CCI가 0선을 상향 돌파한 날
-x["cci_cross_up"] = (x["cci"] > 0) & (x["cci"].shift(1) <= 0)
+    # CCI 0선 상향돌파 여부
+    x["cci_cross_up"] = (x["cci"] > 0) & (x["cci"].shift(1) <= 0)
 
-# 최근 2거래일 중 한 번이라도 0선 상향돌파가 있었는지
-recent_cci_cross_up = bool(
-    x["cci_cross_up"].iloc[-2:].any()
-)
+    # 오늘 또는 어제, 즉 최근 2거래일 안에 0선을 상향돌파했는지 확인
+    recent_cci_cross_up = bool(x["cci_cross_up"].iloc[-2:].any())
 
-dmi_bull = bool(
-    (r["plus_di"] > r["minus_di"])
-    and
-    (r["adx"] >= adx_threshold)
-)
+    dmi_bull = bool(
+        (r["plus_di"] > r["minus_di"])
+        and (r["adx"] >= adx_threshold)
+    )
 
-cvd_bull = bool(
-    (r["cvd_slope"] > 0)
-    and
-    (r["cvd_proxy"] > r["cvd_ema"])
-)
+    cvd_bull = bool(
+        (r["cvd_slope"] > 0)
+        and (r["cvd_proxy"] > r["cvd_ema"])
+    )
 
-fresh_buy = (
-    recent_cci_cross_up
-    and
-    (r["cci"] > 0)
-    and
-    dmi_bull
-)
+    # 최근 2거래일 내 CCI 0선 상향돌파 + 현재 CCI > 0 + DMI/ADX 조건
+    fresh_buy = (
+        recent_cci_cross_up
+        and (r["cci"] > 0)
+        and dmi_bull
+    )
 
-active_trend = bool(
-    (r["cci"] > 0)
-    and
-    dmi_bull
-)
+    active_trend = (r["cci"] > 0) and dmi_bull
 
     adx_score = np.clip(r["adx"] / 40.0, 0, 1.5)
     cci_score = np.clip(r["cci"] / 150.0, -1, 1.5)
