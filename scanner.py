@@ -331,6 +331,7 @@ def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int) -> dict | N
     mdi = float(r["minus_di"])
     adx_v = float(r["adx"])
     direction = (pdi - mdi) / (pdi + mdi) if (pdi + mdi) > 0 else 0.0
+    dmi_ratio = (pdi / mdi) if mdi > 0 else (10.0 if pdi > 0 else 1.0)
     direction_long = max(direction, 0.0)
     direction_score = clamp100(direction_long * 200.0)  # +DI가 -DI보다 충분히 클수록 포화
     adx_strength_score = clamp100((adx_v - 15.0) / 25.0 * 100.0)  # ADX 40에서 포화
@@ -375,6 +376,7 @@ def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int) -> dict | N
         "adx": adx_v,
         "adx_delta3": adx_delta3,
         "dmi_direction": float(direction),
+        "dmi_ratio": float(dmi_ratio),
         "trend_score": float(trend_score),
         "momentum_score": float(momentum_score),
         "flow_score": float(flow_score),
@@ -450,17 +452,22 @@ def risk_label(score: float) -> str:
     return "HIGH"
 
 
-def setup_grade(row: pd.Series, buy_alpha_threshold: float) -> str:
-    fresh = bool(row["fresh_buy"])
-    age = int(row["cci_cross_age"])
-    alpha = float(row["alpha_score"])
-    if fresh and alpha >= 85 and row["rs_score"] >= 80 and row["flow_score"] >= 65 and row["regime"] == "RISK-ON":
-        return "A+"
-    if fresh and alpha >= max(75.0, buy_alpha_threshold):
+def setup_grade(row: pd.Series) -> str:
+    # 단계는 상호배타적: Confirmed > Fresh > Early > Watch
+    if bool(row.get("confirmed_buy", False)):
+        if (
+            float(row["alpha_score"]) >= 85
+            and float(row["rs_score"]) >= 80
+            and float(row["flow_score"]) >= 65
+            and row["regime"] == "RISK-ON"
+        ):
+            return "A+"
         return "A"
-    if age <= 5 and alpha >= 65 and row["dmi_bull"]:
+    if bool(row.get("fresh_buy", False)):
         return "B"
-    if alpha >= 60:
+    if bool(row.get("early_setup", False)):
+        return "EARLY"
+    if float(row["alpha_score"]) >= 60:
         return "WATCH"
     return "-"
 
@@ -477,9 +484,15 @@ def main():
     ap.add_argument("--cci-period", type=int, default=9)
     ap.add_argument("--dmi-period", type=int, default=14)
     ap.add_argument("--adx-threshold", type=float, default=20.0)
-    ap.add_argument("--buy-alpha-threshold", type=float, default=70.0)
+    ap.add_argument("--confirmed-alpha-threshold", type=float, default=75.0)
+    ap.add_argument("--fresh-alpha-threshold", type=float, default=60.0)
+    ap.add_argument("--early-alpha-threshold", type=float, default=50.0)
+    # Backward-compatible alias. If supplied by an older workflow, it overrides Confirmed only.
+    ap.add_argument("--buy-alpha-threshold", type=float, default=None, help=argparse.SUPPRESS)
     ap.add_argument("--output-dir", default="results")
     args = ap.parse_args()
+    if args.buy_alpha_threshold is not None:
+        args.confirmed_alpha_threshold = float(args.buy_alpha_threshold)
 
     outdir = Path(args.output_dir)
     outdir.mkdir(parents=True, exist_ok=True)
@@ -563,42 +576,100 @@ def main():
         + 0.25 * all_df["rs_score"]
     ).clip(0, 100)
 
-    all_df["dmi_bull"] = (all_df["plus_di"] > all_df["minus_di"]) & (all_df["adx"] >= args.adx_threshold)
-    all_df["fresh_cci_cross"] = all_df["cci_cross_age"] <= 1
-    all_df["fresh_buy"] = (
-        all_df["fresh_cci_cross"]
+    # ------------------------------------------------------------------
+    # Three-stage signal ladder
+    # 1) CONFIRMED: strict confirmation. Quality first, frequency low.
+    # 2) FRESH:     relaxed entry. No ADX>=20 hard filter; ranking absorbs it.
+    # 3) EARLY:     pre-cross watchlist. CCI is still <=0 but accelerating.
+    # Stages are mutually exclusive so the same stock is not duplicated.
+    # ------------------------------------------------------------------
+    all_df["dmi_positive"] = all_df["plus_di"] > all_df["minus_di"]
+    all_df["dmi_bull"] = all_df["dmi_positive"] & (all_df["adx"] >= args.adx_threshold)
+
+    confirmed_raw = (
+        (all_df["cci_cross_age"] <= 1)
         & (all_df["cci"] > 0)
         & all_df["dmi_bull"]
         & (all_df["flow_score"] >= 50)
-        & (all_df["alpha_score"] >= args.buy_alpha_threshold)
+        & (all_df["alpha_score"] >= args.confirmed_alpha_threshold)
     )
+
+    fresh_raw = (
+        (all_df["cci_cross_age"] <= 3)
+        & (all_df["cci"] > 0)
+        & all_df["dmi_positive"]
+        & (all_df["flow_score"] >= 40)
+        & (all_df["alpha_score"] >= args.fresh_alpha_threshold)
+    )
+
+    # Early Setup deliberately uses a lower Alpha threshold. Before the CCI cross,
+    # the Momentum and Trend components are structurally lower, so Alpha>=60 would
+    # make this bucket almost empty. RS>=50 and DMI proximity protect quality.
+    early_raw = (
+        (all_df["cci"] > -30)
+        & (all_df["cci"] <= 0)
+        & (all_df["cci_delta3"] >= 25)
+        & (all_df["dmi_ratio"] >= 0.85)
+        & (all_df["flow_score"] >= 40)
+        & (all_df["rs_score"] >= 50)
+        & (all_df["alpha_score"] >= args.early_alpha_threshold)
+    )
+
+    all_df["confirmed_buy"] = confirmed_raw
+    all_df["fresh_buy"] = fresh_raw & ~confirmed_raw
+    all_df["early_setup"] = early_raw & ~confirmed_raw & ~fresh_raw
+    all_df["actionable_buy"] = all_df["confirmed_buy"] | all_df["fresh_buy"]
+
+    all_df["signal_tier"] = "RANK"
+    all_df.loc[all_df["early_setup"], "signal_tier"] = "EARLY"
+    all_df.loc[all_df["fresh_buy"], "signal_tier"] = "FRESH"
+    all_df.loc[all_df["confirmed_buy"], "signal_tier"] = "CONFIRMED"
+
     all_df["active_trend"] = (all_df["cci"] > 0) & all_df["dmi_bull"]
     all_df["signal_state"] = all_df["alpha_score"].map(signal_state)
-    all_df["setup_grade"] = all_df.apply(lambda r: setup_grade(r, args.buy_alpha_threshold), axis=1)
+    all_df["setup_grade"] = all_df.apply(setup_grade, axis=1)
 
-    all_df = all_df.sort_values(
-        ["fresh_buy", "setup_grade", "alpha_score"],
-        ascending=[False, True, False],
-    ).reset_index(drop=True)
+    tier_order = pd.Categorical(
+        all_df["signal_tier"],
+        categories=["CONFIRMED", "FRESH", "EARLY", "RANK"],
+        ordered=True,
+    )
+    all_df = (
+        all_df.assign(_tier_order=tier_order)
+        .sort_values(["_tier_order", "alpha_score"], ascending=[True, False])
+        .drop(columns=["_tier_order"])
+        .reset_index(drop=True)
+    )
 
-    buy = all_df[all_df["fresh_buy"]].sort_values("alpha_score", ascending=False)
+    confirmed = all_df[all_df["confirmed_buy"]].sort_values("alpha_score", ascending=False)
+    fresh = all_df[all_df["fresh_buy"]].sort_values("alpha_score", ascending=False)
+    early = all_df[all_df["early_setup"]].sort_values("alpha_score", ascending=False)
+    actionable = all_df[all_df["actionable_buy"]].sort_values(["confirmed_buy", "alpha_score"], ascending=[False, False])
     active = all_df[all_df["active_trend"]].sort_values("alpha_score", ascending=False)
     top_alpha = all_df.sort_values("alpha_score", ascending=False)
 
     all_df.to_csv(outdir / "latest_all_scored.csv", index=False, encoding="utf-8-sig")
-    buy.to_csv(outdir / "latest_buy_signals.csv", index=False, encoding="utf-8-sig")
+    actionable.to_csv(outdir / "latest_buy_signals.csv", index=False, encoding="utf-8-sig")  # backward-compatible union
+    confirmed.to_csv(outdir / "latest_confirmed_buy.csv", index=False, encoding="utf-8-sig")
+    fresh.to_csv(outdir / "latest_fresh_buy.csv", index=False, encoding="utf-8-sig")
+    early.to_csv(outdir / "latest_early_setups.csv", index=False, encoding="utf-8-sig")
     active.to_csv(outdir / "latest_active_trends.csv", index=False, encoding="utf-8-sig")
     top_alpha.to_csv(outdir / "latest_top_alpha.csv", index=False, encoding="utf-8-sig")
 
     summary = {
-        "model_version": "HF_TECH_V2",
+        "model_version": "HF_TECH_V2_1_SIGNAL_LADDER",
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "symbols_scored": int(len(all_df)),
-        "fresh_buy_count": int(len(buy)),
+        "actionable_buy_count": int(len(actionable)),
+        "confirmed_buy_count": int(len(confirmed)),
+        "fresh_buy_count": int(len(fresh)),
+        "early_setup_count": int(len(early)),
         "active_trend_count": int(len(active)),
         "latest_signal_date": str(all_df["signal_date"].max()),
-        "fresh_buy_count_kospi": int((buy["market"] == "KOSPI").sum()) if not buy.empty else 0,
-        "fresh_buy_count_kosdaq": int((buy["market"] == "KOSDAQ").sum()) if not buy.empty else 0,
+        "confirmed_buy_count_kospi": int((confirmed["market"] == "KOSPI").sum()) if not confirmed.empty else 0,
+        "confirmed_buy_count_kosdaq": int((confirmed["market"] == "KOSDAQ").sum()) if not confirmed.empty else 0,
+        "fresh_buy_count_kospi": int((fresh["market"] == "KOSPI").sum()) if not fresh.empty else 0,
+        "fresh_buy_count_kosdaq": int((fresh["market"] == "KOSDAQ").sum()) if not fresh.empty else 0,
         "parameters": {
             "kospi_n": args.kospi_n,
             "kosdaq_n": args.kosdaq_n,
@@ -607,7 +678,17 @@ def main():
             "cci_period": args.cci_period,
             "dmi_period": args.dmi_period,
             "adx_threshold": args.adx_threshold,
-            "buy_alpha_threshold": args.buy_alpha_threshold,
+            "confirmed_alpha_threshold": args.confirmed_alpha_threshold,
+            "fresh_alpha_threshold": args.fresh_alpha_threshold,
+            "early_alpha_threshold": args.early_alpha_threshold,
+            "confirmed_flow_threshold": 50,
+            "fresh_flow_threshold": 40,
+            "early_flow_threshold": 40,
+            "fresh_cross_days": 3,
+            "early_cci_floor": -30,
+            "early_cci_delta3_min": 25,
+            "early_dmi_ratio_min": 0.85,
+            "early_rs_min": 50,
         },
         "weights": {"trend": 30, "momentum": 25, "flow": 20, "relative_strength": 25},
         "regimes": regimes,
