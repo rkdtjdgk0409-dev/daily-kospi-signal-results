@@ -7,6 +7,7 @@ import math
 import re
 import time
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -21,6 +22,11 @@ try:
 except Exception:
     stock = None
 
+KST = ZoneInfo("Asia/Seoul")
+
+def now_kst() -> datetime:
+    return datetime.now(KST)
+
 
 # -----------------------------
 # Universe / price data
@@ -28,7 +34,7 @@ except Exception:
 def latest_krx_business_day(market: str, max_lookback: int = 14) -> str:
     if stock is None:
         raise RuntimeError("pykrx unavailable")
-    today = datetime.now()
+    today = now_kst()
     last_error = None
     for i in range(max_lookback):
         d = (today - timedelta(days=i)).strftime("%Y%m%d")
@@ -163,7 +169,7 @@ def normalize_ohlcv(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def download_prices(tickers: List[str], lookback_days: int = 320) -> Dict[str, pd.DataFrame]:
-    end = datetime.now() + timedelta(days=1)
+    end = now_kst().replace(tzinfo=None) + timedelta(days=1)
     start = end - timedelta(days=lookback_days)
     out: Dict[str, pd.DataFrame] = {}
     chunk_size = 40
@@ -217,7 +223,7 @@ def download_prices(tickers: List[str], lookback_days: int = 320) -> Dict[str, p
 
 
 def download_benchmark(ticker: str, lookback_days: int = 320) -> pd.DataFrame:
-    end = datetime.now() + timedelta(days=1)
+    end = now_kst().replace(tzinfo=None) + timedelta(days=1)
     start = end - timedelta(days=lookback_days)
     try:
         df = yf.download(
@@ -494,7 +500,7 @@ def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int, st_period: 
 
 def benchmark_snapshot(df: pd.DataFrame) -> dict:
     if df is None or len(df) < 61:
-        return {"ret20": 0.0, "ret60": 0.0, "close": np.nan, "ma20": np.nan, "ma60": np.nan}
+        return {"ret20": 0.0, "ret60": 0.0, "close": np.nan, "ma20": np.nan, "ma60": np.nan, "signal_date": None}
     c = df["Close"]
     return {
         "ret20": float(c.iloc[-1] / c.iloc[-21] - 1.0),
@@ -502,6 +508,7 @@ def benchmark_snapshot(df: pd.DataFrame) -> dict:
         "close": float(c.iloc[-1]),
         "ma20": float(c.rolling(20).mean().iloc[-1]),
         "ma60": float(c.rolling(60).mean().iloc[-1]),
+        "signal_date": df.index[-1].strftime("%Y-%m-%d"),
     }
 
 
@@ -606,9 +613,9 @@ def main():
     universe.to_csv(outdir / "universe.csv", index=False, encoding="utf-8-sig")
 
     prices = download_prices(universe["yf_ticker"].tolist())
-    benchmarks = {
-        "KOSPI": benchmark_snapshot(download_benchmark("^KS11")),
-        "KOSDAQ": benchmark_snapshot(download_benchmark("^KQ11")),
+    benchmark_prices = {
+        "KOSPI": download_benchmark("^KS11"),
+        "KOSDAQ": download_benchmark("^KQ11"),
     }
 
     meta = universe.set_index("yf_ticker")[["ticker", "name", "market", "universe_source"]].to_dict("index")
@@ -634,6 +641,29 @@ def main():
         raise RuntimeError("No symbols could be scored.")
 
     all_df = pd.DataFrame(rows)
+
+    # Do not mix different daily bars in one ranking. Around the close, some Yahoo
+    # symbols can publish the new daily candle a few minutes later than others.
+    # Use the most recent date that has broad coverage; otherwise use the dominant date.
+    date_counts = all_df["signal_date"].value_counts().sort_index()
+    latest_date = str(date_counts.index.max())
+    latest_count = int(date_counts.loc[latest_date])
+    dominant_date = str(date_counts.idxmax())
+    dominant_count = int(date_counts.max())
+    min_broad_coverage = max(1, int(math.ceil(len(all_df) * 0.70)))
+    common_signal_date = latest_date if latest_count >= min_broad_coverage else dominant_date
+    pre_alignment_count = int(len(all_df))
+    all_df = all_df[all_df["signal_date"] == common_signal_date].copy().reset_index(drop=True)
+    if all_df.empty:
+        raise RuntimeError("No symbols remain after close-date alignment.")
+    print(f"[close] aligned to {common_signal_date}: {len(all_df)}/{pre_alignment_count} symbols")
+
+    # Align benchmark bars to the same regular-session date as the stock cross-section.
+    benchmarks = {}
+    cutoff = pd.Timestamp(common_signal_date)
+    for market, bdf in benchmark_prices.items():
+        aligned = bdf[bdf.index <= cutoff].copy() if bdf is not None and not bdf.empty else pd.DataFrame()
+        benchmarks[market] = benchmark_snapshot(aligned)
 
     # 상대강도: 각 시장 벤치마크 대비 초과수익률 → 같은 시장 내 percentile.
     all_df["benchmark_ret20"] = all_df["market"].map(lambda m: benchmarks[m]["ret20"])
@@ -768,8 +798,11 @@ def main():
     top_alpha.to_csv(outdir / "latest_top_alpha.csv", index=False, encoding="utf-8-sig")
 
     summary = {
-        "model_version": "HF_TECH_V2_3_SUPERTREND_ENTRY",
-        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "model_version": "HF_TECH_V2_4_CLOSE_REFRESH_MOBILE",
+        "generated_at": now_kst().isoformat(timespec="seconds"),
+        "generated_timezone": "Asia/Seoul",
+        "price_basis": "KRX regular-session daily OHLCV via Yahoo .KS/.KQ; NXT data is not queried",
+        "auto_refresh_schedule_kst": ["15:50", "16:20 fallback"],
         "symbols_scored": int(len(all_df)),
         "actionable_buy_count": int(len(actionable)),
         "confirmed_buy_count": int(len(confirmed)),
@@ -777,6 +810,14 @@ def main():
         "early_setup_count": int(len(early)),
         "active_trend_count": int(len(active)),
         "latest_signal_date": str(all_df["signal_date"].max()),
+        "close_date_alignment": {
+            "selected_date": common_signal_date,
+            "symbols_before_alignment": pre_alignment_count,
+            "symbols_after_alignment": int(len(all_df)),
+            "coverage_pct": round(100.0 * len(all_df) / max(pre_alignment_count, 1), 1),
+            "selection_rule": "latest date if >=70% coverage, otherwise dominant date",
+        },
+        "benchmark_signal_dates": {m: benchmarks[m].get("signal_date") for m in benchmarks},
         "confirmed_buy_count_kospi": int((confirmed["market"] == "KOSPI").sum()) if not confirmed.empty else 0,
         "confirmed_buy_count_kosdaq": int((confirmed["market"] == "KOSDAQ").sum()) if not confirmed.empty else 0,
         "fresh_buy_count_kospi": int((fresh["market"] == "KOSPI").sum()) if not fresh.empty else 0,

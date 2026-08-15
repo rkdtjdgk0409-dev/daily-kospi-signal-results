@@ -248,6 +248,7 @@ def main():
     p = summary["parameters"]
     w = summary.get("weights", {})
     regimes = summary.get("regimes", {})
+    close_align = summary.get("close_date_alignment", {})
 
     confirmed_html = make_table(confirmed, "confirmed-table", "오늘 Confirmed Buy 조건을 만족한 종목이 없습니다.")
     fresh_html = make_table(fresh, "fresh-table", "오늘 Fresh Buy 조건을 만족한 종목이 없습니다.")
@@ -258,13 +259,16 @@ def main():
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="900">
-<title>Korea Equity Alpha Screener V2.3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080b10">
+<meta name="data-generated-at" content="{esc(summary.get('generated_at','-'))}">
+<meta name="data-signal-date" content="{esc(summary.get('latest_signal_date','-'))}">
+<title>Korea Equity Alpha Screener V2.4</title>
 <style>
 :root{{--bg:#080b10;--panel:#0f151d;--panel2:#131c27;--line:#233042;--text:#edf3f8;--muted:#91a1b2;--accent:#83b8ff;--green:#53d49a;--red:#ff7b86;--yellow:#f1c66a;--purple:#bd8cff;--cyan:#65d4e8}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}}
 .wrap{{max-width:1540px;margin:0 auto;padding:24px}}.hero{{background:linear-gradient(145deg,#121c28,#0c1118);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.22)}}
+.hero-top{{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}}.hero-copy{{min-width:0}}.refresh-box{{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:0 0 auto}}.refresh-btn{{display:inline-flex;align-items:center;gap:8px;padding:11px 14px;border-radius:12px;border:1px solid rgba(83,212,154,.38);background:rgba(83,212,154,.10);color:var(--green);font-weight:900;white-space:nowrap}}.refresh-btn:hover{{background:rgba(83,212,154,.17)}}.refresh-btn.loading{{opacity:.7;pointer-events:none}}.refresh-icon{{font-size:17px;line-height:1}}.update-chip{{font-size:10px;font-weight:900;letter-spacing:.05em;color:var(--green);border:1px solid rgba(83,212,154,.25);background:rgba(83,212,154,.07);border-radius:999px;padding:5px 8px}}.update-meta{{font-size:10px;color:var(--muted);text-align:right;line-height:1.45}}.refresh-toast{{position:fixed;right:18px;bottom:18px;z-index:1000;background:#111a24;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:12px;font-weight:700;box-shadow:0 18px 50px rgba(0,0,0,.38);opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s}}.refresh-toast.show{{opacity:1;transform:translateY(0)}}
 .eyebrow{{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:800}}h1{{font-size:30px;margin:7px 0 8px}}h2{{font-size:20px;margin:30px 0 12px}}.sub,.muted{{color:var(--muted);font-size:13px;line-height:1.65}}
 .grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}}.stat{{background:#0b1118;border:1px solid var(--line);border-radius:15px;padding:15px}}.stat .v{{font-size:25px;font-weight:800}}.stat .k{{font-size:12px;color:var(--muted);margin-top:4px}}
 .regime-grid{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}}.regime-card{{background:#0b1118;border:1px solid var(--line);border-radius:15px;padding:15px}}.regime-head{{display:flex;justify-content:space-between;align-items:center}}.regime-score{{font-size:26px;font-weight:800;margin:10px 0 4px}}
@@ -276,14 +280,27 @@ def main():
 .badge{{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:10px;font-weight:800;letter-spacing:.03em}}.badge.good{{color:var(--green);border-color:rgba(83,212,154,.35);background:rgba(83,212,154,.07)}}.badge.bad{{color:var(--red);border-color:rgba(255,123,134,.35);background:rgba(255,123,134,.07)}}.badge.warn{{color:var(--yellow);border-color:rgba(241,198,106,.35);background:rgba(241,198,106,.07)}}.badge.strong{{color:var(--purple);border-color:rgba(189,140,255,.40);background:rgba(189,140,255,.09)}}.badge.fresh{{color:var(--cyan);border-color:rgba(101,212,232,.38);background:rgba(101,212,232,.08)}}.badge.muted{{color:#aeb9c6}}.up{{color:var(--green)}}.down{{color:var(--red)}}
 details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-grid{{position:absolute;right:26px;z-index:20;margin-top:8px;display:grid;grid-template-columns:repeat(3,150px);gap:8px;background:#0c121a;border:1px solid var(--line);border-radius:13px;padding:12px;box-shadow:0 16px 45px rgba(0,0,0,.45)}}.detail-grid div{{display:flex;flex-direction:column;gap:4px}}.detail-grid b{{font-size:10px;color:var(--muted)}}.detail-grid span{{font-size:12px}}
 .note{{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;color:var(--muted);font-size:12px;line-height:1.8}}.empty{{padding:24px;text-align:center;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:16px}}
-@media(max-width:1100px){{.score-grid{{grid-template-columns:repeat(3,1fr)}}.result-grid{{grid-template-columns:repeat(3,1fr)}}.result-item:nth-child(5n){{border-right:1px solid #1e2a38}}.result-item:nth-child(3n){{border-right:none}}}}@media(max-width:900px){{.wrap{{padding:12px}}h1{{font-size:24px}}.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr 1fr}}.detail-grid{{position:fixed;left:12px;right:12px;bottom:12px;grid-template-columns:repeat(2,1fr)}}.stock-head{{flex-direction:column}}.stock-price{{text-align:left}}}}@media(max-width:620px){{.score-grid{{grid-template-columns:repeat(2,1fr)}}.result-grid{{grid-template-columns:repeat(2,1fr)}}.result-item:nth-child(3n){{border-right:1px solid #1e2a38}}.result-item:nth-child(2n){{border-right:none}}}}@media(max-width:540px){{.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr}}}}
+@media(max-width:1100px){{.score-grid{{grid-template-columns:repeat(3,1fr)}}.result-grid{{grid-template-columns:repeat(3,1fr)}}.result-item:nth-child(5n){{border-right:1px solid #1e2a38}}.result-item:nth-child(3n){{border-right:none}}}}
+@media(max-width:900px){{.wrap{{padding:12px 12px 82px}}h1{{font-size:24px}}.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr 1fr}}.detail-grid{{position:fixed;left:12px;right:12px;bottom:12px;grid-template-columns:repeat(2,1fr);max-height:72vh;overflow:auto}}.stock-head{{flex-direction:column}}.stock-price{{text-align:left}}.hero-top{{gap:10px}}.refresh-box{{gap:6px}}.refresh-btn{{padding:10px 12px}}}}
+@media(max-width:700px){{.hero{{padding:16px}}.hero-top{{align-items:flex-start}}.hero .sub{{font-size:11px;line-height:1.55}}.refresh-btn .refresh-label{{display:none}}.refresh-btn{{width:44px;height:44px;justify-content:center;padding:0;border-radius:50%}}.refresh-icon{{font-size:21px}}.update-meta{{display:none}}.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr}}.search-row,.toolbar{{display:grid;grid-template-columns:1fr;gap:8px}}input,select{{width:100%;min-width:0}}.score-grid{{grid-template-columns:repeat(2,1fr)}}.result-grid{{grid-template-columns:repeat(2,1fr)}}.result-item:nth-child(3n){{border-right:1px solid #1e2a38}}.result-item:nth-child(2n){{border-right:none}}
+.table-wrap{{overflow:visible;border:none;background:transparent}}table{{display:block;min-width:0;width:100%}}thead{{display:none}}tbody{{display:grid;gap:10px}}tr{{display:grid;grid-template-columns:1fr auto;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;overflow:hidden}}tr:hover td{{background:transparent}}td{{display:none;border:0;padding:4px 0;white-space:normal;text-align:right}}td:nth-child(2),td:nth-child(3),td:nth-child(4),td:nth-child(5),td:nth-child(6),td:nth-child(7),td:nth-child(8),td:nth-child(13),td:nth-child(17){{display:block}}td:nth-child(2){{grid-column:1/2;text-align:left;padding-bottom:9px}}td:nth-child(3){{grid-column:2/3;grid-row:1;text-align:right}}td:nth-child(4){{grid-column:1/2;text-align:left;font-size:18px;font-weight:900}}td:nth-child(4)::after{{content:'원';font-size:11px;color:var(--muted);margin-left:3px;font-weight:600}}td:nth-child(5){{grid-column:2/3;font-weight:800;align-self:center}}td:nth-child(6),td:nth-child(7),td:nth-child(8),td:nth-child(13){{grid-column:1/3;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #1e2a38;padding:8px 0}}td:nth-child(6)::before{{content:'Alpha';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(7)::before{{content:'Entry';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(8)::before{{content:'Supertrend';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(13)::before{{content:'Risk';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(17){{grid-column:1/3;text-align:left;padding-top:8px}}.metric{{min-width:110px}}.note{{font-size:11px}}.refresh-toast{{left:12px;right:12px;bottom:16px;text-align:center}}}}
+@media(max-width:420px){{h1{{font-size:21px}}.eyebrow{{font-size:10px}}.score-grid,.result-grid{{grid-template-columns:1fr 1fr}}.stat .v{{font-size:24px}}}}
 </style>
 </head>
 <body><div class="wrap">
 <section class="hero">
-<div class="eyebrow">HF TECHNICAL ALPHA · V2.3 SUPERTREND + ENTRY</div>
-<h1>Korea Equity Alpha Screener</h1>
-<div class="sub">기준일 {esc(summary.get('latest_signal_date','-'))} · 생성 {esc(summary.get('generated_at','-'))}<br>KOSPI 시총 상위 {p.get('kospi_n',200)} + KOSDAQ 시총 상위 {p.get('kosdaq_n',150)} · Alpha와 Risk를 분리하고 진입 신호를 3단계로 분류</div>
+<div class="hero-top">
+  <div class="hero-copy">
+    <div class="eyebrow">HF TECHNICAL ALPHA · V2.4 CLOSE REFRESH</div>
+    <h1>Korea Equity Alpha Screener</h1>
+    <div class="sub">기준일 <b>{esc(summary.get('latest_signal_date','-'))}</b> · 생성 {esc(summary.get('generated_at','-'))}<br>KRX 정규장 일봉 종가 기준 · NXT 데이터 미사용 · 평일 15:50 KST 자동 계산 + 16:20 KST 보정 실행<br>종가 날짜 동기화 {fmt(close_align.get('coverage_pct',100),1)}% · 분석 {close_align.get('symbols_after_alignment',summary.get('symbols_scored',0))}/{close_align.get('symbols_before_alignment',summary.get('symbols_scored',0))}종목<br>KOSPI 시총 상위 {p.get('kospi_n',200)} + KOSDAQ 시총 상위 {p.get('kosdaq_n',150)} · Alpha와 Risk를 분리하고 진입 신호를 3단계로 분류</div>
+  </div>
+  <div class="refresh-box">
+    <button id="refresh-btn" class="refresh-btn" type="button" onclick="checkForLatest(true)" aria-label="최신 데이터 새로고침"><span id="refresh-icon" class="refresh-icon">↻</span><span class="refresh-label">최신 데이터</span></button>
+    <span class="update-chip">AUTO 15:50 · 16:20</span>
+    <div class="update-meta">버튼은 새 배포본을 캐시 없이 확인합니다.<br><span id="last-check-text">마지막 확인: 방금</span></div>
+  </div>
+</div>
 <div class="grid">
 <div class="stat"><div class="v">{summary.get('confirmed_buy_count',0)}</div><div class="k">Confirmed Buy · 가장 엄격한 확정 신호</div></div>
 <div class="stat"><div class="v">{summary.get('fresh_buy_count',0)}</div><div class="k">Fresh Buy · 초기 진입 후보</div></div>
@@ -351,6 +368,7 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
 <b>Regime</b>: 지수의 20/60일 이동평균 구조와 종목 breadth를 합쳐 RISK-ON / NEUTRAL / RISK-OFF로 분류하며 Alpha 자체를 깎지는 않습니다.<br>
 <b>Flow</b>의 CVD는 Yahoo 일봉 OHLCV로 만든 proxy이며 실제 bid/ask 체결 CVD가 아닙니다. 이 임계값들은 합리적인 초기값이며 최종값은 단계별 신호 수와 1·5·10일 forward return 백테스트로 검증해야 합니다.</div>
 </div>
+<div id="refresh-toast" class="refresh-toast" role="status" aria-live="polite"></div>
 <script>
 const STOCKS = {stock_data_json};
 let suggestionIndex = -1;
@@ -370,6 +388,46 @@ function supertrendHtml(v){{ return badgeHtml(String(v||'BAD').toUpperCase()==='
 function tierHtml(v){{ return badgeHtml(v, v==='CONFIRMED'?'strong':(v==='FRESH'?'fresh':(v==='EARLY'?'warn':'muted'))); }}
 function stateHtml(v){{ return badgeHtml(v, v==='STRONG LONG'?'strong':(['LONG','POSITIVE'].includes(v)?'good':(['WEAK','BEARISH'].includes(v)?'bad':'muted'))); }}
 function setupHtml(v){{ return badgeHtml(v, v==='A+'?'strong':(v==='A'?'good':(v==='B'?'fresh':(v==='EARLY'?'warn':'muted')))); }}
+
+const CURRENT_GENERATED_AT = document.querySelector('meta[name="data-generated-at"]')?.content || '';
+let refreshInFlight = false;
+let toastTimer = null;
+function showRefreshToast(message){{
+  const el=document.getElementById('refresh-toast'); if(!el)return;
+  el.textContent=message; el.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),2600);
+}}
+function setRefreshLoading(on){{
+  const btn=document.getElementById('refresh-btn'); const icon=document.getElementById('refresh-icon');
+  if(btn)btn.classList.toggle('loading',on); if(icon)icon.textContent=on?'⋯':'↻';
+}}
+function updateLastCheck(){{
+  const el=document.getElementById('last-check-text');
+  if(el)el.textContent='마지막 확인: '+new Date().toLocaleTimeString('ko-KR',{{hour:'2-digit',minute:'2-digit'}});
+}}
+async function checkForLatest(manual=false){{
+  if(refreshInFlight)return; refreshInFlight=true; setRefreshLoading(true);
+  try{{
+    const url=new URL(window.location.href); url.searchParams.set('_refresh',Date.now().toString());
+    const res=await fetch(url.toString(),{{cache:'no-store',headers:{{'Cache-Control':'no-cache'}}}});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const htmlText=await res.text();
+    const parsed=new DOMParser().parseFromString(htmlText,'text/html');
+    const remoteGenerated=parsed.querySelector('meta[name="data-generated-at"]')?.content || '';
+    updateLastCheck();
+    if(remoteGenerated && remoteGenerated!==CURRENT_GENERATED_AT){{
+      if(manual)showRefreshToast('새 종가 데이터가 확인되었습니다. 페이지를 갱신합니다.');
+      const clean=new URL(window.location.href); clean.searchParams.delete('_refresh'); clean.searchParams.set('_v',Date.now().toString());
+      setTimeout(()=>window.location.replace(clean.toString()), manual?450:0);
+      return;
+    }}
+    if(manual)showRefreshToast('이미 최신 데이터입니다. · '+(CURRENT_GENERATED_AT||'업데이트 시간 확인 불가'));
+  }}catch(err){{
+    if(manual)showRefreshToast('최신 데이터 확인에 실패했습니다. 네트워크를 확인해 주세요.');
+  }}finally{{ refreshInFlight=false; setRefreshLoading(false); }}
+}}
+// 페이지를 오래 열어둔 경우에도 5분마다 새 배포본을 확인합니다.
+setInterval(()=>checkForLatest(false),5*60*1000);
 
 function findStocks(q, market='ALL'){{
   q=(q||'').toLowerCase().replace(/\\s+/g,'').trim();
