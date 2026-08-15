@@ -657,7 +657,7 @@ def main():
     top_alpha.to_csv(outdir / "latest_top_alpha.csv", index=False, encoding="utf-8-sig")
 
     summary = {
-        "model_version": "HF_TECH_V2_1_SIGNAL_LADDER",
+        "model_version": "HF_TECH_V2_2_SEARCHABLE_UNIVERSE",
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "symbols_scored": int(len(all_df)),
         "actionable_buy_count": int(len(actionable)),

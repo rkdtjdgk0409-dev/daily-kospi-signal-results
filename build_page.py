@@ -193,6 +193,32 @@ def safe_read_csv(path: Path) -> pd.DataFrame:
         return pd.DataFrame()
 
 
+def build_search_dataset(all_df: pd.DataFrame) -> str:
+    x = all_df.copy()
+    x["ticker"] = x["ticker"].astype(str).str.replace(r"\.0$", "", regex=True).str.zfill(6)
+    x["alpha_rank_all"] = x["alpha_score"].rank(method="min", ascending=False).astype(int)
+    x["alpha_rank_market"] = x.groupby("market")["alpha_score"].rank(method="min", ascending=False).astype(int)
+
+    keep = [
+        "ticker", "name", "market", "signal_date", "close", "daily_return_pct",
+        "alpha_score", "trend_score", "momentum_score", "flow_score", "rs_score",
+        "risk_score", "risk_level", "regime", "regime_score", "signal_state",
+        "setup_grade", "signal_tier", "cci", "cci_prev", "cci_delta3",
+        "cci_cross_age", "plus_di", "minus_di", "dmi_ratio", "dmi_direction",
+        "adx", "adx_delta3", "relative_dollar_volume", "avg20_trading_value",
+        "rs20_excess_pct", "rs60_excess_pct", "rs20_percentile", "rs60_percentile",
+        "atr_pct", "vol20_ann_pct", "above_ma20", "above_ma60",
+        "confirmed_buy", "fresh_buy", "early_setup", "active_trend",
+        "alpha_rank_all", "alpha_rank_market",
+    ]
+    keep = [c for c in keep if c in x.columns]
+    x = x[keep].replace([float("inf"), float("-inf")], pd.NA)
+    # pandas emits missing numeric values as JSON null, keeping the embedded dataset strict JSON.
+    payload = x.to_json(orient="records", force_ascii=False)
+    # Prevent an unlikely literal </script> inside a stock name from terminating the script tag.
+    return payload.replace("</", "<\\/")
+
+
 def main():
     results = Path("results")
     docs = Path("docs")
@@ -204,6 +230,7 @@ def main():
     fresh = safe_read_csv(results / "latest_fresh_buy.csv")
     early = safe_read_csv(results / "latest_early_setups.csv")
     top = all_df.sort_values("alpha_score", ascending=False).head(60)
+    stock_data_json = build_search_dataset(all_df)
 
     p = summary["parameters"]
     w = summary.get("weights", {})
@@ -220,7 +247,7 @@ def main():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="refresh" content="900">
-<title>Korea Equity Alpha Screener V2.1</title>
+<title>Korea Equity Alpha Screener V2.2</title>
 <style>
 :root{{--bg:#080b10;--panel:#0f151d;--panel2:#131c27;--line:#233042;--text:#edf3f8;--muted:#91a1b2;--accent:#83b8ff;--green:#53d49a;--red:#ff7b86;--yellow:#f1c66a;--purple:#bd8cff;--cyan:#65d4e8}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}}
@@ -230,17 +257,18 @@ def main():
 .regime-grid{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}}.regime-card{{background:#0b1118;border:1px solid var(--line);border-radius:15px;padding:15px}}.regime-head{{display:flex;justify-content:space-between;align-items:center}}.regime-score{{font-size:26px;font-weight:800;margin:10px 0 4px}}
 .model-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}}.model-card{{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}}.model-card strong{{font-size:18px}}.model-card p{{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}}
 .ladder{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 2px}}.ladder-card{{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}}.ladder-card h3{{font-size:14px;margin:0 0 7px}}.ladder-card p{{font-size:12px;color:var(--muted);line-height:1.55;margin:0}}.ladder-card.confirmed{{border-color:rgba(189,140,255,.4)}}.ladder-card.fresh{{border-color:rgba(101,212,232,.35)}}.ladder-card.early{{border-color:rgba(241,198,106,.35)}}
-.toolbar{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}}input,select{{background:#0d141d;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 11px;outline:none}}input{{min-width:240px}}.table-wrap{{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--panel)}}table{{width:100%;border-collapse:collapse;min-width:1480px}}th,td{{padding:11px 9px;border-bottom:1px solid #1e2a38;text-align:right;white-space:nowrap;vertical-align:middle}}th{{font-size:11px;color:var(--muted);background:#0b1118;position:sticky;top:0;z-index:2}}td{{font-size:12px}}th:nth-child(2),td.name{{text-align:left}}td.name b{{display:block;font-size:13px}}td.name small{{display:block;color:var(--muted);margin-top:3px}}tr:hover td{{background:#111a24}}tr:last-child td{{border-bottom:none}}
+.toolbar{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}}input,select,button{{font:inherit}}input,select{{background:#0d141d;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 11px;outline:none}}input{{min-width:240px}}button{{border:1px solid rgba(131,184,255,.35);background:rgba(131,184,255,.10);color:var(--accent);border-radius:10px;padding:10px 15px;font-weight:800;cursor:pointer}}button:hover{{background:rgba(131,184,255,.16)}}.table-wrap{{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--panel)}}table{{width:100%;border-collapse:collapse;min-width:1480px}}th,td{{padding:11px 9px;border-bottom:1px solid #1e2a38;text-align:right;white-space:nowrap;vertical-align:middle}}th{{font-size:11px;color:var(--muted);background:#0b1118;position:sticky;top:0;z-index:2}}td{{font-size:12px}}th:nth-child(2),td.name{{text-align:left}}td.name b{{display:block;font-size:13px}}td.name small{{display:block;color:var(--muted);margin-top:3px}}tr:hover td{{background:#111a24}}tr:last-child td{{border-bottom:none}}
+.search-panel{{background:linear-gradient(145deg,#101923,#0c1219);border:1px solid var(--line);border-radius:18px;padding:18px}}.search-row{{display:flex;gap:9px;align-items:center;flex-wrap:wrap}}.search-wrap{{position:relative;flex:1;min-width:280px}}.search-wrap input{{width:100%;min-width:0;padding:12px 13px;font-size:14px}}.suggestions{{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:50;background:#0a1017;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.42);display:none;max-height:330px;overflow-y:auto}}.suggestion{{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;cursor:pointer;border-bottom:1px solid #1b2633}}.suggestion:last-child{{border-bottom:none}}.suggestion:hover,.suggestion.active{{background:#121d28}}.suggestion b{{font-size:13px}}.suggestion small{{color:var(--muted);font-size:11px}}.result-empty{{margin-top:14px;border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--muted)}}.stock-card{{margin-top:15px;border:1px solid var(--line);border-radius:18px;background:#0b1118;overflow:hidden}}.stock-head{{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px;border-bottom:1px solid var(--line)}}.stock-title h3{{font-size:22px;margin:0 0 5px}}.stock-title .meta{{color:var(--muted);font-size:12px}}.stock-price{{text-align:right}}.stock-price strong{{display:block;font-size:24px}}.score-grid{{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;padding:14px 18px}}.score-box{{border:1px solid #1e2b3a;background:#0e1620;border-radius:13px;padding:11px}}.score-box .k{{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em}}.score-box .v{{font-size:20px;font-weight:850;margin-top:5px}}.score-box.alpha-box .v{{color:var(--accent)}}.result-grid{{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line)}}.result-item{{padding:12px 15px;border-right:1px solid #1e2a38;border-bottom:1px solid #1e2a38}}.result-item:nth-child(5n){{border-right:none}}.result-item b{{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}}.result-item span{{font-size:13px;font-weight:750}}.rank-pill{{display:inline-flex;border-radius:999px;padding:5px 9px;border:1px solid var(--line);font-size:11px;color:#c7d4df;margin-right:5px}}.search-hint{{margin-top:9px;color:var(--muted);font-size:11px}}
 .metric{{min-width:72px}}.metric>span{{font-weight:800}}.alpha .metric>span{{color:var(--accent);font-size:14px}}.bar{{height:3px;background:#1b2735;border-radius:99px;margin-top:5px;overflow:hidden}}.bar i{{display:block;height:100%;background:linear-gradient(90deg,#5f91d9,#9ec8ff)}}
 .badge{{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:10px;font-weight:800;letter-spacing:.03em}}.badge.good{{color:var(--green);border-color:rgba(83,212,154,.35);background:rgba(83,212,154,.07)}}.badge.bad{{color:var(--red);border-color:rgba(255,123,134,.35);background:rgba(255,123,134,.07)}}.badge.warn{{color:var(--yellow);border-color:rgba(241,198,106,.35);background:rgba(241,198,106,.07)}}.badge.strong{{color:var(--purple);border-color:rgba(189,140,255,.40);background:rgba(189,140,255,.09)}}.badge.fresh{{color:var(--cyan);border-color:rgba(101,212,232,.38);background:rgba(101,212,232,.08)}}.badge.muted{{color:#aeb9c6}}.up{{color:var(--green)}}.down{{color:var(--red)}}
 details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-grid{{position:absolute;right:26px;z-index:20;margin-top:8px;display:grid;grid-template-columns:repeat(3,150px);gap:8px;background:#0c121a;border:1px solid var(--line);border-radius:13px;padding:12px;box-shadow:0 16px 45px rgba(0,0,0,.45)}}.detail-grid div{{display:flex;flex-direction:column;gap:4px}}.detail-grid b{{font-size:10px;color:var(--muted)}}.detail-grid span{{font-size:12px}}
 .note{{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;color:var(--muted);font-size:12px;line-height:1.8}}.empty{{padding:24px;text-align:center;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:16px}}
-@media(max-width:900px){{.wrap{{padding:12px}}h1{{font-size:24px}}.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr 1fr}}.detail-grid{{position:fixed;left:12px;right:12px;bottom:12px;grid-template-columns:repeat(2,1fr)}}}}@media(max-width:540px){{.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr}}}}
+@media(max-width:1100px){{.score-grid{{grid-template-columns:repeat(3,1fr)}}.result-grid{{grid-template-columns:repeat(3,1fr)}}.result-item:nth-child(5n){{border-right:1px solid #1e2a38}}.result-item:nth-child(3n){{border-right:none}}}}@media(max-width:900px){{.wrap{{padding:12px}}h1{{font-size:24px}}.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr 1fr}}.detail-grid{{position:fixed;left:12px;right:12px;bottom:12px;grid-template-columns:repeat(2,1fr)}}.stock-head{{flex-direction:column}}.stock-price{{text-align:left}}}}@media(max-width:620px){{.score-grid{{grid-template-columns:repeat(2,1fr)}}.result-grid{{grid-template-columns:repeat(2,1fr)}}.result-item:nth-child(3n){{border-right:1px solid #1e2a38}}.result-item:nth-child(2n){{border-right:none}}}}@media(max-width:540px){{.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr}}}}
 </style>
 </head>
 <body><div class="wrap">
 <section class="hero">
-<div class="eyebrow">HF TECHNICAL ALPHA · V2.1 SIGNAL LADDER</div>
+<div class="eyebrow">HF TECHNICAL ALPHA · V2.2 SEARCHABLE UNIVERSE</div>
 <h1>Korea Equity Alpha Screener</h1>
 <div class="sub">기준일 {esc(summary.get('latest_signal_date','-'))} · 생성 {esc(summary.get('generated_at','-'))}<br>KOSPI 시총 상위 {p.get('kospi_n',200)} + KOSDAQ 시총 상위 {p.get('kosdaq_n',150)} · Alpha와 Risk를 분리하고 진입 신호를 3단계로 분류</div>
 <div class="grid">
@@ -279,11 +307,27 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
 <div class="sub" style="margin-bottom:10px">CCI가 아직 0선을 넘기 전이지만 모멘텀 가속, DMI 근접, Flow와 상대강도가 양호한 선행 감시 후보.</div>
 {early_html}
 
+<h2>전체 분석 종목 검색</h2>
+<div class="sub" style="margin-bottom:10px">Top 60에 없어도 분석 완료된 전체 종목에서 종목명 또는 6자리 종목코드로 찾을 수 있습니다. 검색 결과에서 Alpha 구성과 기술적 상세값을 한 번에 확인하세요.</div>
+<div class="search-panel">
+  <div class="search-row">
+    <div class="search-wrap">
+      <input id="stock-search" placeholder="예: 삼성전자 또는 005930" autocomplete="off" oninput="onStockInput()" onkeydown="onStockKey(event)">
+      <div id="stock-suggestions" class="suggestions"></div>
+    </div>
+    <select id="stock-market" onchange="onStockInput()"><option value="ALL">전체 시장</option><option value="KOSPI">KOSPI</option><option value="KOSDAQ">KOSDAQ</option></select>
+    <button type="button" onclick="runStockSearch()">종목 조회</button>
+  </div>
+  <div class="search-hint">이 검색은 현재 스크리너가 분석한 전체 유니버스 {summary.get('symbols_scored',0)}개 종목을 대상으로 합니다.</div>
+  <div id="stock-result" class="result-empty">종목명을 입력하면 전체 데이터에서 검색합니다.</div>
+</div>
+
 <h2>Alpha Ranking · Top 60</h2>
+<div class="sub" style="margin-bottom:10px">전체 종목 중 Alpha Score 상위 60개입니다. 아래 필터는 Top 60 내부에서만 작동합니다.</div>
 <div class="toolbar">
-<input id="search" placeholder="종목명 또는 종목코드 검색" oninput="filterRows()">
-<select id="market" onchange="filterRows()"><option value="ALL">전체 시장</option><option value="KOSPI">KOSPI</option><option value="KOSDAQ">KOSDAQ</option></select>
-<select id="alpha" onchange="filterRows()"><option value="0">Alpha 전체</option><option value="50">50+</option><option value="60">60+</option><option value="70">70+</option><option value="80">80+</option></select>
+<input id="rank-search" placeholder="Top 60 내 종목명/코드 검색" oninput="filterRankRows()">
+<select id="rank-market" onchange="filterRankRows()"><option value="ALL">전체 시장</option><option value="KOSPI">KOSPI</option><option value="KOSDAQ">KOSDAQ</option></select>
+<select id="rank-alpha" onchange="filterRankRows()"><option value="0">Alpha 전체</option><option value="50">50+</option><option value="60">60+</option><option value="70">70+</option><option value="80">80+</option></select>
 </div>
 {top_html}
 
@@ -294,10 +338,117 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
 <b>Flow</b>의 CVD는 Yahoo 일봉 OHLCV로 만든 proxy이며 실제 bid/ask 체결 CVD가 아닙니다. 이 임계값들은 합리적인 초기값이며 최종값은 단계별 신호 수와 1·5·10일 forward return 백테스트로 검증해야 합니다.</div>
 </div>
 <script>
-function filterRows(){{
-  const q=(document.getElementById('search')?.value||'').toLowerCase().trim();
-  const market=document.getElementById('market')?.value||'ALL';
-  const minAlpha=parseFloat(document.getElementById('alpha')?.value||'0');
+const STOCKS = {stock_data_json};
+let suggestionIndex = -1;
+let currentMatches = [];
+
+function escJs(v){{
+  return String(v ?? '').replace(/[&<>"']/g, ch => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[ch]));
+}}
+function num(v,d=1){{ const n=Number(v); return Number.isFinite(n)?n.toLocaleString('ko-KR',{{minimumFractionDigits:d,maximumFractionDigits:d}}):'-'; }}
+function price(v){{ const n=Number(v); return Number.isFinite(n)?Math.round(n).toLocaleString('ko-KR'):'-'; }}
+function bn(v){{ const n=Number(v); return Number.isFinite(n)?Math.round(n/100000000).toLocaleString('ko-KR')+'억':'-'; }}
+function crossLabel(age){{ const a=Number(age); if(!Number.isFinite(a)||a>5)return 'OLD'; if(a===0)return 'TODAY'; if(a===1)return '1D'; return a+'D'; }}
+function badgeHtml(text, kind='muted'){{ return `<span class="badge ${{kind}}">${{escJs(text)}}</span>`; }}
+function riskHtml(v){{ return badgeHtml(v, v==='LOW'?'good':(v==='HIGH'?'bad':'warn')); }}
+function regimeHtml(v){{ return badgeHtml(v, v==='RISK-ON'?'good':(v==='RISK-OFF'?'bad':'warn')); }}
+function tierHtml(v){{ return badgeHtml(v, v==='CONFIRMED'?'strong':(v==='FRESH'?'fresh':(v==='EARLY'?'warn':'muted'))); }}
+function stateHtml(v){{ return badgeHtml(v, v==='STRONG LONG'?'strong':(['LONG','POSITIVE'].includes(v)?'good':(['WEAK','BEARISH'].includes(v)?'bad':'muted'))); }}
+function setupHtml(v){{ return badgeHtml(v, v==='A+'?'strong':(v==='A'?'good':(v==='B'?'fresh':(v==='EARLY'?'warn':'muted')))); }}
+
+function findStocks(q, market='ALL'){{
+  q=(q||'').toLowerCase().replace(/\\s+/g,'').trim();
+  if(!q) return [];
+  return STOCKS.filter(s=>{{
+    if(market!=='ALL' && s.market!==market) return false;
+    const name=String(s.name||'').toLowerCase().replace(/\\s+/g,'');
+    const ticker=String(s.ticker||'').padStart(6,'0');
+    return name.includes(q) || ticker.includes(q);
+  }}).sort((a,b)=>{{
+    const aq=String(a.ticker||'').padStart(6,'0')===q || String(a.name||'').toLowerCase().replace(/\\s+/g,'')===q;
+    const bq=String(b.ticker||'').padStart(6,'0')===q || String(b.name||'').toLowerCase().replace(/\\s+/g,'')===q;
+    if(aq!==bq) return aq?-1:1;
+    return Number(b.alpha_score||0)-Number(a.alpha_score||0);
+  }});
+}}
+
+function onStockInput(){{
+  const q=document.getElementById('stock-search').value;
+  const market=document.getElementById('stock-market').value;
+  const box=document.getElementById('stock-suggestions');
+  suggestionIndex=-1;
+  currentMatches=findStocks(q,market).slice(0,12);
+  if(!q.trim() || currentMatches.length===0){{ box.style.display='none'; box.innerHTML=''; return; }}
+  box.innerHTML=currentMatches.map((s,i)=>`<div class="suggestion" data-i="${{i}}" onmousedown="selectSuggestion(${{i}})"><div><b>${{escJs(s.name)}}</b><br><small>${{escJs(String(s.ticker).padStart(6,'0'))}} · ${{escJs(s.market)}}</small></div><small>Alpha ${{num(s.alpha_score,1)}} · #${{s.alpha_rank_all}}</small></div>`).join('');
+  box.style.display='block';
+}}
+function selectSuggestion(i){{ const s=currentMatches[i]; if(!s)return; document.getElementById('stock-search').value=s.name; document.getElementById('stock-suggestions').style.display='none'; renderStock(s); }}
+function onStockKey(e){{
+  const box=document.getElementById('stock-suggestions');
+  if(e.key==='ArrowDown' && currentMatches.length){{ e.preventDefault(); suggestionIndex=Math.min(suggestionIndex+1,currentMatches.length-1); refreshActiveSuggestion(); }}
+  else if(e.key==='ArrowUp' && currentMatches.length){{ e.preventDefault(); suggestionIndex=Math.max(suggestionIndex-1,0); refreshActiveSuggestion(); }}
+  else if(e.key==='Enter'){{ e.preventDefault(); if(suggestionIndex>=0)selectSuggestion(suggestionIndex); else runStockSearch(); }}
+  else if(e.key==='Escape'){{ box.style.display='none'; }}
+}}
+function refreshActiveSuggestion(){{ document.querySelectorAll('#stock-suggestions .suggestion').forEach((el,i)=>el.classList.toggle('active',i===suggestionIndex)); }}
+function runStockSearch(){{
+  const q=document.getElementById('stock-search').value;
+  const market=document.getElementById('stock-market').value;
+  const matches=findStocks(q,market);
+  document.getElementById('stock-suggestions').style.display='none';
+  if(matches.length===0){{ document.getElementById('stock-result').className='result-empty'; document.getElementById('stock-result').innerHTML='해당 종목을 찾지 못했습니다. 현재 분석 유니버스에 포함된 종목인지 확인해 주세요.'; return; }}
+  renderStock(matches[0]);
+}}
+function scoreBox(k,v,cls=''){{ return `<div class="score-box ${{cls}}"><div class="k">${{k}}</div><div class="v">${{num(v,1)}}</div><div class="bar"><i style="width:${{Math.max(0,Math.min(100,Number(v)||0))}}%"></i></div></div>`; }}
+function item(k,v){{ return `<div class="result-item"><b>${{k}}</b><span>${{v}}</span></div>`; }}
+function renderStock(s){{
+  const ret=Number(s.daily_return_pct||0);
+  const retCls=ret>0?'up':(ret<0?'down':'');
+  const ticker=String(s.ticker||'').padStart(6,'0');
+  const top60=Number(s.alpha_rank_all)<=60;
+  const result=document.getElementById('stock-result');
+  result.className='stock-card';
+  result.innerHTML=`
+    <div class="stock-head">
+      <div class="stock-title"><h3>${{escJs(s.name)}}</h3><div class="meta">${{ticker}} · ${{escJs(s.market)}} · 기준일 ${{escJs(s.signal_date||'-')}}</div><div style="margin-top:9px">${{tierHtml(s.signal_tier)}} ${{setupHtml(s.setup_grade)}} ${{stateHtml(s.signal_state)}} ${{regimeHtml(s.regime)}}</div></div>
+      <div class="stock-price"><strong>${{price(s.close)}}원</strong><span class="${{retCls}}">${{ret>=0?'+':''}}${{num(ret,2)}}%</span><div style="margin-top:8px"><span class="rank-pill">전체 Alpha #${{s.alpha_rank_all}}</span><span class="rank-pill">${{escJs(s.market)}} #${{s.alpha_rank_market}}</span>${{top60?'<span class="rank-pill">TOP 60</span>':''}}</div></div>
+    </div>
+    <div class="score-grid">
+      ${{scoreBox('Alpha',s.alpha_score,'alpha-box')}}
+      ${{scoreBox('Trend',s.trend_score)}}
+      ${{scoreBox('Momentum',s.momentum_score)}}
+      ${{scoreBox('Flow',s.flow_score)}}
+      ${{scoreBox('Relative Strength',s.rs_score)}}
+      ${{scoreBox('Risk',s.risk_score)}}
+    </div>
+    <div class="result-grid">
+      ${{item('CCI',num(s.cci,1))}}
+      ${{item('CCI 3D Δ',num(s.cci_delta3,1))}}
+      ${{item('CCI Cross',crossLabel(s.cci_cross_age))}}
+      ${{item('+DI / -DI',num(s.plus_di,1)+' / '+num(s.minus_di,1))}}
+      ${{item('DMI Ratio',num(s.dmi_ratio,2)+'x')}}
+      ${{item('ADX',num(s.adx,1))}}
+      ${{item('ADX 3D Δ',num(s.adx_delta3,1))}}
+      ${{item('Dollar Vol',num(s.relative_dollar_volume,2)+'x')}}
+      ${{item('ADV20',bn(s.avg20_trading_value))}}
+      ${{item('RS20 excess',num(s.rs20_excess_pct,2)+'%')}}
+      ${{item('RS60 excess',num(s.rs60_excess_pct,2)+'%')}}
+      ${{item('RS20 percentile',num(s.rs20_percentile,1))}}
+      ${{item('RS60 percentile',num(s.rs60_percentile,1))}}
+      ${{item('ATR%',num(s.atr_pct,2)+'%')}}
+      ${{item('20D vol ann.',num(s.vol20_ann_pct,1)+'%')}}
+      ${{item('Risk Level',riskHtml(s.risk_level))}}
+      ${{item('MA20',s.above_ma20?'Above':'Below')}}
+      ${{item('MA60',s.above_ma60?'Above':'Below')}}
+      ${{item('Active Trend',s.active_trend?'YES':'NO')}}
+      ${{item('Signal Tier',tierHtml(s.signal_tier))}}
+    </div>`;
+}}
+
+function filterRankRows(){{
+  const q=(document.getElementById('rank-search')?.value||'').toLowerCase().trim();
+  const market=document.getElementById('rank-market')?.value||'ALL';
+  const minAlpha=parseFloat(document.getElementById('rank-alpha')?.value||'0');
   document.querySelectorAll('#rank-table tbody tr').forEach(tr=>{{
     const text=(tr.dataset.name||'')+' '+(tr.dataset.ticker||'');
     const okQ=!q||text.includes(q);
@@ -306,6 +457,8 @@ function filterRows(){{
     tr.style.display=(okQ&&okM&&okA)?'':'none';
   }});
 }}
+
+document.addEventListener('click',e=>{{ if(!e.target.closest('.search-wrap')) document.getElementById('stock-suggestions').style.display='none'; }});
 </script>
 </body></html>'''
 
