@@ -270,6 +270,65 @@ def atr(df: pd.DataFrame, period: int = 14) -> pd.Series:
     return wilder(tr, period)
 
 
+def supertrend(df: pd.DataFrame, period: int = 10, factor: float = 3.0) -> Tuple[pd.Series, pd.Series]:
+    """TradingView-style Supertrend using Wilder ATR. Returns (line, bullish_bool)."""
+    h, l, c = df["High"], df["Low"], df["Close"]
+    atr_v = atr(df, period)
+    hl2 = (h + l) / 2.0
+    basic_upper = hl2 + factor * atr_v
+    basic_lower = hl2 - factor * atr_v
+
+    final_upper = pd.Series(np.nan, index=df.index, dtype=float)
+    final_lower = pd.Series(np.nan, index=df.index, dtype=float)
+    st = pd.Series(np.nan, index=df.index, dtype=float)
+    bull = pd.Series(False, index=df.index, dtype=bool)
+
+    for i in range(len(df)):
+        if not np.isfinite(atr_v.iloc[i]):
+            continue
+        if i == 0 or not np.isfinite(final_upper.iloc[i-1]) or not np.isfinite(final_lower.iloc[i-1]):
+            final_upper.iloc[i] = basic_upper.iloc[i]
+            final_lower.iloc[i] = basic_lower.iloc[i]
+            st.iloc[i] = final_upper.iloc[i]
+            bull.iloc[i] = False
+            continue
+
+        prev_close = c.iloc[i-1]
+        prev_upper = final_upper.iloc[i-1]
+        prev_lower = final_lower.iloc[i-1]
+        final_upper.iloc[i] = basic_upper.iloc[i] if (basic_upper.iloc[i] < prev_upper or prev_close > prev_upper) else prev_upper
+        final_lower.iloc[i] = basic_lower.iloc[i] if (basic_lower.iloc[i] > prev_lower or prev_close < prev_lower) else prev_lower
+
+        prev_st = st.iloc[i-1]
+        if not np.isfinite(prev_st):
+            prev_st = prev_upper
+
+        if abs(prev_st - prev_upper) < 1e-12:
+            if c.iloc[i] <= final_upper.iloc[i]:
+                st.iloc[i] = final_upper.iloc[i]
+                bull.iloc[i] = False
+            else:
+                st.iloc[i] = final_lower.iloc[i]
+                bull.iloc[i] = True
+        else:
+            if c.iloc[i] >= final_lower.iloc[i]:
+                st.iloc[i] = final_lower.iloc[i]
+                bull.iloc[i] = True
+            else:
+                st.iloc[i] = final_upper.iloc[i]
+                bull.iloc[i] = False
+
+    return st, bull
+
+
+def latest_true_age(flags: pd.Series, lookback: int = 10) -> int:
+    recent = flags.iloc[-lookback:].to_numpy(dtype=bool)
+    for age, flag in enumerate(recent[::-1]):
+        if flag:
+            return age
+    return 999
+
+
 def clamp100(v: float) -> float:
     return float(np.clip(v, 0.0, 100.0))
 
@@ -293,11 +352,14 @@ def cci_level_score(cci_value: float) -> float:
     return clamp100(100.0 - 0.60 * abs(cci_value - 60.0))
 
 
-def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int) -> dict | None:
+def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int, st_period: int = 10, st_factor: float = 3.0) -> dict | None:
     x = df.copy()
     x["cci"] = cci(x, cci_period)
     x["plus_di"], x["minus_di"], x["adx"] = dmi_adx(x, dmi_period)
     x["atr"] = atr(x, 14)
+    x["supertrend"], x["supertrend_bull"] = supertrend(x, st_period, st_factor)
+    x["st_bull_flip"] = x["supertrend_bull"] & (~x["supertrend_bull"].shift(1, fill_value=False))
+    x["st_bear_flip"] = (~x["supertrend_bull"]) & x["supertrend_bull"].shift(1, fill_value=False)
     x["ret"] = x["Close"].pct_change()
     x["ma20"] = x["Close"].rolling(20).mean()
     x["ma60"] = x["Close"].rolling(60).mean()
@@ -311,7 +373,7 @@ def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int) -> dict | N
     x["trading_value"] = x["Close"] * x["Volume"]
     x["avg20_trading_value"] = x["trading_value"].rolling(20).mean()
 
-    valid = x.dropna(subset=["cci", "plus_di", "minus_di", "adx", "atr", "ma60"])
+    valid = x.dropna(subset=["cci", "plus_di", "minus_di", "adx", "atr", "ma60", "supertrend"])
     if len(valid) < 10:
         return None
 
@@ -337,7 +399,23 @@ def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int) -> dict | N
     adx_strength_score = clamp100((adx_v - 15.0) / 25.0 * 100.0)  # ADX 40에서 포화
     adx_delta3 = float(r["adx"] - x["adx"].iloc[-4]) if len(x) >= 4 and np.isfinite(x["adx"].iloc[-4]) else 0.0
     adx_accel_score = clamp100((adx_delta3 + 5.0) / 10.0 * 100.0)
-    trend_score = 0.50 * direction_score + 0.35 * adx_strength_score + 0.15 * adx_accel_score
+
+    st_good = bool(r["supertrend_bull"])
+    st_bull_flip_age = latest_true_age(x["st_bull_flip"], 10)
+    st_bear_flip_age = latest_true_age(x["st_bear_flip"], 10)
+    if st_good:
+        # Current bullish regime matters most; a fresh flip gets a modest timing bonus.
+        supertrend_score = 100.0 if st_bull_flip_age <= 3 else 80.0
+    else:
+        supertrend_score = 0.0
+
+    # Supertrend receives 25% of Trend, not a separate Alpha bucket, to avoid double-counting trend.
+    trend_score = (
+        0.35 * direction_score
+        + 0.30 * adx_strength_score
+        + 0.10 * adx_accel_score
+        + 0.25 * supertrend_score
+    )
 
     cci_v = float(r["cci"])
     cci_delta3 = float(r["cci"] - x["cci"].iloc[-4]) if len(x) >= 4 and np.isfinite(x["cci"].iloc[-4]) else 0.0
@@ -355,6 +433,19 @@ def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int) -> dict | N
     flow_position_score = clamp100(50.0 + 10.0 * cvd_pos_ratio)
     volume_score = clamp100(rel_dollar_volume * 50.0)
     flow_score = 0.40 * flow_slope_score + 0.30 * flow_position_score + 0.30 * volume_score
+
+    st_line = float(r["supertrend"])
+    st_distance_atr = float((r["Close"] - st_line) / r["atr"]) if np.isfinite(r["atr"]) and r["atr"] > 0 else 0.0
+    extension_penalty = max(cci_v - 120.0, 0.0) * 0.70 + max(st_distance_atr - 3.0, 0.0) * 20.0
+    extension_score = clamp100(100.0 - extension_penalty)
+    dmi_entry_score = 0.60 * direction_score + 0.40 * adx_accel_score
+    entry_score = clamp100(
+        0.30 * freshness
+        + 0.25 * supertrend_score
+        + 0.20 * dmi_entry_score
+        + 0.15 * flow_score
+        + 0.10 * extension_score
+    )
 
     ret20 = float(r["Close"] / x["Close"].iloc[-21] - 1.0) if len(x) >= 21 and x["Close"].iloc[-21] > 0 else np.nan
     ret60 = float(r["Close"] / x["Close"].iloc[-61] - 1.0) if len(x) >= 61 and x["Close"].iloc[-61] > 0 else np.nan
@@ -377,6 +468,16 @@ def raw_features(df: pd.DataFrame, cci_period: int, dmi_period: int) -> dict | N
         "adx_delta3": adx_delta3,
         "dmi_direction": float(direction),
         "dmi_ratio": float(dmi_ratio),
+        "supertrend": st_line,
+        "supertrend_good": st_good,
+        "supertrend_status": "GOOD" if st_good else "BAD",
+        "supertrend_score": float(supertrend_score),
+        "supertrend_bull_flip_age": int(st_bull_flip_age),
+        "supertrend_bear_flip_age": int(st_bear_flip_age),
+        "supertrend_flip_age": int(st_bull_flip_age if st_good else st_bear_flip_age),
+        "supertrend_distance_atr": st_distance_atr,
+        "entry_score": float(entry_score),
+        "extension_score": float(extension_score),
         "trend_score": float(trend_score),
         "momentum_score": float(momentum_score),
         "flow_score": float(flow_score),
@@ -457,6 +558,8 @@ def setup_grade(row: pd.Series) -> str:
     if bool(row.get("confirmed_buy", False)):
         if (
             float(row["alpha_score"]) >= 85
+            and float(row.get("entry_score", 0)) >= 80
+            and bool(row.get("supertrend_good", False))
             and float(row["rs_score"]) >= 80
             and float(row["flow_score"]) >= 65
             and row["regime"] == "RISK-ON"
@@ -483,6 +586,8 @@ def main():
     ap.add_argument("--kosdaq-min-avg20-value", type=float, default=3_000_000_000)
     ap.add_argument("--cci-period", type=int, default=9)
     ap.add_argument("--dmi-period", type=int, default=14)
+    ap.add_argument("--supertrend-period", type=int, default=10)
+    ap.add_argument("--supertrend-factor", type=float, default=3.0)
     ap.add_argument("--adx-threshold", type=float, default=20.0)
     ap.add_argument("--confirmed-alpha-threshold", type=float, default=75.0)
     ap.add_argument("--fresh-alpha-threshold", type=float, default=60.0)
@@ -509,7 +614,7 @@ def main():
     meta = universe.set_index("yf_ticker")[["ticker", "name", "market", "universe_source"]].to_dict("index")
     rows = []
     for yf_ticker, df in prices.items():
-        feat = raw_features(df, args.cci_period, args.dmi_period)
+        feat = raw_features(df, args.cci_period, args.dmi_period, args.supertrend_period, args.supertrend_factor)
         if feat is None:
             continue
         m = meta[yf_ticker]
@@ -590,14 +695,19 @@ def main():
         (all_df["cci_cross_age"] <= 1)
         & (all_df["cci"] > 0)
         & all_df["dmi_bull"]
+        & all_df["supertrend_good"]
+        & (all_df["entry_score"] >= 70)
         & (all_df["flow_score"] >= 50)
         & (all_df["alpha_score"] >= args.confirmed_alpha_threshold)
     )
 
+    # Fresh deliberately does NOT hard-filter Supertrend. BAD is penalized through Entry Score,
+    # preserving early signals that may flip bullish shortly after the CCI trigger.
     fresh_raw = (
         (all_df["cci_cross_age"] <= 3)
         & (all_df["cci"] > 0)
         & all_df["dmi_positive"]
+        & (all_df["entry_score"] >= 60)
         & (all_df["flow_score"] >= 40)
         & (all_df["alpha_score"] >= args.fresh_alpha_threshold)
     )
@@ -612,6 +722,7 @@ def main():
         & (all_df["dmi_ratio"] >= 0.85)
         & (all_df["flow_score"] >= 40)
         & (all_df["rs_score"] >= 50)
+        & (all_df["entry_score"] >= 45)
         & (all_df["alpha_score"] >= args.early_alpha_threshold)
     )
 
@@ -625,7 +736,7 @@ def main():
     all_df.loc[all_df["fresh_buy"], "signal_tier"] = "FRESH"
     all_df.loc[all_df["confirmed_buy"], "signal_tier"] = "CONFIRMED"
 
-    all_df["active_trend"] = (all_df["cci"] > 0) & all_df["dmi_bull"]
+    all_df["active_trend"] = (all_df["cci"] > 0) & all_df["dmi_bull"] & all_df["supertrend_good"]
     all_df["signal_state"] = all_df["alpha_score"].map(signal_state)
     all_df["setup_grade"] = all_df.apply(setup_grade, axis=1)
 
@@ -641,9 +752,9 @@ def main():
         .reset_index(drop=True)
     )
 
-    confirmed = all_df[all_df["confirmed_buy"]].sort_values("alpha_score", ascending=False)
-    fresh = all_df[all_df["fresh_buy"]].sort_values("alpha_score", ascending=False)
-    early = all_df[all_df["early_setup"]].sort_values("alpha_score", ascending=False)
+    confirmed = all_df[all_df["confirmed_buy"]].sort_values(["entry_score", "alpha_score"], ascending=False)
+    fresh = all_df[all_df["fresh_buy"]].sort_values(["entry_score", "alpha_score"], ascending=False)
+    early = all_df[all_df["early_setup"]].sort_values(["entry_score", "alpha_score"], ascending=False)
     actionable = all_df[all_df["actionable_buy"]].sort_values(["confirmed_buy", "alpha_score"], ascending=[False, False])
     active = all_df[all_df["active_trend"]].sort_values("alpha_score", ascending=False)
     top_alpha = all_df.sort_values("alpha_score", ascending=False)
@@ -657,7 +768,7 @@ def main():
     top_alpha.to_csv(outdir / "latest_top_alpha.csv", index=False, encoding="utf-8-sig")
 
     summary = {
-        "model_version": "HF_TECH_V2_2_SEARCHABLE_UNIVERSE",
+        "model_version": "HF_TECH_V2_3_SUPERTREND_ENTRY",
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "symbols_scored": int(len(all_df)),
         "actionable_buy_count": int(len(actionable)),
@@ -677,6 +788,8 @@ def main():
             "kosdaq_min_avg20_value": args.kosdaq_min_avg20_value,
             "cci_period": args.cci_period,
             "dmi_period": args.dmi_period,
+            "supertrend_period": args.supertrend_period,
+            "supertrend_factor": args.supertrend_factor,
             "adx_threshold": args.adx_threshold,
             "confirmed_alpha_threshold": args.confirmed_alpha_threshold,
             "fresh_alpha_threshold": args.fresh_alpha_threshold,
@@ -689,8 +802,13 @@ def main():
             "early_cci_delta3_min": 25,
             "early_dmi_ratio_min": 0.85,
             "early_rs_min": 50,
+            "confirmed_entry_threshold": 70,
+            "fresh_entry_threshold": 60,
+            "early_entry_threshold": 45,
         },
         "weights": {"trend": 30, "momentum": 25, "flow": 20, "relative_strength": 25},
+        "trend_subweights": {"dmi_direction": 35, "adx_strength": 30, "adx_acceleration": 10, "supertrend": 25},
+        "entry_weights": {"cci_timing": 30, "supertrend": 25, "dmi_adx": 20, "flow": 15, "extension": 10},
         "regimes": regimes,
     }
     (outdir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")

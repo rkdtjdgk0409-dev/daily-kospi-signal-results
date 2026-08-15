@@ -56,6 +56,11 @@ def regime_badge(value):
     return badge("NEUTRAL", "warn")
 
 
+def supertrend_badge(value):
+    v = str(value).upper()
+    return badge("GOOD", "good") if v == "GOOD" else badge("BAD", "bad")
+
+
 def risk_badge(value):
     if value == "LOW":
         return badge("LOW", "good")
@@ -122,6 +127,10 @@ def detail_html(r):
         f"<div><b>DMI Ratio</b><span>{fmt(r.get('dmi_ratio'),2)}x</span></div>"
         f"<div><b>ADX</b><span>{fmt(r.get('adx'))}</span></div>"
         f"<div><b>ADX 3D Δ</b><span>{fmt(r.get('adx_delta3'))}</span></div>"
+        f"<div><b>Supertrend</b><span>{supertrend_badge(r.get('supertrend_status','BAD'))}</span></div>"
+        f"<div><b>ST Flip</b><span>{freshness_label(r.get('supertrend_flip_age'))}</span></div>"
+        f"<div><b>ST Dist / ATR</b><span>{fmt(r.get('supertrend_distance_atr'),2)}x</span></div>"
+        f"<div><b>Entry Score</b><span>{fmt(r.get('entry_score'))}</span></div>"
         f"<div><b>Dollar Vol</b><span>{fmt(r.get('relative_dollar_volume'),2)}x</span></div>"
         f"<div><b>ADV20</b><span>{fmt_bn(r.get('avg20_trading_value'))}</span></div>"
         f"<div><b>RS20 excess</b><span>{fmt(r.get('rs20_excess_pct'),2)}%</span></div>"
@@ -146,6 +155,8 @@ def table_rows(df):
             f"<td>{fmt_price(r.get('close'))}</td>"
             f"<td class='{ret_class}'>{fmt(ret,2)}%</td>"
             f"<td class='alpha'>{score_cell(r.get('alpha_score'))}</td>"
+            f"<td>{score_cell(r.get('entry_score'))}</td>"
+            f"<td>{supertrend_badge(str(r.get('supertrend_status','BAD')))}</td>"
             f"<td>{score_cell(r.get('trend_score'))}</td>"
             f"<td>{score_cell(r.get('momentum_score'))}</td>"
             f"<td>{score_cell(r.get('flow_score'))}</td>"
@@ -166,7 +177,7 @@ def make_table(df, table_id, empty_text="조건을 만족한 종목이 없습니
     return (
         f"<div class='table-wrap'><table id='{table_id}'><thead><tr>"
         "<th>#</th><th>종목</th><th>Tier</th><th>종가</th><th>등락</th><th>Alpha</th>"
-        "<th>Trend</th><th>Momentum</th><th>Flow</th><th>RS</th><th>Risk</th>"
+        "<th>Entry</th><th>Supertrend</th><th>Trend</th><th>Momentum</th><th>Flow</th><th>RS</th><th>Risk</th>"
         "<th>Regime</th><th>State</th><th>Setup</th><th>상세</th>"
         "</tr></thead><tbody>" + table_rows(df) + "</tbody></table></div>"
     )
@@ -201,11 +212,13 @@ def build_search_dataset(all_df: pd.DataFrame) -> str:
 
     keep = [
         "ticker", "name", "market", "signal_date", "close", "daily_return_pct",
-        "alpha_score", "trend_score", "momentum_score", "flow_score", "rs_score",
+        "alpha_score", "entry_score", "trend_score", "momentum_score", "flow_score", "rs_score",
         "risk_score", "risk_level", "regime", "regime_score", "signal_state",
         "setup_grade", "signal_tier", "cci", "cci_prev", "cci_delta3",
         "cci_cross_age", "plus_di", "minus_di", "dmi_ratio", "dmi_direction",
-        "adx", "adx_delta3", "relative_dollar_volume", "avg20_trading_value",
+        "adx", "adx_delta3", "supertrend", "supertrend_good", "supertrend_status",
+        "supertrend_score", "supertrend_bull_flip_age", "supertrend_bear_flip_age", "supertrend_flip_age",
+        "supertrend_distance_atr", "extension_score", "relative_dollar_volume", "avg20_trading_value",
         "rs20_excess_pct", "rs60_excess_pct", "rs20_percentile", "rs60_percentile",
         "atr_pct", "vol20_ann_pct", "above_ma20", "above_ma60",
         "confirmed_buy", "fresh_buy", "early_setup", "active_trend",
@@ -247,7 +260,7 @@ def main():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="refresh" content="900">
-<title>Korea Equity Alpha Screener V2.2</title>
+<title>Korea Equity Alpha Screener V2.3</title>
 <style>
 :root{{--bg:#080b10;--panel:#0f151d;--panel2:#131c27;--line:#233042;--text:#edf3f8;--muted:#91a1b2;--accent:#83b8ff;--green:#53d49a;--red:#ff7b86;--yellow:#f1c66a;--purple:#bd8cff;--cyan:#65d4e8}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}}
@@ -257,8 +270,8 @@ def main():
 .regime-grid{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}}.regime-card{{background:#0b1118;border:1px solid var(--line);border-radius:15px;padding:15px}}.regime-head{{display:flex;justify-content:space-between;align-items:center}}.regime-score{{font-size:26px;font-weight:800;margin:10px 0 4px}}
 .model-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}}.model-card{{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}}.model-card strong{{font-size:18px}}.model-card p{{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}}
 .ladder{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 2px}}.ladder-card{{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}}.ladder-card h3{{font-size:14px;margin:0 0 7px}}.ladder-card p{{font-size:12px;color:var(--muted);line-height:1.55;margin:0}}.ladder-card.confirmed{{border-color:rgba(189,140,255,.4)}}.ladder-card.fresh{{border-color:rgba(101,212,232,.35)}}.ladder-card.early{{border-color:rgba(241,198,106,.35)}}
-.toolbar{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}}input,select,button{{font:inherit}}input,select{{background:#0d141d;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 11px;outline:none}}input{{min-width:240px}}button{{border:1px solid rgba(131,184,255,.35);background:rgba(131,184,255,.10);color:var(--accent);border-radius:10px;padding:10px 15px;font-weight:800;cursor:pointer}}button:hover{{background:rgba(131,184,255,.16)}}.table-wrap{{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--panel)}}table{{width:100%;border-collapse:collapse;min-width:1480px}}th,td{{padding:11px 9px;border-bottom:1px solid #1e2a38;text-align:right;white-space:nowrap;vertical-align:middle}}th{{font-size:11px;color:var(--muted);background:#0b1118;position:sticky;top:0;z-index:2}}td{{font-size:12px}}th:nth-child(2),td.name{{text-align:left}}td.name b{{display:block;font-size:13px}}td.name small{{display:block;color:var(--muted);margin-top:3px}}tr:hover td{{background:#111a24}}tr:last-child td{{border-bottom:none}}
-.search-panel{{background:linear-gradient(145deg,#101923,#0c1219);border:1px solid var(--line);border-radius:18px;padding:18px}}.search-row{{display:flex;gap:9px;align-items:center;flex-wrap:wrap}}.search-wrap{{position:relative;flex:1;min-width:280px}}.search-wrap input{{width:100%;min-width:0;padding:12px 13px;font-size:14px}}.suggestions{{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:50;background:#0a1017;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.42);display:none;max-height:330px;overflow-y:auto}}.suggestion{{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;cursor:pointer;border-bottom:1px solid #1b2633}}.suggestion:last-child{{border-bottom:none}}.suggestion:hover,.suggestion.active{{background:#121d28}}.suggestion b{{font-size:13px}}.suggestion small{{color:var(--muted);font-size:11px}}.result-empty{{margin-top:14px;border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--muted)}}.stock-card{{margin-top:15px;border:1px solid var(--line);border-radius:18px;background:#0b1118;overflow:hidden}}.stock-head{{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px;border-bottom:1px solid var(--line)}}.stock-title h3{{font-size:22px;margin:0 0 5px}}.stock-title .meta{{color:var(--muted);font-size:12px}}.stock-price{{text-align:right}}.stock-price strong{{display:block;font-size:24px}}.score-grid{{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;padding:14px 18px}}.score-box{{border:1px solid #1e2b3a;background:#0e1620;border-radius:13px;padding:11px}}.score-box .k{{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em}}.score-box .v{{font-size:20px;font-weight:850;margin-top:5px}}.score-box.alpha-box .v{{color:var(--accent)}}.result-grid{{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line)}}.result-item{{padding:12px 15px;border-right:1px solid #1e2a38;border-bottom:1px solid #1e2a38}}.result-item:nth-child(5n){{border-right:none}}.result-item b{{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}}.result-item span{{font-size:13px;font-weight:750}}.rank-pill{{display:inline-flex;border-radius:999px;padding:5px 9px;border:1px solid var(--line);font-size:11px;color:#c7d4df;margin-right:5px}}.search-hint{{margin-top:9px;color:var(--muted);font-size:11px}}
+.toolbar{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}}input,select,button{{font:inherit}}input,select{{background:#0d141d;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 11px;outline:none}}input{{min-width:240px}}button{{border:1px solid rgba(131,184,255,.35);background:rgba(131,184,255,.10);color:var(--accent);border-radius:10px;padding:10px 15px;font-weight:800;cursor:pointer}}button:hover{{background:rgba(131,184,255,.16)}}.table-wrap{{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--panel)}}table{{width:100%;border-collapse:collapse;min-width:1660px}}th,td{{padding:11px 9px;border-bottom:1px solid #1e2a38;text-align:right;white-space:nowrap;vertical-align:middle}}th{{font-size:11px;color:var(--muted);background:#0b1118;position:sticky;top:0;z-index:2}}td{{font-size:12px}}th:nth-child(2),td.name{{text-align:left}}td.name b{{display:block;font-size:13px}}td.name small{{display:block;color:var(--muted);margin-top:3px}}tr:hover td{{background:#111a24}}tr:last-child td{{border-bottom:none}}
+.search-panel{{background:linear-gradient(145deg,#101923,#0c1219);border:1px solid var(--line);border-radius:18px;padding:18px}}.search-row{{display:flex;gap:9px;align-items:center;flex-wrap:wrap}}.search-wrap{{position:relative;flex:1;min-width:280px}}.search-wrap input{{width:100%;min-width:0;padding:12px 13px;font-size:14px}}.suggestions{{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:50;background:#0a1017;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.42);display:none;max-height:330px;overflow-y:auto}}.suggestion{{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;cursor:pointer;border-bottom:1px solid #1b2633}}.suggestion:last-child{{border-bottom:none}}.suggestion:hover,.suggestion.active{{background:#121d28}}.suggestion b{{font-size:13px}}.suggestion small{{color:var(--muted);font-size:11px}}.result-empty{{margin-top:14px;border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--muted)}}.stock-card{{margin-top:15px;border:1px solid var(--line);border-radius:18px;background:#0b1118;overflow:hidden}}.stock-head{{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px;border-bottom:1px solid var(--line)}}.stock-title h3{{font-size:22px;margin:0 0 5px}}.stock-title .meta{{color:var(--muted);font-size:12px}}.stock-price{{text-align:right}}.stock-price strong{{display:block;font-size:24px}}.score-grid{{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;padding:14px 18px}}.score-box{{border:1px solid #1e2b3a;background:#0e1620;border-radius:13px;padding:11px}}.score-box .k{{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em}}.score-box .v{{font-size:20px;font-weight:850;margin-top:5px}}.score-box.alpha-box .v{{color:var(--accent)}}.result-grid{{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line)}}.result-item{{padding:12px 15px;border-right:1px solid #1e2a38;border-bottom:1px solid #1e2a38}}.result-item:nth-child(5n){{border-right:none}}.result-item b{{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}}.result-item span{{font-size:13px;font-weight:750}}.rank-pill{{display:inline-flex;border-radius:999px;padding:5px 9px;border:1px solid var(--line);font-size:11px;color:#c7d4df;margin-right:5px}}.search-hint{{margin-top:9px;color:var(--muted);font-size:11px}}
 .metric{{min-width:72px}}.metric>span{{font-weight:800}}.alpha .metric>span{{color:var(--accent);font-size:14px}}.bar{{height:3px;background:#1b2735;border-radius:99px;margin-top:5px;overflow:hidden}}.bar i{{display:block;height:100%;background:linear-gradient(90deg,#5f91d9,#9ec8ff)}}
 .badge{{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:10px;font-weight:800;letter-spacing:.03em}}.badge.good{{color:var(--green);border-color:rgba(83,212,154,.35);background:rgba(83,212,154,.07)}}.badge.bad{{color:var(--red);border-color:rgba(255,123,134,.35);background:rgba(255,123,134,.07)}}.badge.warn{{color:var(--yellow);border-color:rgba(241,198,106,.35);background:rgba(241,198,106,.07)}}.badge.strong{{color:var(--purple);border-color:rgba(189,140,255,.40);background:rgba(189,140,255,.09)}}.badge.fresh{{color:var(--cyan);border-color:rgba(101,212,232,.38);background:rgba(101,212,232,.08)}}.badge.muted{{color:#aeb9c6}}.up{{color:var(--green)}}.down{{color:var(--red)}}
 details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-grid{{position:absolute;right:26px;z-index:20;margin-top:8px;display:grid;grid-template-columns:repeat(3,150px);gap:8px;background:#0c121a;border:1px solid var(--line);border-radius:13px;padding:12px;box-shadow:0 16px 45px rgba(0,0,0,.45)}}.detail-grid div{{display:flex;flex-direction:column;gap:4px}}.detail-grid b{{font-size:10px;color:var(--muted)}}.detail-grid span{{font-size:12px}}
@@ -268,7 +281,7 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
 </head>
 <body><div class="wrap">
 <section class="hero">
-<div class="eyebrow">HF TECHNICAL ALPHA · V2.2 SEARCHABLE UNIVERSE</div>
+<div class="eyebrow">HF TECHNICAL ALPHA · V2.3 SUPERTREND + ENTRY</div>
 <h1>Korea Equity Alpha Screener</h1>
 <div class="sub">기준일 {esc(summary.get('latest_signal_date','-'))} · 생성 {esc(summary.get('generated_at','-'))}<br>KOSPI 시총 상위 {p.get('kospi_n',200)} + KOSDAQ 시총 상위 {p.get('kosdaq_n',150)} · Alpha와 Risk를 분리하고 진입 신호를 3단계로 분류</div>
 <div class="grid">
@@ -282,14 +295,14 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
 
 <h2>Signal Ladder</h2>
 <div class="ladder">
-<div class="ladder-card confirmed"><h3>🔥 Confirmed Buy</h3><p>Alpha ≥ {p.get('confirmed_alpha_threshold',75):.0f} · CCI Cross ≤1D · +DI&gt;-DI · ADX ≥ {p.get('adx_threshold',20):.0f} · Flow ≥ 50. 품질 우선의 엄격 신호.</p></div>
-<div class="ladder-card fresh"><h3>🟢 Fresh Buy</h3><p>Alpha ≥ {p.get('fresh_alpha_threshold',60):.0f} · CCI Cross ≤3D · CCI&gt;0 · +DI&gt;-DI · Flow ≥ 40. ADX 20 하드필터를 제거해 초기 추세를 포착.</p></div>
-<div class="ladder-card early"><h3>🟡 Early Setup</h3><p>Alpha ≥ {p.get('early_alpha_threshold',50):.0f} · -30&lt;CCI≤0 · CCI 3D Δ≥25 · +DI/-DI ≥0.85 · Flow≥40 · RS≥50. 돌파 직전 감시 후보.</p></div>
+<div class="ladder-card confirmed"><h3>🔥 Confirmed Buy</h3><p>Alpha ≥ {p.get('confirmed_alpha_threshold',75):.0f} · Entry ≥ 70 · CCI Cross ≤1D · +DI&gt;-DI · ADX ≥ {p.get('adx_threshold',20):.0f} · <b>Supertrend GOOD</b> · Flow ≥ 50. 확정 신호에서만 Supertrend를 하드 확인합니다.</p></div>
+<div class="ladder-card fresh"><h3>🟢 Fresh Buy</h3><p>Alpha ≥ {p.get('fresh_alpha_threshold',60):.0f} · Entry ≥ 60 · CCI Cross ≤3D · CCI&gt;0 · +DI&gt;-DI · Flow ≥ 40. Supertrend BAD를 즉시 탈락시키지 않고 Entry 점수에서 감점해 초기 전환을 남깁니다.</p></div>
+<div class="ladder-card early"><h3>🟡 Early Setup</h3><p>Alpha ≥ {p.get('early_alpha_threshold',50):.0f} · Entry ≥ 45 · -30&lt;CCI≤0 · CCI 3D Δ≥25 · +DI/-DI ≥0.85 · Flow≥40 · RS≥50. Supertrend 전환 전 후보도 감시할 수 있습니다.</p></div>
 </div>
 
 <h2>Model Architecture</h2>
 <div class="model-grid">
-<div class="model-card"><strong>Trend {w.get('trend',30)}%</strong><p>DMI 방향성 + ADX 강도 + ADX 가속도. ADX를 방향 신호가 아닌 추세 확신도로 사용.</p></div>
+<div class="model-card"><strong>Trend {w.get('trend',30)}%</strong><p>DMI 방향 35% + ADX 강도 30% + ADX 가속 10% + Supertrend 25%. Supertrend는 별도 Alpha 버킷이 아니라 Trend 내부에서 중복 계산을 줄입니다.</p></div>
 <div class="model-card"><strong>Momentum {w.get('momentum',25)}%</strong><p>CCI 0선 돌파 신선도 + 3일 기울기 + 과열을 제한한 CCI 레벨.</p></div>
 <div class="model-card"><strong>Flow {w.get('flow',20)}%</strong><p>일봉 CVD proxy 기울기/EMA 위치 + 상대 거래대금. 실제 체결 CVD와는 구분.</p></div>
 <div class="model-card"><strong>Relative Strength {w.get('relative_strength',25)}%</strong><p>KOSPI/KOSDAQ 벤치마크 대비 20·60일 초과수익률의 시장 내 percentile.</p></div>
@@ -332,7 +345,8 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
 {top_html}
 
 <div class="note"><b>왜 3단계인가?</b> Alpha 안에는 이미 CCI·DMI/ADX·Flow가 포함되어 있어 같은 요소를 모두 Hard Filter로 다시 요구하면 신호가 지나치게 줄어듭니다. 그래서 Confirmed만 엄격하게 유지하고 Fresh/Early는 단계적으로 완화합니다.<br>
-<b>Alpha Score</b>는 예측확률이 아니라 0~100 범위의 기술적 랭킹 점수입니다. Trend 30% + Momentum 25% + Flow 20% + Relative Strength 25%이며 Risk는 별도입니다.<br>
+<b>Alpha Score</b>는 예측확률이 아니라 0~100 범위의 기술적 랭킹 점수입니다. Trend 30% + Momentum 25% + Flow 20% + Relative Strength 25%이며 Risk는 별도입니다. Trend 내부는 DMI 35% + ADX 강도 30% + ADX 가속 10% + Supertrend 25%입니다.<br>
+<b>Entry Score</b>는 진입 타이밍 점수입니다. CCI 신선도 30% + Supertrend 25% + DMI/ADX 20% + Flow 15% + 과열/이격 10%로 계산합니다. Supertrend는 기본 ATR {p.get('supertrend_period',10)} / Factor {p.get('supertrend_factor',3.0)} 설정입니다.<br>
 <b>Early Alpha 기준이 낮은 이유</b>: CCI가 아직 0 이하인 돌파 전 단계는 Momentum과 Trend 점수가 구조적으로 낮아집니다. 따라서 Early는 Alpha {p.get('early_alpha_threshold',50):.0f} 이상에 RS·Flow·DMI 근접 조건을 추가해 품질을 보완합니다.<br>
 <b>Regime</b>: 지수의 20/60일 이동평균 구조와 종목 breadth를 합쳐 RISK-ON / NEUTRAL / RISK-OFF로 분류하며 Alpha 자체를 깎지는 않습니다.<br>
 <b>Flow</b>의 CVD는 Yahoo 일봉 OHLCV로 만든 proxy이며 실제 bid/ask 체결 CVD가 아닙니다. 이 임계값들은 합리적인 초기값이며 최종값은 단계별 신호 수와 1·5·10일 forward return 백테스트로 검증해야 합니다.</div>
@@ -352,6 +366,7 @@ function crossLabel(age){{ const a=Number(age); if(!Number.isFinite(a)||a>5)retu
 function badgeHtml(text, kind='muted'){{ return `<span class="badge ${{kind}}">${{escJs(text)}}</span>`; }}
 function riskHtml(v){{ return badgeHtml(v, v==='LOW'?'good':(v==='HIGH'?'bad':'warn')); }}
 function regimeHtml(v){{ return badgeHtml(v, v==='RISK-ON'?'good':(v==='RISK-OFF'?'bad':'warn')); }}
+function supertrendHtml(v){{ return badgeHtml(String(v||'BAD').toUpperCase()==='GOOD'?'GOOD':'BAD', String(v||'BAD').toUpperCase()==='GOOD'?'good':'bad'); }}
 function tierHtml(v){{ return badgeHtml(v, v==='CONFIRMED'?'strong':(v==='FRESH'?'fresh':(v==='EARLY'?'warn':'muted'))); }}
 function stateHtml(v){{ return badgeHtml(v, v==='STRONG LONG'?'strong':(['LONG','POSITIVE'].includes(v)?'good':(['WEAK','BEARISH'].includes(v)?'bad':'muted'))); }}
 function setupHtml(v){{ return badgeHtml(v, v==='A+'?'strong':(v==='A'?'good':(v==='B'?'fresh':(v==='EARLY'?'warn':'muted')))); }}
@@ -379,7 +394,7 @@ function onStockInput(){{
   suggestionIndex=-1;
   currentMatches=findStocks(q,market).slice(0,12);
   if(!q.trim() || currentMatches.length===0){{ box.style.display='none'; box.innerHTML=''; return; }}
-  box.innerHTML=currentMatches.map((s,i)=>`<div class="suggestion" data-i="${{i}}" onmousedown="selectSuggestion(${{i}})"><div><b>${{escJs(s.name)}}</b><br><small>${{escJs(String(s.ticker).padStart(6,'0'))}} · ${{escJs(s.market)}}</small></div><small>Alpha ${{num(s.alpha_score,1)}} · #${{s.alpha_rank_all}}</small></div>`).join('');
+  box.innerHTML=currentMatches.map((s,i)=>`<div class="suggestion" data-i="${{i}}" onmousedown="selectSuggestion(${{i}})"><div><b>${{escJs(s.name)}}</b><br><small>${{escJs(String(s.ticker).padStart(6,'0'))}} · ${{escJs(s.market)}}</small></div><small>Alpha ${{num(s.alpha_score,1)}} · Entry ${{num(s.entry_score,1)}} · ST ${{escJs(s.supertrend_status||'BAD')}} · #${{s.alpha_rank_all}}</small></div>`).join('');
   box.style.display='block';
 }}
 function selectSuggestion(i){{ const s=currentMatches[i]; if(!s)return; document.getElementById('stock-search').value=s.name; document.getElementById('stock-suggestions').style.display='none'; renderStock(s); }}
@@ -410,11 +425,12 @@ function renderStock(s){{
   result.className='stock-card';
   result.innerHTML=`
     <div class="stock-head">
-      <div class="stock-title"><h3>${{escJs(s.name)}}</h3><div class="meta">${{ticker}} · ${{escJs(s.market)}} · 기준일 ${{escJs(s.signal_date||'-')}}</div><div style="margin-top:9px">${{tierHtml(s.signal_tier)}} ${{setupHtml(s.setup_grade)}} ${{stateHtml(s.signal_state)}} ${{regimeHtml(s.regime)}}</div></div>
+      <div class="stock-title"><h3>${{escJs(s.name)}}</h3><div class="meta">${{ticker}} · ${{escJs(s.market)}} · 기준일 ${{escJs(s.signal_date||'-')}}</div><div style="margin-top:9px">${{tierHtml(s.signal_tier)}} ${{setupHtml(s.setup_grade)}} ${{stateHtml(s.signal_state)}} ${{regimeHtml(s.regime)}} ${{supertrendHtml(s.supertrend_status)}}</div></div>
       <div class="stock-price"><strong>${{price(s.close)}}원</strong><span class="${{retCls}}">${{ret>=0?'+':''}}${{num(ret,2)}}%</span><div style="margin-top:8px"><span class="rank-pill">전체 Alpha #${{s.alpha_rank_all}}</span><span class="rank-pill">${{escJs(s.market)}} #${{s.alpha_rank_market}}</span>${{top60?'<span class="rank-pill">TOP 60</span>':''}}</div></div>
     </div>
     <div class="score-grid">
       ${{scoreBox('Alpha',s.alpha_score,'alpha-box')}}
+      ${{scoreBox('Entry',s.entry_score)}}
       ${{scoreBox('Trend',s.trend_score)}}
       ${{scoreBox('Momentum',s.momentum_score)}}
       ${{scoreBox('Flow',s.flow_score)}}
@@ -429,6 +445,10 @@ function renderStock(s){{
       ${{item('DMI Ratio',num(s.dmi_ratio,2)+'x')}}
       ${{item('ADX',num(s.adx,1))}}
       ${{item('ADX 3D Δ',num(s.adx_delta3,1))}}
+      ${{item('Supertrend',supertrendHtml(s.supertrend_status))}}
+      ${{item('ST Flip',crossLabel(s.supertrend_flip_age))}}
+      ${{item('ST Dist / ATR',num(s.supertrend_distance_atr,2)+'x')}}
+      ${{item('Entry Score',num(s.entry_score,1))}}
       ${{item('Dollar Vol',num(s.relative_dollar_volume,2)+'x')}}
       ${{item('ADV20',bn(s.avg20_trading_value))}}
       ${{item('RS20 excess',num(s.rs20_excess_pct,2)+'%')}}
