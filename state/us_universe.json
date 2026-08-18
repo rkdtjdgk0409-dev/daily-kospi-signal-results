@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_at": "2026-08-16T01:52:05-04:00",
+  "snapshot_at": "2026-08-18T03:25:59-04:00",
   "sources": {
     "S&P 500": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
     "NASDAQ-100": "https://api.nasdaq.com/api/quote/list-type/nasdaq100"
@@ -270,12 +270,6 @@
         "yf_ticker": "ATO",
         "name": "Atmos Energy",
         "sector": "Utilities"
-      },
-      {
-        "ticker": "AVB",
-        "yf_ticker": "AVB",
-        "name": "AvalonBay Communities",
-        "sector": "Real Estate"
       },
       {
         "ticker": "AVGO",
@@ -989,12 +983,6 @@
         "ticker": "EQIX",
         "yf_ticker": "EQIX",
         "name": "Equinix",
-        "sector": "Real Estate"
-      },
-      {
-        "ticker": "EQR",
-        "yf_ticker": "EQR",
-        "name": "Equity Residential",
         "sector": "Real Estate"
       },
       {
@@ -2330,6 +2318,12 @@
         "sector": "Consumer Discretionary"
       },
       {
+        "ticker": "RDDT",
+        "yf_ticker": "RDDT",
+        "name": "Reddit",
+        "sector": "Communication Services"
+      },
+      {
         "ticker": "REG",
         "yf_ticker": "REG",
         "name": "Regency Centers",
@@ -2826,6 +2820,12 @@
         "yf_ticker": "VMC",
         "name": "Vulcan Materials Company",
         "sector": "Materials"
+      },
+      {
+        "ticker": "VMRK",
+        "yf_ticker": "VMRK",
+        "name": "Vivmark Residential",
+        "sector": "Real Estate"
       },
       {
         "ticker": "VRSK",
@@ -3641,5 +3641,38 @@
       }
     ]
   },
-  "history": []
+  "history": [
+    {
+      "detected_at": "2026-08-18T03:25:59-04:00",
+      "index": "S&P 500",
+      "added": [
+        {
+          "ticker": "RDDT",
+          "yf_ticker": "RDDT",
+          "name": "Reddit",
+          "sector": "Communication Services"
+        },
+        {
+          "ticker": "VMRK",
+          "yf_ticker": "VMRK",
+          "name": "Vivmark Residential",
+          "sector": "Real Estate"
+        }
+      ],
+      "removed": [
+        {
+          "ticker": "AVB",
+          "yf_ticker": "AVB",
+          "name": "AvalonBay Communities",
+          "sector": "Real Estate"
+        },
+        {
+          "ticker": "EQR",
+          "yf_ticker": "EQR",
+          "name": "Equity Residential",
+          "sector": "Real Estate"
+        }
+      ]
+    }
+  ]
 }
