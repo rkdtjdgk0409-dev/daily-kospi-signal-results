@@ -11,9 +11,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 6040.0,
-      "trailing_stop": 5311.55,
-      "updated_date": "2026-08-18"
+      "last_close": 6010.0,
+      "trailing_stop": 5293.88,
+      "updated_date": "2026-08-19"
     },
     "011200": {
       "ticker": "011200",
@@ -25,11 +25,11 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 22650.0,
-      "trailing_stop": 20643.42,
-      "updated_date": "2026-08-18"
+      "last_close": 21700.0,
+      "trailing_stop": 20459.14,
+      "updated_date": "2026-08-19"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-19T07:26:53+09:00"
+  "updated_at": "2026-08-19T16:26:29+09:00"
 }
