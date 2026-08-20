@@ -9,11 +9,11 @@
       "entry_price": 6040.0,
       "highest_close": 6040.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 6010.0,
-      "trailing_stop": 5293.88,
-      "updated_date": "2026-08-19"
+      "last_status": "HOLD",
+      "last_exit_risk": 7.0,
+      "last_close": 5770.0,
+      "trailing_stop": 5272.3,
+      "updated_date": "2026-08-20"
     },
     "011200": {
       "ticker": "011200",
@@ -23,13 +23,27 @@
       "entry_price": 22650.0,
       "highest_close": 22650.0,
       "tp1_done": false,
+      "last_status": "HOLD",
+      "last_exit_risk": 15.0,
+      "last_close": 21200.0,
+      "trailing_stop": 20433.34,
+      "updated_date": "2026-08-20"
+    },
+    "196170": {
+      "ticker": "196170",
+      "name": "알테오젠",
+      "market": "KOSDAQ",
+      "entry_date": "2026-08-20",
+      "entry_price": 339500.0,
+      "highest_close": 339500.0,
+      "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 21700.0,
-      "trailing_stop": 20459.14,
-      "updated_date": "2026-08-19"
+      "last_close": 339500.0,
+      "trailing_stop": 286970.99,
+      "updated_date": "2026-08-20"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-20T07:28:09+09:00"
+  "updated_at": "2026-08-20T16:29:08+09:00"
 }
