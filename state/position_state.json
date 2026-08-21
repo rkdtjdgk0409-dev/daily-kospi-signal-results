@@ -10,10 +10,10 @@
       "highest_close": 6040.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 7.0,
-      "last_close": 5770.0,
-      "trailing_stop": 5272.3,
-      "updated_date": "2026-08-20"
+      "last_exit_risk": 25.0,
+      "last_close": 5850.0,
+      "trailing_stop": 5302.81,
+      "updated_date": "2026-08-21"
     },
     "011200": {
       "ticker": "011200",
@@ -24,10 +24,10 @@
       "highest_close": 22650.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 15.0,
-      "last_close": 21200.0,
-      "trailing_stop": 20433.34,
-      "updated_date": "2026-08-20"
+      "last_exit_risk": 25.0,
+      "last_close": 21600.0,
+      "trailing_stop": 20481.48,
+      "updated_date": "2026-08-21"
     },
     "196170": {
       "ticker": "196170",
@@ -37,13 +37,41 @@
       "entry_price": 339500.0,
       "highest_close": 339500.0,
       "tp1_done": false,
+      "last_status": "HOLD",
+      "last_exit_risk": 21.0,
+      "last_close": 320000.0,
+      "trailing_stop": 282832.51,
+      "updated_date": "2026-08-21"
+    },
+    "051900": {
+      "ticker": "051900",
+      "name": "LG생활건강",
+      "market": "KOSPI",
+      "entry_date": "2026-08-21",
+      "entry_price": 313000.0,
+      "highest_close": 313000.0,
+      "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 339500.0,
-      "trailing_stop": 286970.99,
-      "updated_date": "2026-08-20"
+      "last_exit_risk": 10.0,
+      "last_close": 313000.0,
+      "trailing_stop": 280463.99,
+      "updated_date": "2026-08-21"
+    },
+    "090430": {
+      "ticker": "090430",
+      "name": "아모레퍼시픽",
+      "market": "KOSPI",
+      "entry_date": "2026-08-21",
+      "entry_price": 138000.0,
+      "highest_close": 138000.0,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 16.0,
+      "last_close": 138000.0,
+      "trailing_stop": 124655.79,
+      "updated_date": "2026-08-21"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-21T07:31:01+09:00"
+  "updated_at": "2026-08-21T16:30:39+09:00"
 }
