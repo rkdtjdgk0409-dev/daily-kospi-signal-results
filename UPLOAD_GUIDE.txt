@@ -1,0 +1,27 @@
+[업로드 방법]
+
+이 ZIP은 기존 daily-kospi-signal-results 레포의 루트에 덮어쓰는 구조입니다.
+
+1) ZIP 압축 해제
+2) 아래 새 파일을 레포 루트에 추가
+   - price_structure_engine.py
+   - price_structure_scanner.py
+   - price_structure_build_page.py
+   - price_structure_config.json
+   - selftest_price_structure.py
+   - README_PRICE_STRUCTURE.md
+3) 아래 파일은 기존 파일 교체
+   - nav_patch.py
+   - .github/workflows/pages.yml
+4) requirements.txt는 수정하지 않음
+5) GitHub Actions > Daily Korea + US Equity Alpha Screeners > Run workflow 실행
+6) 성공 후 Pages 주소 뒤에 /price-structure/ 접속
+
+예상 페이지:
+https://rkdtjdgk0409-dev.github.io/daily-kospi-signal-results/price-structure/
+
+로컬/Actions 테스트 순서:
+python selftest_price_structure.py
+python price_structure_scanner.py --kospi-n 200 --kosdaq-n 150
+python price_structure_build_page.py
+python nav_patch.py
