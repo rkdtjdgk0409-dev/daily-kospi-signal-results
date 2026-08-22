@@ -1,0 +1,231 @@
+name: Daily Korea + US Equity Alpha Screeners
+
+on:
+  workflow_dispatch:
+    inputs:
+      kospi_n:
+        description: "Current KOSPI market-cap top N"
+        required: true
+        default: "200"
+      kosdaq_n:
+        description: "Current KOSDAQ market-cap top N"
+        required: true
+        default: "150"
+      kospi_min_avg20_value:
+        description: "KOSPI min 20-day avg trading value (KRW, 0 = disabled)"
+        required: true
+        default: "0"
+      kosdaq_min_avg20_value:
+        description: "KOSDAQ min 20-day avg trading value (KRW)"
+        required: true
+        default: "3000000000"
+      cci_period:
+        description: "CCI period"
+        required: true
+        default: "9"
+      dmi_period:
+        description: "DMI/ADX period"
+        required: true
+        default: "14"
+      supertrend_period:
+        description: "Supertrend ATR period"
+        required: true
+        default: "10"
+      supertrend_factor:
+        description: "Supertrend ATR factor"
+        required: true
+        default: "3.0"
+      adx_threshold:
+        description: "Minimum ADX for Confirmed Buy only"
+        required: true
+        default: "20"
+      confirmed_alpha_threshold:
+        description: "Minimum Alpha for Confirmed Buy"
+        required: true
+        default: "75"
+      fresh_alpha_threshold:
+        description: "Minimum Alpha for Fresh Buy"
+        required: true
+        default: "60"
+      early_alpha_threshold:
+        description: "Minimum Alpha for Early Setup"
+        required: true
+        default: "50"
+
+  schedule:
+    - cron: "50 6 * * 1-5"
+    - cron: "20 7 * * 1-5"
+    - cron: "5 22 * * 1-5"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run screener scheduled
+        if: github.event_name == 'schedule'
+        run: >-
+          python scanner.py
+          --kospi-n 200
+          --kosdaq-n 150
+          --kospi-min-avg20-value 0
+          --kosdaq-min-avg20-value 3000000000
+          --cci-period 9
+          --dmi-period 14
+          --supertrend-period 10
+          --supertrend-factor 3.0
+          --adx-threshold 20
+          --confirmed-alpha-threshold 75
+          --fresh-alpha-threshold 60
+          --early-alpha-threshold 50
+
+      - name: Run screener manual
+        if: github.event_name == 'workflow_dispatch'
+        run: >-
+          python scanner.py
+          --kospi-n "${{ inputs.kospi_n }}"
+          --kosdaq-n "${{ inputs.kosdaq_n }}"
+          --kospi-min-avg20-value "${{ inputs.kospi_min_avg20_value }}"
+          --kosdaq-min-avg20-value "${{ inputs.kosdaq_min_avg20_value }}"
+          --cci-period "${{ inputs.cci_period }}"
+          --dmi-period "${{ inputs.dmi_period }}"
+          --supertrend-period "${{ inputs.supertrend_period }}"
+          --supertrend-factor "${{ inputs.supertrend_factor }}"
+          --adx-threshold "${{ inputs.adx_threshold }}"
+          --confirmed-alpha-threshold "${{ inputs.confirmed_alpha_threshold }}"
+          --fresh-alpha-threshold "${{ inputs.fresh_alpha_threshold }}"
+          --early-alpha-threshold "${{ inputs.early_alpha_threshold }}"
+
+      - name: Update Korea position management
+        run: python position_manager.py
+
+      - name: Build Korea HTML
+        run: python build_page.py
+
+      - name: Run Price Structure Scanner scheduled
+        if: github.event_name == 'schedule'
+        run: >-
+          python price_structure_scanner.py
+          --kospi-n 200
+          --kosdaq-n 150
+          --kospi-min-avg20-value 0
+          --kosdaq-min-avg20-value 3000000000
+
+      - name: Run Price Structure Scanner manual
+        if: github.event_name == 'workflow_dispatch'
+        run: >-
+          python price_structure_scanner.py
+          --kospi-n "${{ inputs.kospi_n }}"
+          --kosdaq-n "${{ inputs.kosdaq_n }}"
+          --kospi-min-avg20-value "${{ inputs.kospi_min_avg20_value }}"
+          --kosdaq-min-avg20-value "${{ inputs.kosdaq_min_avg20_value }}"
+
+      - name: Build Price Structure HTML
+        run: python price_structure_build_page.py
+
+      - name: Run US screener
+        run: >-
+          python us_scanner.py
+          --cci-period 9
+          --dmi-period 14
+          --supertrend-period 10
+          --supertrend-factor 3.0
+          --adx-threshold 20
+          --confirmed-alpha-threshold 75
+          --fresh-alpha-threshold 60
+          --early-alpha-threshold 50
+          --min-avg20-dollar-volume 10000000
+
+      - name: Build US HTML
+        run: python us_build_page.py
+
+      - name: Build Position Management HTML
+        run: python position_build_page.py
+
+      - name: Add navigation
+        run: python nav_patch.py
+
+      - name: Save Korea position state
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if [ -n "$(git status --porcelain -- state/position_state.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add state/position_state.json
+            git commit -m "Update Korea position state"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Save validated US constituent changes
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if [ -n "$(git status --porcelain -- state/us_universe.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add state/us_universe.json
+            git commit -m "Track US index constituent changes"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Upload Korea raw results
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-korea-alpha-screener-position-results
+          path: results/
+          retention-days: 30
+
+      - name: Upload Price Structure raw results
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-korea-price-structure-results
+          path: price_structure_results/
+          retention-days: 30
+
+      - name: Upload US raw results
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-us-alpha-screener-results
+          path: us_results/
+          retention-days: 30
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
