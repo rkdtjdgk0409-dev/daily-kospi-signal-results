@@ -1,27 +1,27 @@
-[업로드 방법]
+PRICE STRUCTURE 모바일/채널 차트 업데이트
 
-이 ZIP은 기존 daily-kospi-signal-results 레포의 루트에 덮어쓰는 구조입니다.
+업로드할 파일
+- price_structure_build_page.py
 
-1) ZIP 압축 해제
-2) 아래 새 파일을 레포 루트에 추가
-   - price_structure_engine.py
-   - price_structure_scanner.py
-   - price_structure_build_page.py
-   - price_structure_config.json
-   - selftest_price_structure.py
-   - README_PRICE_STRUCTURE.md
-3) 아래 파일은 기존 파일 교체
-   - nav_patch.py
-   - .github/workflows/pages.yml
-4) requirements.txt는 수정하지 않음
-5) GitHub Actions > Daily Korea + US Equity Alpha Screeners > Run workflow 실행
-6) 성공 후 Pages 주소 뒤에 /price-structure/ 접속
+적용 방법
+1. GitHub 레포:
+   rkdtjdgk0409-dev/daily-kospi-signal-results
+2. 루트의 기존 price_structure_build_page.py를 이 파일로 교체
+3. Commit changes
+4. 기존 GitHub Actions가 실행되면 docs/price-structure/index.html이 다시 생성됩니다.
 
-예상 페이지:
-https://rkdtjdgk0409-dev.github.io/daily-kospi-signal-results/price-structure/
+변경 사항
+- 거래일만 category 축으로 표시: 주말/휴장일 공백 제거
+- 오른쪽 가격축: ₩ + 천 단위 쉼표 + 충분한 오른쪽 여백
+- 모바일 차트: 최근 52거래일, PC 92거래일
+- 차트 높이 모바일 285px로 축소
+- 기존 하락 추세선 + Pivot Low를 이용해 하락 채널 영역 생성
+- 기존 상승 추세선 + Pivot High를 이용해 상승 채널 영역 생성
+- 반대쪽 Pivot fit이 불안정하면 ATR/가격잔차 기반 평행 채널 fallback
+- 채널 상·하단선 + 내부 음영 + '하락 채널'/'상승 채널' 라벨
+- 지지/저항 및 POC, 삼각수렴 유지
 
-로컬/Actions 테스트 순서:
-python selftest_price_structure.py
-python price_structure_scanner.py --kospi-n 200 --kosdaq-n 150
-python price_structure_build_page.py
-python nav_patch.py
+추가 백엔드 파일 수정은 필요하지 않습니다.
+기존 price_structure_engine.py가 이미 chart payload에
+pivot_highs / pivot_lows / descending_trendline / ascending_trendline을 제공하므로
+프론트엔드에서 채널을 계산하도록 구성했습니다.
