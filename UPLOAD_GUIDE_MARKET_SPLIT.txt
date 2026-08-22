@@ -1,0 +1,47 @@
+MARKET CONTEXT SPLIT V1
+
+목표
+- 한국 메인:
+  미국 시장 | 포지션 관리 | 차트 구조 | 최신 데이터
+  → 포지션 관리와 차트 구조는 한국 데이터 사용
+
+- 미국 메인:
+  한국 시장 | 포지션 관리 | 차트 구조 | 최신 데이터
+  → 포지션 관리와 차트 구조는 미국 데이터 사용
+
+새 경로
+- /position/             한국 포지션
+- /price-structure/      한국 차트 구조
+- /us-position/          미국 포지션
+- /us-price-structure/   미국 차트 구조
+
+업로드할 파일
+
+새 파일
+- us_price_structure_scanner.py
+- us_price_structure_build_page.py
+- us_price_structure_config.json
+- us_position_manager.py
+- us_position_build_page.py
+- state/us_position_state.json
+
+교체 파일
+- nav_patch.py
+- .github/workflows/pages.yml
+
+중요
+- 기존 price_structure_engine.py와 price_structure_channels.py는 그대로 사용합니다.
+- 기존 한국 position_manager.py / position_build_page.py도 그대로 유지합니다.
+- us_scanner.py도 그대로 유지합니다.
+- 미국 차트 구조는 us_scanner.py가 검증해 저장한 us_results/universe.csv를 사용하므로
+  S&P 500 / NASDAQ-100 구성종목 기준이 미국 메인 스크리너와 일치합니다.
+- 미국 포지션 state는 state/us_position_state.json으로 한국 state/position_state.json과 완전히 분리됩니다.
+
+GitHub 업로드
+1. ZIP을 풀어 폴더 구조 그대로 레포 루트에 업로드합니다.
+2. nav_patch.py 및 .github/workflows/pages.yml은 Replace 합니다.
+3. 나머지는 Add file 합니다.
+4. Commit 후 Actions 완료를 기다립니다.
+
+첫 실행은 미국 차트 구조에서 S&P 500 + NASDAQ-100 약 500개 종목의 장기 데이터를 추가로 받아
+기존보다 시간이 더 걸릴 수 있어 workflow timeout을 120분으로 늘렸습니다.
