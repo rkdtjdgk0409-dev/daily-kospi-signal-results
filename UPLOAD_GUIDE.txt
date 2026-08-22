@@ -1,27 +1,45 @@
-PRICE STRUCTURE 모바일/채널 차트 업데이트
+PRICE STRUCTURE — Professional Parallel Channel V2
 
-업로드할 파일
+업로드 위치
+레포: rkdtjdgk0409-dev/daily-kospi-signal-results
+
+새 파일
+- price_structure_channels.py
+
+교체 파일
+- price_structure_scanner.py
 - price_structure_build_page.py
+- price_structure_config.json
 
-적용 방법
-1. GitHub 레포:
-   rkdtjdgk0409-dev/daily-kospi-signal-results
-2. 루트의 기존 price_structure_build_page.py를 이 파일로 교체
-3. Commit changes
-4. 기존 GitHub Actions가 실행되면 docs/price-structure/index.html이 다시 생성됩니다.
+핵심 변경
+1) 평행채널
+- 단순 고점/저점 2개 연결 방식이 아닙니다.
+- 여러 기간(45/60/80/105/140/180/240봉)에서 robust regression으로 가격의 중심 추세를 먼저 계산합니다.
+- 상단/하단은 같은 기울기를 가진 평행선으로 계산합니다.
+- 실제 local swing touch는 채널을 '그리는 기준'이 아니라 '검증 기준'으로 사용합니다.
+- 상승채널: 하단 지지 touch를 더 중요하게 평가합니다.
+- 하락채널: 상단 저항 touch를 더 중요하게 평가합니다.
+- 채널 내부 체류율, 심한 이탈 횟수, 추세 강도, 기간, 최근 touch를 합산해 품질 62점 이상만 표시합니다.
+- 상단/하단 실선 + 중앙 점선 + 내부 음영으로 표시합니다.
 
-변경 사항
-- 거래일만 category 축으로 표시: 주말/휴장일 공백 제거
-- 오른쪽 가격축: ₩ + 천 단위 쉼표 + 충분한 오른쪽 여백
-- 모바일 차트: 최근 52거래일, PC 92거래일
-- 차트 높이 모바일 285px로 축소
-- 기존 하락 추세선 + Pivot Low를 이용해 하락 채널 영역 생성
-- 기존 상승 추세선 + Pivot High를 이용해 상승 채널 영역 생성
-- 반대쪽 Pivot fit이 불안정하면 ATR/가격잔차 기반 평행 채널 fallback
-- 채널 상·하단선 + 내부 음영 + '하락 채널'/'상승 채널' 라벨
-- 지지/저항 및 POC, 삼각수렴 유지
+2) 차트 확대/축소
+- lookback_days: 1100
+- 상세 JSON에는 최근 최대 700거래일 캔들을 포함합니다.
+- 처음에는 모바일 55봉 / PC 100봉만 보입니다.
+- 휠/트랙패드/핀치로 축소하면 이미 로드된 과거 데이터가 계속 나타납니다.
+- 1M / 3M / 6M / 1Y / 전체 버튼도 추가했습니다.
+- 실제 거래일 category 축을 사용하므로 주말/휴장일 빈 공간이 없습니다.
 
-추가 백엔드 파일 수정은 필요하지 않습니다.
-기존 price_structure_engine.py가 이미 chart payload에
-pivot_highs / pivot_lows / descending_trendline / ascending_trendline을 제공하므로
-프론트엔드에서 채널을 계산하도록 구성했습니다.
+3) 가격축
+- 우측 축을 500,000원 형식으로 표시하여 ₩ 중복 문제를 피했습니다.
+- 모바일 우측 여백을 충분히 확보했습니다.
+
+적용
+1. ZIP 압축 해제
+2. 위 4개 파일을 레포 루트에 업로드
+3. 기존 3개 파일은 Replace
+4. Commit changes
+5. GitHub Actions 완료 후 /price-structure/ 확인
+
+기존 price_structure_engine.py는 수정하지 않습니다.
+새 모듈이 기존 분석 결과를 보강하는 방식이라 기존 신호 로직은 유지됩니다.
