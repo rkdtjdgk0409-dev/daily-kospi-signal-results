@@ -1,0 +1,6 @@
+PASS py_compile price_structure_wave.py
+PASS py_compile price_structure_scanner.py
+PASS py_compile price_structure_build_page.py
+PASS json parse price_structure_config.json
+PASS node --check page JS
+PASS synthetic wave runtime

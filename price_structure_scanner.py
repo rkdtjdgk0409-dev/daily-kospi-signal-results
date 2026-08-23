@@ -13,6 +13,7 @@ import pandas as pd
 from scanner import get_universe, download_prices, download_benchmark, now_kst
 from price_structure_engine import analyze_stock, market_regime
 from price_structure_channels import enhance_analysis_chart
+from price_structure_wave import apply_wave_mechanism
 
 
 def load_config(path: str) -> Dict[str, Any]:
@@ -41,6 +42,10 @@ def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
     rs = r.get("relative_strength") or {}
     bq = r.get("breakout_quality") or {}
     trade = r.get("trade") or {}
+    wave = r.get("wave") or {}
+    scenario = wave.get("scenario") or {}
+    entry_zone = wave.get("entry_zone") or {}
+    transition = wave.get("channel_transition") or {}
 
     return {
         "ticker": meta["ticker"],
@@ -55,6 +60,8 @@ def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
         "score": r["score"],
         "grade": r["grade"],
         "hard_filter_pass": r["hard_filter_pass"],
+        "legacy_setup": r.get("legacy_setup"),
+        "legacy_score": r.get("legacy_score"),
         "structure": r["structure"]["state"],
         "structure_label": r["structure"]["label"],
         "structure_code": r["structure"]["code"],
@@ -73,13 +80,19 @@ def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
         "parallel_channel_touches": channel.get("total_touches"),
         "triangle": tri.get("type"),
         "triangle_quality": tri.get("quality"),
-        "compression_score": tri.get("compression_score"),
-        "triangle_progress": tri.get("progress"),
+        "wave_stage": wave.get("stage"),
+        "wave_label": wave.get("label"),
+        "wave_confidence": wave.get("confidence"),
+        "channel_transition": transition.get("label"),
+        "channel_transition_score": transition.get("score"),
+        "entry_zone_low": entry_zone.get("low"),
+        "entry_zone_high": entry_zone.get("high"),
+        "confirm_price": scenario.get("confirm_price"),
+        "invalidation_price": scenario.get("invalidation_price"),
+        "wave_target1": scenario.get("target1"),
+        "wave_target2": scenario.get("target2"),
         "breakout_quality": bq.get("score"),
         "rvol": bq.get("rvol"),
-        "clv": bq.get("clv"),
-        "range_atr": bq.get("range_atr"),
-        "space_atr": bq.get("next_space_atr"),
         "rs20_excess": rs.get("excess_return"),
         "rs_score": rs.get("score"),
         "entry": trade.get("entry"),
@@ -95,7 +108,7 @@ def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="Korea Price Structure / Chart Pattern Scanner"
+        description="Korea Elliott-style Price Structure / Parallel Channel Scanner"
     )
     ap.add_argument("--config", default="price_structure_config.json")
     ap.add_argument("--kospi-n", type=int, default=200)
@@ -114,18 +127,18 @@ def main() -> None:
     detail_dir = out_dir / "details"
     detail_dir.mkdir(parents=True, exist_ok=True)
 
-    print("[structure] loading universe")
+    print("[structure-wave] loading Korea universe")
     universe = get_universe(args.kospi_n, args.kosdaq_n)
     tickers = universe["yf_ticker"].tolist()
 
     lookback_days = int(cfg.get("lookback_days", 1100))
     print(
-        f"[structure] downloading {len(tickers)} symbols "
+        f"[structure-wave] downloading {len(tickers)} symbols "
         f"(lookback_days={lookback_days})"
     )
     prices = download_prices(tickers, lookback_days=lookback_days)
 
-    print("[structure] downloading benchmarks")
+    print("[structure-wave] downloading benchmarks")
     kospi_bench = download_benchmark(
         cfg.get("benchmark_kospi", "^KS11"),
         lookback_days=lookback_days,
@@ -144,19 +157,18 @@ def main() -> None:
 
     for i, row in universe.iterrows():
         yf_ticker = row["yf_ticker"]
+        ticker = str(row["ticker"])
         df = prices.get(yf_ticker)
 
         if df is None or df.empty:
             errors.append({
-                "ticker": row["ticker"],
+                "ticker": ticker,
                 "name": row["name"],
                 "error": "price data unavailable",
             })
             continue
 
-        avg20_value = float(
-            (df["Close"] * df["Volume"]).tail(20).mean()
-        )
+        avg20_value = float((df["Close"] * df["Volume"]).tail(20).mean())
         min_value = float(
             cfg.get(
                 "kospi_min_avg20_value"
@@ -170,20 +182,27 @@ def main() -> None:
 
         bench = kospi_bench if row["market"] == "KOSPI" else kosdaq_bench
         meta = {
-            "ticker": str(row["ticker"]),
+            "ticker": ticker,
             "yf_ticker": yf_ticker,
             "name": row["name"],
             "market": row["market"],
         }
 
         try:
+            # 1) Existing evidence engine: support/resistance, profiles, trendlines,
+            #    triangle, breakout quality and relative strength.
             r = analyze_stock(df, bench, cfg, regimes[row["market"]])
 
-            # V2: professional parallel channel + long interactive chart history.
+            # 2) Keep the current robust-regression professional parallel channel
+            #    and long interactive chart history.
             r = enhance_analysis_chart(df, r, cfg)
 
+            # 3) Primary mechanism: channel reversal -> wave 1/2 -> wave 3,
+            #    wave 4/5 continuation -> Fibonacci target/invalidation scenario.
+            r = apply_wave_mechanism(df, r, cfg)
+
             detail = {"meta": meta, "analysis": r}
-            (detail_dir / f"{row['ticker']}.json").write_text(
+            (detail_dir / f"{ticker}.json").write_text(
                 json.dumps(
                     detail,
                     ensure_ascii=False,
@@ -197,19 +216,23 @@ def main() -> None:
 
         except Exception as e:
             errors.append({
-                "ticker": row["ticker"],
+                "ticker": ticker,
                 "name": row["name"],
                 "error": str(e),
             })
-            print(f"[warn] {row['ticker']} {row['name']}: {e}")
+            print(f"[warn] {ticker} {row['name']}: {e}")
             if len(errors) <= 3:
                 traceback.print_exc(limit=1)
 
         if (i + 1) % 25 == 0:
-            print(f"[structure] analyzed {i+1}/{len(universe)}")
+            print(f"[structure-wave] analyzed {i+1}/{len(universe)}")
 
     summary.sort(
-        key=lambda x: (x["hard_filter_pass"], x["score"]),
+        key=lambda x: (
+            x["hard_filter_pass"],
+            x["score"],
+            x.get("wave_confidence") or 0,
+        ),
         reverse=True,
     )
 
@@ -223,6 +246,7 @@ def main() -> None:
         "rows": summary,
     }
 
+    out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "summary.json").write_text(
         json.dumps(
             payload,
@@ -244,18 +268,16 @@ def main() -> None:
     )
 
     print(
-        f"[structure] complete: {len(summary)} symbols / "
+        f"[structure-wave] complete: {len(summary)} symbols / "
         f"{len(errors)} errors"
     )
     if summary:
-        print("[structure] top setups")
+        print("[structure-wave] top wave setups")
         for x in summary[:12]:
-            ch = x.get("parallel_channel_label") or "-"
-            cq = x.get("parallel_channel_quality")
             print(
                 f"  {x['ticker']} {x['name']}: "
                 f"{x['grade']} {x['score']:.1f} {x['setup']} "
-                f"RR={x.get('rr1')} CHANNEL={ch} Q={cq}"
+                f"WAVE_Q={x.get('wave_confidence')} RR={x.get('rr1')}"
             )
 
 
