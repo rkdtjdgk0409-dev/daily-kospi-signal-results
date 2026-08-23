@@ -14,6 +14,7 @@ import pandas as pd
 from scanner import download_benchmark, download_prices
 from price_structure_engine import analyze_stock, market_regime
 from price_structure_channels import enhance_analysis_chart
+from price_structure_wave import apply_wave_mechanism
 
 NY = ZoneInfo("America/New_York")
 
@@ -68,11 +69,14 @@ def choose_benchmark(row: pd.Series, sp: pd.DataFrame, ndx: pd.DataFrame, both: 
 def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
     support = r.get("support") or {}
     resistance = r.get("resistance") or {}
-    tri = r.get("triangle") or {}
     channel = r.get("parallel_channel") or {}
     rs = r.get("relative_strength") or {}
     bq = r.get("breakout_quality") or {}
     trade = r.get("trade") or {}
+    wave = r.get("wave") or {}
+    scenario = wave.get("scenario") or {}
+    entry_zone = wave.get("entry_zone") or {}
+    transition = wave.get("channel_transition") or {}
     return {
         "ticker": meta["ticker"],
         "yf_ticker": meta["yf_ticker"],
@@ -96,8 +100,17 @@ def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
         "parallel_channel_label": channel.get("label"),
         "parallel_channel_quality": channel.get("quality"),
         "parallel_channel_status": channel.get("status"),
-        "triangle": tri.get("type"),
-        "triangle_quality": tri.get("quality"),
+        "wave_stage": wave.get("stage"),
+        "wave_label": wave.get("label"),
+        "wave_confidence": wave.get("confidence"),
+        "channel_transition": transition.get("label"),
+        "channel_transition_score": transition.get("score"),
+        "entry_zone_low": entry_zone.get("low"),
+        "entry_zone_high": entry_zone.get("high"),
+        "confirm_price": scenario.get("confirm_price"),
+        "invalidation_price": scenario.get("invalidation_price"),
+        "wave_target1": scenario.get("target1"),
+        "wave_target2": scenario.get("target2"),
         "breakout_quality": bq.get("score"),
         "rvol": bq.get("rvol"),
         "rs_score": rs.get("score"),
@@ -110,7 +123,7 @@ def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="US Price Structure / Parallel Channel Scanner")
+    ap = argparse.ArgumentParser(description="US Elliott-style Price Structure / Parallel Channel Scanner")
     ap.add_argument("--config", default="us_price_structure_config.json")
     ap.add_argument("--universe", default="us_results/universe.csv")
     args = ap.parse_args()
@@ -173,8 +186,12 @@ def main() -> None:
         }
 
         try:
+            # 1) Existing evidence engine: zones, pivots, triangles, breakout quality.
             r = analyze_stock(df, bench, cfg, regimes[bench_name])
+            # 2) Keep the current professional parallel-channel implementation and long chart history.
             r = enhance_analysis_chart(df, r, cfg)
+            # 3) New primary mechanism: channel reversal -> Elliott-style 1/2/3/4/5 scenario -> fib targets/invalidation.
+            r = apply_wave_mechanism(df, r, cfg)
             detail = {"meta": meta, "analysis": r}
             (detail_dir / f"{ticker}.json").write_text(
                 json.dumps(detail, ensure_ascii=False, indent=2, default=json_default, allow_nan=False),
@@ -187,7 +204,7 @@ def main() -> None:
         if (i + 1) % 50 == 0:
             print(f"[us-structure] analyzed {i+1}/{len(universe)}")
 
-    summary.sort(key=lambda x: (x["hard_filter_pass"], x["score"]), reverse=True)
+    summary.sort(key=lambda x: (x["hard_filter_pass"], x["score"], x.get("wave_confidence") or 0), reverse=True)
     payload = {
         "generated_at": datetime.now(NY).isoformat(timespec="seconds"),
         "count": len(summary),
