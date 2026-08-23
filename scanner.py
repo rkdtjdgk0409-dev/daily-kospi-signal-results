@@ -11,6 +11,8 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+from quant_risk import compute_risk_metrics, final_quant_score, model_position_size_pct, risk_quality_score, risk_snapshot
+
 import numpy as np
 import pandas as pd
 import requests
@@ -628,6 +630,7 @@ def main():
         min_value = args.kospi_min_avg20_value if m["market"] == "KOSPI" else args.kosdaq_min_avg20_value
         if feat["avg20_trading_value"] < min_value:
             continue
+        risk_metrics = compute_risk_metrics(df, benchmark_prices.get(m["market"], pd.DataFrame()))
         rows.append({
             "ticker": m["ticker"],
             "name": m["name"],
@@ -635,6 +638,7 @@ def main():
             "yf_ticker": yf_ticker,
             "universe_source": m["universe_source"],
             **feat,
+            **risk_metrics,
         })
 
     if not rows:
@@ -675,10 +679,12 @@ def main():
     all_df["rs60_percentile"] = all_df.groupby("market")["rs60_excess_pct"].transform(percentile_0_100)
     all_df["rs_score"] = 0.60 * all_df["rs20_percentile"] + 0.40 * all_df["rs60_percentile"]
 
-    # Risk는 Alpha에서 분리. 높은 값일수록 위험이 큼.
+    # Institutional-style risk layer. risk_score remains 0=low risk, 100=high risk
+    # for backward compatibility; risk_quality_score is the inverse interpretation.
     all_df["atr_risk_pctile"] = all_df.groupby("market")["atr_pct"].transform(percentile_0_100)
-    all_df["vol_risk_pctile"] = all_df.groupby("market")["vol20_ann_pct"].transform(percentile_0_100)
-    all_df["risk_score"] = 0.60 * all_df["atr_risk_pctile"] + 0.40 * all_df["vol_risk_pctile"]
+    all_df["vol_risk_pctile"] = all_df.groupby("market")["vol60_ann_pct"].transform(percentile_0_100)
+    all_df["risk_quality_score"] = all_df.apply(lambda r: risk_quality_score(r), axis=1)
+    all_df["risk_score"] = (100.0 - all_df["risk_quality_score"]).clip(0, 100)
     all_df["risk_level"] = all_df["risk_score"].map(risk_label)
 
     # Market regime = index trend + breadth. Alpha에는 직접 곱하지 않고 별도 정보로 유지.
@@ -710,6 +716,10 @@ def main():
         + 0.20 * all_df["flow_score"]
         + 0.25 * all_df["rs_score"]
     ).clip(0, 100)
+
+    all_df["final_quant_score"] = all_df.apply(
+        lambda r: final_quant_score(r.get("alpha_score"), r.get("risk_quality_score"), alpha_weight=0.70), axis=1
+    )
 
     # ------------------------------------------------------------------
     # Three-stage signal ladder
@@ -770,6 +780,17 @@ def main():
     all_df["signal_state"] = all_df["alpha_score"].map(signal_state)
     all_df["setup_grade"] = all_df.apply(setup_grade, axis=1)
 
+    all_df["model_weight_pct"] = all_df.apply(
+        lambda r: model_position_size_pct(
+            alpha_score=r.get("alpha_score"),
+            risk_quality=r.get("risk_quality_score"),
+            vol60_ann_pct=r.get("vol60_ann_pct"),
+            signal_tier=r.get("signal_tier", "RANK"),
+            regime=r.get("regime", "NEUTRAL"),
+        ),
+        axis=1,
+    )
+
     tier_order = pd.Categorical(
         all_df["signal_tier"],
         categories=["CONFIRMED", "FRESH", "EARLY", "RANK"],
@@ -777,17 +798,17 @@ def main():
     )
     all_df = (
         all_df.assign(_tier_order=tier_order)
-        .sort_values(["_tier_order", "alpha_score"], ascending=[True, False])
+        .sort_values(["_tier_order", "final_quant_score", "alpha_score"], ascending=[True, False, False])
         .drop(columns=["_tier_order"])
         .reset_index(drop=True)
     )
 
-    confirmed = all_df[all_df["confirmed_buy"]].sort_values(["entry_score", "alpha_score"], ascending=False)
-    fresh = all_df[all_df["fresh_buy"]].sort_values(["entry_score", "alpha_score"], ascending=False)
-    early = all_df[all_df["early_setup"]].sort_values(["entry_score", "alpha_score"], ascending=False)
-    actionable = all_df[all_df["actionable_buy"]].sort_values(["confirmed_buy", "alpha_score"], ascending=[False, False])
-    active = all_df[all_df["active_trend"]].sort_values("alpha_score", ascending=False)
-    top_alpha = all_df.sort_values("alpha_score", ascending=False)
+    confirmed = all_df[all_df["confirmed_buy"]].sort_values(["final_quant_score", "entry_score", "alpha_score"], ascending=False)
+    fresh = all_df[all_df["fresh_buy"]].sort_values(["final_quant_score", "entry_score", "alpha_score"], ascending=False)
+    early = all_df[all_df["early_setup"]].sort_values(["final_quant_score", "entry_score", "alpha_score"], ascending=False)
+    actionable = all_df[all_df["actionable_buy"]].sort_values(["confirmed_buy", "final_quant_score", "alpha_score"], ascending=[False, False, False])
+    active = all_df[all_df["active_trend"]].sort_values(["final_quant_score", "alpha_score"], ascending=False)
+    top_alpha = all_df.sort_values(["final_quant_score", "alpha_score"], ascending=False)
 
     all_df.to_csv(outdir / "latest_all_scored.csv", index=False, encoding="utf-8-sig")
     actionable.to_csv(outdir / "latest_buy_signals.csv", index=False, encoding="utf-8-sig")  # backward-compatible union
@@ -795,10 +816,11 @@ def main():
     fresh.to_csv(outdir / "latest_fresh_buy.csv", index=False, encoding="utf-8-sig")
     early.to_csv(outdir / "latest_early_setups.csv", index=False, encoding="utf-8-sig")
     active.to_csv(outdir / "latest_active_trends.csv", index=False, encoding="utf-8-sig")
-    top_alpha.to_csv(outdir / "latest_top_alpha.csv", index=False, encoding="utf-8-sig")
+    top_alpha.to_csv(outdir / "latest_top_alpha.csv", index=False, encoding="utf-8-sig")  # backward-compatible alias
+    top_alpha.to_csv(outdir / "latest_top_quant.csv", index=False, encoding="utf-8-sig")
 
     summary = {
-        "model_version": "HF_TECH_V2_4_CLOSE_REFRESH_MOBILE",
+        "model_version": "HF_TECH_V3_0_ALPHA_RISK_QUANT",
         "generated_at": now_kst().isoformat(timespec="seconds"),
         "generated_timezone": "Asia/Seoul",
         "price_basis": "KRX regular-session daily OHLCV via Yahoo .KS/.KQ; NXT data is not queried",
@@ -850,6 +872,16 @@ def main():
         "weights": {"trend": 30, "momentum": 25, "flow": 20, "relative_strength": 25},
         "trend_subweights": {"dmi_direction": 35, "adx_strength": 30, "adx_acceleration": 10, "supertrend": 25},
         "entry_weights": {"cci_timing": 30, "supertrend": 25, "dmi_adx": 20, "flow": 15, "extension": 10},
+        "quant_weights": {"alpha": 70, "risk_quality": 30},
+        "risk_model": {
+            "volatility": "60D annualized",
+            "beta": "120D vs market benchmark",
+            "max_drawdown": "120D",
+            "historical_var": "95% / 60D",
+            "expected_shortfall": "95% / 60D",
+            "interpretation": "risk_score: higher=riskier; risk_quality_score: higher=safer",
+        },
+        "risk_snapshot": risk_snapshot(all_df),
         "regimes": regimes,
     }
     (outdir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -137,6 +137,12 @@ def detail_html(r):
         f"<div><b>RS60 excess</b><span>{fmt(r.get('rs60_excess_pct'),2)}%</span></div>"
         f"<div><b>ATR%</b><span>{fmt(r.get('atr_pct'),2)}%</span></div>"
         f"<div><b>20D vol ann.</b><span>{fmt(r.get('vol20_ann_pct'),1)}%</span></div>"
+        f"<div><b>60D vol ann.</b><span>{fmt(r.get('vol60_ann_pct'),1)}%</span></div>"
+        f"<div><b>Beta 120D</b><span>{fmt(r.get('beta120'),2)}</span></div>"
+        f"<div><b>MDD 120D</b><span>{fmt(r.get('mdd120_pct'),1)}%</span></div>"
+        f"<div><b>VaR95 1D</b><span>{fmt(r.get('var95_60_pct'),2)}%</span></div>"
+        f"<div><b>ES95 1D</b><span>{fmt(r.get('es95_60_pct'),2)}%</span></div>"
+        f"<div><b>Risk Quality</b><span>{fmt(r.get('risk_quality_score'),1)}</span></div>"
         "</div></details>"
     )
 
@@ -148,13 +154,15 @@ def table_rows(df):
         ret_class = "up" if ret > 0 else ("down" if ret < 0 else "")
         out.append(
             f"<tr data-market='{esc(r.get('market',''))}' data-alpha='{fmt(r.get('alpha_score'),2)}' "
-            f"data-name='{esc(str(r.get('name','')).lower())}' data-ticker='{esc(str(r.get('ticker','')).zfill(6))}'>"
+            f"data-name='{esc(str(r.get('name','')).lower())}' data-ticker='{esc(str(r.get('ticker','')).zfill(6))}' data-quant='{fmt(r.get('final_quant_score'),2)}'>"
             f"<td>{i}</td>"
             f"<td class='name'><b>{esc(r.get('name','-'))}</b><small>{str(r.get('ticker','')).zfill(6)} · {esc(r.get('market','-'))}</small></td>"
             f"<td>{tier_badge(str(r.get('signal_tier','RANK')))}</td>"
             f"<td>{fmt_price(r.get('close'))}</td>"
             f"<td class='{ret_class}'>{fmt(ret,2)}%</td>"
             f"<td class='alpha'>{score_cell(r.get('alpha_score'))}</td>"
+            f"<td class='quant'>{score_cell(r.get('final_quant_score'))}</td>"
+            f"<td><b>{fmt(r.get('model_weight_pct'),1)}%</b></td>"
             f"<td>{score_cell(r.get('entry_score'))}</td>"
             f"<td>{supertrend_badge(str(r.get('supertrend_status','BAD')))}</td>"
             f"<td>{score_cell(r.get('trend_score'))}</td>"
@@ -176,7 +184,7 @@ def make_table(df, table_id, empty_text="조건을 만족한 종목이 없습니
         return f"<div class='empty'>{esc(empty_text)}</div>"
     return (
         f"<div class='table-wrap'><table id='{table_id}'><thead><tr>"
-        "<th>#</th><th>종목</th><th>Tier</th><th>종가</th><th>등락</th><th>Alpha</th>"
+        "<th>#</th><th>종목</th><th>Tier</th><th>종가</th><th>등락</th><th>Alpha</th><th>Quant</th><th>Model Size</th>"
         "<th>Entry</th><th>Supertrend</th><th>Trend</th><th>Momentum</th><th>Flow</th><th>RS</th><th>Risk</th>"
         "<th>Regime</th><th>State</th><th>Setup</th><th>상세</th>"
         "</tr></thead><tbody>" + table_rows(df) + "</tbody></table></div>"
@@ -209,11 +217,13 @@ def build_search_dataset(all_df: pd.DataFrame) -> str:
     x["ticker"] = x["ticker"].astype(str).str.replace(r"\.0$", "", regex=True).str.zfill(6)
     x["alpha_rank_all"] = x["alpha_score"].rank(method="min", ascending=False).astype(int)
     x["alpha_rank_market"] = x.groupby("market")["alpha_score"].rank(method="min", ascending=False).astype(int)
+    x["quant_rank_all"] = x["final_quant_score"].rank(method="min", ascending=False).astype(int)
+    x["quant_rank_market"] = x.groupby("market")["final_quant_score"].rank(method="min", ascending=False).astype(int)
 
     keep = [
         "ticker", "name", "market", "signal_date", "close", "daily_return_pct",
-        "alpha_score", "entry_score", "trend_score", "momentum_score", "flow_score", "rs_score",
-        "risk_score", "risk_level", "regime", "regime_score", "signal_state",
+        "alpha_score", "final_quant_score", "model_weight_pct", "entry_score", "trend_score", "momentum_score", "flow_score", "rs_score",
+        "risk_score", "risk_quality_score", "risk_level", "vol60_ann_pct", "beta120", "mdd120_pct", "var95_60_pct", "es95_60_pct", "downside_vol60_ann_pct", "regime", "regime_score", "signal_state",
         "setup_grade", "signal_tier", "cci", "cci_prev", "cci_delta3",
         "cci_cross_age", "plus_di", "minus_di", "dmi_ratio", "dmi_direction",
         "adx", "adx_delta3", "supertrend", "supertrend_good", "supertrend_status",
@@ -222,7 +232,7 @@ def build_search_dataset(all_df: pd.DataFrame) -> str:
         "rs20_excess_pct", "rs60_excess_pct", "rs20_percentile", "rs60_percentile",
         "atr_pct", "vol20_ann_pct", "above_ma20", "above_ma60",
         "confirmed_buy", "fresh_buy", "early_setup", "active_trend",
-        "alpha_rank_all", "alpha_rank_market",
+        "alpha_rank_all", "alpha_rank_market", "quant_rank_all", "quant_rank_market",
     ]
     keep = [c for c in keep if c in x.columns]
     x = x[keep].replace([float("inf"), float("-inf")], pd.NA)
@@ -242,12 +252,13 @@ def main():
     confirmed = safe_read_csv(results / "latest_confirmed_buy.csv")
     fresh = safe_read_csv(results / "latest_fresh_buy.csv")
     early = safe_read_csv(results / "latest_early_setups.csv")
-    top = all_df.sort_values("alpha_score", ascending=False).head(60)
+    top = all_df.sort_values(["final_quant_score", "alpha_score"], ascending=False).head(60)
     stock_data_json = build_search_dataset(all_df)
 
     p = summary["parameters"]
     w = summary.get("weights", {})
     regimes = summary.get("regimes", {})
+    risk_snap = summary.get("risk_snapshot", {})
     close_align = summary.get("close_date_alignment", {})
 
     confirmed_html = make_table(confirmed, "confirmed-table", "오늘 Confirmed Buy 조건을 만족한 종목이 없습니다.")
@@ -272,18 +283,18 @@ def main():
 .eyebrow{{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:800}}h1{{font-size:30px;margin:7px 0 8px}}h2{{font-size:20px;margin:30px 0 12px}}.sub,.muted{{color:var(--muted);font-size:13px;line-height:1.65}}
 .grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}}.stat{{background:#0b1118;border:1px solid var(--line);border-radius:15px;padding:15px}}.stat .v{{font-size:25px;font-weight:800}}.stat .k{{font-size:12px;color:var(--muted);margin-top:4px}}
 .regime-grid{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}}.regime-card{{background:#0b1118;border:1px solid var(--line);border-radius:15px;padding:15px}}.regime-head{{display:flex;justify-content:space-between;align-items:center}}.regime-score{{font-size:26px;font-weight:800;margin:10px 0 4px}}
-.model-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}}.model-card{{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}}.model-card strong{{font-size:18px}}.model-card p{{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}}
+.model-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:12px}}.model-card{{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}}.model-card strong{{font-size:18px}}.model-card p{{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}}
 .ladder{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 2px}}.ladder-card{{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}}.ladder-card h3{{font-size:14px;margin:0 0 7px}}.ladder-card p{{font-size:12px;color:var(--muted);line-height:1.55;margin:0}}.ladder-card.confirmed{{border-color:rgba(189,140,255,.4)}}.ladder-card.fresh{{border-color:rgba(101,212,232,.35)}}.ladder-card.early{{border-color:rgba(241,198,106,.35)}}
 .toolbar{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}}input,select,button{{font:inherit}}input,select{{background:#0d141d;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 11px;outline:none}}input{{min-width:240px}}button{{border:1px solid rgba(131,184,255,.35);background:rgba(131,184,255,.10);color:var(--accent);border-radius:10px;padding:10px 15px;font-weight:800;cursor:pointer}}button:hover{{background:rgba(131,184,255,.16)}}.table-wrap{{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--panel)}}table{{width:100%;border-collapse:collapse;min-width:1660px}}th,td{{padding:11px 9px;border-bottom:1px solid #1e2a38;text-align:right;white-space:nowrap;vertical-align:middle}}th{{font-size:11px;color:var(--muted);background:#0b1118;position:sticky;top:0;z-index:2}}td{{font-size:12px}}th:nth-child(2),td.name{{text-align:left}}td.name b{{display:block;font-size:13px}}td.name small{{display:block;color:var(--muted);margin-top:3px}}tr:hover td{{background:#111a24}}tr:last-child td{{border-bottom:none}}
 .search-panel{{background:linear-gradient(145deg,#101923,#0c1219);border:1px solid var(--line);border-radius:18px;padding:18px}}.search-row{{display:flex;gap:9px;align-items:center;flex-wrap:wrap}}.search-wrap{{position:relative;flex:1;min-width:280px}}.search-wrap input{{width:100%;min-width:0;padding:12px 13px;font-size:14px}}.suggestions{{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:50;background:#0a1017;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.42);display:none;max-height:330px;overflow-y:auto}}.suggestion{{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;cursor:pointer;border-bottom:1px solid #1b2633}}.suggestion:last-child{{border-bottom:none}}.suggestion:hover,.suggestion.active{{background:#121d28}}.suggestion b{{font-size:13px}}.suggestion small{{color:var(--muted);font-size:11px}}.result-empty{{margin-top:14px;border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--muted)}}.stock-card{{margin-top:15px;border:1px solid var(--line);border-radius:18px;background:#0b1118;overflow:hidden}}.stock-head{{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px;border-bottom:1px solid var(--line)}}.stock-title h3{{font-size:22px;margin:0 0 5px}}.stock-title .meta{{color:var(--muted);font-size:12px}}.stock-price{{text-align:right}}.stock-price strong{{display:block;font-size:24px}}.score-grid{{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;padding:14px 18px}}.score-box{{border:1px solid #1e2b3a;background:#0e1620;border-radius:13px;padding:11px}}.score-box .k{{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em}}.score-box .v{{font-size:20px;font-weight:850;margin-top:5px}}.score-box.alpha-box .v{{color:var(--accent)}}.result-grid{{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line)}}.result-item{{padding:12px 15px;border-right:1px solid #1e2a38;border-bottom:1px solid #1e2a38}}.result-item:nth-child(5n){{border-right:none}}.result-item b{{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}}.result-item span{{font-size:13px;font-weight:750}}.rank-pill{{display:inline-flex;border-radius:999px;padding:5px 9px;border:1px solid var(--line);font-size:11px;color:#c7d4df;margin-right:5px}}.search-hint{{margin-top:9px;color:var(--muted);font-size:11px}}
-.metric{{min-width:72px}}.metric>span{{font-weight:800}}.alpha .metric>span{{color:var(--accent);font-size:14px}}.bar{{height:3px;background:#1b2735;border-radius:99px;margin-top:5px;overflow:hidden}}.bar i{{display:block;height:100%;background:linear-gradient(90deg,#5f91d9,#9ec8ff)}}
+.metric{{min-width:72px}}.metric>span{{font-weight:800}}.alpha .metric>span{{color:var(--accent);font-size:14px}}.quant .metric>span{{color:var(--green);font-size:14px}}.bar{{height:3px;background:#1b2735;border-radius:99px;margin-top:5px;overflow:hidden}}.bar i{{display:block;height:100%;background:linear-gradient(90deg,#5f91d9,#9ec8ff)}}
 .badge{{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:10px;font-weight:800;letter-spacing:.03em}}.badge.good{{color:var(--green);border-color:rgba(83,212,154,.35);background:rgba(83,212,154,.07)}}.badge.bad{{color:var(--red);border-color:rgba(255,123,134,.35);background:rgba(255,123,134,.07)}}.badge.warn{{color:var(--yellow);border-color:rgba(241,198,106,.35);background:rgba(241,198,106,.07)}}.badge.strong{{color:var(--purple);border-color:rgba(189,140,255,.40);background:rgba(189,140,255,.09)}}.badge.fresh{{color:var(--cyan);border-color:rgba(101,212,232,.38);background:rgba(101,212,232,.08)}}.badge.muted{{color:#aeb9c6}}.up{{color:var(--green)}}.down{{color:var(--red)}}
 details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-grid{{position:absolute;right:26px;z-index:20;margin-top:8px;display:grid;grid-template-columns:repeat(3,150px);gap:8px;background:#0c121a;border:1px solid var(--line);border-radius:13px;padding:12px;box-shadow:0 16px 45px rgba(0,0,0,.45)}}.detail-grid div{{display:flex;flex-direction:column;gap:4px}}.detail-grid b{{font-size:10px;color:var(--muted)}}.detail-grid span{{font-size:12px}}
 .note{{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;color:var(--muted);font-size:12px;line-height:1.8}}.empty{{padding:24px;text-align:center;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:16px}}
 @media(max-width:1100px){{.score-grid{{grid-template-columns:repeat(3,1fr)}}.result-grid{{grid-template-columns:repeat(3,1fr)}}.result-item:nth-child(5n){{border-right:1px solid #1e2a38}}.result-item:nth-child(3n){{border-right:none}}}}
 @media(max-width:900px){{.wrap{{padding:12px 12px 82px}}h1{{font-size:24px}}.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr 1fr}}.detail-grid{{position:fixed;left:12px;right:12px;bottom:12px;grid-template-columns:repeat(2,1fr);max-height:72vh;overflow:auto}}.stock-head{{flex-direction:column}}.stock-price{{text-align:left}}.hero-top{{gap:10px}}.refresh-box{{gap:6px}}.refresh-btn{{padding:10px 12px}}}}
 @media(max-width:700px){{.hero{{padding:16px}}.hero-top{{align-items:flex-start}}.hero .sub{{font-size:11px;line-height:1.55}}.market-link{{padding:10px;font-size:11px}}.refresh-btn .refresh-label{{display:none}}.refresh-btn{{width:44px;height:44px;justify-content:center;padding:0;border-radius:50%}}.refresh-icon{{font-size:21px}}.update-meta{{display:none}}.grid,.model-grid,.ladder,.regime-grid{{grid-template-columns:1fr}}.search-row,.toolbar{{display:grid;grid-template-columns:1fr;gap:8px}}input,select{{width:100%;min-width:0}}.score-grid{{grid-template-columns:repeat(2,1fr)}}.result-grid{{grid-template-columns:repeat(2,1fr)}}.result-item:nth-child(3n){{border-right:1px solid #1e2a38}}.result-item:nth-child(2n){{border-right:none}}
-.table-wrap{{overflow:visible;border:none;background:transparent}}table{{display:block;min-width:0;width:100%}}thead{{display:none}}tbody{{display:grid;gap:10px}}tr{{display:grid;grid-template-columns:1fr auto;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;overflow:hidden}}tr:hover td{{background:transparent}}td{{display:none;border:0;padding:4px 0;white-space:normal;text-align:right}}td:nth-child(2),td:nth-child(3),td:nth-child(4),td:nth-child(5),td:nth-child(6),td:nth-child(7),td:nth-child(8),td:nth-child(13),td:nth-child(17){{display:block}}td:nth-child(2){{grid-column:1/2;text-align:left;padding-bottom:9px}}td:nth-child(3){{grid-column:2/3;grid-row:1;text-align:right}}td:nth-child(4){{grid-column:1/2;text-align:left;font-size:18px;font-weight:900}}td:nth-child(4)::after{{content:'원';font-size:11px;color:var(--muted);margin-left:3px;font-weight:600}}td:nth-child(5){{grid-column:2/3;font-weight:800;align-self:center}}td:nth-child(6),td:nth-child(7),td:nth-child(8),td:nth-child(13){{grid-column:1/3;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #1e2a38;padding:8px 0}}td:nth-child(6)::before{{content:'Alpha';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(7)::before{{content:'Entry';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(8)::before{{content:'Supertrend';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(13)::before{{content:'Risk';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(17){{grid-column:1/3;text-align:left;padding-top:8px}}.metric{{min-width:110px}}.note{{font-size:11px}}.refresh-toast{{left:12px;right:12px;bottom:16px;text-align:center}}}}
+.table-wrap{{overflow:visible;border:none;background:transparent}}table{{display:block;min-width:0;width:100%}}thead{{display:none}}tbody{{display:grid;gap:10px}}tr{{display:grid;grid-template-columns:1fr auto;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;overflow:hidden}}tr:hover td{{background:transparent}}td{{display:none;border:0;padding:4px 0;white-space:normal;text-align:right}}td:nth-child(2),td:nth-child(3),td:nth-child(4),td:nth-child(5),td:nth-child(6),td:nth-child(7),td:nth-child(8),td:nth-child(10),td:nth-child(15),td:nth-child(19){{display:block}}td:nth-child(2){{grid-column:1/2;text-align:left;padding-bottom:9px}}td:nth-child(3){{grid-column:2/3;grid-row:1;text-align:right}}td:nth-child(4){{grid-column:1/2;text-align:left;font-size:18px;font-weight:900}}td:nth-child(4)::after{{content:'원';font-size:11px;color:var(--muted);margin-left:3px;font-weight:600}}td:nth-child(5){{grid-column:2/3;font-weight:800;align-self:center}}td:nth-child(6),td:nth-child(7),td:nth-child(8),td:nth-child(10),td:nth-child(15){{grid-column:1/3;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #1e2a38;padding:8px 0}}td:nth-child(6)::before{{content:'Alpha';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(7)::before{{content:'Quant';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(8)::before{{content:'Model Size';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(10)::before{{content:'Supertrend';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(15)::before{{content:'Risk';color:var(--muted);font-size:11px;font-weight:800}}td:nth-child(19){{grid-column:1/3;text-align:left;padding-top:8px}}.metric{{min-width:110px}}.note{{font-size:11px}}.refresh-toast{{left:12px;right:12px;bottom:16px;text-align:center}}}}
 @media(max-width:420px){{h1{{font-size:21px}}.eyebrow{{font-size:10px}}.score-grid,.result-grid{{grid-template-columns:1fr 1fr}}.stat .v{{font-size:24px}}}}
 </style>
 </head>
@@ -323,6 +334,15 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
 <div class="model-card"><strong>Momentum {w.get('momentum',25)}%</strong><p>CCI 0선 돌파 신선도 + 3일 기울기 + 과열을 제한한 CCI 레벨.</p></div>
 <div class="model-card"><strong>Flow {w.get('flow',20)}%</strong><p>일봉 CVD proxy 기울기/EMA 위치 + 상대 거래대금. 실제 체결 CVD와는 구분.</p></div>
 <div class="model-card"><strong>Relative Strength {w.get('relative_strength',25)}%</strong><p>KOSPI/KOSDAQ 벤치마크 대비 20·60일 초과수익률의 시장 내 percentile.</p></div>
+<div class="model-card"><strong>Risk Engine → Quant</strong><p>60D 변동성 · 120D Beta · 120D MDD · 95% VaR/ES를 Risk Quality로 합성한 뒤 Final Quant = Alpha 70% + Risk Quality 30%로 계산합니다.</p></div>
+</div>
+
+<h2>Quant Risk Snapshot</h2>
+<div class="grid">
+<div class="stat"><div class="v">{fmt(risk_snap.get('median_risk_quality'),1)}</div><div class="k">Median Risk Quality · 높을수록 안정적</div></div>
+<div class="stat"><div class="v">{fmt(risk_snap.get('median_beta120'),2)}</div><div class="k">Median Beta · 120D</div></div>
+<div class="stat"><div class="v">{fmt(risk_snap.get('median_var95_60_pct'),2)}%</div><div class="k">Median Historical VaR · 95% 1D</div></div>
+<div class="stat"><div class="v">{fmt(risk_snap.get('top_quant_score'),1)}</div><div class="k">Top Final Quant · {esc(risk_snap.get('top_quant_name','-'))}</div></div>
 </div>
 
 <h2>🔥 Confirmed Buy</h2>
@@ -338,7 +358,7 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
 {early_html}
 
 <h2>전체 분석 종목 검색</h2>
-<div class="sub" style="margin-bottom:10px">Top 60에 없어도 분석 완료된 전체 종목에서 종목명 또는 6자리 종목코드로 찾을 수 있습니다. 검색 결과에서 Alpha 구성과 기술적 상세값을 한 번에 확인하세요.</div>
+<div class="sub" style="margin-bottom:10px">Top 60에 없어도 분석 완료된 전체 종목에서 종목명 또는 6자리 종목코드로 찾을 수 있습니다. 검색 결과에서 Alpha + Risk Quality + Final Quant와 기술적 상세값을 한 번에 확인하세요.</div>
 <div class="search-panel">
   <div class="search-row">
     <div class="search-wrap">
@@ -352,17 +372,19 @@ details{{text-align:left}}summary{{cursor:pointer;color:var(--accent)}}.detail-g
   <div id="stock-result" class="result-empty">종목명을 입력하면 전체 데이터에서 검색합니다.</div>
 </div>
 
-<h2>Alpha Ranking · Top 60</h2>
-<div class="sub" style="margin-bottom:10px">전체 종목 중 Alpha Score 상위 60개입니다. 아래 필터는 Top 60 내부에서만 작동합니다.</div>
+<h2>Final Quant Ranking · Top 60</h2>
+<div class="sub" style="margin-bottom:10px">전체 종목 중 Final Quant Score(Alpha 70% + Risk Quality 30%) 상위 60개입니다. 아래 필터는 Top 60 내부에서만 작동합니다.</div>
 <div class="toolbar">
-<input id="rank-search" placeholder="Top 60 내 종목명/코드 검색" oninput="filterRankRows()">
+<input id="rank-search" placeholder="Quant Top 60 내 종목명/코드 검색" oninput="filterRankRows()">
 <select id="rank-market" onchange="filterRankRows()"><option value="ALL">전체 시장</option><option value="KOSPI">KOSPI</option><option value="KOSDAQ">KOSDAQ</option></select>
-<select id="rank-alpha" onchange="filterRankRows()"><option value="0">Alpha 전체</option><option value="50">50+</option><option value="60">60+</option><option value="70">70+</option><option value="80">80+</option></select>
+<select id="rank-quant" onchange="filterRankRows()"><option value="0">Quant 전체</option><option value="50">50+</option><option value="60">60+</option><option value="70">70+</option><option value="80">80+</option></select>
 </div>
 {top_html}
 
 <div class="note"><b>왜 3단계인가?</b> Alpha 안에는 이미 CCI·DMI/ADX·Flow가 포함되어 있어 같은 요소를 모두 Hard Filter로 다시 요구하면 신호가 지나치게 줄어듭니다. 그래서 Confirmed만 엄격하게 유지하고 Fresh/Early는 단계적으로 완화합니다.<br>
-<b>Alpha Score</b>는 예측확률이 아니라 0~100 범위의 기술적 랭킹 점수입니다. Trend 30% + Momentum 25% + Flow 20% + Relative Strength 25%이며 Risk는 별도입니다. Trend 내부는 DMI 35% + ADX 강도 30% + ADX 가속 10% + Supertrend 25%입니다.<br>
+<b>Alpha Score</b>는 예측확률이 아니라 0~100 범위의 기술적 랭킹 점수입니다. Trend 30% + Momentum 25% + Flow 20% + Relative Strength 25%입니다.<br>
+<b>Final Quant Score</b>는 Alpha 70% + Risk Quality 30%입니다. Risk Quality는 60D 연환산 변동성, 120D 시장 Beta, 120D MDD, 60D Historical VaR/Expected Shortfall을 합성하며 높을수록 안정적입니다. 기존 Risk Score는 호환성을 위해 반대로 높을수록 위험합니다.<br>
+<b>Model Size</b>는 계좌·기존 보유·상관관계를 모르는 상태의 독립 종목 위험예산 참고값입니다. 60D 변동성, Alpha, Risk Quality, Signal Tier, Regime으로 계산하며 RANK 종목은 0%입니다. Trend 내부는 DMI 35% + ADX 강도 30% + ADX 가속 10% + Supertrend 25%입니다.<br>
 <b>Entry Score</b>는 진입 타이밍 점수입니다. CCI 신선도 30% + Supertrend 25% + DMI/ADX 20% + Flow 15% + 과열/이격 10%로 계산합니다. Supertrend는 기본 ATR {p.get('supertrend_period',10)} / Factor {p.get('supertrend_factor',3.0)} 설정입니다.<br>
 <b>Early Alpha 기준이 낮은 이유</b>: CCI가 아직 0 이하인 돌파 전 단계는 Momentum과 Trend 점수가 구조적으로 낮아집니다. 따라서 Early는 Alpha {p.get('early_alpha_threshold',50):.0f} 이상에 RS·Flow·DMI 근접 조건을 추가해 품질을 보완합니다.<br>
 <b>Regime</b>: 지수의 20/60일 이동평균 구조와 종목 breadth를 합쳐 RISK-ON / NEUTRAL / RISK-OFF로 분류하며 Alpha 자체를 깎지는 않습니다.<br>
@@ -441,7 +463,7 @@ function findStocks(q, market='ALL'){{
     const aq=String(a.ticker||'').padStart(6,'0')===q || String(a.name||'').toLowerCase().replace(/\\s+/g,'')===q;
     const bq=String(b.ticker||'').padStart(6,'0')===q || String(b.name||'').toLowerCase().replace(/\\s+/g,'')===q;
     if(aq!==bq) return aq?-1:1;
-    return Number(b.alpha_score||0)-Number(a.alpha_score||0);
+    return Number(b.final_quant_score||0)-Number(a.final_quant_score||0);
   }});
 }}
 
@@ -452,7 +474,7 @@ function onStockInput(){{
   suggestionIndex=-1;
   currentMatches=findStocks(q,market).slice(0,12);
   if(!q.trim() || currentMatches.length===0){{ box.style.display='none'; box.innerHTML=''; return; }}
-  box.innerHTML=currentMatches.map((s,i)=>`<div class="suggestion" data-i="${{i}}" onmousedown="selectSuggestion(${{i}})"><div><b>${{escJs(s.name)}}</b><br><small>${{escJs(String(s.ticker).padStart(6,'0'))}} · ${{escJs(s.market)}}</small></div><small>Alpha ${{num(s.alpha_score,1)}} · Entry ${{num(s.entry_score,1)}} · ST ${{escJs(s.supertrend_status||'BAD')}} · #${{s.alpha_rank_all}}</small></div>`).join('');
+  box.innerHTML=currentMatches.map((s,i)=>`<div class="suggestion" data-i="${{i}}" onmousedown="selectSuggestion(${{i}})"><div><b>${{escJs(s.name)}}</b><br><small>${{escJs(String(s.ticker).padStart(6,'0'))}} · ${{escJs(s.market)}}</small></div><small>Quant ${{num(s.final_quant_score,1)}} · Alpha ${{num(s.alpha_score,1)}} · Size ${{num(s.model_weight_pct,1)}}% · #${{s.quant_rank_all}}</small></div>`).join('');
   box.style.display='block';
 }}
 function selectSuggestion(i){{ const s=currentMatches[i]; if(!s)return; document.getElementById('stock-search').value=s.name; document.getElementById('stock-suggestions').style.display='none'; renderStock(s); }}
@@ -478,16 +500,18 @@ function renderStock(s){{
   const ret=Number(s.daily_return_pct||0);
   const retCls=ret>0?'up':(ret<0?'down':'');
   const ticker=String(s.ticker||'').padStart(6,'0');
-  const top60=Number(s.alpha_rank_all)<=60;
+  const top60=Number(s.quant_rank_all)<=60;
   const result=document.getElementById('stock-result');
   result.className='stock-card';
   result.innerHTML=`
     <div class="stock-head">
       <div class="stock-title"><h3>${{escJs(s.name)}}</h3><div class="meta">${{ticker}} · ${{escJs(s.market)}} · 기준일 ${{escJs(s.signal_date||'-')}}</div><div style="margin-top:9px">${{tierHtml(s.signal_tier)}} ${{setupHtml(s.setup_grade)}} ${{stateHtml(s.signal_state)}} ${{regimeHtml(s.regime)}} ${{supertrendHtml(s.supertrend_status)}}</div></div>
-      <div class="stock-price"><strong>${{price(s.close)}}원</strong><span class="${{retCls}}">${{ret>=0?'+':''}}${{num(ret,2)}}%</span><div style="margin-top:8px"><span class="rank-pill">전체 Alpha #${{s.alpha_rank_all}}</span><span class="rank-pill">${{escJs(s.market)}} #${{s.alpha_rank_market}}</span>${{top60?'<span class="rank-pill">TOP 60</span>':''}}</div></div>
+      <div class="stock-price"><strong>${{price(s.close)}}원</strong><span class="${{retCls}}">${{ret>=0?'+':''}}${{num(ret,2)}}%</span><div style="margin-top:8px"><span class="rank-pill">전체 Quant #${{s.quant_rank_all}}</span><span class="rank-pill">${{escJs(s.market)}} Quant #${{s.quant_rank_market}}</span>${{top60?'<span class="rank-pill">TOP 60</span>':''}}</div></div>
     </div>
     <div class="score-grid">
       ${{scoreBox('Alpha',s.alpha_score,'alpha-box')}}
+      ${{scoreBox('Final Quant',s.final_quant_score)}}
+      ${{scoreBox('Risk Quality',s.risk_quality_score)}}
       ${{scoreBox('Entry',s.entry_score)}}
       ${{scoreBox('Trend',s.trend_score)}}
       ${{scoreBox('Momentum',s.momentum_score)}}
@@ -515,6 +539,12 @@ function renderStock(s){{
       ${{item('RS60 percentile',num(s.rs60_percentile,1))}}
       ${{item('ATR%',num(s.atr_pct,2)+'%')}}
       ${{item('20D vol ann.',num(s.vol20_ann_pct,1)+'%')}}
+      ${{item('60D vol ann.',num(s.vol60_ann_pct,1)+'%')}}
+      ${{item('Beta 120D',num(s.beta120,2))}}
+      ${{item('MDD 120D',num(s.mdd120_pct,1)+'%')}}
+      ${{item('VaR95 1D',num(s.var95_60_pct,2)+'%')}}
+      ${{item('ES95 1D',num(s.es95_60_pct,2)+'%')}}
+      ${{item('Model Size',num(s.model_weight_pct,1)+'%')}}
       ${{item('Risk Level',riskHtml(s.risk_level))}}
       ${{item('MA20',s.above_ma20?'Above':'Below')}}
       ${{item('MA60',s.above_ma60?'Above':'Below')}}
@@ -526,13 +556,13 @@ function renderStock(s){{
 function filterRankRows(){{
   const q=(document.getElementById('rank-search')?.value||'').toLowerCase().trim();
   const market=document.getElementById('rank-market')?.value||'ALL';
-  const minAlpha=parseFloat(document.getElementById('rank-alpha')?.value||'0');
+  const minQuant=parseFloat(document.getElementById('rank-quant')?.value||'0');
   document.querySelectorAll('#rank-table tbody tr').forEach(tr=>{{
     const text=(tr.dataset.name||'')+' '+(tr.dataset.ticker||'');
     const okQ=!q||text.includes(q);
     const okM=market==='ALL'||tr.dataset.market===market;
-    const okA=parseFloat(tr.dataset.alpha||'0')>=minAlpha;
-    tr.style.display=(okQ&&okM&&okA)?'':'none';
+    const okQScore=parseFloat(tr.dataset.quant||'0')>=minQuant;
+    tr.style.display=(okQ&&okM&&okQScore)?'':'none';
   }});
 }}
 

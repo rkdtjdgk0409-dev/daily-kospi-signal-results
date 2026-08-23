@@ -20,6 +20,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from quant_risk import compute_risk_metrics, final_quant_score, model_position_size_pct, risk_quality_score, risk_snapshot
+
 from scanner import (
     benchmark_snapshot,
     classify_regime,
@@ -334,6 +336,8 @@ def main() -> None:
         if feat is None or feat["avg20_trading_value"] < args.min_avg20_dollar_volume:
             continue
         m = meta[symbol]
+        primary_benchmark = benchmark_prices[INDEX_SP500] if bool(m.get("in_sp500")) else benchmark_prices[INDEX_NDX100]
+        risk_metrics = compute_risk_metrics(frame, primary_benchmark)
         rows.append(
             {
                 "ticker": m["ticker"],
@@ -345,6 +349,7 @@ def main() -> None:
                 "in_nasdaq100": bool(m["in_nasdaq100"]),
                 "yf_ticker": symbol,
                 **feat,
+                **risk_metrics,
             }
         )
     if not rows:
@@ -382,8 +387,9 @@ def main() -> None:
     scored["rs_score"] = 0.60 * scored["rs20_percentile"] + 0.40 * scored["rs60_percentile"]
 
     scored["atr_risk_pctile"] = percentile_0_100(scored["atr_pct"])
-    scored["vol_risk_pctile"] = percentile_0_100(scored["vol20_ann_pct"])
-    scored["risk_score"] = 0.60 * scored["atr_risk_pctile"] + 0.40 * scored["vol_risk_pctile"]
+    scored["vol_risk_pctile"] = percentile_0_100(scored["vol60_ann_pct"])
+    scored["risk_quality_score"] = scored.apply(lambda r: risk_quality_score(r), axis=1)
+    scored["risk_score"] = (100.0 - scored["risk_quality_score"]).clip(0, 100)
     scored["risk_level"] = scored["risk_score"].map(risk_label)
 
     regimes = {}
@@ -412,6 +418,9 @@ def main() -> None:
         + 0.20 * scored["flow_score"]
         + 0.25 * scored["rs_score"]
     ).clip(0, 100)
+    scored["final_quant_score"] = scored.apply(
+        lambda r: final_quant_score(r.get("alpha_score"), r.get("risk_quality_score"), alpha_weight=0.70), axis=1
+    )
     scored["dmi_positive"] = scored["plus_di"] > scored["minus_di"]
     scored["dmi_bull"] = scored["dmi_positive"] & (scored["adx"] >= args.adx_threshold)
 
@@ -454,18 +463,29 @@ def main() -> None:
     scored["signal_state"] = scored["alpha_score"].map(signal_state)
     scored["setup_grade"] = scored.apply(setup_grade, axis=1)
 
-    ranked = scored.sort_values("alpha_score", ascending=False).reset_index(drop=True)
+    scored["model_weight_pct"] = scored.apply(
+        lambda r: model_position_size_pct(
+            alpha_score=r.get("alpha_score"),
+            risk_quality=r.get("risk_quality_score"),
+            vol60_ann_pct=r.get("vol60_ann_pct"),
+            signal_tier=r.get("signal_tier", "RANK"),
+            regime=r.get("regime", "NEUTRAL"),
+        ),
+        axis=1,
+    )
+
+    ranked = scored.sort_values(["final_quant_score", "alpha_score"], ascending=False).reset_index(drop=True)
     ranked["alpha_rank_all"] = np.arange(1, len(ranked) + 1)
     ranked["rank_sp500"] = np.nan
     ranked["rank_nasdaq100"] = np.nan
     for flag, column in (("in_sp500", "rank_sp500"), ("in_nasdaq100", "rank_nasdaq100")):
-        members = ranked[ranked[flag]].sort_values("alpha_score", ascending=False).index
+        members = ranked[ranked[flag]].sort_values(["final_quant_score", "alpha_score"], ascending=False).index
         ranked.loc[members, column] = np.arange(1, len(members) + 1)
 
     tier_order = pd.Categorical(
         ranked["signal_tier"], categories=["CONFIRMED", "FRESH", "EARLY", "RANK"], ordered=True
     )
-    scored = ranked.assign(_tier=tier_order).sort_values(["_tier", "alpha_score"], ascending=[True, False]).drop(columns="_tier")
+    scored = ranked.assign(_tier=tier_order).sort_values(["_tier", "final_quant_score", "alpha_score"], ascending=[True, False, False]).drop(columns="_tier")
     actionable = scored[scored["actionable_buy"]].copy()
     confirmed_df = scored[scored["confirmed_buy"]].copy()
     fresh_df = scored[scored["fresh_buy"]].copy()
@@ -474,7 +494,8 @@ def main() -> None:
 
     outputs = {
         "latest_all_scored.csv": scored,
-        "latest_top_alpha.csv": ranked,
+        "latest_top_alpha.csv": ranked,  # backward-compatible alias
+        "latest_top_quant.csv": ranked,
         "latest_buy_signals.csv": actionable,
         "latest_confirmed_buy.csv": confirmed_df,
         "latest_fresh_buy.csv": fresh_df,
@@ -485,7 +506,7 @@ def main() -> None:
         frame.to_csv(outdir / filename, index=False, encoding="utf-8-sig")
 
     summary = {
-        "model_version": "US_TECH_ALPHA_V1_0",
+        "model_version": "US_TECH_ALPHA_RISK_V2_0",
         "generated_at": now_ny().isoformat(timespec="seconds"),
         "generated_timezone": "America/New_York",
         "price_basis": "US regular-session adjusted daily OHLCV via Yahoo Finance",
@@ -511,6 +532,16 @@ def main() -> None:
         "regimes": regimes,
         "parameters": vars(args),
         "weights": {"trend": 30, "momentum": 25, "flow": 20, "relative_strength": 25},
+        "quant_weights": {"alpha": 70, "risk_quality": 30},
+        "risk_model": {
+            "volatility": "60D annualized",
+            "beta": "120D vs primary broad index",
+            "max_drawdown": "120D",
+            "historical_var": "95% / 60D",
+            "expected_shortfall": "95% / 60D",
+            "interpretation": "risk_score: higher=riskier; risk_quality_score: higher=safer",
+        },
+        "risk_snapshot": risk_snapshot(scored),
     }
     (outdir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))

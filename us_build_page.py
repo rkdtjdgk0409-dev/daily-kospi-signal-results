@@ -68,20 +68,22 @@ def table_rows(frame: pd.DataFrame, limit: int | None = None) -> str:
     if limit is not None:
         frame = frame.head(limit)
     if frame.empty:
-        return '<tr><td colspan="13" class="empty">해당 신호가 없습니다.</td></tr>'
+        return '<tr><td colspan="15" class="empty">해당 신호가 없습니다.</td></tr>'
     out = []
     for _, row in frame.iterrows():
         ticker = esc(row.get("ticker", ""))
         change = float(row.get("daily_return_pct", 0) or 0)
         change_class = "up" if change > 0 else ("down" if change < 0 else "")
         out.append(
-            f'''<tr data-name="{esc(str(row.get('name','')).lower())}" data-ticker="{ticker.lower()}" data-index="{esc(row.get('market',''))}" data-sector="{esc(row.get('sector',''))}" data-alpha="{num(row.get('alpha_score'),2)}">
+            f'''<tr data-name="{esc(str(row.get('name','')).lower())}" data-ticker="{ticker.lower()}" data-index="{esc(row.get('market',''))}" data-sector="{esc(row.get('sector',''))}" data-alpha="{num(row.get('alpha_score'),2)}" data-quant="{num(row.get('final_quant_score'),2)}">
               <td class="rank">#{int(row.get('alpha_rank_all', 0) or 0)}</td>
               <td><button class="stock-link" onclick="openStock('{ticker}')"><b>{ticker}</b><span>{esc(row.get('name',''))}</span></button></td>
               <td class="indices">{index_badges(row)}</td>
               <td>{esc(row.get('sector','Unknown'))}</td>
               <td class="right"><b>{price(row.get('close'))}</b><span class="{change_class}">{change:+.2f}%</span></td>
               <td class="score">{num(row.get('alpha_score'))}</td>
+              <td class="score">{num(row.get('final_quant_score'))}</td>
+              <td class="score">{num(row.get('model_weight_pct'))}%</td>
               <td class="score">{num(row.get('entry_score'))}</td>
               <td>{num(row.get('cci'))}</td>
               <td>{num(row.get('plus_di'))} / {num(row.get('minus_di'))}</td>
@@ -97,7 +99,7 @@ def table_rows(frame: pd.DataFrame, limit: int | None = None) -> str:
 def signal_section(title: str, subtitle: str, frame: pd.DataFrame, section_id: str) -> str:
     return f'''<section class="panel signal-panel" id="{section_id}">
       <div class="panel-head"><div><h2>{esc(title)}</h2><p>{esc(subtitle)}</p></div><span class="count">{len(frame)}</span></div>
-      <div class="table-wrap"><table><thead><tr><th>Rank</th><th>Stock</th><th>Index</th><th>Sector</th><th class="right">Close</th><th>Alpha</th><th>Entry</th><th>CCI</th><th>+DI / -DI</th><th>ADX</th><th>ST</th><th>RS</th><th>Risk</th></tr></thead>
+      <div class="table-wrap"><table><thead><tr><th>Rank</th><th>Stock</th><th>Index</th><th>Sector</th><th class="right">Close</th><th>Alpha</th><th>Quant</th><th>Size</th><th>Entry</th><th>CCI</th><th>+DI / -DI</th><th>ADX</th><th>ST</th><th>RS</th><th>Risk</th></tr></thead>
       <tbody>{table_rows(frame)}</tbody></table></div>
     </section>'''
 
@@ -128,7 +130,10 @@ def regime_card(index_name: str, data: dict) -> str:
 def main() -> None:
     summary = json.loads((RESULTS / "summary.json").read_text(encoding="utf-8"))
     all_scored = pd.read_csv(RESULTS / "latest_all_scored.csv")
-    top = pd.read_csv(RESULTS / "latest_top_alpha.csv").head(60)
+    top_path = RESULTS / "latest_top_quant.csv"
+    if not top_path.exists():
+        top_path = RESULTS / "latest_top_alpha.csv"
+    top = pd.read_csv(top_path).head(60)
     confirmed = pd.read_csv(RESULTS / "latest_confirmed_buy.csv")
     fresh = pd.read_csv(RESULTS / "latest_fresh_buy.csv")
     early = pd.read_csv(RESULTS / "latest_early_setups.csv")
@@ -138,6 +143,7 @@ def main() -> None:
     regimes = summary.get("regimes", {})
     counts = summary.get("universe_counts", {})
     generated = summary.get("generated_at", "")
+    risk_snap = summary.get("risk_snapshot", {})
     page = f'''<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="data-generated-at" content="{esc(generated)}"><meta name="theme-color" content="#07101f">
@@ -161,6 +167,8 @@ def main() -> None:
 <div class="meta-line"><span>기준일 <b>{esc(summary.get('latest_signal_date','-'))}</b></span><span>생성 <b>{esc(generated[:16].replace('T',' '))} ET</b></span><span>모델 <b>{esc(summary.get('model_version',''))}</b></span><span>정규장 일봉·조정주가 기준</span></div>
 <div class="stats"><div class="stat"><span>분석 종목</span><b>{summary.get('symbols_scored',0)}</b></div><div class="stat"><span>S&amp;P 500 편입 종목</span><b>{counts.get('S&P 500',0)}</b></div><div class="stat"><span>NASDAQ-100 편입 종목</span><b>{counts.get('NASDAQ-100',0)}</b></div><div class="stat"><span>CONFIRMED</span><b>{summary.get('confirmed_buy_count',0)}</b></div><div class="stat"><span>FRESH</span><b>{summary.get('fresh_buy_count',0)}</b></div><div class="stat"><span>EARLY</span><b>{summary.get('early_setup_count',0)}</b></div></div></header>
 
+<section class="panel"><div class="panel-head"><div><h2>Quant Risk Engine</h2><p>Final Quant = Alpha 70% + Risk Quality 30% · Risk Quality는 높을수록 안정적</p></div></div><div class="panel-body"><div class="stats"><div class="stat"><span>Median Risk Quality</span><b>{num(risk_snap.get('median_risk_quality'))}</b></div><div class="stat"><span>Median Beta 120D</span><b>{num(risk_snap.get('median_beta120'),2)}</b></div><div class="stat"><span>Median VaR95 1D</span><b>{num(risk_snap.get('median_var95_60_pct'),2)}%</b></div><div class="stat"><span>Median MDD 120D</span><b>{num(risk_snap.get('median_mdd120_pct'))}%</b></div><div class="stat"><span>Top Quant</span><b>{num(risk_snap.get('top_quant_score'))}</b></div><div class="stat"><span>Top Name</span><b style="font-size:15px">{esc(risk_snap.get('top_quant_name','-'))}</b></div></div></div></section>
+
 <div class="grid-2"><section class="panel"><div class="panel-head"><div><h2>시장 국면</h2><p>지수 추세 + 구성종목 MA20·MA60 breadth</p></div></div><div class="panel-body"><div class="regimes">{regime_card('S&P 500', regimes.get('S&P 500',{}))}{regime_card('NASDAQ-100', regimes.get('NASDAQ-100',{}))}</div></div></section>
 <section class="panel"><div class="panel-head"><div><h2>지수 편입·편출 추적</h2><p>이전 검증 스냅샷과 최신 구성종목 비교 · 최근 12건</p></div></div><div class="panel-body change-list">{change_html(summary)}</div></section></div>
 
@@ -170,9 +178,9 @@ def main() -> None:
 {signal_section('FRESH BUY','최근 3거래일 CCI 돌파 · 추세 초기 진입 후보',fresh,'fresh')}
 {signal_section('EARLY SETUP','CCI 0선 아래에서 상승 가속 중인 사전 관찰 후보',early,'early')}
 
-<section class="panel"><div class="panel-head"><div><h2>Alpha Top 60</h2><p>지수·섹터·최소 Alpha로 필터링</p></div><span class="count">60</span></div><div class="table-tools"><input id="rank-search" placeholder="티커 또는 회사명" oninput="filterTop()"><select id="rank-index" onchange="filterTop()"><option value="ALL">모든 지수</option><option value="S&P 500">S&amp;P 500</option><option value="NASDAQ-100">NASDAQ-100</option></select><select id="rank-alpha" onchange="filterTop()"><option value="0">Alpha 전체</option><option value="50">50 이상</option><option value="60">60 이상</option><option value="70">70 이상</option><option value="80">80 이상</option></select></div><div class="table-wrap"><table id="top-table"><thead><tr><th>Rank</th><th>Stock</th><th>Index</th><th>Sector</th><th class="right">Close</th><th>Alpha</th><th>Entry</th><th>CCI</th><th>+DI / -DI</th><th>ADX</th><th>ST</th><th>RS</th><th>Risk</th></tr></thead><tbody>{table_rows(top)}</tbody></table></div></section>
+<section class="panel"><div class="panel-head"><div><h2>Final Quant Top 60</h2><p>Alpha 70% + Risk Quality 30% · 지수·섹터·최소 Quant로 필터링</p></div><span class="count">60</span></div><div class="table-tools"><input id="rank-search" placeholder="티커 또는 회사명" oninput="filterTop()"><select id="rank-index" onchange="filterTop()"><option value="ALL">모든 지수</option><option value="S&P 500">S&amp;P 500</option><option value="NASDAQ-100">NASDAQ-100</option></select><select id="rank-quant" onchange="filterTop()"><option value="0">Quant 전체</option><option value="50">50 이상</option><option value="60">60 이상</option><option value="70">70 이상</option><option value="80">80 이상</option></select></div><div class="table-wrap"><table id="top-table"><thead><tr><th>Rank</th><th>Stock</th><th>Index</th><th>Sector</th><th class="right">Close</th><th>Alpha</th><th>Quant</th><th>Size</th><th>Entry</th><th>CCI</th><th>+DI / -DI</th><th>ADX</th><th>ST</th><th>RS</th><th>Risk</th></tr></thead><tbody>{table_rows(top)}</tbody></table></div></section>
 
-<p class="footer">본 페이지는 기술적 조건을 정리하는 연구용 스크리너이며 투자 권유가 아닙니다. CVD는 일봉 가격 방향×거래량 프록시이고 실제 체결 기반 CVD가 아닙니다. 지수 구성종목은 다중 소스 검증과 이전 스냅샷 안전장치를 사용하지만 공식 발표와 시간차가 생길 수 있습니다.</p></main><div id="toast"></div>
+<p class="footer">본 페이지는 기술적 조건과 공개 표준 리스크 지표를 결합한 연구용 스크리너이며 투자 권유가 아닙니다. Model Size는 계좌·기존 보유·상관관계를 반영하지 않은 독립 종목 위험예산 참고값입니다. CVD는 일봉 가격 방향×거래량 프록시이고 실제 체결 기반 CVD가 아닙니다. 지수 구성종목은 다중 소스 검증과 이전 스냅샷 안전장치를 사용하지만 공식 발표와 시간차가 생길 수 있습니다.</p></main><div id="toast"></div>
 <script>
 const STOCKS={records};
 const GENERATED=document.querySelector('meta[name="data-generated-at"]').content;
@@ -191,20 +199,20 @@ const score=(k,v)=>`<div class="score-box"><span>${{k}}</span><b>${{n(v)}}</b></
 function renderStock(s){{
   const ret=Number(s.daily_return_pct||0), cls=ret>0?'up':(ret<0?'down':'');
   $('stock-result').className='result stock-card';
-  $('stock-result').innerHTML=`<div class="stock-head"><div><h3>${{safe(s.ticker)}} · ${{safe(s.name)}}</h3><p>${{safe(s.sector)}} · ${{indices(s)}} · 기준일 ${{safe(s.signal_date)}}</p><div>${{chip(s.signal_tier,s.signal_tier==='CONFIRMED'?'strong':(s.signal_tier==='FRESH'?'good':(s.signal_tier==='EARLY'?'warn':'muted')))}} ${{regime(s.regime)}} ${{st(s.supertrend_status)}} ${{risk(s.risk_level)}}</div></div><div class="stock-price"><b>${{money(s.close)}}</b><span class="${{cls}}">${{ret>=0?'+':''}}${{n(ret,2)}}%</span><p>전체 Alpha #${{s.alpha_rank_all}}${{s.rank_sp500?' · S&amp;P #'+Math.round(s.rank_sp500):''}}${{s.rank_nasdaq100?' · NDX #'+Math.round(s.rank_nasdaq100):''}}</p></div></div>
-  <div class="score-grid">${{score('Alpha',s.alpha_score)}}${{score('Entry',s.entry_score)}}${{score('Trend',s.trend_score)}}${{score('Momentum',s.momentum_score)}}${{score('Flow',s.flow_score)}}${{score('Relative Strength',s.rs_score)}}${{score('Risk',s.risk_score)}}</div>
-  <div class="details">${{field('CCI',n(s.cci))}}${{field('CCI 3D Δ',n(s.cci_delta3))}}${{field('+DI / -DI',n(s.plus_di)+' / '+n(s.minus_di))}}${{field('ADX',n(s.adx))}}${{field('ST distance / ATR',n(s.supertrend_distance_atr,2)+'x')}}${{field('Relative volume',n(s.relative_dollar_volume,2)+'x')}}${{field('RS20 excess',n(s.rs20_excess_pct,2)+'%')}}${{field('RS60 excess',n(s.rs60_excess_pct,2)+'%')}}${{field('ATR',n(s.atr_pct,2)+'%')}}${{field('Volatility 20D ann.',n(s.vol20_ann_pct)+'%')}}${{field('S&P regime',regime(s.regime_sp500))}}${{field('NASDAQ regime',regime(s.regime_nasdaq100))}}</div>`;
+  $('stock-result').innerHTML=`<div class="stock-head"><div><h3>${{safe(s.ticker)}} · ${{safe(s.name)}}</h3><p>${{safe(s.sector)}} · ${{indices(s)}} · 기준일 ${{safe(s.signal_date)}}</p><div>${{chip(s.signal_tier,s.signal_tier==='CONFIRMED'?'strong':(s.signal_tier==='FRESH'?'good':(s.signal_tier==='EARLY'?'warn':'muted')))}} ${{regime(s.regime)}} ${{st(s.supertrend_status)}} ${{risk(s.risk_level)}}</div></div><div class="stock-price"><b>${{money(s.close)}}</b><span class="${{cls}}">${{ret>=0?'+':''}}${{n(ret,2)}}%</span><p>전체 Quant #${{s.alpha_rank_all}}${{s.rank_sp500?' · S&amp;P #'+Math.round(s.rank_sp500):''}}${{s.rank_nasdaq100?' · NDX #'+Math.round(s.rank_nasdaq100):''}}</p></div></div>
+  <div class="score-grid">${{score('Alpha',s.alpha_score)}}${{score('Final Quant',s.final_quant_score)}}${{score('Risk Quality',s.risk_quality_score)}}${{score('Entry',s.entry_score)}}${{score('Trend',s.trend_score)}}${{score('Momentum',s.momentum_score)}}${{score('Flow',s.flow_score)}}${{score('Relative Strength',s.rs_score)}}${{score('Risk',s.risk_score)}}</div>
+  <div class="details">${{field('CCI',n(s.cci))}}${{field('CCI 3D Δ',n(s.cci_delta3))}}${{field('+DI / -DI',n(s.plus_di)+' / '+n(s.minus_di))}}${{field('ADX',n(s.adx))}}${{field('ST distance / ATR',n(s.supertrend_distance_atr,2)+'x')}}${{field('Relative volume',n(s.relative_dollar_volume,2)+'x')}}${{field('RS20 excess',n(s.rs20_excess_pct,2)+'%')}}${{field('RS60 excess',n(s.rs60_excess_pct,2)+'%')}}${{field('ATR',n(s.atr_pct,2)+'%')}}${{field('Volatility 20D ann.',n(s.vol20_ann_pct)+'%')}}${{field('Volatility 60D ann.',n(s.vol60_ann_pct)+'%')}}${{field('Beta 120D',n(s.beta120,2))}}${{field('MDD 120D',n(s.mdd120_pct)+'%')}}${{field('VaR95 1D',n(s.var95_60_pct,2)+'%')}}${{field('ES95 1D',n(s.es95_60_pct,2)+'%')}}${{field('Model Size',n(s.model_weight_pct,1)+'%')}}${{field('S&P regime',regime(s.regime_sp500))}}${{field('NASDAQ regime',regime(s.regime_nasdaq100))}}</div>`;
   $('stock-result').scrollIntoView({{behavior:'smooth',block:'nearest'}});
 }}
 function openStock(ticker){{ $('stock-search').value=ticker; const s=STOCKS.find(x=>x.ticker===ticker); if(s)renderStock(s); }}
 function searchStock(){{
   const q=$('stock-search').value.toLowerCase().replace(/\\s+/g,''), idx=$('stock-index').value, sector=$('stock-sector').value;
-  const matches=STOCKS.filter(s=>(!q||String(s.ticker).toLowerCase().includes(q)||String(s.name).toLowerCase().replace(/\\s+/g,'').includes(q))&&(idx==='ALL'||String(s.market).includes(idx))&&(sector==='ALL'||s.sector===sector)).sort((a,b)=>Number(b.alpha_score)-Number(a.alpha_score));
+  const matches=STOCKS.filter(s=>(!q||String(s.ticker).toLowerCase().includes(q)||String(s.name).toLowerCase().replace(/\\s+/g,'').includes(q))&&(idx==='ALL'||String(s.market).includes(idx))&&(sector==='ALL'||s.sector===sector)).sort((a,b)=>Number(b.final_quant_score)-Number(a.final_quant_score));
   if(matches.length)renderStock(matches[0]); else {{$('stock-result').className='result result-empty';$('stock-result').textContent='현재 분석 유니버스에서 종목을 찾지 못했습니다.';}}
 }}
 function filterTop(){{
- const q=$('rank-search').value.toLowerCase(),idx=$('rank-index').value,min=Number($('rank-alpha').value);
- document.querySelectorAll('#top-table tbody tr').forEach(tr=>{{const okQ=!q||(tr.dataset.name+' '+tr.dataset.ticker).includes(q),okI=idx==='ALL'||tr.dataset.index.includes(idx),okA=Number(tr.dataset.alpha)>=min;tr.style.display=okQ&&okI&&okA?'':'none';}});
+ const q=$('rank-search').value.toLowerCase(),idx=$('rank-index').value,min=Number($('rank-quant').value);
+ document.querySelectorAll('#top-table tbody tr').forEach(tr=>{{const okQ=!q||(tr.dataset.name+' '+tr.dataset.ticker).includes(q),okI=idx==='ALL'||tr.dataset.index.includes(idx),okScore=Number(tr.dataset.quant)>=min;tr.style.display=okQ&&okI&&okScore?'':'none';}});
 }}
 const sectors=[...new Set(STOCKS.map(s=>s.sector).filter(Boolean))].sort(); sectors.forEach(v=>{{$('stock-sector').insertAdjacentHTML('beforeend',`<option value="${{safe(v)}}">${{safe(v)}}</option>`)}});
 let toastTimer; function toast(msg){{const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800)}}

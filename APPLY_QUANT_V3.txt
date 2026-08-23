@@ -1,0 +1,25 @@
+Alpha + Risk Quant V3 적용 방법
+
+가장 간단한 방법:
+1. full ZIP의 저장소 내용을 기존 GitHub 저장소에 덮어씁니다.
+2. 특히 아래 파일이 반드시 반영되어야 합니다.
+   - quant_risk.py
+   - scanner.py
+   - build_page.py
+   - us_scanner.py
+   - us_build_page.py
+   - README_QUANT_RISK.md
+3. 기존 .github/workflows/pages.yml은 그대로 사용할 수 있습니다.
+4. GitHub Actions에서 workflow_dispatch를 한 번 실행해 정상 배포를 확인합니다.
+
+새 출력:
+- final_quant_score = Alpha 70% + Risk Quality 30%
+- risk_quality_score = 높을수록 안정적
+- risk_score = 높을수록 위험 (기존 UI 호환)
+- model_weight_pct = 독립 종목 모델 비중
+- beta120 / mdd120_pct / var95_60_pct / es95_60_pct / vol60_ann_pct
+- latest_top_quant.csv
+
+주의:
+Model Size는 개인 계좌의 실제 권장 비중이 아니라,
+계좌/보유종목/상관관계를 모르는 상태에서 계산한 독립 종목 위험예산 참고값입니다.
