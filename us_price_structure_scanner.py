@@ -15,6 +15,7 @@ from scanner import download_benchmark, download_prices
 from price_structure_engine import analyze_stock, market_regime
 from price_structure_channels import enhance_analysis_chart
 from price_structure_wave import apply_wave_mechanism
+from price_execution import build_execution_plan
 
 NY = ZoneInfo("America/New_York")
 
@@ -77,6 +78,7 @@ def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
     scenario = wave.get("scenario") or {}
     entry_zone = wave.get("entry_zone") or {}
     transition = wave.get("channel_transition") or {}
+    plan = r.get("execution_plan") or {}
     return {
         "ticker": meta["ticker"],
         "yf_ticker": meta["yf_ticker"],
@@ -105,6 +107,15 @@ def summary_row(meta: Dict[str, Any], r: Dict[str, Any]) -> Dict[str, Any]:
         "wave_confidence": wave.get("confidence"),
         "channel_transition": transition.get("label"),
         "channel_transition_score": transition.get("score"),
+        "buy_status": plan.get("status"),
+        "preferred_buy_low": plan.get("preferred_low"),
+        "preferred_buy_high": plan.get("preferred_high"),
+        "pullback_buy_low": plan.get("buy_zone_low"),
+        "pullback_buy_high": plan.get("buy_zone_high"),
+        "breakout_buy": plan.get("breakout_buy"),
+        "execution_stop": plan.get("stop"),
+        "execution_risk_pct": plan.get("risk_pct"),
+        "execution_rr1": plan.get("rr1"),
         "entry_zone_low": entry_zone.get("low"),
         "entry_zone_high": entry_zone.get("high"),
         "confirm_price": scenario.get("confirm_price"),
@@ -192,6 +203,8 @@ def main() -> None:
             r = enhance_analysis_chart(df, r, cfg)
             # 3) New primary mechanism: channel reversal -> Elliott-style 1/2/3/4/5 scenario -> fib targets/invalidation.
             r = apply_wave_mechanism(df, r, cfg)
+            # 4) Execution layer: pullback/breakout buy points + structural stop.
+            r = build_execution_plan(df, r, cfg)
             detail = {"meta": meta, "analysis": r}
             (detail_dir / f"{ticker}.json").write_text(
                 json.dumps(detail, ensure_ascii=False, indent=2, default=json_default, allow_nan=False),

@@ -1,0 +1,16 @@
+Price Structure V4 적용
+
+전체 ZIP 사용:
+- 저장소 루트에 전체 내용을 덮어쓰기
+- GitHub Actions를 수동 실행하여 재생성/배포 확인
+
+패치만 적용할 경우 아래 파일을 덮어쓰기/추가:
+1. price_execution.py (신규)
+2. price_structure_scanner.py
+3. us_price_structure_scanner.py
+4. price_structure_build_page.py
+5. us_price_structure_build_page.py
+6. README_TRADE_POINTS.md
+
+새 패키지 의존성은 없습니다.
+기존 익절 목표 1/2 계산은 유지됩니다.
