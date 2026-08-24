@@ -11,9 +11,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 179.94,
-      "trailing_stop": 163.0,
-      "updated_date": "2026-08-21"
+      "last_close": 175.89,
+      "trailing_stop": 162.46,
+      "updated_date": "2026-08-24"
     },
     "NDSN": {
       "ticker": "NDSN",
@@ -21,15 +21,29 @@
       "market": "S&P 500",
       "entry_date": "2026-08-21",
       "entry_price": 332.24,
-      "highest_close": 332.24,
+      "highest_close": 333.93,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 0.0,
-      "last_close": 332.24,
-      "trailing_stop": 315.46,
-      "updated_date": "2026-08-21"
+      "last_exit_risk": 4.0,
+      "last_close": 333.93,
+      "trailing_stop": 316.0,
+      "updated_date": "2026-08-24"
+    },
+    "EXPE": {
+      "ticker": "EXPE",
+      "name": "Expedia Group",
+      "market": "S&P 500",
+      "entry_date": "2026-08-24",
+      "entry_price": 339.12,
+      "highest_close": 339.12,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 4.0,
+      "last_close": 339.12,
+      "trailing_stop": 311.81,
+      "updated_date": "2026-08-24"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-24T07:00:25-04:00"
+  "updated_at": "2026-08-24T18:32:18-04:00"
 }
