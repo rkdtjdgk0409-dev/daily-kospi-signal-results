@@ -35,15 +35,15 @@
       "market": "S&P 500",
       "entry_date": "2026-08-24",
       "entry_price": 339.12,
-      "highest_close": 339.12,
+      "highest_close": 339.13,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 339.12,
+      "last_close": 339.13,
       "trailing_stop": 311.81,
       "updated_date": "2026-08-24"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-24T18:32:18-04:00"
+  "updated_at": "2026-08-25T03:35:16-04:00"
 }
