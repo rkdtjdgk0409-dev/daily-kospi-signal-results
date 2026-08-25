@@ -9,11 +9,11 @@
       "entry_price": 179.94,
       "highest_close": 179.94,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 175.89,
-      "trailing_stop": 162.46,
-      "updated_date": "2026-08-24"
+      "last_status": "HOLD",
+      "last_exit_risk": 15.0,
+      "last_close": 172.73,
+      "trailing_stop": 162.16,
+      "updated_date": "2026-08-25"
     },
     "NDSN": {
       "ticker": "NDSN",
@@ -23,11 +23,11 @@
       "entry_price": 332.24,
       "highest_close": 333.93,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 333.93,
-      "trailing_stop": 316.0,
-      "updated_date": "2026-08-24"
+      "last_status": "HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 333.58,
+      "trailing_stop": 316.52,
+      "updated_date": "2026-08-25"
     },
     "EXPE": {
       "ticker": "EXPE",
@@ -38,12 +38,40 @@
       "highest_close": 339.13,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 339.13,
-      "trailing_stop": 311.81,
-      "updated_date": "2026-08-24"
+      "last_exit_risk": 0.0,
+      "last_close": 337.97,
+      "trailing_stop": 312.56,
+      "updated_date": "2026-08-25"
+    },
+    "MSFT": {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "market": "S&P 500 + NASDAQ-100",
+      "entry_date": "2026-08-25",
+      "entry_price": 491.71,
+      "highest_close": 491.71,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 491.71,
+      "trailing_stop": 465.83,
+      "updated_date": "2026-08-25"
+    },
+    "SHOP": {
+      "ticker": "SHOP",
+      "name": "Shopify Inc. Class A Subordinate Voting Shares",
+      "market": "NASDAQ-100",
+      "entry_date": "2026-08-25",
+      "entry_price": 153.88,
+      "highest_close": 153.88,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 153.88,
+      "trailing_stop": 140.18,
+      "updated_date": "2026-08-25"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-25T04:03:29-04:00"
+  "updated_at": "2026-08-25T18:33:29-04:00"
 }
