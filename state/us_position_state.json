@@ -40,7 +40,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 0.0,
       "last_close": 337.97,
-      "trailing_stop": 312.56,
+      "trailing_stop": 312.52,
       "updated_date": "2026-08-25"
     },
     "MSFT": {
@@ -68,10 +68,10 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
       "last_close": 153.88,
-      "trailing_stop": 140.18,
+      "trailing_stop": 140.17,
       "updated_date": "2026-08-25"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-25T18:33:29-04:00"
+  "updated_at": "2026-08-26T03:36:31-04:00"
 }
