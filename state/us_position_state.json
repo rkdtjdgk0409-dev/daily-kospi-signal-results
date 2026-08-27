@@ -10,10 +10,10 @@
       "highest_close": 179.94,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 15.0,
-      "last_close": 172.73,
-      "trailing_stop": 162.16,
-      "updated_date": "2026-08-25"
+      "last_exit_risk": 14.0,
+      "last_close": 177.5,
+      "trailing_stop": 162.34,
+      "updated_date": "2026-08-26"
     },
     "NDSN": {
       "ticker": "NDSN",
@@ -21,13 +21,13 @@
       "market": "S&P 500",
       "entry_date": "2026-08-21",
       "entry_price": 332.24,
-      "highest_close": 333.93,
+      "highest_close": 334.58,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 333.58,
-      "trailing_stop": 316.52,
-      "updated_date": "2026-08-25"
+      "last_exit_risk": 14.0,
+      "last_close": 334.58,
+      "trailing_stop": 316.66,
+      "updated_date": "2026-08-26"
     },
     "EXPE": {
       "ticker": "EXPE",
@@ -38,10 +38,10 @@
       "highest_close": 339.13,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 0.0,
-      "last_close": 337.97,
-      "trailing_stop": 312.52,
-      "updated_date": "2026-08-25"
+      "last_exit_risk": 4.0,
+      "last_close": 333.44,
+      "trailing_stop": 312.73,
+      "updated_date": "2026-08-26"
     },
     "MSFT": {
       "ticker": "MSFT",
@@ -49,13 +49,13 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-25",
       "entry_price": 491.71,
-      "highest_close": 491.71,
+      "highest_close": 496.37,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 491.71,
-      "trailing_stop": 465.83,
-      "updated_date": "2026-08-25"
+      "last_exit_risk": 4.0,
+      "last_close": 496.37,
+      "trailing_stop": 466.33,
+      "updated_date": "2026-08-26"
     },
     "SHOP": {
       "ticker": "SHOP",
@@ -66,12 +66,26 @@
       "highest_close": 153.88,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 153.88,
-      "trailing_stop": 140.17,
-      "updated_date": "2026-08-25"
+      "last_exit_risk": 4.0,
+      "last_close": 150.29,
+      "trailing_stop": 140.24,
+      "updated_date": "2026-08-26"
+    },
+    "PSX": {
+      "ticker": "PSX",
+      "name": "Phillips 66",
+      "market": "S&P 500",
+      "entry_date": "2026-08-26",
+      "entry_price": 242.23,
+      "highest_close": 242.23,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 8.0,
+      "last_close": 242.23,
+      "trailing_stop": 226.98,
+      "updated_date": "2026-08-26"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-26T04:04:10-04:00"
+  "updated_at": "2026-08-26T23:04:37-04:00"
 }
