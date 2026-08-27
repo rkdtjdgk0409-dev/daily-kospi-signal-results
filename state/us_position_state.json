@@ -7,13 +7,13 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-21",
       "entry_price": 179.94,
-      "highest_close": 179.94,
+      "highest_close": 186.04,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 14.0,
-      "last_close": 177.5,
-      "trailing_stop": 162.34,
-      "updated_date": "2026-08-26"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 4.0,
+      "last_close": 186.04,
+      "trailing_stop": 163.65,
+      "updated_date": "2026-08-27"
     },
     "NDSN": {
       "ticker": "NDSN",
@@ -24,10 +24,10 @@
       "highest_close": 334.58,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 14.0,
-      "last_close": 334.58,
-      "trailing_stop": 316.66,
-      "updated_date": "2026-08-26"
+      "last_exit_risk": 7.0,
+      "last_close": 334.01,
+      "trailing_stop": 317.14,
+      "updated_date": "2026-08-27"
     },
     "EXPE": {
       "ticker": "EXPE",
@@ -37,11 +37,11 @@
       "entry_price": 339.12,
       "highest_close": 339.13,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 333.44,
-      "trailing_stop": 312.73,
-      "updated_date": "2026-08-26"
+      "last_status": "HOLD",
+      "last_exit_risk": 21.0,
+      "last_close": 320.47,
+      "trailing_stop": 311.34,
+      "updated_date": "2026-08-27"
     },
     "MSFT": {
       "ticker": "MSFT",
@@ -49,13 +49,13 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-25",
       "entry_price": 491.71,
-      "highest_close": 496.37,
+      "highest_close": 504.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 496.37,
-      "trailing_stop": 466.33,
-      "updated_date": "2026-08-26"
+      "last_close": 504.0,
+      "trailing_stop": 470.54,
+      "updated_date": "2026-08-27"
     },
     "SHOP": {
       "ticker": "SHOP",
@@ -63,13 +63,13 @@
       "market": "NASDAQ-100",
       "entry_date": "2026-08-25",
       "entry_price": 153.88,
-      "highest_close": 153.88,
+      "highest_close": 153.92,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 150.29,
-      "trailing_stop": 140.24,
-      "updated_date": "2026-08-26"
+      "last_close": 153.92,
+      "trailing_stop": 140.65,
+      "updated_date": "2026-08-27"
     },
     "PSX": {
       "ticker": "PSX",
@@ -80,12 +80,54 @@
       "highest_close": 242.23,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 8.0,
-      "last_close": 242.23,
-      "trailing_stop": 226.98,
-      "updated_date": "2026-08-26"
+      "last_exit_risk": 4.0,
+      "last_close": 241.84,
+      "trailing_stop": 226.86,
+      "updated_date": "2026-08-27"
+    },
+    "VEEV": {
+      "ticker": "VEEV",
+      "name": "Veeva Systems",
+      "market": "S&P 500",
+      "entry_date": "2026-08-27",
+      "entry_price": 285.05,
+      "highest_close": 285.05,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 0.0,
+      "last_close": 285.05,
+      "trailing_stop": 260.3,
+      "updated_date": "2026-08-27"
+    },
+    "MPC": {
+      "ticker": "MPC",
+      "name": "Marathon Petroleum",
+      "market": "S&P 500",
+      "entry_date": "2026-08-27",
+      "entry_price": 364.56,
+      "highest_close": 364.56,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 6.0,
+      "last_close": 364.56,
+      "trailing_stop": 340.61,
+      "updated_date": "2026-08-27"
+    },
+    "CRWD": {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "market": "S&P 500 + NASDAQ-100",
+      "entry_date": "2026-08-27",
+      "entry_price": 226.14,
+      "highest_close": 226.14,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 226.14,
+      "trailing_stop": 201.01,
+      "updated_date": "2026-08-27"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-26T23:04:37-04:00"
+  "updated_at": "2026-08-27T13:58:23-04:00"
 }
