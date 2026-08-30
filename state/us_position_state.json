@@ -96,7 +96,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 276.69,
-      "trailing_stop": 260.05,
+      "trailing_stop": 260.03,
       "updated_date": "2026-08-28"
     },
     "MPC": {
@@ -110,7 +110,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
       "last_close": 368.83,
-      "trailing_stop": 341.66,
+      "trailing_stop": 341.65,
       "updated_date": "2026-08-28"
     },
     "CRWD": {
@@ -124,7 +124,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
       "last_close": 218.4,
-      "trailing_stop": 198.66,
+      "trailing_stop": 198.63,
       "updated_date": "2026-08-28"
     },
     "PANW": {
@@ -138,7 +138,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 13.0,
       "last_close": 371.59,
-      "trailing_stop": 341.46,
+      "trailing_stop": 341.45,
       "updated_date": "2026-08-28"
     },
     "ABNB": {
@@ -185,5 +185,5 @@
     }
   },
   "closed": [],
-  "updated_at": "2026-08-28T23:37:03-04:00"
+  "updated_at": "2026-08-29T21:47:52-04:00"
 }
