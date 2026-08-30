@@ -1,0 +1,200 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import shutil
+from dataclasses import dataclass
+from pathlib import Path
+
+
+@dataclass(frozen=True)
+class MarketPageConfig:
+    result_dir: str
+    docs_dir: str
+    page_title: str
+    market_name: str
+    currency_symbol: str
+    currency_decimals: int
+    market_options: tuple[str, ...]
+    market_match_mode: str = "equals"  # equals | contains
+    home_href: str = "../"
+    other_market_href: str = "../us/"
+    position_href: str = "../position/"
+    scanner_href: str = "./"
+    other_market_label: str = "미국 시장"
+
+
+def _json_script(value) -> str:
+    # Avoid closing the script block if a future label ever contains </script>.
+    return json.dumps(value, ensure_ascii=False).replace("</", "<\\/")
+
+
+def _scanner_html(cfg: MarketPageConfig) -> str:
+    options = "".join(f'<option>{x}</option>' for x in cfg.market_options)
+    market_filter = (
+        "String(r.market||'')===m"
+        if cfg.market_match_mode == "equals"
+        else "String(r.market||'').includes(m)"
+    )
+    return f'''<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#080b10" />
+<title>{cfg.page_title} · Scanner</title>
+<style>
+:root{{--bg:#080b10;--panel:#0f141b;--panel2:#151c25;--line:#25303d;--text:#eef3f8;--muted:#8b98a7;--good:#27d79a;--warn:#f4bf4f;--bad:#ff6474;--accent:#29b8b0;--blue:#64a7ff}}
+*{{box-sizing:border-box}}html{{background:var(--bg)}}body{{margin:0;background:radial-gradient(circle at 20% -10%,rgba(41,184,176,.09),transparent 28%),var(--bg);color:var(--text);font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}}
+.wrap{{max-width:1560px;margin:auto;padding:18px 20px 30px}}.top{{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px}}.eyebrow{{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}}h1{{font-size:25px;line-height:1.2;margin:0 0 6px}}.subtitle{{color:var(--muted);font-size:13px;line-height:1.55;max-width:780px}}
+.actions{{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}}.btn,.market-link{{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:#111821;color:var(--text);padding:9px 12px;border-radius:9px;text-decoration:none;font-size:12px;cursor:pointer}}.btn:hover,.market-link:hover{{border-color:#526275;background:#17212c}}
+.cards{{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:9px;margin:14px 0}}.card{{border:1px solid var(--line);background:linear-gradient(180deg,#111821,#0e141c);border-radius:12px;padding:12px 13px}}.card .k{{font-size:10px;color:var(--muted)}}.card .v{{margin-top:4px;font-weight:850;font-size:19px}}
+.toolbar{{display:grid;grid-template-columns:minmax(230px,1fr) repeat(3,minmax(135px,180px));gap:8px;margin:12px 0 9px}}.search,.select{{width:100%;background:#0d131a;border:1px solid var(--line);color:var(--text);padding:10px 11px;border-radius:9px;outline:none}}.search:focus,.select:focus{{border-color:#4a8c8a}}
+.chips{{display:flex;gap:6px;overflow:auto;padding:0 0 10px;scrollbar-width:none}}.chips::-webkit-scrollbar{{display:none}}.chip{{white-space:nowrap;border:1px solid var(--line);background:#0e151d;color:var(--muted);padding:7px 10px;border-radius:999px;font-size:11px;cursor:pointer}}.chip.active{{background:rgba(41,184,176,.12);border-color:rgba(41,184,176,.55);color:#dffcf8}}
+.panel{{background:rgba(15,20,27,.92);border:1px solid var(--line);border-radius:13px;overflow:hidden}}.panelhead{{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}}.panelhead strong{{font-size:13px}}.panelhead span{{font-size:11px;color:var(--muted)}}.tablewrap{{overflow:auto}}
+table{{width:100%;border-collapse:collapse;font-size:12px;min-width:990px}}thead th{{position:sticky;top:0;background:#151c25;color:#95a2b1;text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);z-index:2}}tbody td{{padding:10px 9px;border-bottom:1px solid rgba(37,48,61,.72);white-space:nowrap}}tbody tr{{cursor:pointer;transition:background .12s}}tbody tr:hover{{background:#151d27}}.name{{font-weight:800;font-size:12px}}.ticker{{font-size:10px;color:var(--muted);margin-top:2px}}.pill{{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 7px;font-size:10px}}.grade{{font-weight:900}}.Aplus,.A,.bull{{color:var(--good)}}.B,.watch{{color:var(--warn)}}.C,.D{{color:#9aa5b0}}.bear{{color:var(--bad)}}.open{{color:#c7d3df;font-weight:800}}.note{{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--muted);font-size:11px;line-height:1.55;background:#0d131a}}
+@media(max-width:980px){{.cards{{grid-template-columns:repeat(3,1fr)}}.toolbar{{grid-template-columns:1fr 1fr}}}}
+@media(max-width:600px){{.wrap{{padding:12px 10px 24px}}.top{{display:block}}.actions{{margin-top:10px;justify-content:flex-start}}h1{{font-size:21px}}.cards{{grid-template-columns:repeat(2,1fr)}}.toolbar{{grid-template-columns:1fr 1fr}}.search{{grid-column:1/-1}}.cards .card:nth-child(n+5){{display:none}}}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top">
+  <div><div class="eyebrow">{cfg.market_name} · Chart Structure</div><h1>종목 스캔</h1><div class="subtitle">이 화면에서는 후보 종목만 빠르게 비교합니다. 종목을 선택하면 별도의 차트 워크스페이스가 열리고, 차트와 매매포인트 분석을 한 화면에서 볼 수 있습니다.</div></div>
+  <div class="actions"><a class="market-link" href="{cfg.home_href}">{cfg.market_name}</a><a class="market-link" href="{cfg.other_market_href}">{cfg.other_market_label}</a><a class="market-link" href="{cfg.position_href}">포지션 관리</a><button class="btn" onclick="location.reload()">새로고침</button></div>
+</header>
+<section class="cards" id="cards"></section>
+<section class="toolbar">
+  <input id="search" class="search" placeholder="종목명 또는 코드 검색" autocomplete="off" />
+  <select id="market" class="select"><option value="ALL">전체 시장</option>{options}</select>
+  <select id="grade" class="select"><option value="ALL">전체 등급</option><option>A+</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+  <select id="sort" class="select"><option value="score">종합점수순</option><option value="wave_confidence">파동신뢰도순</option><option value="rr1">R/R순</option><option value="rvol">RVOL순</option><option value="rs_score">상대강도순</option></select>
+</section>
+<div class="chips" id="chips"></div>
+<section class="panel">
+  <div class="panelhead"><strong>종목 스캔</strong><span id="count"></span></div>
+  <div class="tablewrap"><table><thead><tr><th>종목</th><th>등급</th><th>파동 / 시나리오</th><th>매수 상태</th><th>점수</th><th>구조</th><th>신뢰도</th><th>R/R</th><th>RVOL</th><th>RS</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div>
+</section>
+<div class="note">행을 누르면 <b>stock.html?ticker=...</b> 형식의 독립 상세 페이지로 이동합니다. 상세 페이지에서 매물대 · 파동 · 채널 · 매매포인트 · 예상경로 · Fibonacci를 각각 켜고 끌 수 있습니다.</div>
+</main>
+<script>
+let DATA=[],FILTER='ALL';
+const SETUPS=['ALL','WAVE2_PULLBACK','WAVE3_ADVANCE','CHANNEL_REVERSAL','WAVE4_PULLBACK','WAVE5_ADVANCE','RESISTANCE_PAUSE','BASE_BUILDING','STRUCTURE_RISK'];
+const LABELS={{ALL:'전체',WAVE2_PULLBACK:'🔥 2파→3파',WAVE3_ADVANCE:'🚀 3파 진행',CHANNEL_REVERSAL:'↗ 채널 돌파',WAVE4_PULLBACK:'↘ 4파 조정',WAVE5_ADVANCE:'↗ 5파/연장',RESISTANCE_PAUSE:'⏸ 저항 대기',BASE_BUILDING:'◇ 바닥 관찰',STRUCTURE_RISK:'⚠ 구조 훼손'}};
+const STORE='chart-structure-scan-{cfg.market_name}';
+function n(v,d=1){{return v==null||Number.isNaN(+v)?'-':Number(v).toLocaleString('ko-KR',{{maximumFractionDigits:d}})}}
+function setupClass(r){{return r.direction==='BULLISH'?'bull':r.direction==='BEARISH'?'bear':'watch'}}
+function saveState(){{sessionStorage.setItem(STORE,JSON.stringify({{q:search.value,m:market.value,g:grade.value,s:sort.value,f:FILTER}}))}}
+function restoreState(){{try{{const x=JSON.parse(sessionStorage.getItem(STORE)||'{{}}');if(x.q!=null)search.value=x.q;if(x.m)market.value=x.m;if(x.g)grade.value=x.g;if(x.s)sort.value=x.s;if(x.f&&SETUPS.includes(x.f))FILTER=x.f}}catch(e){{}}}}
+function initChips(){{chips.innerHTML=SETUPS.map(x=>`<button class="chip ${{x===FILTER?'active':''}}" data-x="${{x}}">${{LABELS[x]||x}}</button>`).join('');chips.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{{FILTER=b.dataset.x;chips.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));saveState();render()}})}}
+function cardsRender(){{const r=DATA;const c=[['분석 종목',r.length],['A+ / A',r.filter(x=>x.grade==='A+'||x.grade==='A').length],['2파→3파',r.filter(x=>x.setup==='WAVE2_PULLBACK').length],['3파 진행',r.filter(x=>x.setup==='WAVE3_ADVANCE').length],['채널 돌파',r.filter(x=>x.setup==='CHANNEL_REVERSAL').length],['구조 훼손',r.filter(x=>x.setup==='STRUCTURE_RISK').length]];cards.innerHTML=c.map(x=>`<div class="card"><div class="k">${{x[0]}}</div><div class="v">${{x[1]}}</div></div>`).join('')}}
+function filtered(){{const q=search.value.trim().toLowerCase(),m=market.value,g=grade.value,s=sort.value;let a=DATA.filter(r=>(!q||String(r.name).toLowerCase().includes(q)||String(r.ticker).toLowerCase().includes(q))&&(m==='ALL'||({market_filter}))&&(g==='ALL'||r.grade===g)&&(FILTER==='ALL'||r.setup===FILTER));a.sort((x,y)=>(Number(y[s])||-999)-(Number(x[s])||-999));return a}}
+function openStock(t){{saveState();location.href=`stock.html?ticker=${{encodeURIComponent(t)}}`}}
+function render(){{const a=filtered();count.textContent=`${{a.length}}개`;tbody.innerHTML=a.map(r=>`<tr data-t="${{r.ticker}}"><td><div class="name">${{r.name}}</div><div class="ticker">${{r.ticker}} · ${{r.market||'-'}}</div></td><td class="grade ${{r.grade==='A+'?'Aplus':r.grade}}">${{r.grade}}${{r.hard_filter_pass?' ✓':''}}</td><td class="${{setupClass(r)}}"><span class="pill">${{r.setup_label||'-'}}</span></td><td class="${{String(r.buy_status||'').includes('보류')?'bear':String(r.buy_status||'').includes('매수')?'bull':'watch'}}"><span class="pill">${{r.buy_status||'-'}}</span></td><td><b>${{n(r.score)}}</b></td><td>${{r.structure_code||'-'}}</td><td>${{n(r.wave_confidence,0)}}%</td><td>${{n(r.rr1,2)}}</td><td>${{n(r.rvol,2)}}</td><td>${{n(r.rs_score)}}</td><td class="open">열기 →</td></tr>`).join('');tbody.querySelectorAll('tr').forEach(tr=>tr.onclick=()=>openStock(tr.dataset.t))}}
+['search','market','grade','sort'].forEach(id=>document.getElementById(id).addEventListener(id==='search'?'input':'change',()=>{{saveState();render()}}));
+restoreState();initChips();fetch(`data/summary.json?ts=${{Date.now()}}`).then(r=>r.json()).then(meta=>{{DATA=meta.rows||[];cardsRender();render()}}).catch(()=>tbody.innerHTML='<tr><td colspan="11">summary.json을 불러오지 못했습니다.</td></tr>');
+</script></body></html>'''
+
+
+def _detail_html(cfg: MarketPageConfig) -> str:
+    currency_cfg = _json_script({"symbol": cfg.currency_symbol, "decimals": cfg.currency_decimals})
+    return f'''<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#080b10" />
+<title>{cfg.page_title} · Workspace</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root{{--bg:#080b10;--panel:#0f141b;--panel2:#151c25;--line:#25303d;--text:#eef3f8;--muted:#8b98a7;--good:#27d79a;--warn:#f4bf4f;--bad:#ff6474;--accent:#29b8b0;--blue:#64a7ff;--purple:#a78bfa}}
+*{{box-sizing:border-box}}html,body{{margin:0;min-height:100%;background:#080b10;color:var(--text);font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}}body{{background:radial-gradient(circle at 25% -12%,rgba(41,184,176,.08),transparent 30%),#080b10}}
+.app{{min-height:100vh;display:flex;flex-direction:column}}.topbar{{height:58px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 14px;background:rgba(8,11,16,.96);position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}}.brand{{display:flex;align-items:center;gap:11px;min-width:0}}.back{{border:1px solid var(--line);background:#10161e;color:var(--text);border-radius:8px;padding:7px 9px;text-decoration:none;font-size:12px}}.symbol{{font-weight:900;font-size:14px;white-space:nowrap}}.company{{color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}}.nav{{display:flex;gap:6px;flex-wrap:nowrap}}.nav a{{border:1px solid var(--line);background:#10161e;color:#cbd5df;text-decoration:none;border-radius:8px;padding:7px 9px;font-size:11px;white-space:nowrap}}
+.workspace{{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:10px;padding:10px;max-width:1920px;width:100%;margin:0 auto;flex:1;min-height:0}}.chart-panel,.rail{{border:1px solid var(--line);background:rgba(15,20,27,.96);border-radius:12px;overflow:hidden}}.chart-panel{{display:flex;flex-direction:column;min-width:0}}.chart-head{{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border-bottom:1px solid var(--line);background:#0e141c}}.chart-title{{min-width:0}}.chart-title strong{{font-size:13px}}.chart-title span{{display:block;color:var(--muted);font-size:10px;margin-top:3px}}.range{{display:flex;gap:5px}}.range-btn,.toggle-btn{{border:1px solid var(--line);background:#111821;color:#c8d2dc;border-radius:7px;padding:6px 8px;font-size:10px;cursor:pointer}}.range-btn:hover,.toggle-btn:hover{{border-color:#536274}}.toggle-btn.active{{border-color:rgba(41,184,176,.62);background:rgba(41,184,176,.13);color:#e9fffc}}.layerbar{{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 10px;border-bottom:1px solid var(--line);background:#0b1016}}.layer-label{{font-size:10px;color:var(--muted);margin-right:2px}}#chart{{height:calc(100vh - 143px);min-height:590px;width:100%;touch-action:pan-y}}
+.rail{{overflow:auto;max-height:calc(100vh - 78px)}}.rail-inner{{padding:12px}}.hero{{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding-bottom:11px;border-bottom:1px solid var(--line)}}.hero h1{{font-size:19px;margin:0 0 5px}}.ticker-line{{font-size:10px;color:var(--muted)}}.setup{{font-size:12px;font-weight:850;margin-top:5px}}.scorebox{{text-align:right}}.grade-big{{font-weight:950;font-size:28px;line-height:1}}.scorebox .score{{font-size:11px;color:var(--muted);margin-top:5px}}.pricebox{{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:11px 0}}.pricebox .k{{font-size:10px;color:var(--muted)}}.price{{font-size:22px;font-weight:900;letter-spacing:-.02em}}
+.status-card{{border:1px solid rgba(41,184,176,.32);background:linear-gradient(135deg,rgba(41,184,176,.09),rgba(100,167,255,.04));border-radius:10px;padding:10px;margin-bottom:10px}}.status-head{{display:flex;justify-content:space-between;gap:9px;align-items:center}}.status-head strong{{font-size:13px}}.status-pill{{font-size:10px;font-weight:850}}.status-detail{{font-size:11px;line-height:1.5;color:#b8c5d2;margin-top:7px}}.status-reasons{{font-size:10px;line-height:1.5;color:var(--muted);margin-top:6px}}
+.trade-grid{{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:11px}}.trade{{border:1px solid var(--line);background:#0d131a;border-radius:9px;padding:8px}}.trade .k{{font-size:9px;color:var(--muted)}}.trade .v{{font-size:12px;font-weight:850;margin-top:4px}}.section-title{{font-size:11px;font-weight:850;color:#d8e2eb;margin:12px 0 7px;display:flex;justify-content:space-between}}.metric-grid{{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}}.metric{{border:1px solid var(--line);background:#0d131a;border-radius:8px;padding:8px}}.metric .k{{font-size:9px;color:var(--muted)}}.metric .v{{font-size:11px;font-weight:750;margin-top:4px;line-height:1.35}}.scenario{{border:1px solid var(--line);background:#0b1118;border-radius:9px;padding:10px;font-size:11px;line-height:1.55}}.scenario strong{{font-size:12px}}.scenario .action{{margin-top:6px;color:#cbd6df}}.levels{{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}}.level{{font-size:9px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 6px;background:#111821}}.bars{{display:grid;gap:7px}}.barrow{{display:grid;grid-template-columns:92px 1fr 33px;align-items:center;gap:7px;color:var(--muted);font-size:10px}}.bar{{height:6px;background:#1a2530;border-radius:999px;overflow:hidden}}.bar i{{display:block;height:100%;background:linear-gradient(90deg,#64a7ff,#27d79a);border-radius:999px}}.loading{{padding:40px 18px;text-align:center;color:var(--muted);font-size:12px}}.bull{{color:var(--good)}}.bear{{color:var(--bad)}}.watch{{color:var(--warn)}}.Aplus,.A{{color:var(--good)}}.B{{color:var(--warn)}}.C,.D{{color:#9aa5b0}}
+@media(max-width:1100px){{.workspace{{grid-template-columns:minmax(0,1fr) 340px}}}}
+@media(max-width:850px){{.topbar{{height:auto;min-height:56px;padding:8px 10px;align-items:flex-start}}.nav{{overflow:auto;max-width:58vw}}.workspace{{display:block;padding:8px}}.chart-panel{{margin-bottom:8px}}#chart{{height:60vh;min-height:420px}}.rail{{max-height:none}}.company{{max-width:140px}}}}
+@media(max-width:520px){{.topbar{{position:relative}}.nav a:nth-child(2),.nav a:nth-child(3){{display:none}}.workspace{{padding:6px}}.chart-head{{display:block}}.range{{margin-top:7px}}.layerbar{{overflow:auto;flex-wrap:nowrap;scrollbar-width:none}}.layerbar::-webkit-scrollbar{{display:none}}.layer-label{{display:none}}#chart{{height:53vh;min-height:360px}}.rail-inner{{padding:10px}}}}
+</style>
+</head>
+<body><div class="app">
+<header class="topbar">
+  <div class="brand"><a class="back" href="{cfg.scanner_href}">← 스캔</a><div><div class="symbol" id="topSymbol">-</div><div class="company" id="topCompany">불러오는 중...</div></div></div>
+  <nav class="nav"><a href="{cfg.home_href}">{cfg.market_name}</a><a href="{cfg.other_market_href}">{cfg.other_market_label}</a><a href="{cfg.position_href}">포지션 관리</a></nav>
+</header>
+<main class="workspace">
+  <section class="chart-panel">
+    <div class="chart-head"><div class="chart-title"><strong>차트 구조</strong><span>주말 공백 없이 표시 · 휠/핀치 축소 시 과거 캔들 표시</span></div><div class="range"><button class="range-btn" onclick="setRangeBars(66)">3M</button><button class="range-btn" onclick="setRangeBars(132)">6M</button><button class="range-btn" onclick="setRangeBars(252)">1Y</button><button class="range-btn" onclick="setRangeBars(CHART_N)">전체</button></div></div>
+    <div class="layerbar"><span class="layer-label">표시</span><button class="toggle-btn active" data-layer="zones">매물대</button><button class="toggle-btn active" data-layer="wave">파동</button><button class="toggle-btn active" data-layer="channel">채널</button><button class="toggle-btn active" data-layer="execution">매매포인트</button><button class="toggle-btn active" data-layer="forecast">예상경로</button><button class="toggle-btn active" data-layer="fib">Fib</button></div>
+    <div id="chart"></div>
+  </section>
+  <aside class="rail"><div id="rail" class="loading">분석 데이터를 불러오는 중...</div></aside>
+</main></div>
+<script>
+const CURRENCY={currency_cfg};
+let CURRENT=null,CHART_N=0,CHART_FUTURE=0;
+let SHOW={{zones:true,wave:true,channel:true,execution:true,forecast:true,fib:true}};
+function n(v,d=1){{return v==null||Number.isNaN(+v)?'-':Number(v).toLocaleString('ko-KR',{{maximumFractionDigits:d}})}}
+function money(v){{return v==null||Number.isNaN(+v)?'-':CURRENCY.symbol+Number(v).toLocaleString('ko-KR',{{minimumFractionDigits:CURRENCY.decimals,maximumFractionDigits:CURRENCY.decimals}})}}
+function pp(v,d=2){{return v==null||Number.isNaN(+v)?'-':n(v,d)+'%'}}
+function rangePrice(lo,hi){{return lo==null||hi==null?'-':money(lo)+' ~ '+money(hi)}}
+function mobileMode(){{return window.matchMedia('(max-width: 768px)').matches}}
+function execClass(ep){{const s=String(ep?.status||'');return s.includes('보류')?'bear':s.includes('매수')?'bull':'watch'}}
+function dirClass(a){{return a?.direction==='BULLISH'?'bull':a?.direction==='BEARISH'?'bear':'watch'}}
+function metric(k,v,cls=''){{return `<div class="metric"><div class="k">${{k}}</div><div class="v ${{cls}}">${{v}}</div></div>`}}
+function trade(k,v,cls=''){{return `<div class="trade"><div class="k">${{k}}</div><div class="v ${{cls}}">${{v}}</div></div>`}}
+function setTitle(m){{topSymbol.textContent=m.ticker||'-';topCompany.textContent=m.name||'-';document.title=`${{m.name||m.ticker}} · Chart Structure`}}
+function renderRail(d){{const a=d.analysis||{{}},m=d.meta||{{}},w=a.wave||{{}},sc=w.scenario||{{}},sup=a.support||{{}},res=a.resistance||{{}},ch=a.parallel_channel||{{}},b=a.breakout_quality||{{}},tr=a.trade||{{}},rs=a.relative_strength||{{}},ez=w.entry_zone||{{}},ep=a.execution_plan||{{}};const cls=dirClass(a);const channelText=ch.label?`${{ch.label}} · Q${{n(ch.quality,0)}} · ${{ch.status_label||''}}`:'-';rail.className='rail-inner';rail.innerHTML=`
+<div class="hero"><div><h1>${{m.name||'-'}}</h1><div class="ticker-line">${{m.ticker||'-'}} · ${{m.market||''}}</div><div class="setup ${{cls}}">${{a.setup_label||'-'}}</div></div><div class="scorebox"><div class="grade-big ${{a.grade==='A+'?'Aplus':a.grade}}">${{a.grade||'-'}}</div><div class="score">${{n(a.score)}} / 100</div></div></div>
+<div class="pricebox"><div><div class="k">현재가</div><div class="price">${{money(a.price)}}</div></div><div class="${{cls}}" style="font-size:11px;font-weight:800">${{w.label||''}}</div></div>
+<div class="status-card"><div class="status-head"><strong>매매포인트 분석 상태</strong><span class="status-pill ${{execClass(ep)}}">${{ep.status||'대기'}}</span></div><div class="status-detail">${{ep.status_detail||'구조 확인 중'}}</div>${{(ep.reasons||[]).length?`<div class="status-reasons">근거 · ${{ep.reasons.join(' · ')}}</div>`:''}}</div>
+<div class="trade-grid">${{trade('우선 매수',rangePrice(ep.preferred_low,ep.preferred_high),'bull')}}${{trade('눌림 매수',rangePrice(ep.buy_zone_low,ep.buy_zone_high),'bull')}}${{trade('돌파 매수',money(ep.breakout_buy),'bull')}}${{trade('손절선',money(ep.stop),'bear')}}${{trade('현재→눌림',pp(ep.to_buy_pct))}}${{trade('현재→돌파',pp(ep.to_breakout_pct))}}</div>
+<div class="section-title"><span>구조 상태</span></div><div class="metric-grid">${{metric('파동 신뢰도',n(w.confidence,0)+'%',w.confidence>=72?'bull':'')}}${{metric('지지 구간',sup.low!=null?rangePrice(sup.low,sup.high):'-')}}${{metric('저항 구간',res.low!=null?rangePrice(res.low,res.high):'-')}}${{metric('평행채널',channelText,ch.direction==='ASCENDING'?'bull':ch.direction==='DESCENDING'?'watch':'')}}${{metric('예상 손절폭',pp(ep.risk_pct),'bear')}}${{metric('목표 1 / 2',money(sc.target1)+' / '+money(sc.target2),'bull')}}</div>
+<div class="section-title"><span>구조 시나리오</span></div><div class="scenario"><strong>${{w.label||'구조 시나리오'}}</strong><div>${{sc.thesis||'구조 확인 중'}}</div><div class="action"><b>대응:</b> ${{sc.action||'-'}}</div><div class="levels"><span class="level">Wave entry ${{ez.low!=null?rangePrice(ez.low,ez.high):'-'}}</span><span class="level">Trigger ${{money(ep.breakout_buy)}}</span><span class="level">Stop ${{money(ep.stop)}}</span><span class="level">RVOL ${{n(b.rvol,2)}}</span><span class="level">RS ${{n(rs.score)}}</span><span class="level">R/R ${{n(tr.rr1,2)}}</span></div></div>
+<div class="section-title"><span>판단 구성</span></div><div class="bars">${{[['파동 신뢰도',w.confidence||0],['채널 전환',w.channel_transition?.score||0],['지지 강도',sup.strength||0],['돌파 품질',b.score||0],['상대강도',rs.score||0]].map(([k,v])=>`<div class="barrow"><span>${{k}}</span><div class="bar"><i style="width:${{Math.min(100,Number(v)||0)}}%"></i></div><b>${{n(v)}}</b></div>`).join('')}}</div>
+${{ep.stop_reason?`<div class="section-title"><span>손절 근거</span></div><div class="scenario">${{ep.stop_reason}}</div>`:''}}`}}
+function dateForX(bars,x){{if(!bars.length)return null;let best=bars[0],dist=Math.abs(Number(best.x)-Number(x));for(const b of bars){{const d=Math.abs(Number(b.x)-Number(x));if(d<dist){{best=b;dist=d}}}}return best.date}}
+function addParallelChannel(traces,ann,bars,ch){{if(!SHOW.channel||!ch||!ch.label||!bars.length)return;const descending=ch.direction==='DESCENDING';const color=descending?'rgba(244,191,79,.98)':'rgba(39,215,154,.98)',fill=descending?'rgba(244,191,79,.10)':'rgba(39,215,154,.09)';const xStart=dateForX(bars,ch.x0),xEnd=dateForX(bars,ch.x1);if(!xStart||!xEnd)return;traces.push({{type:'scatter',mode:'lines',x:[xStart,xEnd],y:[ch.lower_y0,ch.lower_y1],line:{{color,width:2}},hoverinfo:'skip',showlegend:false}});traces.push({{type:'scatter',mode:'lines',x:[xStart,xEnd],y:[ch.upper_y0,ch.upper_y1],line:{{color,width:2}},fill:'tonexty',fillcolor:fill,hoverinfo:'skip',showlegend:false}});traces.push({{type:'scatter',mode:'lines',x:[xStart,xEnd],y:[ch.center_y0,ch.center_y1],line:{{color,width:1,dash:'dash'}},hoverinfo:'skip',showlegend:false}});ann.push({{x:xEnd,y:ch.current_center,text:`${{ch.label}} · ${{ch.status_label||''}}`,showarrow:false,xanchor:'right',bgcolor:'rgba(8,11,16,.82)',bordercolor:color,borderwidth:1,borderpad:3,font:{{size:mobileMode()?8:10,color}}}})}}
+function addWave(traces,ann,w){{if(!SHOW.wave||!w?.points?.length)return;const pts=w.points;traces.push({{type:'scatter',mode:'lines+markers',x:pts.map(p=>p.date),y:pts.map(p=>p.price),line:{{color:'#f4bf4f',width:2.1}},marker:{{size:5,color:'#eef3f8'}},hoverinfo:'skip',showlegend:false}});pts.forEach(p=>ann.push({{x:p.date,y:p.price,text:p.wave==='0'?'LOW':`(${{p.wave}})`,showarrow:true,arrowhead:0,ax:0,ay:p.kind==='H'?-24:24,font:{{size:10,color:'#eef3f8'}},arrowcolor:'#8b98a7'}}))}}
+function addFib(shapes,ann,bars,w){{if(!SHOW.fib||!w?.fib?.retracement||!bars.length)return;const pts=w.points||[],start=pts.length>1?pts[1].date:bars[Math.max(0,bars.length-80)].date,x1=bars[bars.length-1].date,retr=w.fib.retracement;[['0.382','#a78bfa'],['0.500','#64a7ff'],['0.618','#29b8b0']].forEach(([k,color])=>{{if(retr[k]==null)return;shapes.push({{type:'line',xref:'x',yref:'y',x0:start,x1,y0:retr[k],y1:retr[k],line:{{color,width:1,dash:'dot'}}}});ann.push({{x:x1,y:retr[k],text:`Fib ${{k}}`,showarrow:false,xanchor:'right',font:{{size:8,color}}}})}});const ext=w.extensions||{{}},extStart=pts.length>2?pts[2].date:start;[['1.000','#27d79a'],['1.272','#f4bf4f'],['1.618','#ff9f43']].forEach(([k,color])=>{{if(ext[k]==null)return;shapes.push({{type:'line',xref:'x',yref:'y',x0:extStart,x1,y0:ext[k],y1:ext[k],line:{{color,width:1,dash:'dash'}}}});ann.push({{x:x1,y:ext[k],text:`EXT ${{k}}`,showarrow:false,xanchor:'right',font:{{size:8,color}}}})}})}}
+function addExecution(shapes,ann,bars,ep){{if(!SHOW.execution||!ep||!bars.length)return;const x0=bars[0].date,x1=bars[bars.length-1].date,sm=mobileMode();if(ep.buy_zone_low!=null&&ep.buy_zone_high!=null){{shapes.push({{type:'rect',xref:'x',yref:'y',x0,x1,y0:ep.buy_zone_low,y1:ep.buy_zone_high,fillcolor:'rgba(41,184,176,.15)',line:{{color:'#29b8b0',width:1.2,dash:'dot'}}}});ann.push({{x:x1,y:(Number(ep.buy_zone_low)+Number(ep.buy_zone_high))/2,text:'BUY ZONE',showarrow:false,xanchor:'right',font:{{size:sm?8:10,color:'#29b8b0'}},bgcolor:'rgba(8,11,16,.76)'}})}}if(ep.breakout_buy!=null){{shapes.push({{type:'line',xref:'x',yref:'y',x0,x1,y0:ep.breakout_buy,y1:ep.breakout_buy,line:{{color:'#64a7ff',width:1.8,dash:'dash'}}}});ann.push({{x:x1,y:ep.breakout_buy,text:'BUY TRIGGER',showarrow:false,xanchor:'right',font:{{size:sm?8:10,color:'#64a7ff'}},bgcolor:'rgba(8,11,16,.76)'}})}}if(ep.stop!=null){{shapes.push({{type:'line',xref:'x',yref:'y',x0,x1,y0:ep.stop,y1:ep.stop,line:{{color:'#ff6474',width:2,dash:'dashdot'}}}});ann.push({{x:x1,y:ep.stop,text:'STOP',showarrow:false,xanchor:'right',font:{{size:sm?8:10,color:'#ff6474'}},bgcolor:'rgba(8,11,16,.8)'}})}}}}
+function futureBusinessDate(lastDate,steps){{let d=new Date(lastDate+'T00:00:00'),added=0;while(added<steps){{d.setDate(d.getDate()+1);const day=d.getDay();if(day!==0&&day!==6)added++}}return d.toISOString().slice(0,10)}}
+function addForecast(traces,ann,bars,w){{if(!SHOW.forecast||!w?.forecast||w.forecast.length<2||!bars.length)return;const last=bars[bars.length-1],xs=w.forecast.map(p=>{{const delta=Math.max(0,Math.round(Number(p.x)-Number(last.x)));return delta===0?last.date:futureBusinessDate(last.date,delta)}}),ys=w.forecast.map(p=>p.price);traces.push({{type:'scatter',mode:'lines+markers',x:xs,y:ys,line:{{color:'rgba(238,243,248,.92)',width:2,dash:'dot'}},marker:{{size:4,color:'#eef3f8'}},hoverinfo:'skip',showlegend:false}});w.forecast.forEach((p,i)=>ann.push({{x:xs[i],y:ys[i],text:p.label||'',showarrow:false,yshift:i===w.forecast.length-1?10:0,font:{{size:9,color:'#eef3f8'}},bgcolor:'rgba(8,11,16,.68)'}}))}}
+function initialRange(c,bars,futureCount=0){{const nn=bars.length,wanted=mobileMode()?(Number(c.initial_mobile_bars)||55):(Number(c.initial_desktop_bars)||115);return [Math.max(-.5,nn-wanted-.5),nn+futureCount-.5]}}
+function setRangeBars(count){{if(!CHART_N)return;const c=Math.max(10,Math.min(Number(count)||CHART_N,CHART_N));Plotly.relayout('chart',{{'xaxis.range':[Math.max(-.5,CHART_N-c-.5),CHART_N+CHART_FUTURE-.5]}})}}
+function drawChart(c,name){{if(!c?.bars?.length){{chart.innerHTML='<div class="loading">차트 데이터가 없습니다.</div>';return}}const bars=c.bars,dates=bars.map(x=>x.date),w=c.wave||{{}};CHART_N=bars.length;let future=[];if(SHOW.forecast&&w.forecast?.length){{const last=bars[bars.length-1];future=w.forecast.map(p=>{{const delta=Math.max(0,Math.round(Number(p.x)-Number(last.x)));return delta===0?last.date:futureBusinessDate(last.date,delta)}}).filter(x=>!dates.includes(x));future=[...new Set(future)]}}CHART_FUTURE=future.length;const cats=[...dates,...future],traces=[],shapes=[],ann=[],x0=dates[0],x1=dates[dates.length-1],sm=mobileMode();addParallelChannel(traces,ann,bars,c.parallel_channel);traces.push({{type:'candlestick',x:dates,open:bars.map(x=>x.open),high:bars.map(x=>x.high),low:bars.map(x=>x.low),close:bars.map(x=>x.close),name,increasing:{{line:{{color:'#27d79a',width:1.1}},fillcolor:'#27d79a'}},decreasing:{{line:{{color:'#ff6474',width:1.1}},fillcolor:'#ff6474'}},whiskerwidth:.45,showlegend:false}});function zone(z,color,label){{if(!SHOW.zones||!z?.low||!z?.high)return;shapes.push({{type:'rect',xref:'x',yref:'y',x0,x1,y0:z.low,y1:z.high,fillcolor:color,opacity:.10,line:{{width:1,color}}}});ann.push({{x:x1,y:z.center??((Number(z.low)+Number(z.high))/2),text:label,showarrow:false,xanchor:'right',font:{{size:sm?8:10,color}},bgcolor:'rgba(8,11,16,.66)'}})}}zone(c.support,'#27d79a','SUPPORT');zone(c.resistance,'#ff6474','RESIST');if(SHOW.zones&&c.poc!=null)shapes.push({{type:'line',xref:'x',yref:'y',x0,x1,y0:c.poc,y1:c.poc,line:{{color:'#a78bfa',width:1,dash:'dot'}}}});addFib(shapes,ann,bars,w);addExecution(shapes,ann,bars,c.execution_plan||{{}});addWave(traces,ann,w);addForecast(traces,ann,bars,w);Plotly.newPlot('chart',traces,{{paper_bgcolor:'transparent',plot_bgcolor:'transparent',font:{{color:'#8b98a7'}},margin:{{l:6,r:sm?88:106,t:8,b:sm?32:36}},xaxis:{{type:'category',categoryorder:'array',categoryarray:cats,range:initialRange(c,bars,CHART_FUTURE),rangeslider:{{visible:false}},showgrid:true,gridcolor:'#18212b',zeroline:false,automargin:true,tickfont:{{size:sm?9:10}},fixedrange:false}},yaxis:{{gridcolor:'#18212b',side:'right',tickformat:CURRENCY.decimals?',.2f':',.0f',tickprefix:CURRENCY.symbol,separatethousands:true,ticks:'outside',ticklen:4,tickfont:{{size:sm?9:10}},automargin:true,zeroline:false,fixedrange:false}},shapes,annotations:ann,showlegend:false,hovermode:'x',dragmode:sm?'pan':'zoom'}},{{displayModeBar:false,responsive:true,scrollZoom:true,doubleClick:'reset'}})}}
+function refreshLayers(){{document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.toggle('active',!!SHOW[b.dataset.layer]));if(CURRENT)drawChart(CURRENT.analysis?.chart,CURRENT.meta?.name||'')}}
+document.querySelectorAll('.toggle-btn').forEach(b=>b.onclick=()=>{{SHOW[b.dataset.layer]=!SHOW[b.dataset.layer];refreshLayers()}});
+async function load(){{const params=new URLSearchParams(location.search);let ticker=params.get('ticker');try{{if(!ticker){{const s=await fetch(`data/summary.json?ts=${{Date.now()}}`).then(r=>r.json());ticker=s.rows?.[0]?.ticker}}if(!ticker)throw new Error('ticker missing');const d=await fetch(`data/details/${{encodeURIComponent(ticker)}}.json?ts=${{Date.now()}}`).then(r=>{{if(!r.ok)throw new Error('detail fetch failed');return r.json()}});CURRENT=d;setTitle(d.meta||{{ticker}});renderRail(d);drawChart(d.analysis?.chart,d.meta?.name||ticker)}}catch(e){{rail.className='loading';rail.textContent='상세 데이터를 불러오지 못했습니다. 스캔 화면으로 돌아가 다른 종목을 선택해 주세요.';chart.innerHTML='<div class="loading">차트 데이터를 불러오지 못했습니다.</div>'}}}}
+load();
+</script></body></html>'''
+
+
+def build_market_page(cfg: MarketPageConfig) -> None:
+    src = Path(cfg.result_dir)
+    summary = src / "summary.json"
+    if not summary.exists():
+        raise SystemExit(f"{summary} not found. Run the price-structure scanner first.")
+
+    dst = Path(cfg.docs_dir)
+    data = dst / "data"
+    details = data / "details"
+    dst.mkdir(parents=True, exist_ok=True)
+    data.mkdir(parents=True, exist_ok=True)
+
+    # Remove old detail JSONs so delisted/removed symbols do not linger on Pages.
+    if details.exists():
+        shutil.rmtree(details)
+    details.mkdir(parents=True, exist_ok=True)
+
+    shutil.copy2(summary, data / "summary.json")
+    if (src / "summary.csv").exists():
+        shutil.copy2(src / "summary.csv", data / "summary.csv")
+    for p in (src / "details").glob("*.json"):
+        shutil.copy2(p, details / p.name)
+
+    (dst / "index.html").write_text(_scanner_html(cfg), encoding="utf-8")
+    (dst / "stock.html").write_text(_detail_html(cfg), encoding="utf-8")
+    print(f"Built {dst / 'index.html'}")
+    print(f"Built {dst / 'stock.html'}")
