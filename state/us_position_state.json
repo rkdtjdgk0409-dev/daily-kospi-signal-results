@@ -11,8 +11,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 185.6,
-      "trailing_stop": 165.54,
+      "last_close": 186.11,
+      "trailing_stop": 165.6,
       "updated_date": "2026-08-31"
     },
     "NDSN": {
@@ -25,8 +25,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 25.0,
-      "last_close": 323.35,
-      "trailing_stop": 316.09,
+      "last_close": 323.52,
+      "trailing_stop": 316.07,
       "updated_date": "2026-08-31"
     },
     "EXPE": {
@@ -39,8 +39,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 36.0,
-      "last_close": 323.28,
-      "trailing_stop": 311.25,
+      "last_close": 320.02,
+      "trailing_stop": 310.86,
       "updated_date": "2026-08-31"
     },
     "MSFT": {
@@ -53,8 +53,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 509.13,
-      "trailing_stop": 481.28,
+      "last_close": 511.5,
+      "trailing_stop": 481.43,
       "updated_date": "2026-08-31"
     },
     "SHOP": {
@@ -67,8 +67,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 27.0,
-      "last_close": 145.98,
-      "trailing_stop": 139.9,
+      "last_close": 147.12,
+      "trailing_stop": 140.01,
       "updated_date": "2026-08-31"
     },
     "PSX": {
@@ -81,8 +81,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 246.07,
-      "trailing_stop": 227.55,
+      "last_close": 244.71,
+      "trailing_stop": 227.4,
       "updated_date": "2026-08-31"
     },
     "VEEV": {
@@ -91,12 +91,12 @@
       "market": "S&P 500",
       "entry_date": "2026-08-27",
       "entry_price": 285.05,
-      "highest_close": 285.71,
+      "highest_close": 286.99,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 285.71,
-      "trailing_stop": 260.57,
+      "last_close": 286.99,
+      "trailing_stop": 260.68,
       "updated_date": "2026-08-31"
     },
     "MPC": {
@@ -109,8 +109,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 370.35,
-      "trailing_stop": 342.2,
+      "last_close": 368.8,
+      "trailing_stop": 342.11,
       "updated_date": "2026-08-31"
     },
     "CRWD": {
@@ -123,8 +123,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 226.18,
-      "trailing_stop": 199.04,
+      "last_close": 226.8,
+      "trailing_stop": 199.12,
       "updated_date": "2026-08-31"
     },
     "PANW": {
@@ -137,8 +137,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 13.0,
-      "last_close": 375.12,
-      "trailing_stop": 342.65,
+      "last_close": 377.36,
+      "trailing_stop": 342.89,
       "updated_date": "2026-08-31"
     },
     "ABNB": {
@@ -150,9 +150,9 @@
       "highest_close": 189.7,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 21.0,
-      "last_close": 185.54,
-      "trailing_stop": 177.47,
+      "last_exit_risk": 23.0,
+      "last_close": 184.74,
+      "trailing_stop": 177.33,
       "updated_date": "2026-08-31"
     },
     "WDAY": {
@@ -165,8 +165,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 197.57,
-      "trailing_stop": 181.35,
+      "last_close": 197.93,
+      "trailing_stop": 181.37,
       "updated_date": "2026-08-31"
     },
     "NOW": {
@@ -175,15 +175,15 @@
       "market": "S&P 500",
       "entry_date": "2026-08-28",
       "entry_price": 144.71,
-      "highest_close": 145.51,
+      "highest_close": 146.5,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 145.51,
-      "trailing_stop": 130.64,
+      "last_close": 146.5,
+      "trailing_stop": 130.74,
       "updated_date": "2026-08-31"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-31T10:30:57-04:00"
+  "updated_at": "2026-08-31T11:09:37-04:00"
 }
