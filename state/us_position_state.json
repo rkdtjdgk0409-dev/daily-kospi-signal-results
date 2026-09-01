@@ -24,9 +24,9 @@
       "highest_close": 334.58,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 25.0,
+      "last_exit_risk": 23.0,
       "last_close": 321.72,
-      "trailing_stop": 315.98,
+      "trailing_stop": 315.39,
       "updated_date": "2026-08-31"
     },
     "EXPE": {
@@ -38,9 +38,9 @@
       "highest_close": 339.13,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 36.0,
+      "last_exit_risk": 27.0,
       "last_close": 317.12,
-      "trailing_stop": 310.06,
+      "trailing_stop": 310.59,
       "updated_date": "2026-08-31"
     },
     "MSFT": {
@@ -66,9 +66,9 @@
       "highest_close": 154.33,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
+      "last_exit_risk": 19.0,
       "last_close": 147.37,
-      "trailing_stop": 140.04,
+      "trailing_stop": 139.5,
       "updated_date": "2026-08-31"
     },
     "PSX": {
@@ -82,7 +82,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 246.58,
-      "trailing_stop": 227.38,
+      "trailing_stop": 226.56,
       "updated_date": "2026-08-31"
     },
     "VEEV": {
@@ -96,7 +96,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 285.69,
-      "trailing_stop": 259.91,
+      "trailing_stop": 259.47,
       "updated_date": "2026-08-31"
     },
     "MPC": {
@@ -110,7 +110,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
       "last_close": 373.32,
-      "trailing_stop": 343.95,
+      "trailing_stop": 342.41,
       "updated_date": "2026-08-31"
     },
     "CRWD": {
@@ -135,10 +135,10 @@
       "entry_price": 382.85,
       "highest_close": 382.85,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 13.0,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
       "last_close": 382.13,
-      "trailing_stop": 343.3,
+      "trailing_stop": 344.73,
       "updated_date": "2026-08-31"
     },
     "ABNB": {
@@ -150,9 +150,9 @@
       "highest_close": 189.7,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 23.0,
+      "last_exit_risk": 27.0,
       "last_close": 183.22,
-      "trailing_stop": 176.78,
+      "trailing_stop": 177.05,
       "updated_date": "2026-08-31"
     },
     "WDAY": {
@@ -166,7 +166,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 197.45,
-      "trailing_stop": 181.23,
+      "trailing_stop": 182.24,
       "updated_date": "2026-08-31"
     },
     "NOW": {
@@ -194,7 +194,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 28.46,
-      "trailing_stop": 27.17,
+      "trailing_stop": 27.12,
       "updated_date": "2026-08-31"
     },
     "CVX": {
@@ -224,8 +224,36 @@
       "last_close": 140.21,
       "trailing_stop": 131.86,
       "updated_date": "2026-08-31"
+    },
+    "SLB": {
+      "ticker": "SLB",
+      "name": "Schlumberger",
+      "market": "S&P 500",
+      "entry_date": "2026-08-31",
+      "entry_price": 60.1,
+      "highest_close": 60.1,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 4.0,
+      "last_close": 60.1,
+      "trailing_stop": 55.93,
+      "updated_date": "2026-08-31"
+    },
+    "PTC": {
+      "ticker": "PTC",
+      "name": "PTC Inc.",
+      "market": "S&P 500",
+      "entry_date": "2026-08-31",
+      "entry_price": 155.74,
+      "highest_close": 155.74,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 155.74,
+      "trailing_stop": 144.62,
+      "updated_date": "2026-08-31"
     }
   },
   "closed": [],
-  "updated_at": "2026-09-01T08:05:59-04:00"
+  "updated_at": "2026-09-01T08:38:06-04:00"
 }
