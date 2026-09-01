@@ -40,7 +40,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 36.0,
       "last_close": 317.12,
-      "trailing_stop": 310.07,
+      "trailing_stop": 310.06,
       "updated_date": "2026-08-31"
     },
     "MSFT": {
@@ -54,7 +54,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 507.29,
-      "trailing_stop": 480.98,
+      "trailing_stop": 480.97,
       "updated_date": "2026-08-31"
     },
     "SHOP": {
@@ -82,7 +82,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 246.58,
-      "trailing_stop": 227.39,
+      "trailing_stop": 227.38,
       "updated_date": "2026-08-31"
     },
     "VEEV": {
@@ -96,7 +96,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 285.69,
-      "trailing_stop": 260.09,
+      "trailing_stop": 259.91,
       "updated_date": "2026-08-31"
     },
     "MPC": {
@@ -227,5 +227,5 @@
     }
   },
   "closed": [],
-  "updated_at": "2026-08-31T21:07:28-04:00"
+  "updated_at": "2026-09-01T08:05:59-04:00"
 }
