@@ -40,7 +40,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 37.0,
       "last_close": 301000.0,
-      "trailing_stop": 285474.14,
+      "trailing_stop": 285474.15,
       "updated_date": "2026-09-01"
     },
     "051900": {
@@ -227,5 +227,5 @@
     }
   },
   "closed": [],
-  "updated_at": "2026-09-01T21:35:35+09:00"
+  "updated_at": "2026-09-02T08:53:59+09:00"
 }
