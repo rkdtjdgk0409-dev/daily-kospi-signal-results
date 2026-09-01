@@ -7,12 +7,12 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-21",
       "entry_price": 179.94,
-      "highest_close": 186.29,
+      "highest_close": 186.38,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 186.11,
-      "trailing_stop": 165.6,
+      "last_close": 186.38,
+      "trailing_stop": 165.51,
       "updated_date": "2026-08-31"
     },
     "NDSN": {
@@ -25,8 +25,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 25.0,
-      "last_close": 323.52,
-      "trailing_stop": 316.07,
+      "last_close": 321.72,
+      "trailing_stop": 315.98,
       "updated_date": "2026-08-31"
     },
     "EXPE": {
@@ -39,8 +39,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 36.0,
-      "last_close": 320.02,
-      "trailing_stop": 310.86,
+      "last_close": 317.12,
+      "trailing_stop": 310.07,
       "updated_date": "2026-08-31"
     },
     "MSFT": {
@@ -53,8 +53,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 511.5,
-      "trailing_stop": 481.43,
+      "last_close": 507.29,
+      "trailing_stop": 480.98,
       "updated_date": "2026-08-31"
     },
     "SHOP": {
@@ -67,8 +67,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 27.0,
-      "last_close": 147.12,
-      "trailing_stop": 140.01,
+      "last_close": 147.37,
+      "trailing_stop": 140.04,
       "updated_date": "2026-08-31"
     },
     "PSX": {
@@ -77,12 +77,12 @@
       "market": "S&P 500",
       "entry_date": "2026-08-26",
       "entry_price": 242.23,
-      "highest_close": 246.07,
+      "highest_close": 246.58,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 244.71,
-      "trailing_stop": 227.4,
+      "last_close": 246.58,
+      "trailing_stop": 227.39,
       "updated_date": "2026-08-31"
     },
     "VEEV": {
@@ -95,8 +95,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 286.99,
-      "trailing_stop": 260.68,
+      "last_close": 285.69,
+      "trailing_stop": 260.09,
       "updated_date": "2026-08-31"
     },
     "MPC": {
@@ -105,12 +105,12 @@
       "market": "S&P 500",
       "entry_date": "2026-08-27",
       "entry_price": 364.56,
-      "highest_close": 370.35,
+      "highest_close": 373.32,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 368.8,
-      "trailing_stop": 342.11,
+      "last_close": 373.32,
+      "trailing_stop": 343.95,
       "updated_date": "2026-08-31"
     },
     "CRWD": {
@@ -119,12 +119,12 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-27",
       "entry_price": 226.14,
-      "highest_close": 227.96,
+      "highest_close": 231.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 226.8,
-      "trailing_stop": 199.12,
+      "last_close": 231.0,
+      "trailing_stop": 199.61,
       "updated_date": "2026-08-31"
     },
     "PANW": {
@@ -137,8 +137,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 13.0,
-      "last_close": 377.36,
-      "trailing_stop": 342.89,
+      "last_close": 382.13,
+      "trailing_stop": 343.3,
       "updated_date": "2026-08-31"
     },
     "ABNB": {
@@ -151,8 +151,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 23.0,
-      "last_close": 184.74,
-      "trailing_stop": 177.33,
+      "last_close": 183.22,
+      "trailing_stop": 176.78,
       "updated_date": "2026-08-31"
     },
     "WDAY": {
@@ -165,8 +165,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 197.93,
-      "trailing_stop": 181.37,
+      "last_close": 197.45,
+      "trailing_stop": 181.23,
       "updated_date": "2026-08-31"
     },
     "NOW": {
@@ -175,15 +175,57 @@
       "market": "S&P 500",
       "entry_date": "2026-08-28",
       "entry_price": 144.71,
-      "highest_close": 146.5,
+      "highest_close": 147.99,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 146.5,
-      "trailing_stop": 130.74,
+      "last_close": 147.99,
+      "trailing_stop": 130.51,
+      "updated_date": "2026-08-31"
+    },
+    "PFE": {
+      "ticker": "PFE",
+      "name": "Pfizer",
+      "market": "S&P 500",
+      "entry_date": "2026-08-31",
+      "entry_price": 28.46,
+      "highest_close": 28.46,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 4.0,
+      "last_close": 28.46,
+      "trailing_stop": 27.17,
+      "updated_date": "2026-08-31"
+    },
+    "CVX": {
+      "ticker": "CVX",
+      "name": "Chevron Corporation",
+      "market": "S&P 500",
+      "entry_date": "2026-08-31",
+      "entry_price": 206.14,
+      "highest_close": 206.14,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 206.14,
+      "trailing_stop": 197.26,
+      "updated_date": "2026-08-31"
+    },
+    "LDOS": {
+      "ticker": "LDOS",
+      "name": "Leidos",
+      "market": "S&P 500",
+      "entry_date": "2026-08-31",
+      "entry_price": 140.21,
+      "highest_close": 140.21,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 140.21,
+      "trailing_stop": 131.86,
       "updated_date": "2026-08-31"
     }
   },
   "closed": [],
-  "updated_at": "2026-08-31T11:09:37-04:00"
+  "updated_at": "2026-08-31T21:07:28-04:00"
 }
