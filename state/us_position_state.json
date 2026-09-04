@@ -96,7 +96,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 284.38,
-      "trailing_stop": 261.09,
+      "trailing_stop": 261.05,
       "updated_date": "2026-09-03"
     },
     "MPC": {
@@ -110,7 +110,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 387.71,
-      "trailing_stop": 357.48,
+      "trailing_stop": 357.52,
       "updated_date": "2026-09-03",
       "tp1_date": "2026-09-02"
     },
@@ -433,7 +433,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
       "last_close": 111.76,
-      "trailing_stop": 101.9,
+      "trailing_stop": 101.89,
       "updated_date": "2026-09-03"
     },
     "NEM": {
@@ -447,7 +447,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 6.0,
       "last_close": 130.43,
-      "trailing_stop": 120.42,
+      "trailing_stop": 120.4,
       "updated_date": "2026-09-03"
     },
     "MSTR": {
@@ -480,5 +480,5 @@
     }
   },
   "closed": [],
-  "updated_at": "2026-09-03T19:54:22-04:00"
+  "updated_at": "2026-09-04T07:49:15-04:00"
 }
