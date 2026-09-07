@@ -24,9 +24,9 @@
       "highest_close": 334.58,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 43.0,
+      "last_exit_risk": 36.0,
       "last_close": 318.36,
-      "trailing_stop": 316.21,
+      "trailing_stop": 316.12,
       "updated_date": "2026-09-04"
     },
     "MSFT": {
@@ -54,7 +54,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 29.0,
       "last_close": 145.09,
-      "trailing_stop": 140.38,
+      "trailing_stop": 140.37,
       "updated_date": "2026-09-04"
     },
     "PSX": {
@@ -96,7 +96,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 11.0,
       "last_close": 388.9,
-      "trailing_stop": 358.15,
+      "trailing_stop": 358.12,
       "updated_date": "2026-09-04",
       "tp1_date": "2026-09-02"
     },
@@ -151,9 +151,9 @@
       "highest_close": 206.92,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 15.0,
+      "last_exit_risk": 11.0,
       "last_close": 195.79,
-      "trailing_stop": 181.11,
+      "trailing_stop": 181.1,
       "updated_date": "2026-09-04"
     },
     "NOW": {
@@ -236,7 +236,7 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 150.99,
+      "last_close": 151.0,
       "trailing_stop": 142.0,
       "updated_date": "2026-09-04"
     },
@@ -265,7 +265,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 8.0,
       "last_close": 145.55,
-      "trailing_stop": 122.46,
+      "trailing_stop": 122.35,
       "updated_date": "2026-09-04"
     },
     "APA": {
@@ -363,7 +363,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 7.0,
       "last_close": 126.75,
-      "trailing_stop": 121.26,
+      "trailing_stop": 121.25,
       "updated_date": "2026-09-04"
     },
     "BIIB": {
@@ -405,7 +405,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 17.0,
       "last_close": 105.68,
-      "trailing_stop": 100.98,
+      "trailing_stop": 100.99,
       "updated_date": "2026-09-04"
     },
     "NEM": {
@@ -533,5 +533,5 @@
       "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
     }
   ],
-  "updated_at": "2026-09-04T19:52:21-04:00"
+  "updated_at": "2026-09-07T06:42:04-04:00"
 }
