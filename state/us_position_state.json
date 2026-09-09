@@ -54,7 +54,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 8.0,
       "last_close": 259.14,
-      "trailing_stop": 239.61,
+      "trailing_stop": 239.6,
       "updated_date": "2026-09-08"
     },
     "VEEV": {
@@ -68,7 +68,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 21.0,
       "last_close": 264.84,
-      "trailing_stop": 259.28,
+      "trailing_stop": 259.24,
       "updated_date": "2026-09-08"
     },
     "MPC": {
@@ -82,7 +82,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 8.0,
       "last_close": 397.77,
-      "trailing_stop": 367.06,
+      "trailing_stop": 367.05,
       "updated_date": "2026-09-08",
       "tp1_date": "2026-09-02"
     },
@@ -447,7 +447,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 117.34,
-      "trailing_stop": 106.76,
+      "trailing_stop": 106.75,
       "updated_date": "2026-09-08"
     }
   },
@@ -548,5 +548,5 @@
       "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
     }
   ],
-  "updated_at": "2026-09-08T19:58:50-04:00"
+  "updated_at": "2026-09-09T07:57:38-04:00"
 }
