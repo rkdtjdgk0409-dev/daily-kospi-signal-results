@@ -10,24 +10,10 @@
       "highest_close": 186.38,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 47.0,
-      "last_close": 169.53,
+      "last_exit_risk": 52.4,
+      "last_close": 167.23,
       "trailing_stop": 163.95,
-      "updated_date": "2026-09-09"
-    },
-    "NDSN": {
-      "ticker": "NDSN",
-      "name": "Nordson Corporation",
-      "market": "S&P 500",
-      "entry_date": "2026-08-21",
-      "entry_price": 332.24,
-      "highest_close": 334.58,
-      "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 48.2,
-      "last_close": 313.94,
-      "trailing_stop": 313.63,
-      "updated_date": "2026-09-09"
+      "updated_date": "2026-09-11"
     },
     "MSFT": {
       "ticker": "MSFT",
@@ -38,10 +24,10 @@
       "highest_close": 514.18,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 491.65,
-      "trailing_stop": 481.51,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 25.0,
+      "last_close": 495.63,
+      "trailing_stop": 483.24,
+      "updated_date": "2026-09-11"
     },
     "PSX": {
       "ticker": "PSX",
@@ -51,11 +37,11 @@
       "entry_price": 242.23,
       "highest_close": 260.78,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 13.0,
-      "last_close": 260.78,
-      "trailing_stop": 241.49,
-      "updated_date": "2026-09-09"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 4.0,
+      "last_close": 259.47,
+      "trailing_stop": 241.57,
+      "updated_date": "2026-09-11"
     },
     "VEEV": {
       "ticker": "VEEV",
@@ -66,10 +52,10 @@
       "highest_close": 286.99,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
-      "last_close": 260.8,
-      "trailing_stop": 259.66,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 32.0,
+      "last_close": 262.4,
+      "trailing_stop": 261.49,
+      "updated_date": "2026-09-11"
     },
     "MPC": {
       "ticker": "MPC",
@@ -81,9 +67,9 @@
       "tp1_done": true,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 399.44,
-      "trailing_stop": 369.25,
-      "updated_date": "2026-09-09",
+      "last_close": 395.93,
+      "trailing_stop": 367.37,
+      "updated_date": "2026-09-11",
       "tp1_date": "2026-09-02"
     },
     "CRWD": {
@@ -94,11 +80,11 @@
       "entry_price": 226.14,
       "highest_close": 231.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 42.0,
-      "last_close": 207.8,
-      "trailing_stop": 198.35,
-      "updated_date": "2026-09-09"
+      "last_status": "WATCH",
+      "last_exit_risk": 47.1,
+      "last_close": 206.74,
+      "trailing_stop": 198.89,
+      "updated_date": "2026-09-11"
     },
     "PANW": {
       "ticker": "PANW",
@@ -109,10 +95,10 @@
       "highest_close": 382.85,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 50.3,
-      "last_close": 335.1,
-      "trailing_stop": 334.76,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 47.7,
+      "last_close": 330.65,
+      "trailing_stop": 330.32,
+      "updated_date": "2026-09-11"
     },
     "WDAY": {
       "ticker": "WDAY",
@@ -123,10 +109,10 @@
       "highest_close": 206.92,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 186.05,
-      "trailing_stop": 180.85,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 36.0,
+      "last_close": 185.7,
+      "trailing_stop": 182.65,
+      "updated_date": "2026-09-11"
     },
     "NOW": {
       "ticker": "NOW",
@@ -138,9 +124,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 31.0,
-      "last_close": 131.11,
-      "trailing_stop": 128.38,
-      "updated_date": "2026-09-09"
+      "last_close": 132.53,
+      "trailing_stop": 129.43,
+      "updated_date": "2026-09-11"
     },
     "PFE": {
       "ticker": "PFE",
@@ -151,10 +137,10 @@
       "highest_close": 29.02,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 36.0,
-      "last_close": 27.78,
-      "trailing_stop": 27.31,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 32.0,
+      "last_close": 27.72,
+      "trailing_stop": 27.38,
+      "updated_date": "2026-09-11"
     },
     "CVX": {
       "ticker": "CVX",
@@ -162,13 +148,13 @@
       "market": "S&P 500",
       "entry_date": "2026-08-31",
       "entry_price": 206.14,
-      "highest_close": 213.81,
+      "highest_close": 214.06,
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 7.0,
-      "last_close": 213.81,
+      "last_close": 214.06,
       "trailing_stop": 202.36,
-      "updated_date": "2026-09-09"
+      "updated_date": "2026-09-11"
     },
     "SLB": {
       "ticker": "SLB",
@@ -179,10 +165,10 @@
       "highest_close": 60.1,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 11.0,
-      "last_close": 57.05,
-      "trailing_stop": 55.75,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 31.0,
+      "last_close": 56.06,
+      "trailing_stop": 55.69,
+      "updated_date": "2026-09-11"
     },
     "GILD": {
       "ticker": "GILD",
@@ -193,24 +179,10 @@
       "highest_close": 151.22,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
-      "last_close": 145.65,
-      "trailing_stop": 141.58,
-      "updated_date": "2026-09-09"
-    },
-    "VRTX": {
-      "ticker": "VRTX",
-      "name": "Vertex Pharmaceuticals",
-      "market": "S&P 500 + NASDAQ-100",
-      "entry_date": "2026-09-01",
-      "entry_price": 547.65,
-      "highest_close": 557.96,
-      "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 48.3,
-      "last_close": 521.12,
-      "trailing_stop": 518.77,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 36.0,
+      "last_close": 143.72,
+      "trailing_stop": 141.88,
+      "updated_date": "2026-09-11"
     },
     "MRNA": {
       "ticker": "MRNA",
@@ -221,10 +193,10 @@
       "highest_close": 154.27,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 17.0,
-      "last_close": 135.61,
-      "trailing_stop": 121.93,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 21.0,
+      "last_close": 143.97,
+      "trailing_stop": 124.47,
+      "updated_date": "2026-09-11"
     },
     "APA": {
       "ticker": "APA",
@@ -235,10 +207,10 @@
       "highest_close": 44.84,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 13.0,
-      "last_close": 44.84,
-      "trailing_stop": 41.18,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 7.0,
+      "last_close": 44.73,
+      "trailing_stop": 41.15,
+      "updated_date": "2026-09-11"
     },
     "MRK": {
       "ticker": "MRK",
@@ -249,24 +221,10 @@
       "highest_close": 152.34,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
-      "last_close": 147.53,
-      "trailing_stop": 142.93,
-      "updated_date": "2026-09-09"
-    },
-    "REGN": {
-      "ticker": "REGN",
-      "name": "Regeneron Pharmaceuticals",
-      "market": "S&P 500 + NASDAQ-100",
-      "entry_date": "2026-09-02",
-      "entry_price": 852.03,
-      "highest_close": 852.03,
-      "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 32.0,
-      "last_close": 807.65,
-      "trailing_stop": 804.46,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 36.0,
+      "last_close": 143.93,
+      "trailing_stop": 142.97,
+      "updated_date": "2026-09-11"
     },
     "BMY": {
       "ticker": "BMY",
@@ -276,11 +234,11 @@
       "entry_price": 67.66,
       "highest_close": 68.09,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 43.0,
-      "last_close": 64.41,
-      "trailing_stop": 64.15,
-      "updated_date": "2026-09-09"
+      "last_status": "WATCH",
+      "last_exit_risk": 49.3,
+      "last_close": 63.64,
+      "trailing_stop": 63.58,
+      "updated_date": "2026-09-11"
     },
     "CPAY": {
       "ticker": "CPAY",
@@ -291,10 +249,10 @@
       "highest_close": 419.68,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 25.0,
-      "last_close": 406.09,
-      "trailing_stop": 394.15,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 13.0,
+      "last_close": 408.22,
+      "trailing_stop": 395.18,
+      "updated_date": "2026-09-11"
     },
     "INCY": {
       "ticker": "INCY",
@@ -305,10 +263,10 @@
       "highest_close": 128.83,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 25.0,
-      "last_close": 126.01,
-      "trailing_stop": 120.92,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 38.0,
+      "last_close": 121.47,
+      "trailing_stop": 120.69,
+      "updated_date": "2026-09-11"
     },
     "BIIB": {
       "ticker": "BIIB",
@@ -319,10 +277,10 @@
       "highest_close": 224.51,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 44.2,
-      "last_close": 210.73,
-      "trailing_stop": 208.55,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 25.0,
+      "last_close": 217.15,
+      "trailing_stop": 208.88,
+      "updated_date": "2026-09-11"
     },
     "PSKY": {
       "ticker": "PSKY",
@@ -333,10 +291,10 @@
       "highest_close": 11.04,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 10.22,
-      "trailing_stop": 9.95,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 36.0,
+      "last_close": 10.6,
+      "trailing_stop": 10.02,
+      "updated_date": "2026-09-11"
     },
     "NEM": {
       "ticker": "NEM",
@@ -348,9 +306,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 128.71,
-      "trailing_stop": 120.6,
-      "updated_date": "2026-09-09"
+      "last_close": 126.81,
+      "trailing_stop": 120.54,
+      "updated_date": "2026-09-11"
     },
     "MSTR": {
       "ticker": "MSTR",
@@ -361,10 +319,10 @@
       "highest_close": 144.82,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 14.0,
-      "last_close": 132.7,
-      "trailing_stop": 124.1,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 15.0,
+      "last_close": 130.97,
+      "trailing_stop": 124.16,
+      "updated_date": "2026-09-11"
     },
     "COIN": {
       "ticker": "COIN",
@@ -375,10 +333,10 @@
       "highest_close": 192.7,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 21.0,
-      "last_close": 174.72,
-      "trailing_stop": 165.9,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 27.0,
+      "last_close": 175.26,
+      "trailing_stop": 167.25,
+      "updated_date": "2026-09-11"
     },
     "TECH": {
       "ticker": "TECH",
@@ -389,10 +347,10 @@
       "highest_close": 72.43,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
-      "last_close": 72.25,
+      "last_exit_risk": 32.0,
+      "last_close": 72.12,
       "trailing_stop": 71.76,
-      "updated_date": "2026-09-09"
+      "updated_date": "2026-09-11"
     },
     "EL": {
       "ticker": "EL",
@@ -403,10 +361,10 @@
       "highest_close": 103.86,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 21.0,
-      "last_close": 98.77,
-      "trailing_stop": 95.85,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 31.0,
+      "last_close": 97.12,
+      "trailing_stop": 96.11,
+      "updated_date": "2026-09-11"
     },
     "HOOD": {
       "ticker": "HOOD",
@@ -417,10 +375,38 @@
       "highest_close": 122.11,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 14.0,
-      "last_close": 115.28,
-      "trailing_stop": 106.54,
-      "updated_date": "2026-09-09"
+      "last_exit_risk": 29.0,
+      "last_close": 112.57,
+      "trailing_stop": 106.76,
+      "updated_date": "2026-09-11"
+    },
+    "TMO": {
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific",
+      "market": "S&P 500",
+      "entry_date": "2026-09-11",
+      "entry_price": 609.82,
+      "highest_close": 609.82,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 609.82,
+      "trailing_stop": 582.81,
+      "updated_date": "2026-09-11"
+    },
+    "T": {
+      "ticker": "T",
+      "name": "AT&T",
+      "market": "S&P 500",
+      "entry_date": "2026-09-11",
+      "entry_price": 26.06,
+      "highest_close": 26.06,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 15.0,
+      "last_close": 26.06,
+      "trailing_stop": 24.83,
+      "updated_date": "2026-09-11"
     }
   },
   "closed": [
@@ -556,7 +542,64 @@
       "exit_status": "EXIT",
       "realized_return_pct": -13.22,
       "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
+    },
+    {
+      "ticker": "NDSN",
+      "name": "Nordson Corporation",
+      "market": "S&P 500",
+      "entry_date": "2026-08-21",
+      "entry_price": 332.24,
+      "highest_close": 334.58,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 82.2,
+      "last_close": 314.47,
+      "trailing_stop": 314.16,
+      "updated_date": "2026-09-11",
+      "exit_date": "2026-09-11",
+      "exit_price": 314.47,
+      "exit_status": "EXIT",
+      "realized_return_pct": -5.35,
+      "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
+    },
+    {
+      "ticker": "VRTX",
+      "name": "Vertex Pharmaceuticals",
+      "market": "S&P 500 + NASDAQ-100",
+      "entry_date": "2026-09-01",
+      "entry_price": 547.65,
+      "highest_close": 557.96,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 84.7,
+      "last_close": 515.44,
+      "trailing_stop": 514.92,
+      "updated_date": "2026-09-11",
+      "exit_date": "2026-09-11",
+      "exit_price": 515.44,
+      "exit_status": "EXIT",
+      "realized_return_pct": -5.88,
+      "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
+    },
+    {
+      "ticker": "REGN",
+      "name": "Regeneron Pharmaceuticals",
+      "market": "S&P 500 + NASDAQ-100",
+      "entry_date": "2026-09-02",
+      "entry_price": 852.03,
+      "highest_close": 852.03,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 77.0,
+      "last_close": 781.49,
+      "trailing_stop": 780.71,
+      "updated_date": "2026-09-11",
+      "exit_date": "2026-09-11",
+      "exit_price": 781.49,
+      "exit_status": "EXIT",
+      "realized_return_pct": -8.28,
+      "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
     }
   ],
-  "updated_at": "2026-09-09T19:57:35-04:00"
+  "updated_at": "2026-09-12T03:36:58-04:00"
 }
