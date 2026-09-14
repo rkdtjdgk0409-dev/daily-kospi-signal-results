@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_at": "2026-08-18T03:25:59-04:00",
+  "snapshot_at": "2026-09-14T09:25:14-04:00",
   "sources": {
     "S&P 500": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
     "NASDAQ-100": "https://api.nasdaq.com/api/quote/list-type/nasdaq100"
@@ -3328,12 +3328,6 @@
         "sector": "Unknown"
       },
       {
-        "ticker": "KHC",
-        "yf_ticker": "KHC",
-        "name": "The Kraft Heinz Company Common Stock",
-        "sector": "Unknown"
-      },
-      {
         "ticker": "KLAC",
         "yf_ticker": "KLAC",
         "name": "KLA Corporation Common Stock",
@@ -3671,6 +3665,19 @@
           "yf_ticker": "EQR",
           "name": "Equity Residential",
           "sector": "Real Estate"
+        }
+      ]
+    },
+    {
+      "detected_at": "2026-09-14T09:25:14-04:00",
+      "index": "NASDAQ-100",
+      "added": [],
+      "removed": [
+        {
+          "ticker": "KHC",
+          "yf_ticker": "KHC",
+          "name": "The Kraft Heinz Company Common Stock",
+          "sector": "Unknown"
         }
       ]
     }
