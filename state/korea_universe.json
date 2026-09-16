@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-15T12:41:36+00:00",
+  "generated_at": "2026-09-16T00:03:22+00:00",
   "markets": {
     "KOSPI": [
       {
         "ticker": "005930",
         "name": "삼성전자",
         "market": "KOSPI",
-        "market_cap": 14644928.0,
+        "market_cap": 14484155.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005930.KS"
       },
@@ -14,7 +14,7 @@
         "ticker": "000660",
         "name": "SK하이닉스",
         "market": "KOSPI",
-        "market_cap": 12506029.0,
+        "market_cap": 12389151.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000660.KS"
       },
@@ -22,7 +22,7 @@
         "ticker": "005935",
         "name": "삼성전자우",
         "market": "KOSPI",
-        "market_cap": 1518086.0,
+        "market_cap": 1516482.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005935.KS"
       },
@@ -30,7 +30,7 @@
         "ticker": "402340",
         "name": "SK스퀘어",
         "market": "KOSPI",
-        "market_cap": 1337709.0,
+        "market_cap": 1310005.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "402340.KS"
       },
@@ -38,7 +38,7 @@
         "ticker": "009150",
         "name": "삼성전기",
         "market": "KOSPI",
-        "market_cap": 993426.0,
+        "market_cap": 982222.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "009150.KS"
       },
@@ -46,7 +46,7 @@
         "ticker": "373220",
         "name": "LG에너지솔루션",
         "market": "KOSPI",
-        "market_cap": 850590.0,
+        "market_cap": 851760.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "373220.KS"
       },
@@ -54,7 +54,7 @@
         "ticker": "005380",
         "name": "현대차",
         "market": "KOSPI",
-        "market_cap": 756580.0,
+        "market_cap": 743271.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005380.KS"
       },
@@ -62,7 +62,7 @@
         "ticker": "207940",
         "name": "삼성바이오로직스",
         "market": "KOSPI",
-        "market_cap": 652239.0,
+        "market_cap": 648536.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "207940.KS"
       },
@@ -70,7 +70,7 @@
         "ticker": "105560",
         "name": "KB금융",
         "market": "KOSPI",
-        "market_cap": 625669.0,
+        "market_cap": 622832.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "105560.KS"
       },
@@ -78,7 +78,7 @@
         "ticker": "032830",
         "name": "삼성생명",
         "market": "KOSPI",
-        "market_cap": 576000.0,
+        "market_cap": 566000.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "032830.KS"
       },
@@ -86,7 +86,7 @@
         "ticker": "028260",
         "name": "삼성물산",
         "market": "KOSPI",
-        "market_cap": 565965.0,
+        "market_cap": 557046.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "028260.KS"
       },
@@ -94,7 +94,7 @@
         "ticker": "034020",
         "name": "두산에너빌리티",
         "market": "KOSPI",
-        "market_cap": 556007.0,
+        "market_cap": 547039.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "034020.KS"
       },
@@ -102,7 +102,7 @@
         "ticker": "012450",
         "name": "한화에어로스페이스",
         "market": "KOSPI",
-        "market_cap": 549666.0,
+        "market_cap": 546056.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "012450.KS"
       },
@@ -110,7 +110,7 @@
         "ticker": "055550",
         "name": "신한지주",
         "market": "KOSPI",
-        "market_cap": 525315.0,
+        "market_cap": 522498.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "055550.KS"
       },
@@ -118,7 +118,7 @@
         "ticker": "000270",
         "name": "기아",
         "market": "KOSPI",
-        "market_cap": 477475.0,
+        "market_cap": 473961.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000270.KS"
       },
@@ -126,7 +126,7 @@
         "ticker": "329180",
         "name": "HD현대중공업",
         "market": "KOSPI",
-        "market_cap": 474950.0,
+        "market_cap": 472850.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "329180.KS"
       },
@@ -134,7 +134,7 @@
         "ticker": "006400",
         "name": "삼성SDI",
         "market": "KOSPI",
-        "market_cap": 444026.0,
+        "market_cap": 431133.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "006400.KS"
       },
@@ -142,7 +142,7 @@
         "ticker": "068270",
         "name": "셀트리온",
         "market": "KOSPI",
-        "market_cap": 414059.0,
+        "market_cap": 412430.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "068270.KS"
       },
@@ -150,7 +150,7 @@
         "ticker": "034730",
         "name": "SK",
         "market": "KOSPI",
-        "market_cap": 402390.0,
+        "market_cap": 390790.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "034730.KS"
       },
@@ -158,7 +158,7 @@
         "ticker": "086790",
         "name": "하나금융지주",
         "market": "KOSPI",
-        "market_cap": 372584.0,
+        "market_cap": 369603.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "086790.KS"
       },
@@ -166,7 +166,7 @@
         "ticker": "012330",
         "name": "현대모비스",
         "market": "KOSPI",
-        "market_cap": 357486.0,
+        "market_cap": 349402.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "012330.KS"
       },
@@ -174,7 +174,7 @@
         "ticker": "066570",
         "name": "LG전자",
         "market": "KOSPI",
-        "market_cap": 329027.0,
+        "market_cap": 323000.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "066570.KS"
       },
@@ -182,7 +182,7 @@
         "ticker": "035420",
         "name": "NAVER",
         "market": "KOSPI",
-        "market_cap": 312554.0,
+        "market_cap": 307991.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "035420.KS"
       },
@@ -190,7 +190,7 @@
         "ticker": "000810",
         "name": "삼성화재",
         "market": "KOSPI",
-        "market_cap": 295120.0,
+        "market_cap": 293780.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000810.KS"
       },
@@ -198,7 +198,7 @@
         "ticker": "010120",
         "name": "LS ELECTRIC",
         "market": "KOSPI",
-        "market_cap": 295050.0,
+        "market_cap": 293250.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "010120.KS"
       },
@@ -206,7 +206,7 @@
         "ticker": "316140",
         "name": "우리금융지주",
         "market": "KOSPI",
-        "market_cap": 267454.0,
+        "market_cap": 267822.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "316140.KS"
       },
@@ -214,7 +214,7 @@
         "ticker": "005490",
         "name": "POSCO홀딩스",
         "market": "KOSPI",
-        "market_cap": 263082.0,
+        "market_cap": 260705.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005490.KS"
       },
@@ -222,7 +222,7 @@
         "ticker": "267260",
         "name": "HD현대일렉트릭",
         "market": "KOSPI",
-        "market_cap": 255574.0,
+        "market_cap": 252690.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "267260.KS"
       },
@@ -230,7 +230,7 @@
         "ticker": "042660",
         "name": "한화오션",
         "market": "KOSPI",
-        "market_cap": 254630.0,
+        "market_cap": 251872.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "042660.KS"
       },
@@ -238,7 +238,7 @@
         "ticker": "298040",
         "name": "효성중공업",
         "market": "KOSPI",
-        "market_cap": 254094.0,
+        "market_cap": 251670.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "298040.KS"
       },
@@ -246,7 +246,7 @@
         "ticker": "069500",
         "name": "KODEX 200",
         "market": "KOSPI",
-        "market_cap": 240980.0,
+        "market_cap": 242712.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "069500.KS"
       },
@@ -254,7 +254,7 @@
         "ticker": "009540",
         "name": "HD한국조선해양",
         "market": "KOSPI",
-        "market_cap": 240629.0,
+        "market_cap": 238859.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "009540.KS"
       },
@@ -262,7 +262,7 @@
         "ticker": "096770",
         "name": "SK이노베이션",
         "market": "KOSPI",
-        "market_cap": 240055.0,
+        "market_cap": 237519.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "096770.KS"
       },
@@ -270,23 +270,15 @@
         "ticker": "010130",
         "name": "고려아연",
         "market": "KOSPI",
-        "market_cap": 237117.0,
+        "market_cap": 234195.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "010130.KS"
-      },
-      {
-        "ticker": "042700",
-        "name": "한미반도체",
-        "market": "KOSPI",
-        "market_cap": 214452.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "042700.KS"
       },
       {
         "ticker": "138040",
         "name": "메리츠금융지주",
         "market": "KOSPI",
-        "market_cap": 212364.0,
+        "market_cap": 210858.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "138040.KS"
       },
@@ -294,15 +286,23 @@
         "ticker": "000150",
         "name": "두산",
         "market": "KOSPI",
-        "market_cap": 210520.0,
+        "market_cap": 210034.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000150.KS"
+      },
+      {
+        "ticker": "042700",
+        "name": "한미반도체",
+        "market": "KOSPI",
+        "market_cap": 206827.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "042700.KS"
       },
       {
         "ticker": "360750",
         "name": "TIGER 미국S&P500",
         "market": "KOSPI",
-        "market_cap": 202976.0,
+        "market_cap": 204137.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "360750.KS"
       },
@@ -310,7 +310,7 @@
         "ticker": "015760",
         "name": "한국전력",
         "market": "KOSPI",
-        "market_cap": 202861.0,
+        "market_cap": 201577.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "015760.KS"
       },
@@ -318,7 +318,7 @@
         "ticker": "011200",
         "name": "HMM",
         "market": "KOSPI",
-        "market_cap": 195722.0,
+        "market_cap": 193835.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "011200.KS"
       },
@@ -326,7 +326,7 @@
         "ticker": "051910",
         "name": "LG화학",
         "market": "KOSPI",
-        "market_cap": 190952.0,
+        "market_cap": 189540.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "051910.KS"
       },
@@ -334,7 +334,7 @@
         "ticker": "017670",
         "name": "SK텔레콤",
         "market": "KOSPI",
-        "market_cap": 190304.0,
+        "market_cap": 187512.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "017670.KS"
       },
@@ -342,95 +342,95 @@
         "ticker": "010140",
         "name": "삼성중공업",
         "market": "KOSPI",
-        "market_cap": 184360.0,
+        "market_cap": 181280.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "010140.KS"
-      },
-      {
-        "ticker": "267250",
-        "name": "HD현대",
-        "market": "KOSPI",
-        "market_cap": 178524.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "267250.KS"
       },
       {
         "ticker": "033780",
         "name": "KT&G",
         "market": "KOSPI",
-        "market_cap": 176893.0,
+        "market_cap": 176478.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "033780.KS"
+      },
+      {
+        "ticker": "267250",
+        "name": "HD현대",
+        "market": "KOSPI",
+        "market_cap": 172995.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "267250.KS"
       },
       {
         "ticker": "006800",
         "name": "미래에셋증권",
         "market": "KOSPI",
-        "market_cap": 175396.0,
+        "market_cap": 171866.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "006800.KS"
-      },
-      {
-        "ticker": "018260",
-        "name": "삼성에스디에스",
-        "market": "KOSPI",
-        "market_cap": 171779.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "018260.KS"
       },
       {
         "ticker": "003550",
         "name": "LG",
         "market": "KOSPI",
-        "market_cap": 171754.0,
+        "market_cap": 170998.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "003550.KS"
       },
       {
-        "ticker": "003670",
-        "name": "포스코퓨처엠",
+        "ticker": "018260",
+        "name": "삼성에스디에스",
         "market": "KOSPI",
-        "market_cap": 168731.0,
+        "market_cap": 168684.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "003670.KS"
+        "yf_ticker": "018260.KS"
       },
       {
         "ticker": "010950",
         "name": "S-Oil",
         "market": "KOSPI",
-        "market_cap": 165834.0,
+        "market_cap": 166060.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "010950.KS"
+      },
+      {
+        "ticker": "003670",
+        "name": "포스코퓨처엠",
+        "market": "KOSPI",
+        "market_cap": 165796.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "003670.KS"
       },
       {
         "ticker": "024110",
         "name": "기업은행",
         "market": "KOSPI",
-        "market_cap": 163074.0,
+        "market_cap": 161877.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "024110.KS"
-      },
-      {
-        "ticker": "035720",
-        "name": "카카오",
-        "market": "KOSPI",
-        "market_cap": 153721.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "035720.KS"
       },
       {
         "ticker": "086280",
         "name": "현대글로비스",
         "market": "KOSPI",
-        "market_cap": 152625.0,
+        "market_cap": 150750.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "086280.KS"
+      },
+      {
+        "ticker": "035720",
+        "name": "카카오",
+        "market": "KOSPI",
+        "market_cap": 150620.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "035720.KS"
       },
       {
         "ticker": "079550",
         "name": "LIG디펜스앤에어로스페이스",
         "market": "KOSPI",
-        "market_cap": 147180.0,
+        "market_cap": 145860.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "079550.KS"
       },
@@ -438,63 +438,63 @@
         "ticker": "000720",
         "name": "현대건설",
         "market": "KOSPI",
-        "market_cap": 143426.0,
+        "market_cap": 140642.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000720.KS"
-      },
-      {
-        "ticker": "278470",
-        "name": "에이피알",
-        "market": "KOSPI",
-        "market_cap": 135152.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "278470.KS"
-      },
-      {
-        "ticker": "064350",
-        "name": "현대로템",
-        "market": "KOSPI",
-        "market_cap": 133154.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "064350.KS"
       },
       {
         "ticker": "030200",
         "name": "KT",
         "market": "KOSPI",
-        "market_cap": 133067.0,
+        "market_cap": 133319.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "030200.KS"
+      },
+      {
+        "ticker": "064350",
+        "name": "현대로템",
+        "market": "KOSPI",
+        "market_cap": 131953.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "064350.KS"
+      },
+      {
+        "ticker": "278470",
+        "name": "에이피알",
+        "market": "KOSPI",
+        "market_cap": 130846.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "278470.KS"
       },
       {
         "ticker": "272210",
         "name": "한화시스템",
         "market": "KOSPI",
-        "market_cap": 132621.0,
+        "market_cap": 129788.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "272210.KS"
-      },
-      {
-        "ticker": "047810",
-        "name": "한국항공우주",
-        "market": "KOSPI",
-        "market_cap": 126035.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "047810.KS"
       },
       {
         "ticker": "005830",
         "name": "DB손해보험",
         "market": "KOSPI",
-        "market_cap": 122617.0,
+        "market_cap": 123992.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005830.KS"
+      },
+      {
+        "ticker": "047810",
+        "name": "한국항공우주",
+        "market": "KOSPI",
+        "market_cap": 123111.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "047810.KS"
       },
       {
         "ticker": "011070",
         "name": "LG이노텍",
         "market": "KOSPI",
-        "market_cap": 121412.0,
+        "market_cap": 119992.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "011070.KS"
       },
@@ -502,7 +502,7 @@
         "ticker": "133690",
         "name": "TIGER 미국나스닥100",
         "market": "KOSPI",
-        "market_cap": 114159.0,
+        "market_cap": 114387.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "133690.KS"
       },
@@ -510,15 +510,23 @@
         "ticker": "003490",
         "name": "대한항공",
         "market": "KOSPI",
-        "market_cap": 108073.0,
+        "market_cap": 106416.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "003490.KS"
+      },
+      {
+        "ticker": "443060",
+        "name": "HD현대마린솔루션",
+        "market": "KOSPI",
+        "market_cap": 106031.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "443060.KS"
       },
       {
         "ticker": "078930",
         "name": "GS",
         "market": "KOSPI",
-        "market_cap": 106644.0,
+        "market_cap": 104600.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "078930.KS"
       },
@@ -526,71 +534,55 @@
         "ticker": "071050",
         "name": "한국금융지주",
         "market": "KOSPI",
-        "market_cap": 105879.0,
+        "market_cap": 104263.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "071050.KS"
-      },
-      {
-        "ticker": "443060",
-        "name": "HD현대마린솔루션",
-        "market": "KOSPI",
-        "market_cap": 104462.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "443060.KS"
-      },
-      {
-        "ticker": "307950",
-        "name": "현대오토에버",
-        "market": "KOSPI",
-        "market_cap": 101880.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "307950.KS"
-      },
-      {
-        "ticker": "323410",
-        "name": "카카오뱅크",
-        "market": "KOSPI",
-        "market_cap": 101388.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "323410.KS"
       },
       {
         "ticker": "379800",
         "name": "KODEX 미국S&P500",
         "market": "KOSPI",
-        "market_cap": 100867.0,
+        "market_cap": 101297.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "379800.KS"
       },
       {
-        "ticker": "028050",
-        "name": "삼성E&A",
+        "ticker": "323410",
+        "name": "카카오뱅크",
         "market": "KOSPI",
-        "market_cap": 100156.0,
+        "market_cap": 100672.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "028050.KS"
+        "yf_ticker": "323410.KS"
       },
       {
         "ticker": "047050",
         "name": "포스코인터내셔널",
         "market": "KOSPI",
-        "market_cap": 96933.0,
+        "market_cap": 100452.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "047050.KS"
       },
       {
-        "ticker": "003230",
-        "name": "삼양식품",
+        "ticker": "307950",
+        "name": "현대오토에버",
         "market": "KOSPI",
-        "market_cap": 96046.0,
+        "market_cap": 100372.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "003230.KS"
+        "yf_ticker": "307950.KS"
+      },
+      {
+        "ticker": "028050",
+        "name": "삼성E&A",
+        "market": "KOSPI",
+        "market_cap": 98784.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "028050.KS"
       },
       {
         "ticker": "102110",
         "name": "TIGER 200",
         "market": "KOSPI",
-        "market_cap": 95859.0,
+        "market_cap": 96497.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "102110.KS"
       },
@@ -603,42 +595,50 @@
         "yf_ticker": "259960.KS"
       },
       {
-        "ticker": "005940",
-        "name": "NH투자증권",
-        "market": "KOSPI",
-        "market_cap": 95809.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "005940.KS"
-      },
-      {
         "ticker": "006260",
         "name": "LS",
         "market": "KOSPI",
-        "market_cap": 95316.0,
+        "market_cap": 95784.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "006260.KS"
       },
       {
-        "ticker": "180640",
-        "name": "한진칼",
+        "ticker": "003230",
+        "name": "삼양식품",
         "market": "KOSPI",
-        "market_cap": 92265.0,
+        "market_cap": 95217.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "180640.KS"
+        "yf_ticker": "003230.KS"
+      },
+      {
+        "ticker": "005940",
+        "name": "NH투자증권",
+        "market": "KOSPI",
+        "market_cap": 94886.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "005940.KS"
       },
       {
         "ticker": "396500",
         "name": "TIGER 반도체TOP10",
         "market": "KOSPI",
-        "market_cap": 92150.0,
+        "market_cap": 92338.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "396500.KS"
+      },
+      {
+        "ticker": "180640",
+        "name": "한진칼",
+        "market": "KOSPI",
+        "market_cap": 92199.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "180640.KS"
       },
       {
         "ticker": "379810",
         "name": "KODEX 미국나스닥100",
         "market": "KOSPI",
-        "market_cap": 90688.0,
+        "market_cap": 90731.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "379810.KS"
       },
@@ -646,7 +646,7 @@
         "ticker": "488770",
         "name": "KODEX 머니마켓액티브",
         "market": "KOSPI",
-        "market_cap": 85188.0,
+        "market_cap": 86331.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "488770.KS"
       },
@@ -654,7 +654,7 @@
         "ticker": "090430",
         "name": "아모레퍼시픽",
         "market": "KOSPI",
-        "market_cap": 84288.0,
+        "market_cap": 83235.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "090430.KS"
       },
@@ -662,31 +662,39 @@
         "ticker": "047040",
         "name": "대우건설",
         "market": "KOSPI",
-        "market_cap": 79387.0,
+        "market_cap": 78524.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "047040.KS"
-      },
-      {
-        "ticker": "007660",
-        "name": "이수페타시스",
-        "market": "KOSPI",
-        "market_cap": 77520.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "007660.KS"
       },
       {
         "ticker": "016360",
         "name": "삼성증권",
         "market": "KOSPI",
-        "market_cap": 77245.0,
+        "market_cap": 76530.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "016360.KS"
+      },
+      {
+        "ticker": "007660",
+        "name": "이수페타시스",
+        "market": "KOSPI",
+        "market_cap": 76419.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "007660.KS"
+      },
+      {
+        "ticker": "000500",
+        "name": "가온전선",
+        "market": "KOSPI",
+        "market_cap": 74891.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "000500.KS"
       },
       {
         "ticker": "352820",
         "name": "하이브",
         "market": "KOSPI",
-        "market_cap": 74833.0,
+        "market_cap": 74144.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "352820.KS"
       },
@@ -694,71 +702,71 @@
         "ticker": "000880",
         "name": "한화",
         "market": "KOSPI",
-        "market_cap": 73807.0,
+        "market_cap": 73701.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000880.KS"
-      },
-      {
-        "ticker": "278530",
-        "name": "KODEX 200TR",
-        "market": "KOSPI",
-        "market_cap": 73352.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "278530.KS"
-      },
-      {
-        "ticker": "000500",
-        "name": "가온전선",
-        "market": "KOSPI",
-        "market_cap": 73253.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "000500.KS"
-      },
-      {
-        "ticker": "161390",
-        "name": "한국타이어앤테크놀로지",
-        "market": "KOSPI",
-        "market_cap": 73086.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "161390.KS"
       },
       {
         "ticker": "021240",
         "name": "코웨이",
         "market": "KOSPI",
-        "market_cap": 71404.0,
+        "market_cap": 73598.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "021240.KS"
+      },
+      {
+        "ticker": "278530",
+        "name": "KODEX 200TR",
+        "market": "KOSPI",
+        "market_cap": 73303.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "278530.KS"
+      },
+      {
+        "ticker": "161390",
+        "name": "한국타이어앤테크놀로지",
+        "market": "KOSPI",
+        "market_cap": 72095.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "161390.KS"
       },
       {
         "ticker": "039490",
         "name": "키움증권",
         "market": "KOSPI",
-        "market_cap": 70554.0,
+        "market_cap": 69505.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "039490.KS"
-      },
-      {
-        "ticker": "064400",
-        "name": "LG씨엔에스",
-        "market": "KOSPI",
-        "market_cap": 69080.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "064400.KS"
       },
       {
         "ticker": "459580",
         "name": "KODEX CD금리액티브(합성)",
         "market": "KOSPI",
-        "market_cap": 68341.0,
+        "market_cap": 68357.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "459580.KS"
+      },
+      {
+        "ticker": "064400",
+        "name": "LG씨엔에스",
+        "market": "KOSPI",
+        "market_cap": 68111.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "064400.KS"
+      },
+      {
+        "ticker": "128940",
+        "name": "한미약품",
+        "market": "KOSPI",
+        "market_cap": 65720.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "128940.KS"
       },
       {
         "ticker": "009830",
         "name": "한화솔루션",
         "market": "KOSPI",
-        "market_cap": 64657.0,
+        "market_cap": 63869.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "009830.KS"
       },
@@ -771,34 +779,18 @@
         "yf_ticker": "267270.KS"
       },
       {
-        "ticker": "128940",
-        "name": "한미약품",
-        "market": "KOSPI",
-        "market_cap": 63478.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "128940.KS"
-      },
-      {
         "ticker": "032640",
         "name": "LG유플러스",
         "market": "KOSPI",
-        "market_cap": 62985.0,
+        "market_cap": 62858.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "032640.KS"
-      },
-      {
-        "ticker": "377300",
-        "name": "카카오페이",
-        "market": "KOSPI",
-        "market_cap": 61968.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "377300.KS"
       },
       {
         "ticker": "326030",
         "name": "SK바이오팜",
         "market": "KOSPI",
-        "market_cap": 61319.0,
+        "market_cap": 61006.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "326030.KS"
       },
@@ -806,7 +798,7 @@
         "ticker": "005387",
         "name": "현대차2우B",
         "market": "KOSPI",
-        "market_cap": 61117.0,
+        "market_cap": 60592.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005387.KS"
       },
@@ -814,31 +806,39 @@
         "ticker": "175330",
         "name": "JB금융지주",
         "market": "KOSPI",
-        "market_cap": 59687.0,
+        "market_cap": 60526.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "175330.KS"
-      },
-      {
-        "ticker": "000100",
-        "name": "유한양행",
-        "market": "KOSPI",
-        "market_cap": 58525.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "000100.KS"
       },
       {
         "ticker": "062040",
         "name": "산일전기",
         "market": "KOSPI",
-        "market_cap": 58099.0,
+        "market_cap": 58038.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "062040.KS"
+      },
+      {
+        "ticker": "000100",
+        "name": "유한양행",
+        "market": "KOSPI",
+        "market_cap": 57862.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "000100.KS"
+      },
+      {
+        "ticker": "377300",
+        "name": "카카오페이",
+        "market": "KOSPI",
+        "market_cap": 57773.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "377300.KS"
       },
       {
         "ticker": "241560",
         "name": "두산밥캣",
         "market": "KOSPI",
-        "market_cap": 57609.0,
+        "market_cap": 57130.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "241560.KS"
       },
@@ -846,7 +846,7 @@
         "ticker": "498400",
         "name": "KODEX 200타겟위클리커버드콜",
         "market": "KOSPI",
-        "market_cap": 57013.0,
+        "market_cap": 56998.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "498400.KS"
       },
@@ -854,7 +854,7 @@
         "ticker": "052690",
         "name": "한전기술",
         "market": "KOSPI",
-        "market_cap": 56642.0,
+        "market_cap": 55343.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "052690.KS"
       },
@@ -862,7 +862,7 @@
         "ticker": "001440",
         "name": "대한전선",
         "market": "KOSPI",
-        "market_cap": 55368.0,
+        "market_cap": 54878.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "001440.KS"
       },
@@ -870,7 +870,7 @@
         "ticker": "381180",
         "name": "TIGER 미국필라델피아반도체나스닥",
         "market": "KOSPI",
-        "market_cap": 53620.0,
+        "market_cap": 53913.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "381180.KS"
       },
@@ -878,15 +878,23 @@
         "ticker": "091160",
         "name": "KODEX 반도체",
         "market": "KOSPI",
-        "market_cap": 52943.0,
+        "market_cap": 53436.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "091160.KS"
+      },
+      {
+        "ticker": "122630",
+        "name": "KODEX 레버리지",
+        "market": "KOSPI",
+        "market_cap": 52190.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "122630.KS"
       },
       {
         "ticker": "029780",
         "name": "삼성카드",
         "market": "KOSPI",
-        "market_cap": 52368.0,
+        "market_cap": 52079.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "029780.KS"
       },
@@ -894,7 +902,7 @@
         "ticker": "000990",
         "name": "DB하이텍",
         "market": "KOSPI",
-        "market_cap": 52118.0,
+        "market_cap": 51727.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000990.KS"
       },
@@ -902,23 +910,15 @@
         "ticker": "088350",
         "name": "한화생명",
         "market": "KOSPI",
-        "market_cap": 51764.0,
+        "market_cap": 51417.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "088350.KS"
-      },
-      {
-        "ticker": "122630",
-        "name": "KODEX 레버리지",
-        "market": "KOSPI",
-        "market_cap": 50991.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "122630.KS"
       },
       {
         "ticker": "138930",
         "name": "BNK금융지주",
         "market": "KOSPI",
-        "market_cap": 49156.0,
+        "market_cap": 49401.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "138930.KS"
       },
@@ -926,25 +926,9 @@
         "ticker": "353200",
         "name": "대덕전자",
         "market": "KOSPI",
-        "market_cap": 48725.0,
+        "market_cap": 47885.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "353200.KS"
-      },
-      {
-        "ticker": "004020",
-        "name": "현대제철",
-        "market": "KOSPI",
-        "market_cap": 47440.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "004020.KS"
-      },
-      {
-        "ticker": "066970",
-        "name": "엘앤에프",
-        "market": "KOSPI",
-        "market_cap": 46991.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "066970.KS"
       },
       {
         "ticker": "088980",
@@ -955,66 +939,66 @@
         "yf_ticker": "088980.KS"
       },
       {
-        "ticker": "229200",
-        "name": "KODEX 코스닥150",
+        "ticker": "066970",
+        "name": "엘앤에프",
         "market": "KOSPI",
-        "market_cap": 46399.0,
+        "market_cap": 46584.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "229200.KS"
+        "yf_ticker": "066970.KS"
+      },
+      {
+        "ticker": "004020",
+        "name": "현대제철",
+        "market": "KOSPI",
+        "market_cap": 46573.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "004020.KS"
       },
       {
         "ticker": "271560",
         "name": "오리온",
         "market": "KOSPI",
-        "market_cap": 45537.0,
+        "market_cap": 45972.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "271560.KS"
       },
       {
-        "ticker": "454910",
-        "name": "두산로보틱스",
+        "ticker": "229200",
+        "name": "KODEX 코스닥150",
         "market": "KOSPI",
-        "market_cap": 45504.0,
+        "market_cap": 45362.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "454910.KS"
+        "yf_ticker": "229200.KS"
       },
       {
         "ticker": "051900",
         "name": "LG생활건강",
         "market": "KOSPI",
-        "market_cap": 45301.0,
+        "market_cap": 44927.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "051900.KS"
+      },
+      {
+        "ticker": "454910",
+        "name": "두산로보틱스",
+        "market": "KOSPI",
+        "market_cap": 44467.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "454910.KS"
       },
       {
         "ticker": "036570",
         "name": "NC",
         "market": "KOSPI",
-        "market_cap": 43842.0,
+        "market_cap": 44273.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "036570.KS"
-      },
-      {
-        "ticker": "034220",
-        "name": "LG디스플레이",
-        "market": "KOSPI",
-        "market_cap": 43400.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "034220.KS"
-      },
-      {
-        "ticker": "011790",
-        "name": "SKC",
-        "market": "KOSPI",
-        "market_cap": 43299.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "011790.KS"
       },
       {
         "ticker": "310970",
         "name": "TIGER MSCI Korea TR",
         "market": "KOSPI",
-        "market_cap": 43171.0,
+        "market_cap": 43324.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "310970.KS"
       },
@@ -1022,15 +1006,31 @@
         "ticker": "458730",
         "name": "TIGER 미국배당다우존스",
         "market": "KOSPI",
-        "market_cap": 42762.0,
+        "market_cap": 43090.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "458730.KS"
+      },
+      {
+        "ticker": "011790",
+        "name": "SKC",
+        "market": "KOSPI",
+        "market_cap": 42853.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "011790.KS"
+      },
+      {
+        "ticker": "034220",
+        "name": "LG디스플레이",
+        "market": "KOSPI",
+        "market_cap": 42700.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "034220.KS"
       },
       {
         "ticker": "148020",
         "name": "RISE 200",
         "market": "KOSPI",
-        "market_cap": 42493.0,
+        "market_cap": 42452.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "148020.KS"
       },
@@ -1038,7 +1038,7 @@
         "ticker": "001450",
         "name": "현대해상",
         "market": "KOSPI",
-        "market_cap": 41772.0,
+        "market_cap": 41729.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "001450.KS"
       },
@@ -1046,7 +1046,7 @@
         "ticker": "005385",
         "name": "현대차우",
         "market": "KOSPI",
-        "market_cap": 41150.0,
+        "market_cap": 40917.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005385.KS"
       },
@@ -1054,7 +1054,7 @@
         "ticker": "002380",
         "name": "KCC",
         "market": "KOSPI",
-        "market_cap": 40387.0,
+        "market_cap": 40000.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "002380.KS"
       },
@@ -1062,7 +1062,7 @@
         "ticker": "082740",
         "name": "한화엔진",
         "market": "KOSPI",
-        "market_cap": 40180.0,
+        "market_cap": 39429.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "082740.KS"
       },
@@ -1070,7 +1070,7 @@
         "ticker": "411060",
         "name": "ACE KRX금현물",
         "market": "KOSPI",
-        "market_cap": 39225.0,
+        "market_cap": 39319.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "411060.KS"
       },
@@ -1078,7 +1078,7 @@
         "ticker": "360200",
         "name": "ACE 미국S&P500",
         "market": "KOSPI",
-        "market_cap": 39132.0,
+        "market_cap": 39226.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "360200.KS"
       },
@@ -1086,31 +1086,31 @@
         "ticker": "001040",
         "name": "CJ",
         "market": "KOSPI",
-        "market_cap": 38280.0,
+        "market_cap": 37930.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "001040.KS"
-      },
-      {
-        "ticker": "010060",
-        "name": "OCI홀딩스",
-        "market": "KOSPI",
-        "market_cap": 38087.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "010060.KS"
       },
       {
         "ticker": "395160",
         "name": "KODEX AI반도체TOP2플러스",
         "market": "KOSPI",
-        "market_cap": 37554.0,
+        "market_cap": 37652.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "395160.KS"
+      },
+      {
+        "ticker": "010060",
+        "name": "OCI홀딩스",
+        "market": "KOSPI",
+        "market_cap": 37621.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "010060.KS"
       },
       {
         "ticker": "381170",
         "name": "TIGER 미국테크TOP10 INDXX",
         "market": "KOSPI",
-        "market_cap": 37526.0,
+        "market_cap": 37557.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "381170.KS"
       },
@@ -1118,7 +1118,7 @@
         "ticker": "423160",
         "name": "KODEX KOFR금리액티브(합성)",
         "market": "KOSPI",
-        "market_cap": 36308.0,
+        "market_cap": 36266.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "423160.KS"
       },
@@ -1126,7 +1126,7 @@
         "ticker": "008930",
         "name": "한미사이언스",
         "market": "KOSPI",
-        "market_cap": 34948.0,
+        "market_cap": 35153.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "008930.KS"
       },
@@ -1134,23 +1134,15 @@
         "ticker": "004170",
         "name": "신세계",
         "market": "KOSPI",
-        "market_cap": 34947.0,
+        "market_cap": 34805.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "004170.KS"
-      },
-      {
-        "ticker": "018880",
-        "name": "한온시스템",
-        "market": "KOSPI",
-        "market_cap": 34893.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "018880.KS"
       },
       {
         "ticker": "357870",
         "name": "TIGER CD금리투자KIS(합성)",
         "market": "KOSPI",
-        "market_cap": 34721.0,
+        "market_cap": 34730.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "357870.KS"
       },
@@ -1158,87 +1150,95 @@
         "ticker": "273130",
         "name": "KODEX 종합채권(AA-이상)액티브",
         "market": "KOSPI",
-        "market_cap": 34446.0,
+        "market_cap": 34722.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "273130.KS"
+      },
+      {
+        "ticker": "018880",
+        "name": "한온시스템",
+        "market": "KOSPI",
+        "market_cap": 34585.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "018880.KS"
       },
       {
         "ticker": "375500",
         "name": "DL이앤씨",
         "market": "KOSPI",
-        "market_cap": 34244.0,
+        "market_cap": 34437.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "375500.KS"
-      },
-      {
-        "ticker": "161890",
-        "name": "한국콜마",
-        "market": "KOSPI",
-        "market_cap": 34157.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "161890.KS"
       },
       {
         "ticker": "367380",
         "name": "ACE 미국나스닥100",
         "market": "KOSPI",
-        "market_cap": 34064.0,
+        "market_cap": 34146.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "367380.KS"
-      },
-      {
-        "ticker": "336260",
-        "name": "두산퓨얼셀",
-        "market": "KOSPI",
-        "market_cap": 33991.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "336260.KS"
-      },
-      {
-        "ticker": "036460",
-        "name": "한국가스공사",
-        "market": "KOSPI",
-        "market_cap": 33787.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "036460.KS"
-      },
-      {
-        "ticker": "395270",
-        "name": "HANARO Fn K-반도체",
-        "market": "KOSPI",
-        "market_cap": 33533.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "395270.KS"
-      },
-      {
-        "ticker": "022100",
-        "name": "포스코DX",
-        "market": "KOSPI",
-        "market_cap": 33068.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "022100.KS"
       },
       {
         "ticker": "103590",
         "name": "일진전기",
         "market": "KOSPI",
-        "market_cap": 32951.0,
+        "market_cap": 33666.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "103590.KS"
+      },
+      {
+        "ticker": "395270",
+        "name": "HANARO Fn K-반도체",
+        "market": "KOSPI",
+        "market_cap": 33605.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "395270.KS"
+      },
+      {
+        "ticker": "161890",
+        "name": "한국콜마",
+        "market": "KOSPI",
+        "market_cap": 33590.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "161890.KS"
+      },
+      {
+        "ticker": "036460",
+        "name": "한국가스공사",
+        "market": "KOSPI",
+        "market_cap": 33463.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "036460.KS"
       },
       {
         "ticker": "023530",
         "name": "롯데쇼핑",
         "market": "KOSPI",
-        "market_cap": 32872.0,
+        "market_cap": 33352.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "023530.KS"
+      },
+      {
+        "ticker": "336260",
+        "name": "두산퓨얼셀",
+        "market": "KOSPI",
+        "market_cap": 32943.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "336260.KS"
+      },
+      {
+        "ticker": "022100",
+        "name": "포스코DX",
+        "market": "KOSPI",
+        "market_cap": 32611.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "022100.KS"
       },
       {
         "ticker": "006360",
         "name": "GS건설",
         "market": "KOSPI",
-        "market_cap": 32649.0,
+        "market_cap": 32179.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "006360.KS"
       },
@@ -1246,31 +1246,31 @@
         "ticker": "102780",
         "name": "KODEX 삼성그룹",
         "market": "KOSPI",
-        "market_cap": 32301.0,
+        "market_cap": 32006.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "102780.KS"
-      },
-      {
-        "ticker": "111770",
-        "name": "영원무역",
-        "market": "KOSPI",
-        "market_cap": 31949.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "111770.KS"
       },
       {
         "ticker": "012750",
         "name": "에스원",
         "market": "KOSPI",
-        "market_cap": 31615.0,
+        "market_cap": 31843.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "012750.KS"
+      },
+      {
+        "ticker": "111770",
+        "name": "영원무역",
+        "market": "KOSPI",
+        "market_cap": 31816.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "111770.KS"
       },
       {
         "ticker": "035250",
         "name": "강원랜드",
         "market": "KOSPI",
-        "market_cap": 31535.0,
+        "market_cap": 31406.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "035250.KS"
       },
@@ -1278,7 +1278,7 @@
         "ticker": "233740",
         "name": "KODEX 코스닥150레버리지",
         "market": "KOSPI",
-        "market_cap": 31195.0,
+        "market_cap": 31282.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "233740.KS"
       },
@@ -1286,7 +1286,7 @@
         "ticker": "455890",
         "name": "RISE 머니마켓액티브",
         "market": "KOSPI",
-        "market_cap": 31156.0,
+        "market_cap": 31275.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "455890.KS"
       },
@@ -1302,7 +1302,7 @@
         "ticker": "011780",
         "name": "금호석유화학",
         "market": "KOSPI",
-        "market_cap": 30818.0,
+        "market_cap": 31019.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "011780.KS"
       },
@@ -1310,7 +1310,7 @@
         "ticker": "028670",
         "name": "팬오션",
         "market": "KOSPI",
-        "market_cap": 30524.0,
+        "market_cap": 30631.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "028670.KS"
       },
@@ -1318,7 +1318,7 @@
         "ticker": "487240",
         "name": "KODEX AI전력핵심설비",
         "market": "KOSPI",
-        "market_cap": 30214.0,
+        "market_cap": 30590.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "487240.KS"
       },
@@ -1326,25 +1326,9 @@
         "ticker": "031210",
         "name": "서울보증보험",
         "market": "KOSPI",
-        "market_cap": 30163.0,
+        "market_cap": 29919.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "031210.KS"
-      },
-      {
-        "ticker": "251270",
-        "name": "넷마블",
-        "market": "KOSPI",
-        "market_cap": 29147.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "251270.KS"
-      },
-      {
-        "ticker": "302440",
-        "name": "SK바이오사이언스",
-        "market": "KOSPI",
-        "market_cap": 29107.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "302440.KS"
       },
       {
         "ticker": "139130",
@@ -1355,18 +1339,34 @@
         "yf_ticker": "139130.KS"
       },
       {
+        "ticker": "251270",
+        "name": "넷마블",
+        "market": "KOSPI",
+        "market_cap": 28939.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "251270.KS"
+      },
+      {
         "ticker": "017800",
         "name": "현대엘리베이터",
         "market": "KOSPI",
-        "market_cap": 28694.0,
+        "market_cap": 28537.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "017800.KS"
+      },
+      {
+        "ticker": "302440",
+        "name": "SK바이오사이언스",
+        "market": "KOSPI",
+        "market_cap": 28519.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "302440.KS"
       },
       {
         "ticker": "011170",
         "name": "롯데케미칼",
         "market": "KOSPI",
-        "market_cap": 27761.0,
+        "market_cap": 27590.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "011170.KS"
       },
@@ -1374,7 +1374,7 @@
         "ticker": "097950",
         "name": "CJ제일제당",
         "market": "KOSPI",
-        "market_cap": 26872.0,
+        "market_cap": 26932.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "097950.KS"
       },
@@ -1382,7 +1382,7 @@
         "ticker": "003690",
         "name": "코리안리",
         "market": "KOSPI",
-        "market_cap": 26703.0,
+        "market_cap": 26650.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "003690.KS"
       },
@@ -1390,7 +1390,7 @@
         "ticker": "007340",
         "name": "DN오토모티브",
         "market": "KOSPI",
-        "market_cap": 26622.0,
+        "market_cap": 26359.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "007340.KS"
       },
@@ -1398,7 +1398,7 @@
         "ticker": "085620",
         "name": "미래에셋생명",
         "market": "KOSPI",
-        "market_cap": 26198.0,
+        "market_cap": 26347.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "085620.KS"
       },
@@ -1406,7 +1406,7 @@
         "ticker": "004800",
         "name": "효성",
         "market": "KOSPI",
-        "market_cap": 25948.0,
+        "market_cap": 25747.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "004800.KS"
       },
@@ -1414,7 +1414,7 @@
         "ticker": "383220",
         "name": "F&F",
         "market": "KOSPI",
-        "market_cap": 25589.0,
+        "market_cap": 25666.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "383220.KS"
       },
@@ -1422,55 +1422,47 @@
         "ticker": "139260",
         "name": "TIGER 200 IT",
         "market": "KOSPI",
-        "market_cap": 25473.0,
+        "market_cap": 25369.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "139260.KS"
-      },
-      {
-        "ticker": "450080",
-        "name": "에코프로머티",
-        "market": "KOSPI",
-        "market_cap": 25422.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "450080.KS"
       },
       {
         "ticker": "026960",
         "name": "동서",
         "market": "KOSPI",
-        "market_cap": 25374.0,
+        "market_cap": 25274.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "026960.KS"
-      },
-      {
-        "ticker": "009420",
-        "name": "한올바이오파마",
-        "market": "KOSPI",
-        "market_cap": 25337.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "009420.KS"
       },
       {
         "ticker": "481050",
         "name": "KODEX CD1년금리플러스액티브(합성)",
         "market": "KOSPI",
-        "market_cap": 25046.0,
+        "market_cap": 25133.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "481050.KS"
       },
       {
-        "ticker": "005440",
-        "name": "현대지에프홀딩스",
+        "ticker": "009420",
+        "name": "한올바이오파마",
         "market": "KOSPI",
-        "market_cap": 24979.0,
+        "market_cap": 25049.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "005440.KS"
+        "yf_ticker": "009420.KS"
+      },
+      {
+        "ticker": "450080",
+        "name": "에코프로머티",
+        "market": "KOSPI",
+        "market_cap": 25033.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "450080.KS"
       },
       {
         "ticker": "004990",
         "name": "롯데지주",
         "market": "KOSPI",
-        "market_cap": 24966.0,
+        "market_cap": 24816.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "004990.KS"
       },
@@ -1478,31 +1470,31 @@
         "ticker": "004370",
         "name": "농심",
         "market": "KOSPI",
-        "market_cap": 24878.0,
+        "market_cap": 24756.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "004370.KS"
+      },
+      {
+        "ticker": "005440",
+        "name": "현대지에프홀딩스",
+        "market": "KOSPI",
+        "market_cap": 24630.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "005440.KS"
       },
       {
         "ticker": "282330",
         "name": "BGF리테일",
         "market": "KOSPI",
-        "market_cap": 24318.0,
+        "market_cap": 24630.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "282330.KS"
-      },
-      {
-        "ticker": "161510",
-        "name": "PLUS 고배당주",
-        "market": "KOSPI",
-        "market_cap": 24240.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "161510.KS"
       },
       {
         "ticker": "486290",
         "name": "TIGER 미국나스닥100타겟데일리커버드콜",
         "market": "KOSPI",
-        "market_cap": 24200.0,
+        "market_cap": 24295.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "486290.KS"
       },
@@ -1510,31 +1502,39 @@
         "ticker": "426030",
         "name": "TIME 미국나스닥100액티브",
         "market": "KOSPI",
-        "market_cap": 24125.0,
+        "market_cap": 24094.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "426030.KS"
       },
       {
-        "ticker": "001720",
-        "name": "신영증권",
+        "ticker": "161510",
+        "name": "PLUS 고배당주",
         "market": "KOSPI",
-        "market_cap": 23970.0,
+        "market_cap": 24071.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "001720.KS"
+        "yf_ticker": "161510.KS"
       },
       {
         "ticker": "449170",
         "name": "TIGER KOFR금리액티브(합성)",
         "market": "KOSPI",
-        "market_cap": 23850.0,
+        "market_cap": 23852.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "449170.KS"
+      },
+      {
+        "ticker": "001720",
+        "name": "신영증권",
+        "market": "KOSPI",
+        "market_cap": 23805.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "001720.KS"
       },
       {
         "ticker": "472150",
         "name": "TIGER 배당커버드콜액티브",
         "market": "KOSPI",
-        "market_cap": 23725.0,
+        "market_cap": 23720.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "472150.KS"
       },
@@ -1542,57 +1542,49 @@
         "ticker": "005850",
         "name": "에스엘",
         "market": "KOSPI",
-        "market_cap": 23549.0,
+        "market_cap": 23410.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005850.KS"
-      },
-      {
-        "ticker": "204320",
-        "name": "HL만도",
-        "market": "KOSPI",
-        "market_cap": 23032.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "204320.KS"
       },
       {
         "ticker": "000240",
         "name": "한국앤컴퍼니",
         "market": "KOSPI",
-        "market_cap": 22974.0,
+        "market_cap": 22784.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000240.KS"
       },
       {
-        "ticker": "278540",
-        "name": "KODEX MSCI Korea TR",
+        "ticker": "204320",
+        "name": "HL만도",
         "market": "KOSPI",
-        "market_cap": 22803.0,
+        "market_cap": 22727.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "278540.KS"
+        "yf_ticker": "204320.KS"
       },
       {
         "ticker": "279570",
         "name": "케이뱅크",
         "market": "KOSPI",
-        "market_cap": 22678.0,
+        "market_cap": 22719.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "279570.KS"
+      },
+      {
+        "ticker": "278540",
+        "name": "KODEX MSCI Korea TR",
+        "market": "KOSPI",
+        "market_cap": 22668.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "278540.KS"
       },
       {
         "ticker": "489790",
         "name": "한화비전",
         "market": "KOSPI",
-        "market_cap": 22568.0,
+        "market_cap": 22543.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "489790.KS"
-      },
-      {
-        "ticker": "112610",
-        "name": "씨에스윈드",
-        "market": "KOSPI",
-        "market_cap": 22351.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "112610.KS"
       },
       {
         "ticker": "018670",
@@ -1601,6 +1593,14 @@
         "market_cap": 22246.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "018670.KS"
+      },
+      {
+        "ticker": "112610",
+        "name": "씨에스윈드",
+        "market": "KOSPI",
+        "market_cap": 22140.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "112610.KS"
       }
     ],
     "KOSDAQ": [
@@ -1608,7 +1608,7 @@
         "ticker": "196170",
         "name": "알테오젠",
         "market": "KOSDAQ",
-        "market_cap": 182148.0,
+        "market_cap": 177969.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "196170.KQ"
       },
@@ -1616,7 +1616,7 @@
         "ticker": "086520",
         "name": "에코프로",
         "market": "KOSDAQ",
-        "market_cap": 114052.0,
+        "market_cap": 112966.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "086520.KQ"
       },
@@ -1624,7 +1624,7 @@
         "ticker": "247540",
         "name": "에코프로비엠",
         "market": "KOSDAQ",
-        "market_cap": 104679.0,
+        "market_cap": 102624.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "247540.KQ"
       },
@@ -1632,7 +1632,7 @@
         "ticker": "036930",
         "name": "주성엔지니어링",
         "market": "KOSDAQ",
-        "market_cap": 91614.0,
+        "market_cap": 89941.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "036930.KQ"
       },
@@ -1640,7 +1640,7 @@
         "ticker": "277810",
         "name": "레인보우로보틱스",
         "market": "KOSDAQ",
-        "market_cap": 84971.0,
+        "market_cap": 83516.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "277810.KQ"
       },
@@ -1648,7 +1648,7 @@
         "ticker": "039030",
         "name": "이오테크닉스",
         "market": "KOSDAQ",
-        "market_cap": 55561.0,
+        "market_cap": 54884.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "039030.KQ"
       },
@@ -1656,7 +1656,7 @@
         "ticker": "240810",
         "name": "원익IPS",
         "market": "KOSDAQ",
-        "market_cap": 54140.0,
+        "market_cap": 52765.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "240810.KQ"
       },
@@ -1664,47 +1664,47 @@
         "ticker": "058470",
         "name": "리노공업",
         "market": "KOSDAQ",
-        "market_cap": 49766.0,
+        "market_cap": 48318.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "058470.KQ"
-      },
-      {
-        "ticker": "108490",
-        "name": "로보티즈",
-        "market": "KOSDAQ",
-        "market_cap": 48328.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "108490.KQ"
       },
       {
         "ticker": "222800",
         "name": "심텍",
         "market": "KOSDAQ",
-        "market_cap": 48151.0,
+        "market_cap": 47316.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "222800.KQ"
       },
       {
-        "ticker": "403870",
-        "name": "HPSP",
+        "ticker": "108490",
+        "name": "로보티즈",
         "market": "KOSDAQ",
-        "market_cap": 43619.0,
+        "market_cap": 46714.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "403870.KQ"
+        "yf_ticker": "108490.KQ"
       },
       {
         "ticker": "028300",
         "name": "HLB",
         "market": "KOSDAQ",
-        "market_cap": 43289.0,
+        "market_cap": 43356.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "028300.KQ"
+      },
+      {
+        "ticker": "403870",
+        "name": "HPSP",
+        "market": "KOSDAQ",
+        "market_cap": 42549.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "403870.KQ"
       },
       {
         "ticker": "095340",
         "name": "ISC",
         "market": "KOSDAQ",
-        "market_cap": 38939.0,
+        "market_cap": 38070.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "095340.KQ"
       },
@@ -1712,95 +1712,95 @@
         "ticker": "000250",
         "name": "삼천당제약",
         "market": "KOSDAQ",
-        "market_cap": 37227.0,
+        "market_cap": 36312.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "000250.KQ"
-      },
-      {
-        "ticker": "031980",
-        "name": "피에스케이홀딩스",
-        "market": "KOSDAQ",
-        "market_cap": 36009.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "031980.KQ"
       },
       {
         "ticker": "214450",
         "name": "파마리서치",
         "market": "KOSDAQ",
-        "market_cap": 35221.0,
+        "market_cap": 34442.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "214450.KQ"
-      },
-      {
-        "ticker": "087010",
-        "name": "펩트론",
-        "market": "KOSDAQ",
-        "market_cap": 34813.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "087010.KQ"
       },
       {
         "ticker": "319660",
         "name": "피에스케이",
         "market": "KOSDAQ",
-        "market_cap": 34673.0,
+        "market_cap": 34181.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "319660.KQ"
+      },
+      {
+        "ticker": "087010",
+        "name": "펩트론",
+        "market": "KOSDAQ",
+        "market_cap": 34067.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "087010.KQ"
+      },
+      {
+        "ticker": "031980",
+        "name": "피에스케이홀딩스",
+        "market": "KOSDAQ",
+        "market_cap": 33831.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "031980.KQ"
       },
       {
         "ticker": "298380",
         "name": "에이비엘바이오",
         "market": "KOSDAQ",
-        "market_cap": 33425.0,
+        "market_cap": 31017.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "298380.KQ"
-      },
-      {
-        "ticker": "141080",
-        "name": "리가켐바이오",
-        "market": "KOSDAQ",
-        "market_cap": 30985.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "141080.KQ"
       },
       {
         "ticker": "440110",
         "name": "파두",
         "market": "KOSDAQ",
-        "market_cap": 30818.0,
+        "market_cap": 30868.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "440110.KQ"
+      },
+      {
+        "ticker": "141080",
+        "name": "리가켐바이오",
+        "market": "KOSDAQ",
+        "market_cap": 30060.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "141080.KQ"
       },
       {
         "ticker": "084370",
         "name": "유진테크",
         "market": "KOSDAQ",
-        "market_cap": 29837.0,
+        "market_cap": 29355.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "084370.KQ"
-      },
-      {
-        "ticker": "145020",
-        "name": "휴젤",
-        "market": "KOSDAQ",
-        "market_cap": 29598.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "145020.KQ"
       },
       {
         "ticker": "064760",
         "name": "티씨케이",
         "market": "KOSDAQ",
-        "market_cap": 29570.0,
+        "market_cap": 29066.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "064760.KQ"
+      },
+      {
+        "ticker": "145020",
+        "name": "휴젤",
+        "market": "KOSDAQ",
+        "market_cap": 28973.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "145020.KQ"
       },
       {
         "ticker": "257720",
         "name": "실리콘투",
         "market": "KOSDAQ",
-        "market_cap": 28624.0,
+        "market_cap": 28132.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "257720.KQ"
       },
@@ -1808,15 +1808,23 @@
         "ticker": "131290",
         "name": "티에스이",
         "market": "KOSDAQ",
-        "market_cap": 26713.0,
+        "market_cap": 26547.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "131290.KQ"
+      },
+      {
+        "ticker": "095610",
+        "name": "테스",
+        "market": "KOSDAQ",
+        "market_cap": 25187.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "095610.KQ"
       },
       {
         "ticker": "310210",
         "name": "보로노이",
         "market": "KOSDAQ",
-        "market_cap": 26229.0,
+        "market_cap": 25025.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "310210.KQ"
       },
@@ -1824,23 +1832,15 @@
         "ticker": "357780",
         "name": "솔브레인",
         "market": "KOSDAQ",
-        "market_cap": 25436.0,
+        "market_cap": 24891.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "357780.KQ"
-      },
-      {
-        "ticker": "095610",
-        "name": "테스",
-        "market": "KOSDAQ",
-        "market_cap": 25110.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "095610.KQ"
       },
       {
         "ticker": "226950",
         "name": "올릭스",
         "market": "KOSDAQ",
-        "market_cap": 24707.0,
+        "market_cap": 24093.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "226950.KQ"
       },
@@ -1848,7 +1848,7 @@
         "ticker": "080220",
         "name": "제주반도체",
         "market": "KOSDAQ",
-        "market_cap": 24317.0,
+        "market_cap": 23766.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "080220.KQ"
       },
@@ -1856,23 +1856,23 @@
         "ticker": "319400",
         "name": "현대무벡스",
         "market": "KOSDAQ",
-        "market_cap": 24224.0,
+        "market_cap": 23556.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "319400.KQ"
       },
       {
-        "ticker": "058610",
-        "name": "에스피지",
+        "ticker": "010170",
+        "name": "대한광통신",
         "market": "KOSDAQ",
-        "market_cap": 23619.0,
+        "market_cap": 22872.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "058610.KQ"
+        "yf_ticker": "010170.KQ"
       },
       {
         "ticker": "032820",
         "name": "우리기술",
         "market": "KOSDAQ",
-        "market_cap": 23326.0,
+        "market_cap": 22756.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "032820.KQ"
       },
@@ -1880,7 +1880,7 @@
         "ticker": "178320",
         "name": "서진시스템",
         "market": "KOSDAQ",
-        "market_cap": 22686.0,
+        "market_cap": 22558.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "178320.KQ"
       },
@@ -1888,7 +1888,7 @@
         "ticker": "067310",
         "name": "하나마이크론",
         "market": "KOSDAQ",
-        "market_cap": 22640.0,
+        "market_cap": 22507.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "067310.KQ"
       },
@@ -1896,7 +1896,7 @@
         "ticker": "140410",
         "name": "메지온",
         "market": "KOSDAQ",
-        "market_cap": 22384.0,
+        "market_cap": 22323.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "140410.KQ"
       },
@@ -1904,23 +1904,23 @@
         "ticker": "263750",
         "name": "펄어비스",
         "market": "KOSDAQ",
-        "market_cap": 22310.0,
+        "market_cap": 22247.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "263750.KQ"
       },
       {
-        "ticker": "010170",
-        "name": "대한광통신",
+        "ticker": "058610",
+        "name": "에스피지",
         "market": "KOSDAQ",
-        "market_cap": 22266.0,
+        "market_cap": 22155.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "010170.KQ"
+        "yf_ticker": "058610.KQ"
       },
       {
         "ticker": "214370",
         "name": "케어젠",
         "market": "KOSDAQ",
-        "market_cap": 22157.0,
+        "market_cap": 22050.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "214370.KQ"
       },
@@ -1928,7 +1928,7 @@
         "ticker": "347850",
         "name": "디앤디파마텍",
         "market": "KOSDAQ",
-        "market_cap": 21383.0,
+        "market_cap": 20787.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "347850.KQ"
       },
@@ -1936,7 +1936,7 @@
         "ticker": "214150",
         "name": "클래시스",
         "market": "KOSDAQ",
-        "market_cap": 20680.0,
+        "market_cap": 20549.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "214150.KQ"
       },
@@ -1944,31 +1944,31 @@
         "ticker": "005290",
         "name": "동진쎄미켐",
         "market": "KOSDAQ",
-        "market_cap": 20388.0,
+        "market_cap": 20133.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "005290.KQ"
-      },
-      {
-        "ticker": "083650",
-        "name": "비에이치아이",
-        "market": "KOSDAQ",
-        "market_cap": 20361.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "083650.KQ"
       },
       {
         "ticker": "041510",
         "name": "에스엠",
         "market": "KOSDAQ",
-        "market_cap": 20079.0,
+        "market_cap": 20102.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "041510.KQ"
+      },
+      {
+        "ticker": "083650",
+        "name": "비에이치아이",
+        "market": "KOSDAQ",
+        "market_cap": 19928.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "083650.KQ"
       },
       {
         "ticker": "030530",
         "name": "원익홀딩스",
         "market": "KOSDAQ",
-        "market_cap": 20043.0,
+        "market_cap": 19657.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "030530.KQ"
       },
@@ -1976,7 +1976,7 @@
         "ticker": "098460",
         "name": "고영",
         "market": "KOSDAQ",
-        "market_cap": 18927.0,
+        "market_cap": 18586.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "098460.KQ"
       },
@@ -1984,7 +1984,7 @@
         "ticker": "237690",
         "name": "에스티팜",
         "market": "KOSDAQ",
-        "market_cap": 18747.0,
+        "market_cap": 18518.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "237690.KQ"
       },
@@ -1992,7 +1992,7 @@
         "ticker": "140860",
         "name": "파크시스템스",
         "market": "KOSDAQ",
-        "market_cap": 17751.0,
+        "market_cap": 17576.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "140860.KQ"
       },
@@ -2000,7 +2000,7 @@
         "ticker": "068760",
         "name": "셀트리온제약",
         "market": "KOSDAQ",
-        "market_cap": 17495.0,
+        "market_cap": 17384.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "068760.KQ"
       },
@@ -2008,31 +2008,31 @@
         "ticker": "060370",
         "name": "LS마린솔루션",
         "market": "KOSDAQ",
-        "market_cap": 16978.0,
+        "market_cap": 17030.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "060370.KQ"
-      },
-      {
-        "ticker": "437730",
-        "name": "삼현",
-        "market": "KOSDAQ",
-        "market_cap": 16710.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "437730.KQ"
       },
       {
         "ticker": "089030",
         "name": "테크윙",
         "market": "KOSDAQ",
-        "market_cap": 16582.0,
+        "market_cap": 16322.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "089030.KQ"
+      },
+      {
+        "ticker": "437730",
+        "name": "삼현",
+        "market": "KOSDAQ",
+        "market_cap": 16044.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "437730.KQ"
       },
       {
         "ticker": "007390",
         "name": "네이처셀",
         "market": "KOSDAQ",
-        "market_cap": 16077.0,
+        "market_cap": 15819.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "007390.KQ"
       },
@@ -2040,7 +2040,7 @@
         "ticker": "096530",
         "name": "씨젠",
         "market": "KOSDAQ",
-        "market_cap": 14955.0,
+        "market_cap": 14978.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "096530.KQ"
       },
@@ -2048,31 +2048,39 @@
         "ticker": "131970",
         "name": "두산테스나",
         "market": "KOSDAQ",
-        "market_cap": 14611.0,
+        "market_cap": 14206.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "131970.KQ"
-      },
-      {
-        "ticker": "036540",
-        "name": "SFA반도체",
-        "market": "KOSDAQ",
-        "market_cap": 14226.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "036540.KQ"
       },
       {
         "ticker": "035900",
         "name": "JYP Ent.",
         "market": "KOSDAQ",
-        "market_cap": 13982.0,
+        "market_cap": 13840.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "035900.KQ"
+      },
+      {
+        "ticker": "036540",
+        "name": "SFA반도체",
+        "market": "KOSDAQ",
+        "market_cap": 13749.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "036540.KQ"
+      },
+      {
+        "ticker": "218410",
+        "name": "RFHIC",
+        "market": "KOSDAQ",
+        "market_cap": 13740.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "218410.KQ"
       },
       {
         "ticker": "323280",
         "name": "태성",
         "market": "KOSDAQ",
-        "market_cap": 13834.0,
+        "market_cap": 13681.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "323280.KQ"
       },
@@ -2080,7 +2088,7 @@
         "ticker": "950160",
         "name": "코오롱티슈진",
         "market": "KOSDAQ",
-        "market_cap": 13748.0,
+        "market_cap": 13655.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "950160.KQ"
       },
@@ -2088,39 +2096,31 @@
         "ticker": "078600",
         "name": "대주전자재료",
         "market": "KOSDAQ",
-        "market_cap": 13615.0,
+        "market_cap": 13568.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "078600.KQ"
-      },
-      {
-        "ticker": "183300",
-        "name": "코미코",
-        "market": "KOSDAQ",
-        "market_cap": 13586.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "183300.KQ"
       },
       {
         "ticker": "241710",
         "name": "코스메카코리아",
         "market": "KOSDAQ",
-        "market_cap": 13521.0,
+        "market_cap": 13361.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "241710.KQ"
       },
       {
-        "ticker": "218410",
-        "name": "RFHIC",
+        "ticker": "183300",
+        "name": "코미코",
         "market": "KOSDAQ",
-        "market_cap": 13274.0,
+        "market_cap": 13277.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "218410.KQ"
+        "yf_ticker": "183300.KQ"
       },
       {
         "ticker": "039200",
         "name": "오스코텍",
         "market": "KOSDAQ",
-        "market_cap": 13218.0,
+        "market_cap": 13161.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "039200.KQ"
       },
@@ -2128,7 +2128,7 @@
         "ticker": "089970",
         "name": "브이엠",
         "market": "KOSDAQ",
-        "market_cap": 13071.0,
+        "market_cap": 12900.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "089970.KQ"
       },
@@ -2136,7 +2136,7 @@
         "ticker": "290650",
         "name": "엘앤씨바이오",
         "market": "KOSDAQ",
-        "market_cap": 12865.0,
+        "market_cap": 12554.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "290650.KQ"
       },
@@ -2144,7 +2144,7 @@
         "ticker": "420770",
         "name": "기가비스",
         "market": "KOSDAQ",
-        "market_cap": 12739.0,
+        "market_cap": 12524.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "420770.KQ"
       },
@@ -2152,31 +2152,31 @@
         "ticker": "003380",
         "name": "하림지주",
         "market": "KOSDAQ",
-        "market_cap": 12623.0,
+        "market_cap": 12489.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "003380.KQ"
-      },
-      {
-        "ticker": "204270",
-        "name": "제이앤티씨",
-        "market": "KOSDAQ",
-        "market_cap": 12553.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "204270.KQ"
       },
       {
         "ticker": "043260",
         "name": "성호전자",
         "market": "KOSDAQ",
-        "market_cap": 12447.0,
+        "market_cap": 12462.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "043260.KQ"
+      },
+      {
+        "ticker": "204270",
+        "name": "제이앤티씨",
+        "market": "KOSDAQ",
+        "market_cap": 12408.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "204270.KQ"
       },
       {
         "ticker": "082920",
         "name": "비츠로셀",
         "market": "KOSDAQ",
-        "market_cap": 12188.0,
+        "market_cap": 12075.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "082920.KQ"
       },
@@ -2184,7 +2184,7 @@
         "ticker": "127120",
         "name": "제이에스링크",
         "market": "KOSDAQ",
-        "market_cap": 11212.0,
+        "market_cap": 11156.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "127120.KQ"
       },
@@ -2192,15 +2192,23 @@
         "ticker": "195940",
         "name": "HK이노엔",
         "market": "KOSDAQ",
-        "market_cap": 11190.0,
+        "market_cap": 11105.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "195940.KQ"
+      },
+      {
+        "ticker": "347700",
+        "name": "스피어",
+        "market": "KOSDAQ",
+        "market_cap": 10723.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "347700.KQ"
       },
       {
         "ticker": "475830",
         "name": "오름테라퓨틱",
         "market": "KOSDAQ",
-        "market_cap": 10903.0,
+        "market_cap": 10610.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "475830.KQ"
       },
@@ -2208,7 +2216,7 @@
         "ticker": "293490",
         "name": "카카오게임즈",
         "market": "KOSDAQ",
-        "market_cap": 10546.0,
+        "market_cap": 10397.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "293490.KQ"
       },
@@ -2216,23 +2224,15 @@
         "ticker": "166090",
         "name": "하나머티리얼즈",
         "market": "KOSDAQ",
-        "market_cap": 10423.0,
+        "market_cap": 10324.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "166090.KQ"
-      },
-      {
-        "ticker": "347700",
-        "name": "스피어",
-        "market": "KOSDAQ",
-        "market_cap": 10388.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "347700.KQ"
       },
       {
         "ticker": "056190",
         "name": "SFA",
         "market": "KOSDAQ",
-        "market_cap": 10342.0,
+        "market_cap": 10306.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "056190.KQ"
       },
@@ -2240,7 +2240,7 @@
         "ticker": "252990",
         "name": "샘씨엔에스",
         "market": "KOSDAQ",
-        "market_cap": 9852.0,
+        "market_cap": 9725.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "252990.KQ"
       },
@@ -2248,57 +2248,65 @@
         "ticker": "232140",
         "name": "와이씨",
         "market": "KOSDAQ",
-        "market_cap": 9755.0,
+        "market_cap": 9657.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "232140.KQ"
+      },
+      {
+        "ticker": "417200",
+        "name": "LS머트리얼즈",
+        "market": "KOSDAQ",
+        "market_cap": 9262.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "417200.KQ"
       },
       {
         "ticker": "086450",
         "name": "동국제약",
         "market": "KOSDAQ",
-        "market_cap": 9272.0,
+        "market_cap": 9114.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "086450.KQ"
-      },
-      {
-        "ticker": "458870",
-        "name": "씨어스",
-        "market": "KOSDAQ",
-        "market_cap": 9050.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "458870.KQ"
       },
       {
         "ticker": "014620",
         "name": "성광벤드",
         "market": "KOSDAQ",
-        "market_cap": 8950.0,
+        "market_cap": 8937.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "014620.KQ"
+      },
+      {
+        "ticker": "458870",
+        "name": "씨어스",
+        "market": "KOSDAQ",
+        "market_cap": 8839.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "458870.KQ"
       },
       {
         "ticker": "356860",
         "name": "티엘비",
         "market": "KOSDAQ",
-        "market_cap": 8935.0,
+        "market_cap": 8817.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "356860.KQ"
+      },
+      {
+        "ticker": "445680",
+        "name": "큐리옥스바이오시스템즈",
+        "market": "KOSDAQ",
+        "market_cap": 8640.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "445680.KQ"
       },
       {
         "ticker": "100790",
         "name": "미래에셋벤처투자",
         "market": "KOSDAQ",
-        "market_cap": 8568.0,
+        "market_cap": 8574.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "100790.KQ"
-      },
-      {
-        "ticker": "101490",
-        "name": "에스앤에스텍",
-        "market": "KOSDAQ",
-        "market_cap": 8545.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "101490.KQ"
       },
       {
         "ticker": "065350",
@@ -2317,28 +2325,20 @@
         "yf_ticker": "036830.KQ"
       },
       {
-        "ticker": "445680",
-        "name": "큐리옥스바이오시스템즈",
+        "ticker": "101490",
+        "name": "에스앤에스텍",
+        "market": "KOSDAQ",
+        "market_cap": 8406.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "101490.KQ"
+      },
+      {
+        "ticker": "035760",
+        "name": "CJ ENM",
         "market": "KOSDAQ",
         "market_cap": 8399.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "445680.KQ"
-      },
-      {
-        "ticker": "417200",
-        "name": "LS머트리얼즈",
-        "market": "KOSDAQ",
-        "market_cap": 8396.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "417200.KQ"
-      },
-      {
-        "ticker": "083450",
-        "name": "GST",
-        "market": "KOSDAQ",
-        "market_cap": 8367.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "083450.KQ"
+        "yf_ticker": "035760.KQ"
       },
       {
         "ticker": "122870",
@@ -2349,154 +2349,154 @@
         "yf_ticker": "122870.KQ"
       },
       {
-        "ticker": "035760",
-        "name": "CJ ENM",
+        "ticker": "083450",
+        "name": "GST",
         "market": "KOSDAQ",
-        "market_cap": 8289.0,
+        "market_cap": 8349.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "035760.KQ"
+        "yf_ticker": "083450.KQ"
       },
       {
         "ticker": "327260",
         "name": "RF머트리얼즈",
         "market": "KOSDAQ",
-        "market_cap": 8248.0,
+        "market_cap": 8266.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "327260.KQ"
-      },
-      {
-        "ticker": "388720",
-        "name": "유일로보틱스",
-        "market": "KOSDAQ",
-        "market_cap": 8223.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "388720.KQ"
       },
       {
         "ticker": "115180",
         "name": "큐리언트",
         "market": "KOSDAQ",
-        "market_cap": 8182.0,
+        "market_cap": 8032.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "115180.KQ"
       },
       {
-        "ticker": "119850",
-        "name": "지엔씨에너지",
+        "ticker": "388720",
+        "name": "유일로보틱스",
         "market": "KOSDAQ",
-        "market_cap": 8068.0,
+        "market_cap": 8011.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "119850.KQ"
-      },
-      {
-        "ticker": "041830",
-        "name": "인바디",
-        "market": "KOSDAQ",
-        "market_cap": 7994.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "041830.KQ"
+        "yf_ticker": "388720.KQ"
       },
       {
         "ticker": "099320",
         "name": "쎄트렉아이",
         "market": "KOSDAQ",
-        "market_cap": 7951.0,
+        "market_cap": 7994.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "099320.KQ"
       },
       {
-        "ticker": "090360",
-        "name": "로보스타",
+        "ticker": "119850",
+        "name": "지엔씨에너지",
         "market": "KOSDAQ",
-        "market_cap": 7898.0,
+        "market_cap": 7969.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "090360.KQ"
-      },
-      {
-        "ticker": "160190",
-        "name": "하이젠알앤엠",
-        "market": "KOSDAQ",
-        "market_cap": 7892.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "160190.KQ"
+        "yf_ticker": "119850.KQ"
       },
       {
         "ticker": "031330",
         "name": "에스에이엠티",
         "market": "KOSDAQ",
-        "market_cap": 7880.0,
+        "market_cap": 7820.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "031330.KQ"
       },
       {
-        "ticker": "044490",
-        "name": "태웅",
+        "ticker": "041830",
+        "name": "인바디",
         "market": "KOSDAQ",
-        "market_cap": 7803.0,
+        "market_cap": 7725.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "044490.KQ"
+        "yf_ticker": "041830.KQ"
+      },
+      {
+        "ticker": "090360",
+        "name": "로보스타",
+        "market": "KOSDAQ",
+        "market_cap": 7654.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "090360.KQ"
       },
       {
         "ticker": "032190",
         "name": "다우데이타",
         "market": "KOSDAQ",
-        "market_cap": 7717.0,
+        "market_cap": 7633.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "032190.KQ"
-      },
-      {
-        "ticker": "491000",
-        "name": "리브스메드",
-        "market": "KOSDAQ",
-        "market_cap": 7715.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "491000.KQ"
-      },
-      {
-        "ticker": "225570",
-        "name": "넥슨게임즈",
-        "market": "KOSDAQ",
-        "market_cap": 7692.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "225570.KQ"
       },
       {
         "ticker": "213420",
         "name": "덕산네오룩스",
         "market": "KOSDAQ",
-        "market_cap": 7636.0,
+        "market_cap": 7623.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "213420.KQ"
       },
       {
-        "ticker": "476830",
-        "name": "알지노믹스",
+        "ticker": "044490",
+        "name": "태웅",
         "market": "KOSDAQ",
-        "market_cap": 7589.0,
+        "market_cap": 7623.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "476830.KQ"
+        "yf_ticker": "044490.KQ"
       },
       {
-        "ticker": "090710",
-        "name": "휴림로봇",
+        "ticker": "225570",
+        "name": "넥슨게임즈",
         "market": "KOSDAQ",
-        "market_cap": 7532.0,
+        "market_cap": 7613.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "090710.KQ"
+        "yf_ticker": "225570.KQ"
       },
       {
         "ticker": "950260",
         "name": "인제니아테라퓨틱스(Reg.S)",
         "market": "KOSDAQ",
-        "market_cap": 7481.0,
+        "market_cap": 7535.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "950260.KQ"
+      },
+      {
+        "ticker": "491000",
+        "name": "리브스메드",
+        "market": "KOSDAQ",
+        "market_cap": 7501.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "491000.KQ"
+      },
+      {
+        "ticker": "032500",
+        "name": "케이엠더블유",
+        "market": "KOSDAQ",
+        "market_cap": 7472.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "032500.KQ"
+      },
+      {
+        "ticker": "033100",
+        "name": "제룡전기",
+        "market": "KOSDAQ",
+        "market_cap": 7341.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "033100.KQ"
+      },
+      {
+        "ticker": "090710",
+        "name": "휴림로봇",
+        "market": "KOSDAQ",
+        "market_cap": 7341.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "090710.KQ"
       },
       {
         "ticker": "161580",
         "name": "필옵틱스",
         "market": "KOSDAQ",
-        "market_cap": 7419.0,
+        "market_cap": 7302.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "161580.KQ"
       },
@@ -2504,31 +2504,39 @@
         "ticker": "085660",
         "name": "차바이오텍",
         "market": "KOSDAQ",
-        "market_cap": 7419.0,
+        "market_cap": 7298.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "085660.KQ"
+      },
+      {
+        "ticker": "476830",
+        "name": "알지노믹스",
+        "market": "KOSDAQ",
+        "market_cap": 7294.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "476830.KQ"
+      },
+      {
+        "ticker": "160190",
+        "name": "하이젠알앤엠",
+        "market": "KOSDAQ",
+        "market_cap": 7290.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "160190.KQ"
       },
       {
         "ticker": "041960",
         "name": "코미팜",
         "market": "KOSDAQ",
-        "market_cap": 7380.0,
+        "market_cap": 7283.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "041960.KQ"
-      },
-      {
-        "ticker": "033100",
-        "name": "제룡전기",
-        "market": "KOSDAQ",
-        "market_cap": 7365.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "033100.KQ"
       },
       {
         "ticker": "038500",
         "name": "삼표시멘트",
         "market": "KOSDAQ",
-        "market_cap": 7338.0,
+        "market_cap": 7263.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "038500.KQ"
       },
@@ -2536,55 +2544,63 @@
         "ticker": "466100",
         "name": "클로봇",
         "market": "KOSDAQ",
-        "market_cap": 7243.0,
+        "market_cap": 7150.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "466100.KQ"
-      },
-      {
-        "ticker": "251970",
-        "name": "펌텍코리아",
-        "market": "KOSDAQ",
-        "market_cap": 7229.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "251970.KQ"
       },
       {
         "ticker": "006730",
         "name": "서부T&D",
         "market": "KOSDAQ",
-        "market_cap": 7218.0,
+        "market_cap": 7148.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "006730.KQ"
+      },
+      {
+        "ticker": "251970",
+        "name": "펌텍코리아",
+        "market": "KOSDAQ",
+        "market_cap": 7105.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "251970.KQ"
       },
       {
         "ticker": "281740",
         "name": "레이크머티리얼즈",
         "market": "KOSDAQ",
-        "market_cap": 7171.0,
+        "market_cap": 7053.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "281740.KQ"
-      },
-      {
-        "ticker": "171090",
-        "name": "선익시스템",
-        "market": "KOSDAQ",
-        "market_cap": 7110.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "171090.KQ"
       },
       {
         "ticker": "023160",
         "name": "태광",
         "market": "KOSDAQ",
-        "market_cap": 7062.0,
+        "market_cap": 6958.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "023160.KQ"
+      },
+      {
+        "ticker": "074600",
+        "name": "원익QnC",
+        "market": "KOSDAQ",
+        "market_cap": 6927.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "074600.KQ"
+      },
+      {
+        "ticker": "171090",
+        "name": "선익시스템",
+        "market": "KOSDAQ",
+        "market_cap": 6917.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "171090.KQ"
       },
       {
         "ticker": "053800",
         "name": "안랩",
         "market": "KOSDAQ",
-        "market_cap": 7043.0,
+        "market_cap": 6910.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "053800.KQ"
       },
@@ -2592,39 +2608,15 @@
         "ticker": "137400",
         "name": "피엔티",
         "market": "KOSDAQ",
-        "market_cap": 7012.0,
+        "market_cap": 6906.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "137400.KQ"
-      },
-      {
-        "ticker": "124500",
-        "name": "아이티센글로벌",
-        "market": "KOSDAQ",
-        "market_cap": 6985.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "124500.KQ"
-      },
-      {
-        "ticker": "074600",
-        "name": "원익QnC",
-        "market": "KOSDAQ",
-        "market_cap": 6966.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "074600.KQ"
-      },
-      {
-        "ticker": "032500",
-        "name": "케이엠더블유",
-        "market": "KOSDAQ",
-        "market_cap": 6949.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "032500.KQ"
       },
       {
         "ticker": "189300",
         "name": "인텔리안테크",
         "market": "KOSDAQ",
-        "market_cap": 6851.0,
+        "market_cap": 6904.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "189300.KQ"
       },
@@ -2632,31 +2624,31 @@
         "ticker": "093320",
         "name": "케이아이엔엑스",
         "market": "KOSDAQ",
-        "market_cap": 6817.0,
+        "market_cap": 6783.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "093320.KQ"
+      },
+      {
+        "ticker": "295310",
+        "name": "에이치브이엠",
+        "market": "KOSDAQ",
+        "market_cap": 6685.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "295310.KQ"
       },
       {
         "ticker": "388210",
         "name": "씨엠티엑스",
         "market": "KOSDAQ",
-        "market_cap": 6806.0,
+        "market_cap": 6671.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "388210.KQ"
-      },
-      {
-        "ticker": "425420",
-        "name": "티에프이",
-        "market": "KOSDAQ",
-        "market_cap": 6729.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "425420.KQ"
       },
       {
         "ticker": "476060",
         "name": "온코닉테라퓨틱스",
         "market": "KOSDAQ",
-        "market_cap": 6652.0,
+        "market_cap": 6589.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "476060.KQ"
       },
@@ -2664,7 +2656,7 @@
         "ticker": "059090",
         "name": "미코",
         "market": "KOSDAQ",
-        "market_cap": 6583.0,
+        "market_cap": 6556.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "059090.KQ"
       },
@@ -2672,23 +2664,39 @@
         "ticker": "253450",
         "name": "스튜디오드래곤",
         "market": "KOSDAQ",
-        "market_cap": 6583.0,
+        "market_cap": 6538.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "253450.KQ"
       },
       {
-        "ticker": "295310",
-        "name": "에이치브이엠",
+        "ticker": "425420",
+        "name": "티에프이",
         "market": "KOSDAQ",
-        "market_cap": 6488.0,
+        "market_cap": 6532.0,
         "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "295310.KQ"
+        "yf_ticker": "425420.KQ"
+      },
+      {
+        "ticker": "124500",
+        "name": "아이티센글로벌",
+        "market": "KOSDAQ",
+        "market_cap": 6497.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "124500.KQ"
+      },
+      {
+        "ticker": "033790",
+        "name": "피노",
+        "market": "KOSDAQ",
+        "market_cap": 6307.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "033790.KQ"
       },
       {
         "ticker": "328130",
         "name": "루닛",
         "market": "KOSDAQ",
-        "market_cap": 6374.0,
+        "market_cap": 6262.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "328130.KQ"
       },
@@ -2696,23 +2704,15 @@
         "ticker": "121600",
         "name": "나노신소재",
         "market": "KOSDAQ",
-        "market_cap": 6291.0,
+        "market_cap": 6180.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "121600.KQ"
-      },
-      {
-        "ticker": "033790",
-        "name": "피노",
-        "market": "KOSDAQ",
-        "market_cap": 6274.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "033790.KQ"
       },
       {
         "ticker": "048410",
         "name": "현대바이오",
         "market": "KOSDAQ",
-        "market_cap": 6234.0,
+        "market_cap": 6118.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "048410.KQ"
       },
@@ -2720,39 +2720,39 @@
         "ticker": "122640",
         "name": "예스티",
         "market": "KOSDAQ",
-        "market_cap": 6192.0,
+        "market_cap": 6095.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "122640.KQ"
-      },
-      {
-        "ticker": "358570",
-        "name": "지아이이노베이션",
-        "market": "KOSDAQ",
-        "market_cap": 5935.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "358570.KQ"
-      },
-      {
-        "ticker": "222080",
-        "name": "SFA넥셀",
-        "market": "KOSDAQ",
-        "market_cap": 5904.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "222080.KQ"
       },
       {
         "ticker": "064290",
         "name": "인텍플러스",
         "market": "KOSDAQ",
-        "market_cap": 5896.0,
+        "market_cap": 5960.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "064290.KQ"
+      },
+      {
+        "ticker": "222080",
+        "name": "SFA넥셀",
+        "market": "KOSDAQ",
+        "market_cap": 5834.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "222080.KQ"
+      },
+      {
+        "ticker": "358570",
+        "name": "지아이이노베이션",
+        "market": "KOSDAQ",
+        "market_cap": 5781.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "358570.KQ"
       },
       {
         "ticker": "102710",
         "name": "이엔에프테크놀로지",
         "market": "KOSDAQ",
-        "market_cap": 5787.0,
+        "market_cap": 5722.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "102710.KQ"
       },
@@ -2760,7 +2760,7 @@
         "ticker": "036810",
         "name": "에프에스티",
         "market": "KOSDAQ",
-        "market_cap": 5716.0,
+        "market_cap": 5651.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "036810.KQ"
       },
@@ -2768,25 +2768,9 @@
         "ticker": "046890",
         "name": "서울반도체",
         "market": "KOSDAQ",
-        "market_cap": 5708.0,
+        "market_cap": 5638.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "046890.KQ"
-      },
-      {
-        "ticker": "456160",
-        "name": "지투지바이오",
-        "market": "KOSDAQ",
-        "market_cap": 5671.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "456160.KQ"
-      },
-      {
-        "ticker": "060250",
-        "name": "NHN KCP",
-        "market": "KOSDAQ",
-        "market_cap": 5627.0,
-        "universe_source": "naver_mobile_market_cap_v2",
-        "yf_ticker": "060250.KQ"
       },
       {
         "ticker": "033640",
@@ -2800,9 +2784,25 @@
         "ticker": "094170",
         "name": "동운아나텍",
         "market": "KOSDAQ",
-        "market_cap": 5593.0,
+        "market_cap": 5614.0,
         "universe_source": "naver_mobile_market_cap_v2",
         "yf_ticker": "094170.KQ"
+      },
+      {
+        "ticker": "053610",
+        "name": "프로텍",
+        "market": "KOSDAQ",
+        "market_cap": 5472.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "053610.KQ"
+      },
+      {
+        "ticker": "050890",
+        "name": "쏠리드",
+        "market": "KOSDAQ",
+        "market_cap": 5359.0,
+        "universe_source": "naver_mobile_market_cap_v2",
+        "yf_ticker": "050890.KQ"
       }
     ]
   }
