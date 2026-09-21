@@ -52,10 +52,10 @@
       "highest_close": 286.99,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 21.0,
-      "last_close": 263.75,
-      "trailing_stop": 262.65,
-      "updated_date": "2026-09-17"
+      "last_exit_risk": 27.0,
+      "last_close": 260.21,
+      "trailing_stop": 259.95,
+      "updated_date": "2026-09-18"
     },
     "MPC": {
       "ticker": "MPC",
@@ -110,9 +110,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 199.28,
-      "trailing_stop": 183.99,
-      "updated_date": "2026-09-17"
+      "last_close": 193.87,
+      "trailing_stop": 183.89,
+      "updated_date": "2026-09-18"
     },
     "NOW": {
       "ticker": "NOW",
@@ -153,7 +153,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 31.0,
       "last_close": 209.51,
-      "trailing_stop": 204.7,
+      "trailing_stop": 204.68,
       "updated_date": "2026-09-18"
     },
     "GILD": {
@@ -265,7 +265,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 43.2,
       "last_close": 10.21,
-      "trailing_stop": 9.94,
+      "trailing_stop": 9.95,
       "updated_date": "2026-09-18"
     },
     "NEM": {
@@ -279,7 +279,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 38.0,
       "last_close": 123.41,
-      "trailing_stop": 120.37,
+      "trailing_stop": 120.36,
       "updated_date": "2026-09-18"
     },
     "MSTR": {
@@ -320,9 +320,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 72.41,
+      "last_close": 72.37,
       "trailing_stop": 71.76,
-      "updated_date": "2026-09-17"
+      "updated_date": "2026-09-18"
     },
     "EL": {
       "ticker": "EL",
@@ -361,10 +361,10 @@
       "highest_close": 658.32,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 658.32,
-      "trailing_stop": 613.97,
-      "updated_date": "2026-09-17"
+      "last_exit_risk": 11.0,
+      "last_close": 651.45,
+      "trailing_stop": 614.01,
+      "updated_date": "2026-09-18"
     },
     "T": {
       "ticker": "T",
@@ -405,7 +405,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 11.0,
       "last_close": 143.45,
-      "trailing_stop": 133.48,
+      "trailing_stop": 133.47,
       "updated_date": "2026-09-18"
     },
     "ACN": {
@@ -667,5 +667,5 @@
       "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
     }
   ],
-  "updated_at": "2026-09-18T20:00:24-04:00"
+  "updated_at": "2026-09-21T09:26:44-04:00"
 }
