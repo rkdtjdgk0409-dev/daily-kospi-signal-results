@@ -109,7 +109,7 @@
       "highest_close": 206.92,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 17.0,
+      "last_exit_risk": 13.0,
       "last_close": 191.92,
       "trailing_stop": 184.36,
       "updated_date": "2026-09-21"
@@ -417,7 +417,7 @@
       "highest_close": 193.4,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 17.0,
+      "last_exit_risk": 13.0,
       "last_close": 186.11,
       "trailing_stop": 176.78,
       "updated_date": "2026-09-21"
@@ -681,5 +681,5 @@
       "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
     }
   ],
-  "updated_at": "2026-09-23T08:48:03-04:00"
+  "updated_at": "2026-09-23T20:21:24-04:00"
 }
