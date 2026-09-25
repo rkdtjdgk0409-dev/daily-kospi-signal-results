@@ -38,7 +38,7 @@
       "highest_close": 274.21,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 48.5,
+      "last_exit_risk": 48.7,
       "last_close": 255.87,
       "trailing_stop": 250.48,
       "updated_date": "2026-09-24"
@@ -54,7 +54,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
       "last_close": 274.84,
-      "trailing_stop": 264.99,
+      "trailing_stop": 265.27,
       "updated_date": "2026-09-24"
     },
     "MPC": {
@@ -66,7 +66,7 @@
       "highest_close": 424.89,
       "tp1_done": true,
       "last_status": "WATCH",
-      "last_exit_risk": 52.8,
+      "last_exit_risk": 53.0,
       "last_close": 390.95,
       "trailing_stop": 383.86,
       "updated_date": "2026-09-24",
@@ -83,7 +83,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 7.0,
       "last_close": 259.67,
-      "trailing_stop": 226.14,
+      "trailing_stop": 227.39,
       "updated_date": "2026-09-24"
     },
     "PANW": {
@@ -95,9 +95,9 @@
       "highest_close": 393.3,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 12.0,
+      "last_exit_risk": 16.0,
       "last_close": 389.92,
-      "trailing_stop": 343.22,
+      "trailing_stop": 344.18,
       "updated_date": "2026-09-24"
     },
     "WDAY": {
@@ -109,9 +109,9 @@
       "highest_close": 206.92,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 24.0,
+      "last_exit_risk": 29.0,
       "last_close": 190.99,
-      "trailing_stop": 185.05,
+      "trailing_stop": 184.96,
       "updated_date": "2026-09-24"
     },
     "NOW": {
@@ -139,7 +139,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
       "last_close": 28.41,
-      "trailing_stop": 27.56,
+      "trailing_stop": 27.57,
       "updated_date": "2026-09-24"
     },
     "CVX": {
@@ -153,7 +153,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 36.0,
       "last_close": 205.65,
-      "trailing_stop": 204.62,
+      "trailing_stop": 204.58,
       "updated_date": "2026-09-24"
     },
     "GILD": {
@@ -165,9 +165,9 @@
       "highest_close": 151.37,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 18.0,
+      "last_exit_risk": 15.0,
       "last_close": 149.69,
-      "trailing_stop": 142.09,
+      "trailing_stop": 141.94,
       "updated_date": "2026-09-24"
     },
     "MRNA": {
@@ -193,7 +193,7 @@
       "highest_close": 47.41,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 31.0,
+      "last_exit_risk": 25.0,
       "last_close": 43.68,
       "trailing_stop": 42.71,
       "updated_date": "2026-09-24"
@@ -207,9 +207,9 @@
       "highest_close": 152.34,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 11.0,
+      "last_exit_risk": 15.0,
       "last_close": 147.98,
-      "trailing_stop": 143.74,
+      "trailing_stop": 143.44,
       "updated_date": "2026-09-24"
     },
     "CPAY": {
@@ -221,9 +221,9 @@
       "highest_close": 419.68,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 46.1,
+      "last_exit_risk": 45.4,
       "last_close": 400.32,
-      "trailing_stop": 397.56,
+      "trailing_stop": 396.95,
       "updated_date": "2026-09-24"
     },
     "INCY": {
@@ -235,9 +235,9 @@
       "highest_close": 128.83,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
+      "last_exit_risk": 32.0,
       "last_close": 124.44,
-      "trailing_stop": 121.28,
+      "trailing_stop": 121.22,
       "updated_date": "2026-09-24"
     },
     "BIIB": {
@@ -251,7 +251,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 7.0,
       "last_close": 226.36,
-      "trailing_stop": 210.8,
+      "trailing_stop": 211.12,
       "updated_date": "2026-09-24"
     },
     "PSKY": {
@@ -276,10 +276,10 @@
       "entry_price": 130.43,
       "highest_close": 130.43,
       "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 52.5,
+      "last_status": "HOLD",
+      "last_exit_risk": 42.0,
       "last_close": 121.3,
-      "trailing_stop": 120.67,
+      "trailing_stop": 120.08,
       "updated_date": "2026-09-24"
     },
     "MSTR": {
@@ -319,9 +319,9 @@
       "highest_close": 72.57,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 13.0,
+      "last_exit_risk": 11.0,
       "last_close": 72.57,
-      "trailing_stop": 72.0,
+      "trailing_stop": 71.99,
       "updated_date": "2026-09-24"
     },
     "EL": {
@@ -363,7 +363,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
       "last_close": 678.39,
-      "trailing_stop": 633.01,
+      "trailing_stop": 633.71,
       "updated_date": "2026-09-24"
     },
     "T": {
@@ -391,7 +391,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 7.0,
       "last_close": 275.02,
-      "trailing_stop": 254.45,
+      "trailing_stop": 254.74,
       "updated_date": "2026-09-24"
     },
     "RVTY": {
@@ -402,10 +402,10 @@
       "entry_price": 140.19,
       "highest_close": 150.68,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 7.0,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 4.0,
       "last_close": 150.68,
-      "trailing_stop": 136.74,
+      "trailing_stop": 136.99,
       "updated_date": "2026-09-24"
     },
     "ACN": {
@@ -417,9 +417,9 @@
       "highest_close": 193.4,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 48.1,
+      "last_exit_risk": 48.4,
       "last_close": 177.41,
-      "trailing_stop": 175.83,
+      "trailing_stop": 175.71,
       "updated_date": "2026-09-24"
     },
     "SMCI": {
@@ -445,7 +445,7 @@
       "highest_close": 30.84,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
+      "last_exit_risk": 11.0,
       "last_close": 30.84,
       "trailing_stop": 29.33,
       "updated_date": "2026-09-24"
@@ -681,5 +681,5 @@
       "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
     }
   ],
-  "updated_at": "2026-09-25T08:20:42-04:00"
+  "updated_at": "2026-09-25T08:49:48-04:00"
 }
