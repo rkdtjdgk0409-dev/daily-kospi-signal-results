@@ -10,7 +10,7 @@
       "highest_close": 6380.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 45.4,
+      "last_exit_risk": 49.4,
       "last_close": 5700.0,
       "trailing_stop": 5461.04,
       "updated_date": "2026-09-28"
@@ -24,7 +24,7 @@
       "highest_close": 22850.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 7.0,
+      "last_exit_risk": 11.0,
       "last_close": 21250.0,
       "trailing_stop": 21039.44,
       "updated_date": "2026-09-28"
@@ -38,7 +38,7 @@
       "highest_close": 318000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 38.0,
+      "last_exit_risk": 42.0,
       "last_close": 291500.0,
       "trailing_stop": 284412.46,
       "updated_date": "2026-09-28"
@@ -52,7 +52,7 @@
       "highest_close": 150600.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 21.0,
+      "last_exit_risk": 25.0,
       "last_close": 142700.0,
       "trailing_stop": 134244.43,
       "updated_date": "2026-09-28"
@@ -66,7 +66,7 @@
       "highest_close": 57700.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 6.0,
+      "last_exit_risk": 10.0,
       "last_close": 52400.0,
       "trailing_stop": 48680.99,
       "updated_date": "2026-09-28"
@@ -94,7 +94,7 @@
       "highest_close": 85600.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 23.0,
+      "last_exit_risk": 27.0,
       "last_close": 83300.0,
       "trailing_stop": 76937.93,
       "updated_date": "2026-09-28"
@@ -122,7 +122,7 @@
       "highest_close": 38500.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 38.0,
+      "last_exit_risk": 42.0,
       "last_close": 35550.0,
       "trailing_stop": 32071.26,
       "updated_date": "2026-09-28"
@@ -164,7 +164,7 @@
       "highest_close": 165900.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 0.0,
+      "last_exit_risk": 4.0,
       "last_close": 162200.0,
       "trailing_stop": 139597.58,
       "updated_date": "2026-09-28"
@@ -206,7 +206,7 @@
       "highest_close": 152000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
+      "last_exit_risk": 31.0,
       "last_close": 126200.0,
       "trailing_stop": 117546.75,
       "updated_date": "2026-09-28"
@@ -248,7 +248,7 @@
       "highest_close": 520000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 3.0,
+      "last_exit_risk": 7.0,
       "last_close": 504000.0,
       "trailing_stop": 442702.08,
       "updated_date": "2026-09-28"
@@ -262,7 +262,7 @@
       "highest_close": 6020.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 17.0,
+      "last_exit_risk": 21.0,
       "last_close": 5820.0,
       "trailing_stop": 5335.13,
       "updated_date": "2026-09-28"
@@ -276,7 +276,7 @@
       "highest_close": 36850.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 6.0,
+      "last_exit_risk": 10.0,
       "last_close": 36400.0,
       "trailing_stop": 34124.01,
       "updated_date": "2026-09-28"
@@ -290,7 +290,7 @@
       "highest_close": 140800.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
+      "last_exit_risk": 31.0,
       "last_close": 135300.0,
       "trailing_stop": 130221.7,
       "updated_date": "2026-09-28"
@@ -332,9 +332,9 @@
       "highest_close": 192800.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 6.0,
+      "last_exit_risk": 10.0,
       "last_close": 190900.0,
-      "trailing_stop": 174629.37,
+      "trailing_stop": 174629.36,
       "updated_date": "2026-09-28"
     },
     "425420": {
@@ -374,7 +374,7 @@
       "highest_close": 31700.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 0.0,
+      "last_exit_risk": 4.0,
       "last_close": 31700.0,
       "trailing_stop": 29012.79,
       "updated_date": "2026-09-28"
@@ -486,5 +486,5 @@
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-09-28T23:31:52+09:00"
+  "updated_at": "2026-09-29T00:29:23+09:00"
 }
