@@ -7,13 +7,13 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-21",
       "entry_price": 179.94,
-      "highest_close": 192.59,
+      "highest_close": 193.85,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 11.0,
-      "last_close": 189.4,
-      "trailing_stop": 174.98,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 7.0,
+      "last_close": 193.85,
+      "trailing_stop": 176.73,
+      "updated_date": "2026-10-06"
     },
     "MSFT": {
       "ticker": "MSFT",
@@ -21,13 +21,13 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-25",
       "entry_price": 491.71,
-      "highest_close": 526.71,
+      "highest_close": 530.44,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 525.18,
-      "trailing_stop": 493.54,
-      "updated_date": "2026-10-05"
+      "last_status": "HOLD",
+      "last_exit_risk": 7.0,
+      "last_close": 530.44,
+      "trailing_stop": 498.36,
+      "updated_date": "2026-10-06"
     },
     "PSX": {
       "ticker": "PSX",
@@ -38,10 +38,10 @@
       "highest_close": 274.21,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 13.0,
-      "last_close": 269.72,
+      "last_exit_risk": 17.0,
+      "last_close": 267.2,
       "trailing_stop": 250.48,
-      "updated_date": "2026-10-05"
+      "updated_date": "2026-10-06"
     },
     "VEEV": {
       "ticker": "VEEV",
@@ -49,13 +49,13 @@
       "market": "S&P 500",
       "entry_date": "2026-08-27",
       "entry_price": 285.05,
-      "highest_close": 287.45,
+      "highest_close": 288.91,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 17.0,
-      "last_close": 283.45,
-      "trailing_stop": 264.57,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 13.0,
+      "last_close": 288.91,
+      "trailing_stop": 265.39,
+      "updated_date": "2026-10-06"
     },
     "MPC": {
       "ticker": "MPC",
@@ -67,9 +67,9 @@
       "tp1_done": true,
       "last_status": "HOLD",
       "last_exit_risk": 13.0,
-      "last_close": 433.47,
-      "trailing_stop": 389.79,
-      "updated_date": "2026-10-05",
+      "last_close": 429.65,
+      "trailing_stop": 391.37,
+      "updated_date": "2026-10-06",
       "tp1_date": "2026-09-02"
     },
     "CRWD": {
@@ -78,13 +78,13 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-27",
       "entry_price": 226.14,
-      "highest_close": 272.67,
+      "highest_close": 282.18,
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 7.0,
-      "last_close": 272.67,
-      "trailing_stop": 241.74,
-      "updated_date": "2026-10-05"
+      "last_close": 282.18,
+      "trailing_stop": 251.2,
+      "updated_date": "2026-10-06"
     },
     "PANW": {
       "ticker": "PANW",
@@ -92,13 +92,13 @@
       "market": "S&P 500 + NASDAQ-100",
       "entry_date": "2026-08-27",
       "entry_price": 382.85,
-      "highest_close": 406.76,
+      "highest_close": 427.5,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 406.76,
-      "trailing_stop": 360.15,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 12.0,
+      "last_close": 427.5,
+      "trailing_stop": 379.58,
+      "updated_date": "2026-10-06"
     },
     "WDAY": {
       "ticker": "WDAY",
@@ -109,10 +109,10 @@
       "highest_close": 206.92,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 188.96,
-      "trailing_stop": 186.37,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 35.0,
+      "last_close": 185.3,
+      "trailing_stop": 185.11,
+      "updated_date": "2026-10-06"
     },
     "NOW": {
       "ticker": "NOW",
@@ -124,9 +124,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 17.0,
-      "last_close": 136.08,
-      "trailing_stop": 130.96,
-      "updated_date": "2026-10-05"
+      "last_close": 139.32,
+      "trailing_stop": 131.5,
+      "updated_date": "2026-10-06"
     },
     "PFE": {
       "ticker": "PFE",
@@ -138,9 +138,9 @@
       "tp1_done": false,
       "last_status": "WATCH",
       "last_exit_risk": 54.4,
-      "last_close": 27.41,
-      "trailing_stop": 27.38,
-      "updated_date": "2026-10-05"
+      "last_close": 27.59,
+      "trailing_stop": 27.52,
+      "updated_date": "2026-10-06"
     },
     "CVX": {
       "ticker": "CVX",
@@ -151,10 +151,10 @@
       "highest_close": 217.77,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 44.3,
-      "last_close": 206.47,
-      "trailing_stop": 205.44,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 40.3,
+      "last_close": 205.36,
+      "trailing_stop": 205.15,
+      "updated_date": "2026-10-06"
     },
     "GILD": {
       "ticker": "GILD",
@@ -165,10 +165,10 @@
       "highest_close": 152.21,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 54.6,
-      "last_close": 144.63,
-      "trailing_stop": 142.3,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 49.0,
+      "last_close": 144.9,
+      "trailing_stop": 142.7,
+      "updated_date": "2026-10-06"
     },
     "MRNA": {
       "ticker": "MRNA",
@@ -176,13 +176,13 @@
       "market": "S&P 500",
       "entry_date": "2026-09-01",
       "entry_price": 154.27,
-      "highest_close": 203.46,
+      "highest_close": 209.98,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 203.21,
-      "trailing_stop": 164.55,
-      "updated_date": "2026-10-05"
+      "last_close": 209.98,
+      "trailing_stop": 171.78,
+      "updated_date": "2026-10-06"
     },
     "BIIB": {
       "ticker": "BIIB",
@@ -193,10 +193,10 @@
       "highest_close": 229.15,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 42.0,
-      "last_close": 223.59,
-      "trailing_stop": 213.43,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 33.0,
+      "last_close": 224.01,
+      "trailing_stop": 213.96,
+      "updated_date": "2026-10-06"
     },
     "MSTR": {
       "ticker": "MSTR",
@@ -207,10 +207,10 @@
       "highest_close": 168.5,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 6.0,
-      "last_close": 164.43,
-      "trailing_stop": 142.37,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 0.0,
+      "last_close": 168.18,
+      "trailing_stop": 143.94,
+      "updated_date": "2026-10-06"
     },
     "COIN": {
       "ticker": "COIN",
@@ -221,10 +221,10 @@
       "highest_close": 204.09,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 188.22,
-      "trailing_stop": 169.61,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 25.0,
+      "last_close": 191.31,
+      "trailing_stop": 171.69,
+      "updated_date": "2026-10-06"
     },
     "TECH": {
       "ticker": "TECH",
@@ -234,11 +234,11 @@
       "entry_price": 72.43,
       "highest_close": 72.64,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 72.58,
-      "trailing_stop": 72.06,
-      "updated_date": "2026-10-05"
+      "last_status": "HOLD",
+      "last_exit_risk": 13.0,
+      "last_close": 72.57,
+      "trailing_stop": 72.07,
+      "updated_date": "2026-10-06"
     },
     "HOOD": {
       "ticker": "HOOD",
@@ -249,10 +249,10 @@
       "highest_close": 123.3,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 34.0,
-      "last_close": 114.11,
-      "trailing_stop": 107.94,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 28.0,
+      "last_close": 114.96,
+      "trailing_stop": 108.69,
+      "updated_date": "2026-10-06"
     },
     "TMO": {
       "ticker": "TMO",
@@ -260,13 +260,13 @@
       "market": "S&P 500",
       "entry_date": "2026-09-11",
       "entry_price": 609.82,
-      "highest_close": 679.61,
+      "highest_close": 690.23,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 25.0,
-      "last_close": 676.76,
-      "trailing_stop": 633.19,
-      "updated_date": "2026-10-05"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 690.23,
+      "trailing_stop": 643.79,
+      "updated_date": "2026-10-06"
     },
     "IQV": {
       "ticker": "IQV",
@@ -277,10 +277,10 @@
       "highest_close": 275.02,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 43.0,
-      "last_close": 266.09,
-      "trailing_stop": 254.38,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 13.0,
+      "last_close": 272.76,
+      "trailing_stop": 254.8,
+      "updated_date": "2026-10-06"
     },
     "RVTY": {
       "ticker": "RVTY",
@@ -288,13 +288,13 @@
       "market": "S&P 500",
       "entry_date": "2026-09-15",
       "entry_price": 140.19,
-      "highest_close": 157.36,
+      "highest_close": 163.74,
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 7.0,
-      "last_close": 157.36,
-      "trailing_stop": 143.17,
-      "updated_date": "2026-10-05"
+      "last_close": 163.74,
+      "trailing_stop": 148.79,
+      "updated_date": "2026-10-06"
     },
     "ACN": {
       "ticker": "ACN",
@@ -305,10 +305,10 @@
       "highest_close": 223.8,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 11.0,
-      "last_close": 195.05,
-      "trailing_stop": 192.71,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 22.0,
+      "last_close": 194.4,
+      "trailing_stop": 194.21,
+      "updated_date": "2026-10-06"
     },
     "SMCI": {
       "ticker": "SMCI",
@@ -318,11 +318,11 @@
       "entry_price": 40.35,
       "highest_close": 43.58,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 43.19,
-      "trailing_stop": 37.32,
-      "updated_date": "2026-10-05"
+      "last_status": "HOLD",
+      "last_exit_risk": 7.0,
+      "last_close": 43.46,
+      "trailing_stop": 37.61,
+      "updated_date": "2026-10-06"
     },
     "WBD": {
       "ticker": "WBD",
@@ -344,13 +344,13 @@
       "market": "S&P 500",
       "entry_date": "2026-10-05",
       "entry_price": 310.77,
-      "highest_close": 310.77,
+      "highest_close": 331.37,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 310.77,
-      "trailing_stop": 287.86,
-      "updated_date": "2026-10-05"
+      "last_exit_risk": 4.0,
+      "last_close": 331.37,
+      "trailing_stop": 299.89,
+      "updated_date": "2026-10-06"
     }
   },
   "closed": [
@@ -735,5 +735,5 @@
       "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
     }
   ],
-  "updated_at": "2026-10-05T22:09:18-04:00"
+  "updated_at": "2026-10-06T09:42:26-04:00"
 }
