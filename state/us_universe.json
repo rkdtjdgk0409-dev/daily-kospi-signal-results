@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_at": "2026-10-07T10:00:16-04:00",
+  "snapshot_at": "2026-10-08T10:05:43-04:00",
   "sources": {
     "S&P 500": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
     "NASDAQ-100": "https://api.nasdaq.com/api/quote/list-type/nasdaq100"
@@ -732,12 +732,6 @@
         "yf_ticker": "CTSH",
         "name": "Cognizant",
         "sector": "Information Technology"
-      },
-      {
-        "ticker": "CTVA",
-        "yf_ticker": "CTVA",
-        "name": "Corteva",
-        "sector": "Materials"
       },
       {
         "ticker": "CVNA",
@@ -2282,12 +2276,6 @@
         "sector": "Real Estate"
       },
       {
-        "ticker": "PSKY",
-        "yf_ticker": "PSKY",
-        "name": "Paramount Skydance Corporation",
-        "sector": "Communication Services"
-      },
-      {
         "ticker": "PSX",
         "yf_ticker": "PSX",
         "name": "Phillips 66",
@@ -2442,6 +2430,12 @@
         "yf_ticker": "SJM",
         "name": "J.M. Smucker Company (The)",
         "sector": "Consumer Staples"
+      },
+      {
+        "ticker": "SKYD",
+        "yf_ticker": "SKYD",
+        "name": "Paramount Skydance Corporation",
+        "sector": "Communication Services"
       },
       {
         "ticker": "SLB",
@@ -2708,6 +2702,12 @@
         "sector": "Communication Services"
       },
       {
+        "ticker": "TWLO",
+        "yf_ticker": "TWLO",
+        "name": "Twilio",
+        "sector": "Information Technology"
+      },
+      {
         "ticker": "TXN",
         "yf_ticker": "TXN",
         "name": "Texas Instruments",
@@ -2870,6 +2870,12 @@
         "sector": "Health Care"
       },
       {
+        "ticker": "VYLR",
+        "yf_ticker": "VYLR",
+        "name": "Vylor",
+        "sector": "Consumer Staples"
+      },
+      {
         "ticker": "VZ",
         "yf_ticker": "VZ",
         "name": "Verizon",
@@ -2886,12 +2892,6 @@
         "yf_ticker": "WAT",
         "name": "Waters Corporation",
         "sector": "Health Care"
-      },
-      {
-        "ticker": "WBD",
-        "yf_ticker": "WBD",
-        "name": "Warner Bros. Discovery",
-        "sector": "Communication Services"
       },
       {
         "ticker": "WDAY",
@@ -3729,6 +3729,50 @@
           "yf_ticker": "WBD",
           "name": "Warner Bros. Discovery, Inc. Series A Common Stock",
           "sector": "Unknown"
+        }
+      ]
+    },
+    {
+      "detected_at": "2026-10-08T10:05:43-04:00",
+      "index": "S&P 500",
+      "added": [
+        {
+          "ticker": "SKYD",
+          "yf_ticker": "SKYD",
+          "name": "Paramount Skydance Corporation",
+          "sector": "Communication Services"
+        },
+        {
+          "ticker": "TWLO",
+          "yf_ticker": "TWLO",
+          "name": "Twilio",
+          "sector": "Information Technology"
+        },
+        {
+          "ticker": "VYLR",
+          "yf_ticker": "VYLR",
+          "name": "Vylor",
+          "sector": "Consumer Staples"
+        }
+      ],
+      "removed": [
+        {
+          "ticker": "CTVA",
+          "yf_ticker": "CTVA",
+          "name": "Corteva",
+          "sector": "Materials"
+        },
+        {
+          "ticker": "PSKY",
+          "yf_ticker": "PSKY",
+          "name": "Paramount Skydance Corporation",
+          "sector": "Communication Services"
+        },
+        {
+          "ticker": "WBD",
+          "yf_ticker": "WBD",
+          "name": "Warner Bros. Discovery",
+          "sector": "Communication Services"
         }
       ]
     }
