@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_at": "2026-10-08T10:05:43-04:00",
+  "snapshot_at": "2026-10-09T09:50:26-04:00",
   "sources": {
     "S&P 500": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
     "NASDAQ-100": "https://api.nasdaq.com/api/quote/list-type/nasdaq100"
@@ -2434,7 +2434,7 @@
       {
         "ticker": "SKYD",
         "yf_ticker": "SKYD",
-        "name": "Paramount Skydance Corporation",
+        "name": "Skydance Corporation",
         "sector": "Communication Services"
       },
       {
@@ -3394,6 +3394,12 @@
         "sector": "Unknown"
       },
       {
+        "ticker": "MRNA",
+        "yf_ticker": "MRNA",
+        "name": "Moderna, Inc. Common Stock",
+        "sector": "Unknown"
+      },
+      {
         "ticker": "MRVL",
         "yf_ticker": "MRVL",
         "name": "Marvell Technology, Inc. Common Stock",
@@ -3775,6 +3781,19 @@
           "sector": "Communication Services"
         }
       ]
+    },
+    {
+      "detected_at": "2026-10-09T09:50:26-04:00",
+      "index": "NASDAQ-100",
+      "added": [
+        {
+          "ticker": "MRNA",
+          "yf_ticker": "MRNA",
+          "name": "Moderna, Inc. Common Stock",
+          "sector": "Unknown"
+        }
+      ],
+      "removed": []
     }
   ]
 }
