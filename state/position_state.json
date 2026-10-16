@@ -38,7 +38,7 @@
       "highest_close": 38900.0,
       "tp1_done": true,
       "last_status": "HOLD",
-      "last_exit_risk": 33.0,
+      "last_exit_risk": 31.0,
       "last_close": 35950.0,
       "trailing_stop": 34390.35,
       "updated_date": "2026-10-15",
@@ -96,9 +96,9 @@
       "highest_close": 18130.0,
       "tp1_done": true,
       "last_status": "TAKE PROFIT",
-      "last_exit_risk": 67.0,
+      "last_exit_risk": 61.0,
       "last_close": 14190.0,
-      "trailing_stop": 13459.78,
+      "trailing_stop": 13444.45,
       "updated_date": "2026-10-15",
       "tp1_date": "2026-10-15"
     },
@@ -125,7 +125,7 @@
       "highest_close": 69200.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 25.0,
+      "last_exit_risk": 19.0,
       "last_close": 66900.0,
       "trailing_stop": 55847.31,
       "updated_date": "2026-10-15"
@@ -141,7 +141,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 35.0,
       "last_close": 185200.0,
-      "trailing_stop": 174401.16,
+      "trailing_stop": 174368.44,
       "updated_date": "2026-10-15"
     },
     "003490": {
@@ -167,7 +167,7 @@
       "highest_close": 19680.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 29.0,
+      "last_exit_risk": 23.0,
       "last_close": 16800.0,
       "trailing_stop": 15527.08,
       "updated_date": "2026-10-15"
@@ -209,7 +209,7 @@
       "highest_close": 89600.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
+      "last_exit_risk": 4.0,
       "last_close": 86600.0,
       "trailing_stop": 75856.13,
       "updated_date": "2026-10-15"
@@ -730,5 +730,5 @@
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-15T21:40:17+09:00"
+  "updated_at": "2026-10-16T09:08:41+09:00"
 }
