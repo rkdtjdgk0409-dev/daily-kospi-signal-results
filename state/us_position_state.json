@@ -1,20 +1,6 @@
 {
   "version": "US-1.0",
   "positions": {
-    "PLTR": {
-      "ticker": "PLTR",
-      "name": "Palantir Technologies",
-      "market": "S&P 500 + NASDAQ-100",
-      "entry_date": "2026-08-21",
-      "entry_price": 179.94,
-      "highest_close": 209.05,
-      "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 19.0,
-      "last_close": 200.5,
-      "trailing_stop": 189.45,
-      "updated_date": "2026-10-15"
-    },
     "MSFT": {
       "ticker": "MSFT",
       "name": "Microsoft",
@@ -24,10 +10,10 @@
       "highest_close": 548.33,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 20.0,
-      "last_close": 539.44,
-      "trailing_stop": 515.77,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 29.0,
+      "last_close": 531.87,
+      "trailing_stop": 515.29,
+      "updated_date": "2026-10-19"
     },
     "PSX": {
       "ticker": "PSX",
@@ -35,13 +21,13 @@
       "market": "S&P 500",
       "entry_date": "2026-08-26",
       "entry_price": 242.23,
-      "highest_close": 297.29,
+      "highest_close": 299.06,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 3.0,
-      "last_close": 289.2,
-      "trailing_stop": 271.79,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 7.0,
+      "last_close": 299.06,
+      "trailing_stop": 274.87,
+      "updated_date": "2026-10-19"
     },
     "VEEV": {
       "ticker": "VEEV",
@@ -49,13 +35,13 @@
       "market": "S&P 500",
       "entry_date": "2026-08-27",
       "entry_price": 285.05,
-      "highest_close": 313.03,
+      "highest_close": 314.52,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 4.0,
-      "last_close": 313.03,
-      "trailing_stop": 285.23,
-      "updated_date": "2026-10-15"
+      "last_close": 314.52,
+      "trailing_stop": 286.59,
+      "updated_date": "2026-10-19"
     },
     "MPC": {
       "ticker": "MPC",
@@ -63,13 +49,13 @@
       "market": "S&P 500",
       "entry_date": "2026-08-27",
       "entry_price": 364.56,
-      "highest_close": 484.92,
+      "highest_close": 492.14,
       "tp1_done": true,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 0.0,
-      "last_close": 476.92,
-      "trailing_stop": 440.13,
-      "updated_date": "2026-10-15",
+      "last_exit_risk": 4.0,
+      "last_close": 492.14,
+      "trailing_stop": 448.49,
+      "updated_date": "2026-10-19",
       "tp1_date": "2026-09-02"
     },
     "WDAY": {
@@ -82,9 +68,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 11.0,
-      "last_close": 196.63,
-      "trailing_stop": 188.29,
-      "updated_date": "2026-10-15"
+      "last_close": 192.13,
+      "trailing_stop": 187.72,
+      "updated_date": "2026-10-19"
     },
     "NOW": {
       "ticker": "NOW",
@@ -95,10 +81,10 @@
       "highest_close": 148.57,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 3.0,
-      "last_close": 148.57,
-      "trailing_stop": 131.86,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 11.0,
+      "last_close": 142.84,
+      "trailing_stop": 130.47,
+      "updated_date": "2026-10-19"
     },
     "PFE": {
       "ticker": "PFE",
@@ -106,13 +92,13 @@
       "market": "S&P 500",
       "entry_date": "2026-08-31",
       "entry_price": 28.46,
-      "highest_close": 29.44,
+      "highest_close": 29.6,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 3.0,
-      "last_close": 29.44,
-      "trailing_stop": 27.89,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 18.0,
+      "last_close": 29.6,
+      "trailing_stop": 28.09,
+      "updated_date": "2026-10-19"
     },
     "CVX": {
       "ticker": "CVX",
@@ -120,13 +106,13 @@
       "market": "S&P 500",
       "entry_date": "2026-08-31",
       "entry_price": 206.14,
-      "highest_close": 222.04,
+      "highest_close": 225.61,
       "tp1_done": true,
       "last_status": "HOLD",
-      "last_exit_risk": 11.0,
-      "last_close": 219.32,
-      "trailing_stop": 209.47,
-      "updated_date": "2026-10-15",
+      "last_exit_risk": 7.0,
+      "last_close": 225.61,
+      "trailing_stop": 213.29,
+      "updated_date": "2026-10-19",
       "tp1_date": "2026-10-14"
     },
     "GILD": {
@@ -138,10 +124,10 @@
       "highest_close": 157.37,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 7.0,
-      "last_close": 157.37,
-      "trailing_stop": 146.35,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 11.0,
+      "last_close": 156.43,
+      "trailing_stop": 147.03,
+      "updated_date": "2026-10-19"
     },
     "MRNA": {
       "ticker": "MRNA",
@@ -152,10 +138,10 @@
       "highest_close": 236.5,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 4.0,
-      "last_close": 236.5,
-      "trailing_stop": 191.84,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 10.0,
+      "last_close": 221.1,
+      "trailing_stop": 185.1,
+      "updated_date": "2026-10-19"
     },
     "BIIB": {
       "ticker": "BIIB",
@@ -166,24 +152,10 @@
       "highest_close": 235.35,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 11.0,
-      "last_close": 235.35,
+      "last_exit_risk": 15.0,
+      "last_close": 234.58,
       "trailing_stop": 218.06,
-      "updated_date": "2026-10-15"
-    },
-    "MSTR": {
-      "ticker": "MSTR",
-      "name": "Strategy Inc Common Stock Class A",
-      "market": "NASDAQ-100",
-      "entry_date": "2026-09-03",
-      "entry_price": 144.82,
-      "highest_close": 168.5,
-      "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 51.2,
-      "last_close": 151.29,
-      "trailing_stop": 139.94,
-      "updated_date": "2026-10-15"
+      "updated_date": "2026-10-19"
     },
     "COIN": {
       "ticker": "COIN",
@@ -193,11 +165,11 @@
       "entry_price": 192.7,
       "highest_close": 204.09,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 40.8,
-      "last_close": 183.81,
-      "trailing_stop": 170.38,
-      "updated_date": "2026-10-15"
+      "last_status": "WATCH",
+      "last_exit_risk": 50.8,
+      "last_close": 172.49,
+      "trailing_stop": 168.94,
+      "updated_date": "2026-10-19"
     },
     "TECH": {
       "ticker": "TECH",
@@ -208,10 +180,10 @@
       "highest_close": 72.64,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 7.0,
-      "last_close": 72.52,
+      "last_exit_risk": 11.0,
+      "last_close": 72.51,
       "trailing_stop": 72.14,
-      "updated_date": "2026-10-15"
+      "updated_date": "2026-10-19"
     },
     "TMO": {
       "ticker": "TMO",
@@ -221,11 +193,11 @@
       "entry_price": 609.82,
       "highest_close": 696.49,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 0.0,
-      "last_close": 696.49,
-      "trailing_stop": 643.1,
-      "updated_date": "2026-10-15"
+      "last_status": "HOLD",
+      "last_exit_risk": 7.0,
+      "last_close": 685.6,
+      "trailing_stop": 645.02,
+      "updated_date": "2026-10-19"
     },
     "IQV": {
       "ticker": "IQV",
@@ -236,10 +208,10 @@
       "highest_close": 275.02,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 13.0,
-      "last_close": 271.04,
-      "trailing_stop": 254.2,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 11.0,
+      "last_close": 265.3,
+      "trailing_stop": 253.66,
+      "updated_date": "2026-10-19"
     },
     "RVTY": {
       "ticker": "RVTY",
@@ -249,11 +221,11 @@
       "entry_price": 140.19,
       "highest_close": 163.74,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 21.0,
-      "last_close": 154.71,
-      "trailing_stop": 146.86,
-      "updated_date": "2026-10-15"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 154.16,
+      "trailing_stop": 147.46,
+      "updated_date": "2026-10-19"
     },
     "ACN": {
       "ticker": "ACN",
@@ -261,13 +233,13 @@
       "market": "S&P 500",
       "entry_date": "2026-09-15",
       "entry_price": 193.4,
-      "highest_close": 224.92,
+      "highest_close": 231.82,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 0.0,
-      "last_close": 224.92,
-      "trailing_stop": 200.18,
-      "updated_date": "2026-10-15"
+      "last_status": "HOLD",
+      "last_exit_risk": 7.0,
+      "last_close": 231.82,
+      "trailing_stop": 208.09,
+      "updated_date": "2026-10-19"
     },
     "WBD": {
       "ticker": "WBD",
@@ -292,10 +264,10 @@
       "highest_close": 331.37,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 0.0,
-      "last_close": 306.24,
-      "trailing_stop": 296.6,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 4.0,
+      "last_close": 299.41,
+      "trailing_stop": 296.69,
+      "updated_date": "2026-10-19"
     },
     "META": {
       "ticker": "META",
@@ -306,10 +278,10 @@
       "highest_close": 762.5,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 25.0,
-      "last_close": 736.72,
-      "trailing_stop": 706.73,
-      "updated_date": "2026-10-15"
+      "last_exit_risk": 40.0,
+      "last_close": 696.75,
+      "trailing_stop": 696.05,
+      "updated_date": "2026-10-19"
     }
   },
   "closed": [
@@ -768,7 +740,45 @@
       "exit_status": "EXIT",
       "realized_return_pct": -3.29,
       "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir Technologies",
+      "market": "S&P 500 + NASDAQ-100",
+      "entry_date": "2026-08-21",
+      "entry_price": 179.94,
+      "highest_close": 209.05,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 77.0,
+      "last_close": 190.99,
+      "trailing_stop": 185.69,
+      "updated_date": "2026-10-19",
+      "exit_date": "2026-10-19",
+      "exit_price": 190.99,
+      "exit_status": "EXIT",
+      "realized_return_pct": 6.14,
+      "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
+    },
+    {
+      "ticker": "MSTR",
+      "name": "Strategy Inc Common Stock Class A",
+      "market": "NASDAQ-100",
+      "entry_date": "2026-09-03",
+      "entry_price": 144.82,
+      "highest_close": 168.5,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 86.6,
+      "last_close": 139.01,
+      "trailing_stop": 136.88,
+      "updated_date": "2026-10-19",
+      "exit_date": "2026-10-19",
+      "exit_price": 139.01,
+      "exit_status": "EXIT",
+      "realized_return_pct": -4.02,
+      "exit_reason": "Trend reversal + DMI/Alpha deterioration overlap."
     }
   ],
-  "updated_at": "2026-10-16T20:15:39-04:00"
+  "updated_at": "2026-10-19T10:02:08-04:00"
 }
