@@ -26,7 +26,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 21.0,
       "last_close": 22650.0,
-      "trailing_stop": 21412.55,
+      "trailing_stop": 21423.14,
       "updated_date": "2026-10-22"
     },
     "096530": {
@@ -253,7 +253,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 20.0,
       "last_close": 81200.0,
-      "trailing_stop": 70289.1,
+      "trailing_stop": 70321.23,
       "updated_date": "2026-10-22"
     },
     "020150": {
@@ -852,5 +852,5 @@
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-22T21:29:47+09:00"
+  "updated_at": "2026-10-22T21:59:11+09:00"
 }
