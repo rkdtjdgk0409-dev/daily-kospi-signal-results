@@ -11,9 +11,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 27.0,
-      "last_close": 6320.0,
-      "trailing_stop": 5923.34,
-      "updated_date": "2026-10-22"
+      "last_close": 6160.0,
+      "trailing_stop": 5929.22,
+      "updated_date": "2026-10-23"
     },
     "011200": {
       "ticker": "011200",
@@ -24,25 +24,10 @@
       "highest_close": 24000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 21.0,
+      "last_exit_risk": 27.0,
       "last_close": 22650.0,
-      "trailing_stop": 21423.14,
-      "updated_date": "2026-10-22"
-    },
-    "096530": {
-      "ticker": "096530",
-      "name": "씨젠",
-      "market": "KOSDAQ",
-      "entry_date": "2026-08-24",
-      "entry_price": 32150.0,
-      "highest_close": 38900.0,
-      "tp1_done": true,
-      "last_status": "TAKE PROFIT",
-      "last_exit_risk": 56.2,
-      "last_close": 34450.0,
-      "trailing_stop": 34390.35,
-      "updated_date": "2026-10-22",
-      "tp1_date": "2026-10-07"
+      "trailing_stop": 21459.62,
+      "updated_date": "2026-10-23"
     },
     "012750": {
       "ticker": "012750",
@@ -53,10 +38,10 @@
       "highest_close": 97600.0,
       "tp1_done": true,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 14.0,
-      "last_close": 96700.0,
-      "trailing_stop": 89502.31,
-      "updated_date": "2026-10-22",
+      "last_exit_risk": 10.0,
+      "last_close": 96800.0,
+      "trailing_stop": 90007.82,
+      "updated_date": "2026-10-23",
       "tp1_date": "2026-10-07"
     },
     "103140": {
@@ -72,21 +57,6 @@
       "last_close": 79000.0,
       "trailing_stop": 78921.0,
       "updated_date": "2026-09-22"
-    },
-    "232140": {
-      "ticker": "232140",
-      "name": "와이씨",
-      "market": "KOSDAQ",
-      "entry_date": "2026-09-02",
-      "entry_price": 12050.0,
-      "highest_close": 18130.0,
-      "tp1_done": true,
-      "last_status": "TAKE PROFIT",
-      "last_exit_risk": 67.0,
-      "last_close": 12900.0,
-      "trailing_stop": 12887.1,
-      "updated_date": "2026-10-22",
-      "tp1_date": "2026-10-15"
     },
     "060250": {
       "ticker": "060250",
@@ -112,9 +82,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 23.0,
-      "last_close": 69800.0,
-      "trailing_stop": 58104.34,
-      "updated_date": "2026-10-22"
+      "last_close": 70400.0,
+      "trailing_stop": 58762.63,
+      "updated_date": "2026-10-23"
     },
     "005830": {
       "ticker": "005830",
@@ -125,10 +95,10 @@
       "highest_close": 195000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 187100.0,
-      "trailing_stop": 174123.76,
-      "updated_date": "2026-10-22"
+      "last_exit_risk": 44.0,
+      "last_close": 184900.0,
+      "trailing_stop": 174546.85,
+      "updated_date": "2026-10-23"
     },
     "024850": {
       "ticker": "024850",
@@ -138,11 +108,11 @@
       "entry_price": 19680.0,
       "highest_close": 19680.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 37.0,
-      "last_close": 16650.0,
-      "trailing_stop": 16057.44,
-      "updated_date": "2026-10-22"
+      "last_status": "WATCH",
+      "last_exit_risk": 54.2,
+      "last_close": 15520.0,
+      "trailing_stop": 15504.48,
+      "updated_date": "2026-10-23"
     },
     "112610": {
       "ticker": "112610",
@@ -167,10 +137,10 @@
       "highest_close": 308500.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 54.7,
-      "last_close": 272500.0,
-      "trailing_stop": 265775.85,
-      "updated_date": "2026-10-22"
+      "last_exit_risk": 47.0,
+      "last_close": 277500.0,
+      "trailing_stop": 267096.63,
+      "updated_date": "2026-10-23"
     },
     "053800": {
       "ticker": "053800",
@@ -178,27 +148,13 @@
       "market": "KOSDAQ",
       "entry_date": "2026-10-14",
       "entry_price": 88200.0,
-      "highest_close": 90600.0,
+      "highest_close": 93700.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 87200.0,
-      "trailing_stop": 75253.13,
-      "updated_date": "2026-10-22"
-    },
-    "445680": {
-      "ticker": "445680",
-      "name": "큐리옥스바이오시스템즈",
-      "market": "KOSDAQ",
-      "entry_date": "2026-10-16",
-      "entry_price": 68000.0,
-      "highest_close": 69300.0,
-      "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 64.0,
-      "last_close": 60000.0,
-      "trailing_stop": 51710.1,
-      "updated_date": "2026-10-22"
+      "last_exit_risk": 10.0,
+      "last_close": 93700.0,
+      "trailing_stop": 77052.63,
+      "updated_date": "2026-10-23"
     },
     "290650": {
       "ticker": "290650",
@@ -209,10 +165,10 @@
       "highest_close": 70100.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 25.0,
-      "last_close": 59700.0,
-      "trailing_stop": 54860.81,
-      "updated_date": "2026-10-22"
+      "last_exit_risk": 27.0,
+      "last_close": 57700.0,
+      "trailing_stop": 55057.91,
+      "updated_date": "2026-10-23"
     },
     "293490": {
       "ticker": "293490",
@@ -220,13 +176,13 @@
       "market": "KOSDAQ",
       "entry_date": "2026-10-16",
       "entry_price": 10270.0,
-      "highest_close": 10880.0,
+      "highest_close": 11830.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 10880.0,
-      "trailing_stop": 9002.12,
-      "updated_date": "2026-10-22"
+      "last_close": 11830.0,
+      "trailing_stop": 9860.25,
+      "updated_date": "2026-10-23"
     },
     "078350": {
       "ticker": "078350",
@@ -251,10 +207,10 @@
       "highest_close": 84000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 20.0,
-      "last_close": 81200.0,
-      "trailing_stop": 70321.23,
-      "updated_date": "2026-10-22"
+      "last_exit_risk": 37.0,
+      "last_close": 77500.0,
+      "trailing_stop": 69859.37,
+      "updated_date": "2026-10-23"
     },
     "020150": {
       "ticker": "020150",
@@ -265,38 +221,10 @@
       "highest_close": 58500.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 23.0,
-      "last_close": 52700.0,
-      "trailing_stop": 46768.31,
-      "updated_date": "2026-10-22"
-    },
-    "281740": {
-      "ticker": "281740",
-      "name": "레이크머티리얼즈",
-      "market": "KOSDAQ",
-      "entry_date": "2026-10-19",
-      "entry_price": 13200.0,
-      "highest_close": 13200.0,
-      "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 11460.0,
-      "trailing_stop": 11014.63,
-      "updated_date": "2026-10-22"
-    },
-    "078600": {
-      "ticker": "078600",
-      "name": "대주전자재료",
-      "market": "KOSDAQ",
-      "entry_date": "2026-10-21",
-      "entry_price": 110500.0,
-      "highest_close": 110500.0,
-      "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 40.0,
-      "last_close": 102000.0,
-      "trailing_stop": 97307.51,
-      "updated_date": "2026-10-22"
+      "last_exit_risk": 33.0,
+      "last_close": 49200.0,
+      "trailing_stop": 46158.68,
+      "updated_date": "2026-10-23"
     }
   },
   "closed": [
@@ -850,7 +778,104 @@
       "exit_status": "EXIT",
       "realized_return_pct": -7.86,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "096530",
+      "name": "씨젠",
+      "market": "KOSDAQ",
+      "entry_date": "2026-08-24",
+      "entry_price": 32150.0,
+      "highest_close": 38900.0,
+      "tp1_done": true,
+      "last_status": "EXIT",
+      "last_exit_risk": 90.2,
+      "last_close": 33800.0,
+      "trailing_stop": 33227.99,
+      "updated_date": "2026-10-23",
+      "tp1_date": "2026-10-07",
+      "exit_date": "2026-10-23",
+      "exit_price": 33800.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": 5.13,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "232140",
+      "name": "와이씨",
+      "market": "KOSDAQ",
+      "entry_date": "2026-09-02",
+      "entry_price": 12050.0,
+      "highest_close": 18130.0,
+      "tp1_done": true,
+      "last_status": "EXIT",
+      "last_exit_risk": 83.1,
+      "last_close": 12270.0,
+      "trailing_stop": 12257.73,
+      "updated_date": "2026-10-23",
+      "tp1_date": "2026-10-15",
+      "exit_date": "2026-10-23",
+      "exit_price": 12270.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": 1.83,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "445680",
+      "name": "큐리옥스바이오시스템즈",
+      "market": "KOSDAQ",
+      "entry_date": "2026-10-16",
+      "entry_price": 68000.0,
+      "highest_close": 69300.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 76.0,
+      "last_close": 58500.0,
+      "trailing_stop": 52157.02,
+      "updated_date": "2026-10-23",
+      "exit_date": "2026-10-23",
+      "exit_price": 58500.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -13.97,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "281740",
+      "name": "레이크머티리얼즈",
+      "market": "KOSDAQ",
+      "entry_date": "2026-10-19",
+      "entry_price": 13200.0,
+      "highest_close": 13200.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 78.0,
+      "last_close": 10820.0,
+      "trailing_stop": 10798.79,
+      "updated_date": "2026-10-23",
+      "exit_date": "2026-10-23",
+      "exit_price": 10820.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -18.03,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "078600",
+      "name": "대주전자재료",
+      "market": "KOSDAQ",
+      "entry_date": "2026-10-21",
+      "entry_price": 110500.0,
+      "highest_close": 110500.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 84.3,
+      "last_close": 96400.0,
+      "trailing_stop": 89700.69,
+      "updated_date": "2026-10-23",
+      "exit_date": "2026-10-23",
+      "exit_price": 96400.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -12.76,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-22T21:59:11+09:00"
+  "updated_at": "2026-10-23T09:28:08+09:00"
 }
