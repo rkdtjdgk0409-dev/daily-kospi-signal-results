@@ -97,7 +97,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 44.0,
       "last_close": 184200.0,
-      "trailing_stop": 174066.28,
+      "trailing_stop": 174066.29,
       "updated_date": "2026-10-23"
     },
     "024850": {
@@ -154,20 +154,6 @@
       "last_exit_risk": 33.0,
       "last_close": 78400.0,
       "trailing_stop": 75211.83,
-      "updated_date": "2026-10-23"
-    },
-    "290650": {
-      "ticker": "290650",
-      "name": "엘앤씨바이오",
-      "market": "KOSDAQ",
-      "entry_date": "2026-10-16",
-      "entry_price": 70100.0,
-      "highest_close": 70100.0,
-      "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 25.0,
-      "last_close": 60000.0,
-      "trailing_stop": 55157.18,
       "updated_date": "2026-10-23"
     },
     "293490": {
@@ -875,7 +861,26 @@
       "exit_status": "EXIT",
       "realized_return_pct": -12.76,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "290650",
+      "name": "엘앤씨바이오",
+      "market": "KOSDAQ",
+      "entry_date": "2026-10-16",
+      "entry_price": 70100.0,
+      "highest_close": 70100.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 82.7,
+      "last_close": 30000.0,
+      "trailing_stop": 29970.0,
+      "updated_date": "2026-10-23",
+      "exit_date": "2026-10-23",
+      "exit_price": 30000.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -57.2,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-23T21:38:30+09:00"
+  "updated_at": "2026-10-24T09:22:57+09:00"
 }
