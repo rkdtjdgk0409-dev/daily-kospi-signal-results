@@ -1,20 +1,6 @@
 {
   "version": "3.0",
   "positions": {
-    "028670": {
-      "ticker": "028670",
-      "name": "팬오션",
-      "market": "KOSPI",
-      "entry_date": "2026-08-18",
-      "entry_price": 6040.0,
-      "highest_close": 7240.0,
-      "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 37.0,
-      "last_close": 5850.0,
-      "trailing_stop": 5844.15,
-      "updated_date": "2026-10-28"
-    },
     "011200": {
       "ticker": "011200",
       "name": "HMM",
@@ -25,8 +11,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 33.0,
-      "last_close": 22550.0,
-      "trailing_stop": 21578.54,
+      "last_close": 22150.0,
+      "trailing_stop": 21491.47,
       "updated_date": "2026-10-28"
     },
     "012750": {
@@ -82,8 +68,8 @@
       "tp1_done": false,
       "last_status": "WATCH",
       "last_exit_risk": 48.0,
-      "last_close": 65100.0,
-      "trailing_stop": 57908.59,
+      "last_close": 66000.0,
+      "trailing_stop": 58098.02,
       "updated_date": "2026-10-28"
     },
     "005830": {
@@ -95,9 +81,9 @@
       "highest_close": 195000.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 54.4,
-      "last_close": 180000.0,
-      "trailing_stop": 174854.37,
+      "last_exit_risk": 54.2,
+      "last_close": 180300.0,
+      "trailing_stop": 174850.63,
       "updated_date": "2026-10-28"
     },
     "024850": {
@@ -138,8 +124,8 @@
       "tp1_done": false,
       "last_status": "WATCH",
       "last_exit_risk": 58.3,
-      "last_close": 258500.0,
-      "trailing_stop": 258241.5,
+      "last_close": 260500.0,
+      "trailing_stop": 260239.5,
       "updated_date": "2026-10-28"
     },
     "053800": {
@@ -148,12 +134,12 @@
       "market": "KOSDAQ",
       "entry_date": "2026-10-14",
       "entry_price": 88200.0,
-      "highest_close": 93700.0,
+      "highest_close": 110900.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 92400.0,
-      "trailing_stop": 75211.83,
+      "last_close": 110900.0,
+      "trailing_stop": 86255.01,
       "updated_date": "2026-10-28"
     },
     "293490": {
@@ -166,8 +152,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 17.0,
-      "last_close": 11740.0,
-      "trailing_stop": 9916.5,
+      "last_close": 11460.0,
+      "trailing_stop": 9824.55,
       "updated_date": "2026-10-28"
     },
     "078350": {
@@ -181,7 +167,7 @@
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
       "last_close": 41000.0,
-      "trailing_stop": 30510.18,
+      "trailing_stop": 30383.45,
       "updated_date": "2026-10-28"
     },
     "171090": {
@@ -195,7 +181,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 23.0,
       "last_close": 84300.0,
-      "trailing_stop": 71068.21,
+      "trailing_stop": 70928.96,
       "updated_date": "2026-10-28"
     },
     "020150": {
@@ -208,8 +194,8 @@
       "tp1_done": false,
       "last_status": "WATCH",
       "last_exit_risk": 49.0,
-      "last_close": 46050.0,
-      "trailing_stop": 45732.79,
+      "last_close": 45050.0,
+      "trailing_stop": 45004.95,
       "updated_date": "2026-10-28"
     },
     "328130": {
@@ -222,8 +208,36 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 14580.0,
-      "trailing_stop": 12232.23,
+      "last_close": 14390.0,
+      "trailing_stop": 12109.95,
+      "updated_date": "2026-10-28"
+    },
+    "092870": {
+      "ticker": "092870",
+      "name": "엑시콘",
+      "market": "KOSDAQ",
+      "entry_date": "2026-10-28",
+      "entry_price": 67000.0,
+      "highest_close": 67000.0,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 16.0,
+      "last_close": 67000.0,
+      "trailing_stop": 52418.9,
+      "updated_date": "2026-10-28"
+    },
+    "080580": {
+      "ticker": "080580",
+      "name": "오킨스전자",
+      "market": "KOSDAQ",
+      "entry_date": "2026-10-28",
+      "entry_price": 29700.0,
+      "highest_close": 29700.0,
+      "tp1_done": false,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 16.0,
+      "last_close": 29700.0,
+      "trailing_stop": 23645.65,
       "updated_date": "2026-10-28"
     }
   },
@@ -894,7 +908,26 @@
       "exit_status": "EXIT",
       "realized_return_pct": -57.2,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "028670",
+      "name": "팬오션",
+      "market": "KOSPI",
+      "entry_date": "2026-08-18",
+      "entry_price": 6040.0,
+      "highest_close": 7240.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 79.0,
+      "last_close": 5720.0,
+      "trailing_stop": 5714.28,
+      "updated_date": "2026-10-28",
+      "exit_date": "2026-10-28",
+      "exit_price": 5720.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -5.3,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-28T10:02:16+09:00"
+  "updated_at": "2026-10-28T22:34:39+09:00"
 }
