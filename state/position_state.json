@@ -10,10 +10,10 @@
       "highest_close": 24000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 33.0,
-      "last_close": 22150.0,
-      "trailing_stop": 21491.47,
-      "updated_date": "2026-10-28"
+      "last_exit_risk": 37.0,
+      "last_close": 21900.0,
+      "trailing_stop": 21490.64,
+      "updated_date": "2026-10-29"
     },
     "012750": {
       "ticker": "012750",
@@ -24,10 +24,10 @@
       "highest_close": 97600.0,
       "tp1_done": true,
       "last_status": "HOLD",
-      "last_exit_risk": 38.0,
-      "last_close": 95100.0,
-      "trailing_stop": 89975.54,
-      "updated_date": "2026-10-28",
+      "last_exit_risk": 36.0,
+      "last_close": 95800.0,
+      "trailing_stop": 90164.36,
+      "updated_date": "2026-10-29",
       "tp1_date": "2026-10-07"
     },
     "103140": {
@@ -67,10 +67,10 @@
       "highest_close": 71800.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 48.0,
-      "last_close": 66000.0,
-      "trailing_stop": 58098.02,
-      "updated_date": "2026-10-28"
+      "last_exit_risk": 53.0,
+      "last_close": 65800.0,
+      "trailing_stop": 58536.12,
+      "updated_date": "2026-10-29"
     },
     "005830": {
       "ticker": "005830",
@@ -81,10 +81,10 @@
       "highest_close": 195000.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 54.2,
-      "last_close": 180300.0,
-      "trailing_stop": 174850.63,
-      "updated_date": "2026-10-28"
+      "last_exit_risk": 50.8,
+      "last_close": 181500.0,
+      "trailing_stop": 175291.44,
+      "updated_date": "2026-10-29"
     },
     "024850": {
       "ticker": "024850",
@@ -123,10 +123,10 @@
       "highest_close": 308500.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 58.3,
-      "last_close": 260500.0,
-      "trailing_stop": 260239.5,
-      "updated_date": "2026-10-28"
+      "last_exit_risk": 59.5,
+      "last_close": 252500.0,
+      "trailing_stop": 252247.5,
+      "updated_date": "2026-10-29"
     },
     "053800": {
       "ticker": "053800",
@@ -137,10 +137,10 @@
       "highest_close": 110900.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 110900.0,
-      "trailing_stop": 86255.01,
-      "updated_date": "2026-10-28"
+      "last_exit_risk": 10.0,
+      "last_close": 103600.0,
+      "trailing_stop": 84604.46,
+      "updated_date": "2026-10-29"
     },
     "293490": {
       "ticker": "293490",
@@ -150,11 +150,11 @@
       "entry_price": 10270.0,
       "highest_close": 11970.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
+      "last_status": "HOLD",
       "last_exit_risk": 17.0,
-      "last_close": 11460.0,
-      "trailing_stop": 9824.55,
-      "updated_date": "2026-10-28"
+      "last_close": 11360.0,
+      "trailing_stop": 9882.29,
+      "updated_date": "2026-10-29"
     },
     "078350": {
       "ticker": "078350",
@@ -166,9 +166,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 41000.0,
-      "trailing_stop": 30383.45,
-      "updated_date": "2026-10-28"
+      "last_close": 38250.0,
+      "trailing_stop": 29871.86,
+      "updated_date": "2026-10-29"
     },
     "171090": {
       "ticker": "171090",
@@ -178,25 +178,11 @@
       "entry_price": 83000.0,
       "highest_close": 85000.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 23.0,
-      "last_close": 84300.0,
-      "trailing_stop": 70928.96,
-      "updated_date": "2026-10-28"
-    },
-    "020150": {
-      "ticker": "020150",
-      "name": "롯데에너지머티리얼즈",
-      "market": "KOSPI",
-      "entry_date": "2026-10-19",
-      "entry_price": 58500.0,
-      "highest_close": 58500.0,
-      "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 49.0,
-      "last_close": 45050.0,
-      "trailing_stop": 45004.95,
-      "updated_date": "2026-10-28"
+      "last_exit_risk": 53.4,
+      "last_close": 80100.0,
+      "trailing_stop": 70389.29,
+      "updated_date": "2026-10-29"
     },
     "328130": {
       "ticker": "328130",
@@ -207,10 +193,10 @@
       "highest_close": 15130.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 14390.0,
-      "trailing_stop": 12109.95,
-      "updated_date": "2026-10-28"
+      "last_exit_risk": 14.0,
+      "last_close": 14360.0,
+      "trailing_stop": 11927.53,
+      "updated_date": "2026-10-29"
     },
     "092870": {
       "ticker": "092870",
@@ -222,9 +208,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 67000.0,
-      "trailing_stop": 52418.9,
-      "updated_date": "2026-10-28"
+      "last_close": 61200.0,
+      "trailing_stop": 51041.81,
+      "updated_date": "2026-10-29"
     },
     "080580": {
       "ticker": "080580",
@@ -927,7 +913,26 @@
       "exit_status": "EXIT",
       "realized_return_pct": -5.3,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "020150",
+      "name": "롯데에너지머티리얼즈",
+      "market": "KOSPI",
+      "entry_date": "2026-10-19",
+      "entry_price": 58500.0,
+      "highest_close": 58500.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 89.4,
+      "last_close": 41750.0,
+      "trailing_stop": 41708.25,
+      "updated_date": "2026-10-29",
+      "exit_date": "2026-10-29",
+      "exit_price": 41750.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -28.63,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-28T23:02:12+09:00"
+  "updated_at": "2026-10-29T10:40:06+09:00"
 }
