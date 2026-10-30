@@ -9,11 +9,11 @@
       "entry_price": 22650.0,
       "highest_close": 24000.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 33.0,
-      "last_close": 22300.0,
-      "trailing_stop": 21535.65,
-      "updated_date": "2026-10-29"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 16.0,
+      "last_close": 22850.0,
+      "trailing_stop": 21588.2,
+      "updated_date": "2026-10-30"
     },
     "012750": {
       "ticker": "012750",
@@ -23,11 +23,11 @@
       "entry_price": 79300.0,
       "highest_close": 97600.0,
       "tp1_done": true,
-      "last_status": "HOLD",
-      "last_exit_risk": 32.0,
-      "last_close": 96300.0,
-      "trailing_stop": 90142.16,
-      "updated_date": "2026-10-29",
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 16.0,
+      "last_close": 97000.0,
+      "trailing_stop": 90342.49,
+      "updated_date": "2026-10-30",
       "tp1_date": "2026-10-07"
     },
     "103140": {
@@ -65,12 +65,13 @@
       "entry_date": "2026-09-14",
       "entry_price": 59100.0,
       "highest_close": 71800.0,
-      "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 53.0,
-      "last_close": 65100.0,
-      "trailing_stop": 58239.09,
-      "updated_date": "2026-10-29"
+      "tp1_done": true,
+      "last_status": "TAKE PROFIT",
+      "last_exit_risk": 59.5,
+      "last_close": 63400.0,
+      "trailing_stop": 58394.43,
+      "updated_date": "2026-10-30",
+      "tp1_date": "2026-10-30"
     },
     "005830": {
       "ticker": "005830",
@@ -80,11 +81,11 @@
       "entry_price": 192800.0,
       "highest_close": 195000.0,
       "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 50.8,
-      "last_close": 182000.0,
-      "trailing_stop": 175272.95,
-      "updated_date": "2026-10-29"
+      "last_status": "HOLD",
+      "last_exit_risk": 42.0,
+      "last_close": 182500.0,
+      "trailing_stop": 175540.2,
+      "updated_date": "2026-10-30"
     },
     "024850": {
       "ticker": "024850",
@@ -124,9 +125,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 100100.0,
-      "trailing_stop": 82399.88,
-      "updated_date": "2026-10-29"
+      "last_close": 107200.0,
+      "trailing_stop": 83250.35,
+      "updated_date": "2026-10-30"
     },
     "293490": {
       "ticker": "293490",
@@ -136,11 +137,11 @@
       "entry_price": 10270.0,
       "highest_close": 11970.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 20.0,
-      "last_close": 11210.0,
-      "trailing_stop": 9815.91,
-      "updated_date": "2026-10-29"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 14.0,
+      "last_close": 11770.0,
+      "trailing_stop": 9881.88,
+      "updated_date": "2026-10-30"
     },
     "078350": {
       "ticker": "078350",
@@ -150,11 +151,11 @@
       "entry_price": 38900.0,
       "highest_close": 41000.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 39500.0,
-      "trailing_stop": 30111.13,
-      "updated_date": "2026-10-29"
+      "last_status": "HOLD",
+      "last_exit_risk": 23.0,
+      "last_close": 35750.0,
+      "trailing_stop": 29229.93,
+      "updated_date": "2026-10-30"
     },
     "171090": {
       "ticker": "171090",
@@ -165,10 +166,10 @@
       "highest_close": 85000.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 54.0,
-      "last_close": 79400.0,
-      "trailing_stop": 70163.12,
-      "updated_date": "2026-10-29"
+      "last_exit_risk": 58.0,
+      "last_close": 79000.0,
+      "trailing_stop": 70260.23,
+      "updated_date": "2026-10-30"
     },
     "328130": {
       "ticker": "328130",
@@ -176,13 +177,13 @@
       "market": "KOSDAQ",
       "entry_date": "2026-10-26",
       "entry_price": 14690.0,
-      "highest_close": 15130.0,
+      "highest_close": 15700.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 14.0,
-      "last_close": 14980.0,
-      "trailing_stop": 12041.87,
-      "updated_date": "2026-10-29"
+      "last_close": 15700.0,
+      "trailing_stop": 12200.61,
+      "updated_date": "2026-10-30"
     },
     "092870": {
       "ticker": "092870",
@@ -194,9 +195,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 65300.0,
-      "trailing_stop": 51995.41,
-      "updated_date": "2026-10-29"
+      "last_close": 63800.0,
+      "trailing_stop": 52228.01,
+      "updated_date": "2026-10-30"
     },
     "080580": {
       "ticker": "080580",
@@ -218,13 +219,13 @@
       "market": "KOSPI",
       "entry_date": "2026-10-29",
       "entry_price": 193100.0,
-      "highest_close": 193100.0,
+      "highest_close": 193500.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 193100.0,
-      "trailing_stop": 182917.04,
-      "updated_date": "2026-10-29"
+      "last_close": 193500.0,
+      "trailing_stop": 183209.17,
+      "updated_date": "2026-10-30"
     },
     "489790": {
       "ticker": "489790",
@@ -232,13 +233,13 @@
       "market": "KOSPI",
       "entry_date": "2026-10-29",
       "entry_price": 49100.0,
-      "highest_close": 49100.0,
+      "highest_close": 49800.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 49100.0,
-      "trailing_stop": 42039.06,
-      "updated_date": "2026-10-29"
+      "last_exit_risk": 16.0,
+      "last_close": 49800.0,
+      "trailing_stop": 42023.59,
+      "updated_date": "2026-10-30"
     }
   },
   "closed": [
@@ -967,5 +968,5 @@
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-29T23:20:43+09:00"
+  "updated_at": "2026-10-30T10:41:36+09:00"
 }
