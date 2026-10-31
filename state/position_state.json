@@ -196,7 +196,7 @@
       "last_status": "HOLD",
       "last_exit_risk": 20.0,
       "last_close": 60700.0,
-      "trailing_stop": 50883.85,
+      "trailing_stop": 50883.86,
       "updated_date": "2026-10-30"
     },
     "080580": {
@@ -982,5 +982,5 @@
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-30T23:09:31+09:00"
+  "updated_at": "2026-10-31T10:28:10+09:00"
 }
