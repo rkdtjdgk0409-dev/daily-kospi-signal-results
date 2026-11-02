@@ -69,7 +69,7 @@
       "last_status": "TAKE PROFIT",
       "last_exit_risk": 61.5,
       "last_close": 64200.0,
-      "trailing_stop": 58203.59,
+      "trailing_stop": 58203.6,
       "updated_date": "2026-10-30",
       "tp1_date": "2026-10-30"
     },
@@ -982,5 +982,5 @@
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-10-31T10:28:10+09:00"
+  "updated_at": "2026-11-03T01:35:06+09:00"
 }
