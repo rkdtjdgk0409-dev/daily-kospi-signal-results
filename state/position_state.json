@@ -10,10 +10,10 @@
       "highest_close": 24000.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 23600.0,
-      "trailing_stop": 21674.04,
-      "updated_date": "2026-11-04"
+      "last_exit_risk": 16.0,
+      "last_close": 23250.0,
+      "trailing_stop": 21613.04,
+      "updated_date": "2026-11-03"
     },
     "012750": {
       "ticker": "012750",
@@ -25,9 +25,9 @@
       "tp1_done": true,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 98300.0,
-      "trailing_stop": 90642.19,
-      "updated_date": "2026-11-04",
+      "last_close": 97500.0,
+      "trailing_stop": 90636.92,
+      "updated_date": "2026-11-03",
       "tp1_date": "2026-10-07"
     },
     "103140": {
@@ -66,11 +66,11 @@
       "entry_price": 59100.0,
       "highest_close": 71800.0,
       "tp1_done": true,
-      "last_status": "TAKE PROFIT",
-      "last_exit_risk": 57.0,
-      "last_close": 64100.0,
-      "trailing_stop": 59195.3,
-      "updated_date": "2026-11-04",
+      "last_status": "WATCH",
+      "last_exit_risk": 53.4,
+      "last_close": 64000.0,
+      "trailing_stop": 59219.36,
+      "updated_date": "2026-11-03",
       "tp1_date": "2026-10-30"
     },
     "005830": {
@@ -82,24 +82,10 @@
       "highest_close": 195000.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 50.9,
-      "last_close": 173600.0,
-      "trailing_stop": 173426.4,
-      "updated_date": "2026-11-04"
-    },
-    "024850": {
-      "ticker": "024850",
-      "name": "HLB이노베이션",
-      "market": "KOSDAQ",
-      "entry_date": "2026-09-28",
-      "entry_price": 19680.0,
-      "highest_close": 19680.0,
-      "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 64.0,
-      "last_close": 16490.0,
-      "trailing_stop": 15764.62,
-      "updated_date": "2026-11-04"
+      "last_exit_risk": 53.5,
+      "last_close": 174100.0,
+      "trailing_stop": 173925.9,
+      "updated_date": "2026-11-03"
     },
     "112610": {
       "ticker": "112610",
@@ -123,11 +109,11 @@
       "entry_price": 88200.0,
       "highest_close": 122800.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 20.0,
-      "last_close": 99200.0,
-      "trailing_stop": 86611.9,
-      "updated_date": "2026-11-04"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 113600.0,
+      "trailing_stop": 89253.42,
+      "updated_date": "2026-11-03"
     },
     "293490": {
       "ticker": "293490",
@@ -139,9 +125,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 11950.0,
-      "trailing_stop": 9887.32,
-      "updated_date": "2026-11-04"
+      "last_close": 11990.0,
+      "trailing_stop": 9990.65,
+      "updated_date": "2026-11-03"
     },
     "078350": {
       "ticker": "078350",
@@ -167,9 +153,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 17.0,
-      "last_close": 14900.0,
-      "trailing_stop": 11913.22,
-      "updated_date": "2026-11-04"
+      "last_close": 15380.0,
+      "trailing_stop": 12122.97,
+      "updated_date": "2026-11-03"
     },
     "092870": {
       "ticker": "092870",
@@ -179,11 +165,11 @@
       "entry_price": 67000.0,
       "highest_close": 67000.0,
       "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 47.0,
-      "last_close": 54200.0,
-      "trailing_stop": 48845.73,
-      "updated_date": "2026-11-04"
+      "last_status": "HOLD",
+      "last_exit_risk": 35.0,
+      "last_close": 52900.0,
+      "trailing_stop": 48865.68,
+      "updated_date": "2026-11-03"
     },
     "080580": {
       "ticker": "080580",
@@ -194,10 +180,10 @@
       "highest_close": 29700.0,
       "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 47.0,
-      "last_close": 24900.0,
-      "trailing_stop": 22543.34,
-      "updated_date": "2026-11-04"
+      "last_exit_risk": 55.3,
+      "last_close": 23500.0,
+      "trailing_stop": 22359.15,
+      "updated_date": "2026-11-03"
     },
     "033780": {
       "ticker": "033780",
@@ -208,10 +194,10 @@
       "highest_close": 196200.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 14.0,
-      "last_close": 192000.0,
-      "trailing_stop": 182614.61,
-      "updated_date": "2026-11-04"
+      "last_exit_risk": 10.0,
+      "last_close": 192700.0,
+      "trailing_stop": 182785.0,
+      "updated_date": "2026-11-03"
     },
     "489790": {
       "ticker": "489790",
@@ -222,10 +208,10 @@
       "highest_close": 51700.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 30.0,
-      "last_close": 47400.0,
-      "trailing_stop": 41151.57,
-      "updated_date": "2026-11-04"
+      "last_exit_risk": 26.0,
+      "last_close": 47900.0,
+      "trailing_stop": 41314.71,
+      "updated_date": "2026-11-03"
     },
     "026960": {
       "ticker": "026960",
@@ -236,24 +222,10 @@
       "highest_close": 28450.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 20.0,
-      "last_close": 27900.0,
-      "trailing_stop": 26643.28,
-      "updated_date": "2026-11-04"
-    },
-    "259960": {
-      "ticker": "259960",
-      "name": "크래프톤",
-      "market": "KOSPI",
-      "entry_date": "2026-11-04",
-      "entry_price": 212000.0,
-      "highest_close": 212000.0,
-      "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 212000.0,
-      "trailing_stop": 194324.65,
-      "updated_date": "2026-11-04"
+      "last_exit_risk": 21.0,
+      "last_close": 27800.0,
+      "trailing_stop": 26592.56,
+      "updated_date": "2026-11-03"
     }
   },
   "closed": [
@@ -999,7 +971,45 @@
       "exit_status": "EXIT",
       "realized_return_pct": -20.24,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "024850",
+      "name": "HLB이노베이션",
+      "market": "KOSDAQ",
+      "entry_date": "2026-09-28",
+      "entry_price": 19680.0,
+      "highest_close": 19680.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 77.3,
+      "last_close": 14700.0,
+      "trailing_stop": 14685.3,
+      "updated_date": "2026-11-03",
+      "exit_date": "2026-11-03",
+      "exit_price": 14700.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -25.3,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "259960",
+      "name": "크래프톤",
+      "market": "KOSPI",
+      "entry_date": "2026-11-04",
+      "entry_price": 212000.0,
+      "highest_close": 212000.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 79.8,
+      "last_close": 181900.0,
+      "trailing_stop": 181718.1,
+      "updated_date": "2026-11-03",
+      "exit_date": "2026-11-03",
+      "exit_price": 181900.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -14.2,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-11-04T23:53:46+09:00"
+  "updated_at": "2026-11-05T00:26:37+09:00"
 }
