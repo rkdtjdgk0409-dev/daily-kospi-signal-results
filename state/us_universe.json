@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_at": "2026-10-09T09:50:26-04:00",
+  "snapshot_at": "2026-11-04T21:04:04-05:00",
   "sources": {
     "S&P 500": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
     "NASDAQ-100": "https://api.nasdaq.com/api/quote/list-type/nasdaq100"
@@ -1646,12 +1646,6 @@
         "sector": "Consumer Staples"
       },
       {
-        "ticker": "KVUE",
-        "yf_ticker": "KVUE",
-        "name": "Kenvue",
-        "sector": "Consumer Staples"
-      },
-      {
         "ticker": "L",
         "yf_ticker": "L",
         "name": "Loews Corporation",
@@ -1798,7 +1792,7 @@
       {
         "ticker": "MCK",
         "yf_ticker": "MCK",
-        "name": "McKesson Corporation",
+        "name": "McKesson",
         "sector": "Health Care"
       },
       {
@@ -2090,6 +2084,12 @@
         "sector": "Energy"
       },
       {
+        "ticker": "OKTA",
+        "yf_ticker": "OKTA",
+        "name": "Okta, Inc.",
+        "sector": "Information Technology"
+      },
+      {
         "ticker": "OMC",
         "yf_ticker": "OMC",
         "name": "Omnicom Group",
@@ -2356,7 +2356,7 @@
       {
         "ticker": "RMD",
         "yf_ticker": "RMD",
-        "name": "ResMed |",
+        "name": "ResMed",
         "sector": "Health Care"
       },
       {
@@ -2434,7 +2434,7 @@
       {
         "ticker": "SKYD",
         "yf_ticker": "SKYD",
-        "name": "Skydance Corporation",
+        "name": "Skydance",
         "sector": "Communication Services"
       },
       {
@@ -3794,6 +3794,26 @@
         }
       ],
       "removed": []
+    },
+    {
+      "detected_at": "2026-11-04T21:04:04-05:00",
+      "index": "S&P 500",
+      "added": [
+        {
+          "ticker": "OKTA",
+          "yf_ticker": "OKTA",
+          "name": "Okta, Inc.",
+          "sector": "Information Technology"
+        }
+      ],
+      "removed": [
+        {
+          "ticker": "KVUE",
+          "yf_ticker": "KVUE",
+          "name": "Kenvue",
+          "sector": "Consumer Staples"
+        }
+      ]
     }
   ]
 }
