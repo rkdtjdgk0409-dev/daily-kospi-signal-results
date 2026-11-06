@@ -11,8 +11,8 @@
       "tp1_done": false,
       "last_status": "WATCH",
       "last_exit_risk": 51.4,
-      "last_close": 21750.0,
-      "trailing_stop": 21310.76,
+      "last_close": 22050.0,
+      "trailing_stop": 21347.35,
       "updated_date": "2026-11-06"
     },
     "012750": {
@@ -25,7 +25,7 @@
       "tp1_done": true,
       "last_status": "HOLD",
       "last_exit_risk": 23.0,
-      "last_close": 97700.0,
+      "last_close": 98400.0,
       "trailing_stop": 91153.95,
       "updated_date": "2026-11-06",
       "tp1_date": "2026-10-07"
@@ -68,8 +68,8 @@
       "tp1_done": true,
       "last_status": "HOLD",
       "last_exit_risk": 26.0,
-      "last_close": 67700.0,
-      "trailing_stop": 58505.17,
+      "last_close": 70300.0,
+      "trailing_stop": 58792.61,
       "updated_date": "2026-11-06",
       "tp1_date": "2026-10-30"
     },
@@ -81,11 +81,11 @@
       "entry_price": 54600.0,
       "highest_close": 57600.0,
       "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 47.0,
-      "last_close": 51900.0,
-      "trailing_stop": 48619.45,
-      "updated_date": "2026-10-20"
+      "last_status": "HOLD",
+      "last_exit_risk": 19.0,
+      "last_close": 49100.0,
+      "trailing_stop": 45077.5,
+      "updated_date": "2026-11-06"
     },
     "053800": {
       "ticker": "053800",
@@ -96,8 +96,8 @@
       "highest_close": 122800.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 37.0,
-      "last_close": 95100.0,
+      "last_exit_risk": 33.0,
+      "last_close": 99100.0,
       "trailing_stop": 86611.9,
       "updated_date": "2026-11-06"
     },
@@ -111,8 +111,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 12190.0,
-      "trailing_stop": 10396.34,
+      "last_close": 12340.0,
+      "trailing_stop": 10424.22,
       "updated_date": "2026-11-06"
     },
     "078350": {
@@ -139,8 +139,8 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 31.0,
-      "last_close": 15470.0,
-      "trailing_stop": 11772.08,
+      "last_close": 15450.0,
+      "trailing_stop": 11748.88,
       "updated_date": "2026-11-06"
     },
     "080580": {
@@ -166,24 +166,10 @@
       "highest_close": 199700.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 13.0,
-      "last_close": 194100.0,
-      "trailing_stop": 184499.13,
+      "last_exit_risk": 31.0,
+      "last_close": 189900.0,
+      "trailing_stop": 183510.94,
       "updated_date": "2026-11-06"
-    },
-    "489790": {
-      "ticker": "489790",
-      "name": "한화비전",
-      "market": "KOSPI",
-      "entry_date": "2026-10-29",
-      "entry_price": 49100.0,
-      "highest_close": 51700.0,
-      "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 30.0,
-      "last_close": 47400.0,
-      "trailing_stop": 41151.57,
-      "updated_date": "2026-11-04"
     },
     "026960": {
       "ticker": "026960",
@@ -195,8 +181,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 28200.0,
-      "trailing_stop": 26558.83,
+      "last_close": 28400.0,
+      "trailing_stop": 26572.15,
       "updated_date": "2026-11-06"
     },
     "068270": {
@@ -209,8 +195,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 211500.0,
-      "trailing_stop": 197537.86,
+      "last_close": 211000.0,
+      "trailing_stop": 197498.85,
       "updated_date": "2026-11-06"
     },
     "259960": {
@@ -223,8 +209,8 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 219500.0,
-      "trailing_stop": 202077.0,
+      "last_close": 220500.0,
+      "trailing_stop": 201691.52,
       "updated_date": "2026-11-06"
     }
   },
@@ -1047,7 +1033,26 @@
       "exit_status": "EXIT",
       "realized_return_pct": -37.69,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "489790",
+      "name": "한화비전",
+      "market": "KOSPI",
+      "entry_date": "2026-10-29",
+      "entry_price": 49100.0,
+      "highest_close": 51700.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 89.2,
+      "last_close": 38100.0,
+      "trailing_stop": 38061.9,
+      "updated_date": "2026-11-06",
+      "exit_date": "2026-11-06",
+      "exit_price": 38100.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -22.4,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-11-06T11:03:12+09:00"
+  "updated_at": "2026-11-06T23:38:30+09:00"
 }
