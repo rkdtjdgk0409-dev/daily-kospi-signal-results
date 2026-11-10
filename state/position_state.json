@@ -10,10 +10,10 @@
       "highest_close": 98800.0,
       "tp1_done": true,
       "last_status": "HOLD",
-      "last_exit_risk": 28.0,
-      "last_close": 98200.0,
-      "trailing_stop": 91345.41,
-      "updated_date": "2026-11-10",
+      "last_exit_risk": 19.0,
+      "last_close": 98600.0,
+      "trailing_stop": 91193.03,
+      "updated_date": "2026-11-09",
       "tp1_date": "2026-10-07"
     },
     "103140": {
@@ -53,10 +53,10 @@
       "highest_close": 71800.0,
       "tp1_done": true,
       "last_status": "HOLD",
-      "last_exit_risk": 27.0,
-      "last_close": 66100.0,
-      "trailing_stop": 56952.89,
-      "updated_date": "2026-11-10",
+      "last_exit_risk": 26.0,
+      "last_close": 69000.0,
+      "trailing_stop": 58786.55,
+      "updated_date": "2026-11-09",
       "tp1_date": "2026-10-30"
     },
     "112610": {
@@ -68,10 +68,10 @@
       "highest_close": 57600.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 30.0,
+      "last_exit_risk": 19.0,
       "last_close": 48650.0,
-      "trailing_stop": 45059.27,
-      "updated_date": "2026-11-10"
+      "trailing_stop": 44961.63,
+      "updated_date": "2026-11-09"
     },
     "053800": {
       "ticker": "053800",
@@ -81,11 +81,11 @@
       "entry_price": 88200.0,
       "highest_close": 122800.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 108700.0,
-      "trailing_stop": 88376.58,
-      "updated_date": "2026-11-10"
+      "last_status": "HOLD",
+      "last_exit_risk": 31.0,
+      "last_close": 106200.0,
+      "trailing_stop": 86611.9,
+      "updated_date": "2026-11-09"
     },
     "293490": {
       "ticker": "293490",
@@ -95,11 +95,11 @@
       "entry_price": 10270.0,
       "highest_close": 12690.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 20.0,
-      "last_close": 12090.0,
-      "trailing_stop": 10484.37,
-      "updated_date": "2026-11-10"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 17.0,
+      "last_close": 11940.0,
+      "trailing_stop": 10390.17,
+      "updated_date": "2026-11-09"
     },
     "078350": {
       "ticker": "078350",
@@ -125,9 +125,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 16670.0,
-      "trailing_stop": 12492.43,
-      "updated_date": "2026-11-10"
+      "last_close": 16170.0,
+      "trailing_stop": 12396.12,
+      "updated_date": "2026-11-09"
     },
     "080580": {
       "ticker": "080580",
@@ -151,11 +151,11 @@
       "entry_price": 28450.0,
       "highest_close": 28900.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 27500.0,
-      "trailing_stop": 26445.15,
-      "updated_date": "2026-11-10"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 10.0,
+      "last_close": 28200.0,
+      "trailing_stop": 26575.01,
+      "updated_date": "2026-11-09"
     },
     "068270": {
       "ticker": "068270",
@@ -167,9 +167,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 20.0,
-      "last_close": 206000.0,
-      "trailing_stop": 197211.15,
-      "updated_date": "2026-11-10"
+      "last_close": 210000.0,
+      "trailing_stop": 197643.72,
+      "updated_date": "2026-11-09"
     },
     "259960": {
       "ticker": "259960",
@@ -179,25 +179,11 @@
       "entry_price": 221500.0,
       "highest_close": 221500.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 20.0,
-      "last_close": 215000.0,
-      "trailing_stop": 201127.05,
-      "updated_date": "2026-11-10"
-    },
-    "009420": {
-      "ticker": "009420",
-      "name": "한올바이오파마",
-      "market": "KOSPI",
-      "entry_date": "2026-11-10",
-      "entry_price": 47500.0,
-      "highest_close": 47500.0,
-      "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 47500.0,
-      "trailing_stop": 40676.41,
-      "updated_date": "2026-11-10"
+      "last_exit_risk": 17.0,
+      "last_close": 217500.0,
+      "trailing_stop": 200932.32,
+      "updated_date": "2026-11-09"
     }
   },
   "closed": [
@@ -1076,7 +1062,26 @@
       "exit_status": "EXIT",
       "realized_return_pct": -9.79,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "009420",
+      "name": "한올바이오파마",
+      "market": "KOSPI",
+      "entry_date": "2026-11-10",
+      "entry_price": 47500.0,
+      "highest_close": 47500.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 84.5,
+      "last_close": 37100.0,
+      "trailing_stop": 37062.9,
+      "updated_date": "2026-11-09",
+      "exit_date": "2026-11-09",
+      "exit_price": 37100.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -21.89,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-11-10T12:59:45+09:00"
+  "updated_at": "2026-11-11T00:16:04+09:00"
 }
