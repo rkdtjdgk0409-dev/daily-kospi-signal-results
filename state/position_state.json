@@ -1,20 +1,6 @@
 {
   "version": "3.0",
   "positions": {
-    "011200": {
-      "ticker": "011200",
-      "name": "HMM",
-      "market": "KOSPI",
-      "entry_date": "2026-08-18",
-      "entry_price": 22650.0,
-      "highest_close": 24000.0,
-      "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 51.4,
-      "last_close": 22050.0,
-      "trailing_stop": 21347.35,
-      "updated_date": "2026-11-06"
-    },
     "012750": {
       "ticker": "012750",
       "name": "에스원",
@@ -24,10 +10,10 @@
       "highest_close": 98800.0,
       "tp1_done": true,
       "last_status": "HOLD",
-      "last_exit_risk": 23.0,
-      "last_close": 98400.0,
-      "trailing_stop": 91153.95,
-      "updated_date": "2026-11-06",
+      "last_exit_risk": 28.0,
+      "last_close": 98200.0,
+      "trailing_stop": 91345.41,
+      "updated_date": "2026-11-10",
       "tp1_date": "2026-10-07"
     },
     "103140": {
@@ -67,10 +53,10 @@
       "highest_close": 71800.0,
       "tp1_done": true,
       "last_status": "HOLD",
-      "last_exit_risk": 26.0,
-      "last_close": 70300.0,
-      "trailing_stop": 58792.61,
-      "updated_date": "2026-11-06",
+      "last_exit_risk": 27.0,
+      "last_close": 66100.0,
+      "trailing_stop": 56952.89,
+      "updated_date": "2026-11-10",
       "tp1_date": "2026-10-30"
     },
     "112610": {
@@ -82,10 +68,10 @@
       "highest_close": 57600.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 19.0,
-      "last_close": 49100.0,
-      "trailing_stop": 45077.5,
-      "updated_date": "2026-11-06"
+      "last_exit_risk": 30.0,
+      "last_close": 48650.0,
+      "trailing_stop": 45059.27,
+      "updated_date": "2026-11-10"
     },
     "053800": {
       "ticker": "053800",
@@ -95,11 +81,11 @@
       "entry_price": 88200.0,
       "highest_close": 122800.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 33.0,
-      "last_close": 99100.0,
-      "trailing_stop": 86611.9,
-      "updated_date": "2026-11-06"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 16.0,
+      "last_close": 108700.0,
+      "trailing_stop": 88376.58,
+      "updated_date": "2026-11-10"
     },
     "293490": {
       "ticker": "293490",
@@ -109,11 +95,11 @@
       "entry_price": 10270.0,
       "highest_close": 12690.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 12340.0,
-      "trailing_stop": 10424.22,
-      "updated_date": "2026-11-06"
+      "last_status": "HOLD",
+      "last_exit_risk": 20.0,
+      "last_close": 12090.0,
+      "trailing_stop": 10484.37,
+      "updated_date": "2026-11-10"
     },
     "078350": {
       "ticker": "078350",
@@ -135,13 +121,13 @@
       "market": "KOSDAQ",
       "entry_date": "2026-10-26",
       "entry_price": 14690.0,
-      "highest_close": 15700.0,
+      "highest_close": 16670.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 15450.0,
-      "trailing_stop": 11748.88,
-      "updated_date": "2026-11-06"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 16.0,
+      "last_close": 16670.0,
+      "trailing_stop": 12492.43,
+      "updated_date": "2026-11-10"
     },
     "080580": {
       "ticker": "080580",
@@ -157,20 +143,6 @@
       "trailing_stop": 22359.15,
       "updated_date": "2026-11-03"
     },
-    "033780": {
-      "ticker": "033780",
-      "name": "KT&G",
-      "market": "KOSPI",
-      "entry_date": "2026-10-29",
-      "entry_price": 193100.0,
-      "highest_close": 199700.0,
-      "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 31.0,
-      "last_close": 189900.0,
-      "trailing_stop": 183510.94,
-      "updated_date": "2026-11-06"
-    },
     "026960": {
       "ticker": "026960",
       "name": "동서",
@@ -179,11 +151,11 @@
       "entry_price": 28450.0,
       "highest_close": 28900.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 28400.0,
-      "trailing_stop": 26572.15,
-      "updated_date": "2026-11-06"
+      "last_status": "HOLD",
+      "last_exit_risk": 31.0,
+      "last_close": 27500.0,
+      "trailing_stop": 26445.15,
+      "updated_date": "2026-11-10"
     },
     "068270": {
       "ticker": "068270",
@@ -193,11 +165,11 @@
       "entry_price": 214000.0,
       "highest_close": 215000.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 211000.0,
-      "trailing_stop": 197498.85,
-      "updated_date": "2026-11-06"
+      "last_status": "HOLD",
+      "last_exit_risk": 20.0,
+      "last_close": 206000.0,
+      "trailing_stop": 197211.15,
+      "updated_date": "2026-11-10"
     },
     "259960": {
       "ticker": "259960",
@@ -207,11 +179,25 @@
       "entry_price": 221500.0,
       "highest_close": 221500.0,
       "tp1_done": false,
+      "last_status": "HOLD",
+      "last_exit_risk": 20.0,
+      "last_close": 215000.0,
+      "trailing_stop": 201127.05,
+      "updated_date": "2026-11-10"
+    },
+    "009420": {
+      "ticker": "009420",
+      "name": "한올바이오파마",
+      "market": "KOSPI",
+      "entry_date": "2026-11-10",
+      "entry_price": 47500.0,
+      "highest_close": 47500.0,
+      "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 220500.0,
-      "trailing_stop": 201691.52,
-      "updated_date": "2026-11-06"
+      "last_exit_risk": 16.0,
+      "last_close": 47500.0,
+      "trailing_stop": 40676.41,
+      "updated_date": "2026-11-10"
     }
   },
   "closed": [
@@ -1052,7 +1038,45 @@
       "exit_status": "EXIT",
       "realized_return_pct": -22.4,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "011200",
+      "name": "HMM",
+      "market": "KOSPI",
+      "entry_date": "2026-08-18",
+      "entry_price": 22650.0,
+      "highest_close": 24000.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 91.0,
+      "last_close": 20550.0,
+      "trailing_stop": 20529.45,
+      "updated_date": "2026-11-10",
+      "exit_date": "2026-11-10",
+      "exit_price": 20550.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -9.27,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "033780",
+      "name": "KT&G",
+      "market": "KOSPI",
+      "entry_date": "2026-10-29",
+      "entry_price": 193100.0,
+      "highest_close": 199700.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 92.3,
+      "last_close": 174200.0,
+      "trailing_stop": 174025.8,
+      "updated_date": "2026-11-10",
+      "exit_date": "2026-11-10",
+      "exit_price": 174200.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -9.79,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-11-10T02:29:58+09:00"
+  "updated_at": "2026-11-10T12:59:45+09:00"
 }
