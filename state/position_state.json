@@ -11,9 +11,9 @@
       "tp1_done": true,
       "last_status": "HOLD",
       "last_exit_risk": 19.0,
-      "last_close": 101200.0,
-      "trailing_stop": 93890.54,
-      "updated_date": "2026-11-13",
+      "last_close": 99300.0,
+      "trailing_stop": 93792.28,
+      "updated_date": "2026-11-12",
       "tp1_date": "2026-10-07"
     },
     "103140": {
@@ -50,13 +50,13 @@
       "market": "KOSDAQ",
       "entry_date": "2026-09-14",
       "entry_price": 59100.0,
-      "highest_close": 76300.0,
+      "highest_close": 77400.0,
       "tp1_done": true,
       "last_status": "HOLD",
       "last_exit_risk": 13.0,
-      "last_close": 73900.0,
-      "trailing_stop": 60706.29,
-      "updated_date": "2026-11-13",
+      "last_close": 77400.0,
+      "trailing_stop": 62211.93,
+      "updated_date": "2026-11-12",
       "tp1_date": "2026-10-30"
     },
     "112610": {
@@ -82,10 +82,10 @@
       "highest_close": 122800.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 10.0,
-      "last_close": 111900.0,
-      "trailing_stop": 87731.95,
-      "updated_date": "2026-11-13"
+      "last_exit_risk": 16.0,
+      "last_close": 115200.0,
+      "trailing_stop": 88389.22,
+      "updated_date": "2026-11-12"
     },
     "293490": {
       "ticker": "293490",
@@ -97,9 +97,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 27.0,
-      "last_close": 11500.0,
-      "trailing_stop": 10466.53,
-      "updated_date": "2026-11-13"
+      "last_close": 11900.0,
+      "trailing_stop": 10513.79,
+      "updated_date": "2026-11-12"
     },
     "078350": {
       "ticker": "078350",
@@ -123,25 +123,11 @@
       "entry_price": 14690.0,
       "highest_close": 16840.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 36.0,
-      "last_close": 15020.0,
-      "trailing_stop": 11859.51,
-      "updated_date": "2026-11-13"
-    },
-    "080580": {
-      "ticker": "080580",
-      "name": "오킨스전자",
-      "market": "KOSDAQ",
-      "entry_date": "2026-10-28",
-      "entry_price": 29700.0,
-      "highest_close": 29700.0,
-      "tp1_done": false,
       "last_status": "WATCH",
-      "last_exit_risk": 48.0,
-      "last_close": 24950.0,
-      "trailing_stop": 22187.83,
-      "updated_date": "2026-11-13"
+      "last_exit_risk": 48.4,
+      "last_close": 13720.0,
+      "trailing_stop": 11859.51,
+      "updated_date": "2026-11-12"
     },
     "026960": {
       "ticker": "026960",
@@ -153,9 +139,9 @@
       "tp1_done": false,
       "last_status": "HOLD",
       "last_exit_risk": 42.0,
-      "last_close": 27600.0,
-      "trailing_stop": 26491.2,
-      "updated_date": "2026-11-13"
+      "last_close": 27700.0,
+      "trailing_stop": 26469.81,
+      "updated_date": "2026-11-12"
     },
     "068270": {
       "ticker": "068270",
@@ -166,10 +152,10 @@
       "highest_close": 215000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 13.0,
-      "last_close": 214000.0,
-      "trailing_stop": 196497.03,
-      "updated_date": "2026-11-13"
+      "last_exit_risk": 17.0,
+      "last_close": 209500.0,
+      "trailing_stop": 196128.7,
+      "updated_date": "2026-11-12"
     },
     "259960": {
       "ticker": "259960",
@@ -179,11 +165,11 @@
       "entry_price": 221500.0,
       "highest_close": 221500.0,
       "tp1_done": false,
-      "last_status": "WATCH",
-      "last_exit_risk": 51.0,
-      "last_close": 199100.0,
-      "trailing_stop": 197654.58,
-      "updated_date": "2026-11-13"
+      "last_status": "HOLD",
+      "last_exit_risk": 42.0,
+      "last_close": 200000.0,
+      "trailing_stop": 196760.54,
+      "updated_date": "2026-11-12"
     },
     "028050": {
       "ticker": "028050",
@@ -195,9 +181,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 68800.0,
-      "trailing_stop": 58949.57,
-      "updated_date": "2026-11-13"
+      "last_close": 66000.0,
+      "trailing_stop": 58550.42,
+      "updated_date": "2026-11-12"
     },
     "009420": {
       "ticker": "009420",
@@ -208,10 +194,10 @@
       "highest_close": 53000.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 17.0,
+      "last_exit_risk": 10.0,
       "last_close": 51100.0,
-      "trailing_stop": 43901.28,
-      "updated_date": "2026-11-13"
+      "trailing_stop": 43893.9,
+      "updated_date": "2026-11-12"
     },
     "121600": {
       "ticker": "121600",
@@ -223,9 +209,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 74300.0,
-      "trailing_stop": 63317.0,
-      "updated_date": "2026-11-13"
+      "last_close": 75500.0,
+      "trailing_stop": 63311.05,
+      "updated_date": "2026-11-12"
     },
     "030530": {
       "ticker": "030530",
@@ -237,9 +223,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 31350.0,
-      "trailing_stop": 24929.61,
-      "updated_date": "2026-11-13"
+      "last_close": 30400.0,
+      "trailing_stop": 24790.97,
+      "updated_date": "2026-11-12"
     },
     "290550": {
       "ticker": "290550",
@@ -249,11 +235,11 @@
       "entry_price": 27950.0,
       "highest_close": 28650.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 13.0,
-      "last_close": 27100.0,
-      "trailing_stop": 22054.21,
-      "updated_date": "2026-11-13"
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 16.0,
+      "last_close": 27650.0,
+      "trailing_stop": 22282.95,
+      "updated_date": "2026-11-12"
     }
   },
   "closed": [
@@ -1151,7 +1137,26 @@
       "exit_status": "EXIT",
       "realized_return_pct": -21.89,
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
+    },
+    {
+      "ticker": "080580",
+      "name": "오킨스전자",
+      "market": "KOSDAQ",
+      "entry_date": "2026-10-28",
+      "entry_price": 29700.0,
+      "highest_close": 29700.0,
+      "tp1_done": false,
+      "last_status": "EXIT",
+      "last_exit_risk": 60.4,
+      "last_close": 21850.0,
+      "trailing_stop": 21290.3,
+      "updated_date": "2026-11-12",
+      "exit_date": "2026-11-12",
+      "exit_price": 21850.0,
+      "exit_status": "EXIT",
+      "realized_return_pct": -26.43,
+      "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-11-13T23:56:15+09:00"
+  "updated_at": "2026-11-14T00:24:29+09:00"
 }
