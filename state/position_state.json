@@ -7,13 +7,13 @@
       "market": "KOSPI",
       "entry_date": "2026-08-24",
       "entry_price": 79300.0,
-      "highest_close": 98800.0,
+      "highest_close": 101100.0,
       "tp1_done": true,
       "last_status": "HOLD",
       "last_exit_risk": 19.0,
-      "last_close": 98500.0,
-      "trailing_stop": 91337.26,
-      "updated_date": "2026-11-11",
+      "last_close": 101100.0,
+      "trailing_stop": 93790.54,
+      "updated_date": "2026-11-13",
       "tp1_date": "2026-10-07"
     },
     "103140": {
@@ -53,10 +53,10 @@
       "highest_close": 76300.0,
       "tp1_done": true,
       "last_status": "HOLD",
-      "last_exit_risk": 13.0,
-      "last_close": 74500.0,
-      "trailing_stop": 61048.43,
-      "updated_date": "2026-11-11",
+      "last_exit_risk": 17.0,
+      "last_close": 74200.0,
+      "trailing_stop": 60769.34,
+      "updated_date": "2026-11-13",
       "tp1_date": "2026-10-30"
     },
     "112610": {
@@ -82,10 +82,10 @@
       "highest_close": 122800.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 117700.0,
-      "trailing_stop": 88843.94,
-      "updated_date": "2026-11-11"
+      "last_exit_risk": 10.0,
+      "last_close": 118300.0,
+      "trailing_stop": 90314.23,
+      "updated_date": "2026-11-13"
     },
     "293490": {
       "ticker": "293490",
@@ -96,10 +96,10 @@
       "highest_close": 12690.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 21.0,
-      "last_close": 11750.0,
-      "trailing_stop": 10414.17,
-      "updated_date": "2026-11-11"
+      "last_exit_risk": 27.0,
+      "last_close": 11880.0,
+      "trailing_stop": 10554.74,
+      "updated_date": "2026-11-13"
     },
     "078350": {
       "ticker": "078350",
@@ -124,10 +124,10 @@
       "highest_close": 16840.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 38.0,
-      "last_close": 14140.0,
+      "last_exit_risk": 31.0,
+      "last_close": 15680.0,
       "trailing_stop": 11859.51,
-      "updated_date": "2026-11-11"
+      "updated_date": "2026-11-13"
     },
     "080580": {
       "ticker": "080580",
@@ -152,10 +152,10 @@
       "highest_close": 28900.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 33.0,
-      "last_close": 27600.0,
-      "trailing_stop": 26449.31,
-      "updated_date": "2026-11-11"
+      "last_exit_risk": 40.0,
+      "last_close": 27850.0,
+      "trailing_stop": 26524.84,
+      "updated_date": "2026-11-13"
     },
     "068270": {
       "ticker": "068270",
@@ -166,10 +166,10 @@
       "highest_close": 215000.0,
       "tp1_done": false,
       "last_status": "HOLD",
-      "last_exit_risk": 17.0,
-      "last_close": 207000.0,
-      "trailing_stop": 195921.17,
-      "updated_date": "2026-11-11"
+      "last_exit_risk": 13.0,
+      "last_close": 213500.0,
+      "trailing_stop": 196534.8,
+      "updated_date": "2026-11-13"
     },
     "259960": {
       "ticker": "259960",
@@ -179,11 +179,11 @@
       "entry_price": 221500.0,
       "highest_close": 221500.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 36.0,
-      "last_close": 195800.0,
-      "trailing_stop": 195604.2,
-      "updated_date": "2026-11-11"
+      "last_status": "WATCH",
+      "last_exit_risk": 51.0,
+      "last_close": 200000.0,
+      "trailing_stop": 197935.92,
+      "updated_date": "2026-11-13"
     },
     "028050": {
       "ticker": "028050",
@@ -191,13 +191,13 @@
       "market": "KOSPI",
       "entry_date": "2026-11-11",
       "entry_price": 65700.0,
-      "highest_close": 66600.0,
+      "highest_close": 69000.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 66400.0,
-      "trailing_stop": 57716.77,
-      "updated_date": "2026-11-11"
+      "last_exit_risk": 10.0,
+      "last_close": 69000.0,
+      "trailing_stop": 59078.7,
+      "updated_date": "2026-11-13"
     },
     "009420": {
       "ticker": "009420",
@@ -205,13 +205,13 @@
       "market": "KOSPI",
       "entry_date": "2026-11-11",
       "entry_price": 49950.0,
-      "highest_close": 51800.0,
+      "highest_close": 53000.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 49650.0,
-      "trailing_stop": 42927.34,
-      "updated_date": "2026-11-11"
+      "last_status": "HOLD",
+      "last_exit_risk": 20.0,
+      "last_close": 53000.0,
+      "trailing_stop": 44227.46,
+      "updated_date": "2026-11-13"
     },
     "121600": {
       "ticker": "121600",
@@ -223,9 +223,9 @@
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 10.0,
-      "last_close": 75600.0,
-      "trailing_stop": 63314.02,
-      "updated_date": "2026-11-11"
+      "last_close": 75500.0,
+      "trailing_stop": 63512.23,
+      "updated_date": "2026-11-13"
     },
     "030530": {
       "ticker": "030530",
@@ -233,13 +233,13 @@
       "market": "KOSDAQ",
       "entry_date": "2026-11-11",
       "entry_price": 31400.0,
-      "highest_close": 31700.0,
+      "highest_close": 33150.0,
       "tp1_done": false,
       "last_status": "STRONG HOLD",
       "last_exit_risk": 16.0,
-      "last_close": 31400.0,
-      "trailing_stop": 24881.56,
-      "updated_date": "2026-11-11"
+      "last_close": 33150.0,
+      "trailing_stop": 25280.94,
+      "updated_date": "2026-11-13"
     },
     "290550": {
       "ticker": "290550",
@@ -249,11 +249,11 @@
       "entry_price": 27950.0,
       "highest_close": 28650.0,
       "tp1_done": false,
-      "last_status": "STRONG HOLD",
-      "last_exit_risk": 16.0,
-      "last_close": 27950.0,
-      "trailing_stop": 22373.69,
-      "updated_date": "2026-11-11"
+      "last_status": "HOLD",
+      "last_exit_risk": 13.0,
+      "last_close": 27300.0,
+      "trailing_stop": 22097.4,
+      "updated_date": "2026-11-13"
     }
   },
   "closed": [
@@ -1153,5 +1153,5 @@
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-11-13T00:59:23+09:00"
+  "updated_at": "2026-11-13T11:28:33+09:00"
 }
