@@ -193,8 +193,8 @@
       "entry_price": 49950.0,
       "highest_close": 53000.0,
       "tp1_done": false,
-      "last_status": "HOLD",
-      "last_exit_risk": 20.0,
+      "last_status": "STRONG HOLD",
+      "last_exit_risk": 17.0,
       "last_close": 51100.0,
       "trailing_stop": 43901.28,
       "updated_date": "2026-11-13"
@@ -1158,5 +1158,5 @@
       "exit_reason": "추세 반전 + DMI/Alpha 약화가 중첩"
     }
   ],
-  "updated_at": "2026-11-14T11:01:19+09:00"
+  "updated_at": "2026-11-17T01:28:34+09:00"
 }
